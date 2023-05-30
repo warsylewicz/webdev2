@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web 2</title>
+    <link rel="stylesheet" href="reveal.js/reset.css" />
+    <link rel="stylesheet" href="reveal.js/reveal.css" />
+    <link rel="stylesheet" href="reveal.js/theme/web2.css" />
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" />
+    <!-- Add any other Reveal.js plugins, themes, or stylesheets here -->
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-separator="^---$"
+          data-separator-vertical="^--$"
+          data-separator-notes="^Note:"
+        ></section>
+      </div>
+    </div>
+
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      let markdownFile = getParameterByName("set");
+      if (markdownFile) {
+        markdownFile += ".md";
+        const markdownSection = document.querySelector(".slides section");
+        markdownSection.setAttribute("data-markdown", `${markdownFile}`);
+      }
+    </script>
+    <script src="reveal.js/reveal.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="reveal.js/plugin/search/search.js"></script>
+    <script src="reveal.js/plugin/zoom/zoom.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: "c/t",
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealSearch, RevealZoom],
+      });
+    </script>
+  </body>
+</html>
