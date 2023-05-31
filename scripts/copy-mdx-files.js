@@ -8,6 +8,9 @@ async function copyMdxFiles() {
   const sourceDirectory = path.join(process.cwd(), "pages");
   const targetDirectory = path.join(process.cwd(), "public", "mdx");
 
+  // Remove the mdx directory if it exists
+  await fs.remove(targetDirectory);
+
   // Ensure the target directory exists
   await fs.ensureDir(targetDirectory);
 
@@ -16,6 +19,11 @@ async function copyMdxFiles() {
 
   // Copy each .mdx file to the target directory
   for (const file of files) {
+    // only copy the file if it is a slide
+    if (!file.includes("slides")) {
+      continue;
+    }
+
     const sourcePath = path.join(sourceDirectory, file);
     const targetPath = path.join(targetDirectory, file);
 
