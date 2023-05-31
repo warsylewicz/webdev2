@@ -1,7 +1,7 @@
 # Another Page
 
 ```js filename="demo.js" {3} copy
-let a = 1;
+let a = 2;
 
 console.log(a);
 ```
@@ -16,4 +16,26 @@ import Slideshow from "/components/Slideshow";
 
 import { Sandpack } from "@codesandbox/sandpack-react";
 
-<Sandpack template="react" />
+export default function App() {
+  return (
+    <Sandpack
+      template="react"
+      customSetup={{
+        dependencies: {
+          "react-markdown": "latest",
+        },
+      }}
+      files={{
+        "/App.js": `import ReactMarkdown from 'react-markdown' 
+
+export default function App() {
+  return (
+    <ReactMarkdown>
+      # Hello, *world*!
+    </ReactMarkdown>
+  )
+}`,
+      }}
+    />
+  );
+}
