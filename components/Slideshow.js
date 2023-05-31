@@ -1,10 +1,27 @@
 import Link from "next/link";
 
 export default function Slideshow({ file }) {
+  const containerStyle = {
+    position: "relative",
+    width: "100%",
+    height: "0",
+    paddingBottom: "56.25%",
+  };
+
+  const iframeStyle = {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+  };
   return (
-    <div>
-      <Link href={file}>All code</Link>
-      <iframe src={`/slides/index.html?set=${file}`}></iframe>
+    <div style={containerStyle}>
+      <Link href={file}>View all slides</Link>
+      <iframe
+        src={`/slides/index.html?set=${file}`}
+        style={iframeStyle}
+      ></iframe>
     </div>
   );
 }

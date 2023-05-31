@@ -32,7 +32,7 @@
       }
 
       let markdownFile = getParameterByName("set");
-      markdownFile = "/api/raw-markdown?file=" + markdownFile + ".mdx";
+      markdownFile = `/mdx/${markdownFile}.mdx`;
 
       if (markdownFile) {
         const markdownSection = document.querySelector(".slides section");
