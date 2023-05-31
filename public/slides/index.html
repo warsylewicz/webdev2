@@ -32,8 +32,8 @@
       }
 
       let markdownFile = getParameterByName("set");
+
       if (markdownFile) {
-        markdownFile += ".md";
         const markdownSection = document.querySelector(".slides section");
         markdownSection.setAttribute("data-markdown", `${markdownFile}`);
       }
