@@ -16,8 +16,6 @@ import Slideshow from "/components/Slideshow";
 
 import { Sandpack } from "@codesandbox/sandpack-react";
 
-export default function App() {
-  return (
     <Sandpack
       template="react"
       customSetup={{
@@ -26,7 +24,7 @@ export default function App() {
         },
       }}
       files={{
-        "/App.js": `import ReactMarkdown from 'react-markdown' 
+        "/App.js": `import ReactMarkdown from 'react-markdown'
 
 export default function App() {
   return (
@@ -37,5 +35,3 @@ export default function App() {
 }`,
       }}
     />
-  );
-}
