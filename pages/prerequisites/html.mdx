@@ -1,0 +1,45 @@
+# HTML
+
+## Multiple choice problem
+
+import MultipleChoice from "components/MultipleChoice";
+
+<MultipleChoice
+  question="What is your favourite colour?"
+  choices="red,blue,green,yellow"
+  answer="2"
+/>
+
+## Code markdown demo
+
+```js filename="demo.js" copy
+import ReactMarkdown from "react-markdown";
+
+export default function App() {
+  return <ReactMarkdown># Hello, *world*!</ReactMarkdown>;
+}
+```
+
+## Sandpack!
+
+import Sandbox from "components/Sandbox";
+
+<Sandbox 
+  template="react" 
+  files={{
+    "/App.js": `
+
+    export default function App() {
+      return (
+        <div>foo</div>
+      )
+    }`,
+
+}}
+/>
+
+## Another external one
+
+import Slideshow from "/components/Slideshow";
+
+<Slideshow file="/prerequisites/html-slides" />

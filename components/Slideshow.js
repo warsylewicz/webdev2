@@ -16,12 +16,14 @@ export default function Slideshow({ file }) {
     height: "100%",
   };
   return (
-    <div style={containerStyle}>
+    <div>
+      <div style={containerStyle}>
+        <iframe
+          src={`/slides/index.html?set=${file}`}
+          style={iframeStyle}
+        ></iframe>
+      </div>
       <Link href={file}>View all slides</Link>
-      <iframe
-        src={`/slides/index.html?set=${file}`}
-        style={iframeStyle}
-      ></iframe>
     </div>
   );
 }

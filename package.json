@@ -20,12 +20,14 @@
   "homepage": "https://github.com/shuding/nextra-docs-template#readme",
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.7",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "fs-extra": "^11.1.1",
     "glob": "^10.2.6",
     "next": "^13.0.6",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
+    "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
