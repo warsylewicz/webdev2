@@ -18,7 +18,7 @@ const config: DocsThemeConfig = {
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
-  primaryHue: { dark: 60, light: 245 },
+  primaryHue: { dark: 20, light: 245 },
 };
 
 export default config;

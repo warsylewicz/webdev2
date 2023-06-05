@@ -6,7 +6,7 @@ import MultipleChoice from "components/MultipleChoice";
 
 <MultipleChoice
   question="What is your favourite colour?"
-  choices="red,blue,green,yellow"
+  choices={["red", "blue", "green", "yellow"]}
   answer="2"
 />
 
@@ -23,20 +23,9 @@ export default function App() {
 ## Sandpack!
 
 import Sandbox from "components/Sandbox";
+import { files } from "./demo1.js";
 
-<Sandbox 
-  template="react" 
-  files={{
-    "/App.js": `
-
-    export default function App() {
-      return (
-        <div>foo</div>
-      )
-    }`,
-
-}}
-/>
+<Sandbox template="react" files={files} />
 
 ## Another external one
 

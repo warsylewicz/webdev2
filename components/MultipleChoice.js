@@ -3,12 +3,10 @@ import ConfettiExplosion from "react-confetti-explosion";
 import styles from "./MultipleChoice.module.css";
 
 function MultipleChoice({ question, choices, answer }) {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedChoice, setSelectedChoice] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
-  const [shakeOption, setShakeOption] = useState(-1);
-
-  const options = choices.split(",").map((choice) => choice.trim());
+  const [shakeChoice, setShakeChoice] = useState(-1);
 
   answer = parseInt(answer) - 1;
 
@@ -16,31 +14,29 @@ function MultipleChoice({ question, choices, answer }) {
     let storedAnswer = localStorage.getItem(question + choices);
     if (storedAnswer) {
       storedAnswer = parseInt(storedAnswer);
-      setSelectedOption(storedAnswer);
+      setSelectedChoice(storedAnswer);
       setIsCorrect(storedAnswer === answer);
     }
   }, []);
 
-  const handleOptionClick = (index) => {
+  const handleChoiceClick = (index) => {
     if (isCorrect) return;
 
-    setSelectedOption(index);
+    setSelectedChoice(index);
     const correct = index == answer;
 
     setIsCorrect(correct);
     if (correct) {
-      localStorage.setItem(question + choices, index);
+      // Only save to localStorage on the client-side
+      if (typeof window !== "undefined") {
+        localStorage.setItem(question + choices, index);
+      }
       setIsExploding(true);
     } else {
-      setShakeOption(index);
+      setShakeChoice(index);
       setTimeout(() => {
-        setShakeOption(-1);
+        setShakeChoice(-1);
       }, 500);
-      // const element = document.querySelector("#option" + index);
-      // element.classList.add(styles.shake);
-      // setTimeout(() => {
-      //   element.classList.remove(styles.shake);
-      // }, 500);
     }
   };
 
@@ -48,18 +44,18 @@ function MultipleChoice({ question, choices, answer }) {
     <div className={styles.question}>
       <h2>{question}</h2>
       {isExploding && <ConfettiExplosion />}
-      {options.map((option, index) => (
+      {choices.map((choice, index) => (
         <div
-          className={`${styles.option} ${
-            shakeOption === index ? styles.shake : ""
+          className={`${styles.choice} ${
+            shakeChoice === index ? styles.shake : ""
           }`}
-          id={"option" + index}
+          id={"choice" + index}
           key={index}
-          onClick={() => handleOptionClick(index)}
+          onClick={() => handleChoiceClick(index)}
         >
           <p>
-            {option}
-            {selectedOption === index && isCorrect && " ✔"}
+            {choice}
+            {selectedChoice === index && isCorrect && " ✔"}
           </p>
         </div>
       ))}
