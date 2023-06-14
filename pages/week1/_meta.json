@@ -4,5 +4,6 @@
   "refresher": "HTML/CSS/JS Refresher",
   "more": "More Materials",
   "assignment": "Week 1 Assignment",
-  "slides": { "display": "hidden" }
+  "slides": { "display": "hidden" },
+  "demo1": { "display": "hidden" }
 }

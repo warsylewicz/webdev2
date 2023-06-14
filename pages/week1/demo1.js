@@ -23,3 +23,7 @@ export const files = {
     code: HelloJs,
   },
 };
+
+export default function Demo1() {
+  return <div>demo1</div>;
+}
