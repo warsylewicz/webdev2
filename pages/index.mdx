@@ -1,11 +1,26 @@
-# Introductionss
+# Welcome to CPRG 306 Web Development 2
 
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
+<CurrentWeek />
 
-## What is Nextra?
+export const CurrentWeek = () => {
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+    const weeks = [{date: '2023-09-04', week: '1'}, { date: '2023-09-11', week: '2'}];
 
-## Documentation
+    return (
+        <div>
+            {year}-{month < 10 ? '0' + month : month }-{date}
+            <br>
+            </br>
+            {weeks.map((week) => (
+                <div key={week.date}>
+                    {week.date} - {week.week}
+                </div>
+            ))}
+        </div>
+    );
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+};

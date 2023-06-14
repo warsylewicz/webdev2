@@ -5,7 +5,7 @@ const config: DocsThemeConfig = {
   logo: (
     <span>
       {" "}
-      <span style={{ color: "#ff6600" }}>&lt;/&gt;</span> Web Dev 2
+      <span style={{ color: "#E67300" }}>&lt;/&gt;</span> Web Dev 2
     </span>
   ),
   // project: {
@@ -14,11 +14,15 @@ const config: DocsThemeConfig = {
   // chat: {
   //   link: "https://discord.com",
   // },
+  search: {
+    placeholder: "Search content...",
+  },
+
   docsRepositoryBase: "https://github.com/warsylewicz/webdev2/tree/main",
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
-  primaryHue: { dark: 20, light: 245 },
+  primaryHue: { dark: 30, light: 245 },
 };
 
 export default config;
