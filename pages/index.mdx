@@ -1,26 +1,90 @@
-# Welcome to CPRG 306 Web Development 2
+# Welcome to Web Development 2
 
-<CurrentWeek />
+## Schedule
 
-export const CurrentWeek = () => {
-    let newDate = new Date()
-    let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
-    let year = newDate.getFullYear();
-
-    const weeks = [{date: '2023-09-04', week: '1'}, { date: '2023-09-11', week: '2'}];
-
-    return (
-        <div>
-            {year}-{month < 10 ? '0' + month : month }-{date}
-            <br>
-            </br>
-            {weeks.map((week) => (
-                <div key={week.date}>
-                    {week.date} - {week.week}
-                </div>
-            ))}
-        </div>
-    );
-
-};
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Date</th>
+      <th>Topic</th>
+      <th>Assessment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      {
+        week: 1,
+        date: "2023-09-04",
+        topic: "Introduction",
+        assessment: "assignment",
+      },
+      { week: 2, date: "2023-09-11", topic: "JS 1", assessment: "assignment" },
+      { week: 3, date: "2023-09-18", topic: "JS 2", assessment: "assignment" },
+      { week: 4, date: "2023-09-25", topic: "JSX", assessment: "assignment" },
+      {
+        week: 5,
+        date: "2023-10-02",
+        topic: "Tailwind",
+        assessment: "assignment",
+      },
+      {
+        week: 6,
+        date: "2023-10-09",
+        topic: "Interactivity",
+        assessment: "assignment",
+      },
+      { week: 7, date: "2023-10-16", topic: "State", assessment: "assignment" },
+      {
+        week: 8,
+        date: "2023-10-23",
+        topic: "Data Fetching",
+        assessment: "assignment",
+      },
+      { week: 9, date: "2023-10-30", topic: "API", assessment: "assignment" },
+      { week: 10, date: "2023-11-06", topic: "Exam", assessment: "exam" },
+      { week: 11, date: "2023-11-13", topic: "Auth", assessment: "project" },
+      { week: 12, date: "2023-11-20", topic: "Routing", assessment: "project" },
+      {
+        week: 13,
+        date: "2023-11-27",
+        topic: "Rendering",
+        assessment: "project",
+      },
+      {
+        week: 14,
+        date: "2023-12-04",
+        topic: "Deployment",
+        assessment: "project",
+      },
+      {
+        week: 15,
+        date: "2023-12-11",
+        topic: "Showcase",
+        assessment: "project",
+      },
+    ].map((week) => (
+      <tr key={week.week}>
+        <td>
+          {
+            // current date is within week.date and week.date + 7 days
+            new Date() >= new Date(week.date) &&
+            new Date() <
+              new Date(week.date).setDate(new Date(week.date).getDate() + 7) ? (
+              <strong>
+                👉 <a href={`/week${week.week}`}>Week {week.week}</a>
+              </strong>
+            ) : (
+              <a href={`/week${week.week}`}>Week {week.week}</a>
+            )
+          }
+        </td>
+        <td>{new Date(week.date).toDateString()}</td>
+        <td>{week.topic}</td>
+        <td>
+          <a href={`/week${week.week}/${week.assessment}`}>{week.assessment}</a>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

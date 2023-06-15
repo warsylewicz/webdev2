@@ -1,7 +1,7 @@
-import React from "react";
-import { DocsThemeConfig } from "nextra-theme-docs";
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
 
-const config: DocsThemeConfig = {
+export default {
   logo: (
     <span>
       {" "}
@@ -22,7 +22,5 @@ const config: DocsThemeConfig = {
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
-  primaryHue: { dark: 30, light: 245 },
+  primaryHue: { dark: 30, light: 30 },
 };
-
-export default config;

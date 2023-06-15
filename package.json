@@ -1,7 +1,7 @@
 {
-  "name": "nextra-docs-template",
+  "name": "webdev2",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "Web Dev 2",
   "scripts": {
     "copy-mdx": "node scripts/copy-mdx-files.js",
     "dev": "npm run copy-mdx && next dev",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/warsylewicz/webdev2.git"
   },
-  "author": "Shu Ding <g@shud.in>",
+  "author": "Aaron Warsylewicz <aaron@wcz.ca>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/warsylewicz/webdev2/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/warsylewicz/webdev2",
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.7",
     "@codesandbox/sandpack-themes": "^2.0.21",

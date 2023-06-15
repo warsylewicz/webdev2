@@ -4,7 +4,7 @@
 const AppJs = `import Hello from './Hello.js'
 	
 export default function App () {
-  return <Hello name="Chris" />
+  return <Hello name="Aaron" />
 }
 `;
 

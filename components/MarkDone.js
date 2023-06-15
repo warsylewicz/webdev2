@@ -24,7 +24,7 @@ export default function MarkDone({ page }) {
 
   return (
     <button className={styles.button} onClick={handleClick}>
-      {isDone ? "Done!" : "Done?"}
+      {isDone ? "Done!" : "Mark page as done"}
     </button>
   );
 }
