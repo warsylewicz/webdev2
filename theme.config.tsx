@@ -5,7 +5,7 @@ export default {
   logo: (
     <span>
       {" "}
-      <span style={{ color: "#E67300" }}>&lt;/&gt;</span> Web Dev 2
+      <span style={{ color: "#00e626" }}>&lt;/&gt;</span> Web Dev 2
     </span>
   ),
   // project: {
@@ -22,5 +22,5 @@ export default {
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
-  primaryHue: { dark: 30, light: 30 },
+  primaryHue: { dark: 130, light: 130 },
 };

@@ -42,7 +42,7 @@ function MultipleChoice({ question, choices, answer }) {
 
   return (
     <div className={styles.question}>
-      <h2>{question}</h2>
+      {question}
       {isExploding && <ConfettiExplosion />}
       {choices.map((choice, index) => (
         <div

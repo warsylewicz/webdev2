@@ -68,9 +68,11 @@
         <td>
           {
             // current date is within week.date and week.date + 7 days
-            new Date() >= new Date(week.date) &&
+            new Date() >= new Date(week.date + "T07:00:00.000Z") &&
             new Date() <
-              new Date(week.date).setDate(new Date(week.date).getDate() + 7) ? (
+              new Date(week.date + "T07:00:00.000Z").setDate(
+                new Date(week.date + "T07:00:00.000Z").getDate() + 7
+              ) ? (
               <strong>
                 👉 <a href={`/week${week.week}`}>Week {week.week}</a>
               </strong>
@@ -79,7 +81,7 @@
             )
           }
         </td>
-        <td>{new Date(week.date).toDateString()}</td>
+        <td>{new Date(week.date + "T07:00:00.000Z").toDateString()}</td>
         <td>{week.topic}</td>
         <td>
           <a href={`/week${week.week}/${week.assessment}`}>{week.assessment}</a>
