@@ -1,92 +1,41 @@
 # Welcome to Web Development 2
 
+This course is a continuation of Web Development 1 and provides an in-depth exploration of full-stack web application development. Building on the foundations established in the previous course, we will delve into intermediate JavaScript, explore the functionalities of React.js - a front-end JavaScript library, and learn to leverage the power of Next.js - a robust full-stack framework.
+
+While the program includes a certain amount of theoretical content, it primarily focuses on practical, hands-on coding.
+
+Your performance in this course will be evaluated based on the following assessments:
+
+| Assessment   | Weight (%)        |
+| ------------ | ----------------- |
+| Assignments  | 9 x 5% each = 45% |
+| Midterm Exam | 20%               |
+| Project      | 35%               |
+| **Total**    | **100%**          |
+
+Success in this course hinges on your consistent engagement with weekly activities and timely completion of assignments.
+
+With this course, you'll transition from merely building websites to crafting full-fledged web applications!
+I wish you the best of luck and am confident that you'll find the course both challenging and rewarding.
+
 ## Schedule
 
-<table>
-  <thead>
-    <tr>
-      <th>Week</th>
-      <th>Date</th>
-      <th>Topic</th>
-      <th>Assessment</th>
-    </tr>
-  </thead>
-  <tbody>
-    {[
-      {
-        week: 1,
-        date: "2023-09-04",
-        topic: "Introduction",
-        assessment: "assignment",
-      },
-      { week: 2, date: "2023-09-11", topic: "JS 1", assessment: "assignment" },
-      { week: 3, date: "2023-09-18", topic: "JS 2", assessment: "assignment" },
-      { week: 4, date: "2023-09-25", topic: "JSX", assessment: "assignment" },
-      {
-        week: 5,
-        date: "2023-10-02",
-        topic: "Tailwind",
-        assessment: "assignment",
-      },
-      {
-        week: 6,
-        date: "2023-10-09",
-        topic: "Interactivity",
-        assessment: "assignment",
-      },
-      { week: 7, date: "2023-10-16", topic: "State", assessment: "assignment" },
-      {
-        week: 8,
-        date: "2023-10-23",
-        topic: "Data Fetching",
-        assessment: "assignment",
-      },
-      { week: 9, date: "2023-10-30", topic: "API", assessment: "assignment" },
-      { week: 10, date: "2023-11-06", topic: "Exam", assessment: "exam" },
-      { week: 11, date: "2023-11-13", topic: "Auth", assessment: "project" },
-      { week: 12, date: "2023-11-20", topic: "Routing", assessment: "project" },
-      {
-        week: 13,
-        date: "2023-11-27",
-        topic: "Rendering",
-        assessment: "project",
-      },
-      {
-        week: 14,
-        date: "2023-12-04",
-        topic: "Deployment",
-        assessment: "project",
-      },
-      {
-        week: 15,
-        date: "2023-12-11",
-        topic: "Showcase",
-        assessment: "project",
-      },
-    ].map((week) => (
-      <tr key={week.week}>
-        <td>
-          {
-            // current date is within week.date and week.date + 7 days
-            new Date() >= new Date(week.date + "T07:00:00.000Z") &&
-            new Date() <
-              new Date(week.date + "T07:00:00.000Z").setDate(
-                new Date(week.date + "T07:00:00.000Z").getDate() + 7
-              ) ? (
-              <strong>
-                👉 <a href={`/week${week.week}`}>Week {week.week}</a>
-              </strong>
-            ) : (
-              <a href={`/week${week.week}`}>Week {week.week}</a>
-            )
-          }
-        </td>
-        <td>{new Date(week.date + "T07:00:00.000Z").toDateString()}</td>
-        <td>{week.topic}</td>
-        <td>
-          <a href={`/week${week.week}/${week.assessment}`}>{week.assessment}</a>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+| Week               | Week Begins    | Topic                 | Assessment                                             | Due Date       |
+| ------------------ | -------------- | --------------------- | ------------------------------------------------------ | -------------- |
+| [Week 1](/week1)   | Sept. 4, 2023  | Introduction          | [Assignment 1](/week1/assignment)                      | Sept. 11, 2023 |
+| [Week 2](/week2)   | Sept. 11, 2023 | Essential JS Skills 1 | [Assignment 2](/week2/assignment)                      | Sept. 18, 2023 |
+| [Week 3](/week3)   | Sept. 18, 2023 | Essential JS Skills 2 | [Assignment 3](/week3/assignment)                      | Sept. 25, 2023 |
+| [Week 4](/week4)   | Sept. 25, 2023 | JSX                   | [Assignment 4](/week4/assignment)                      | Oct. 2, 2023   |
+| [Week 5](/week5)   | Oct. 2, 2023   | Styling               | [Assignment 5](/week5/assignment)                      | Oct. 9, 2023   |
+| [Week 6](/week6)   | Oct. 9, 2023   | Interactivity         | [Assignment 6](/week6/assignment)                      | Oct. 16, 2023  |
+| [Week 7](/week7)   | Oct. 16, 2023  | State                 | [Assignment 7](/week7/assignment)                      | Oct. 23, 2023  |
+| [Week 8](/week8)   | Oct. 23, 2023  | Data Fetching         | [Assignment 8](/week8/assignment)                      | Oct. 30, 2023  |
+| [Week 9](/week9)   | Oct. 30, 2023  | API                   | [Assignment 9](/week9/assignment)                      | Nov. 6, 2023   |
+| [Week 10](/week10) | Nov. 6, 2023   | Exam                  | [Exam](/week10/exam), [Project Topic](/week10/project) | Nov. 13, 2023  |
+| [Week 11](/week11) | Nov. 13, 2023  | Auth                  |                                                        |                |
+| [Week 12](/week12) | Nov. 20, 2023  | Routing               |                                                        |                |
+| [Week 13](/week13) | Nov. 27, 2023  | Rendering             |                                                        |                |
+| [Week 14](/week14) | Dec. 4, 2023   | Deployment            | [Project](/week14/project)                             | Dec. 11, 2023  |
+| [Week 15](/week15) | Dec. 11, 2023  | Showcase              | [Project](/week15/project)                             | Dec. 13, 2023  |
+
+Please note that the schedule subject to change.

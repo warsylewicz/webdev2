@@ -1,5 +1,19 @@
 {
   "index": "Welcome!",
-  "week1": "Week 1",
-  "week2": "Week 2"
+  "week1": "Week 1 - Intro",
+  "week2": "Week 2 - JS 1",
+  "week3": "Week 3 - JS 2",
+  "week4": "Week 4 - JSX",
+  "week5": "Week 5 - Styling",
+  "week6": "Week 6 - Interactivity",
+  "week7": "Week 7 - State",
+  "week8": "Week 8 - Data Fetching",
+  "week9": "Week 9 - API",
+  "week10": "Week 10 - Exam + Project Topic",
+  "week11": "Week 11 - Auth",
+  "week12": "Week 12 - Routing",
+  "week13": "Week 13 - Rendering",
+  "week14": "Week 14 - Deployment",
+  "week15": "Week 15 - Showcase",
+  "references": "References"
 }

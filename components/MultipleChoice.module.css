@@ -1,27 +1,34 @@
-.question {
-  background-color: rgb(29, 28, 28);
-  padding: 20px;
-  position: relative;
+.questionContainer {
+  border-style: solid;
+  border-width: 1px;
   border-radius: 8px;
+  margin-top: 2em;
+  padding: 1em;
 }
 
-.question:before {
-  content: "?";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 24px;
+.title {
+  font-size: 1.5em;
   font-weight: bold;
-  color: #fff;
+  margin-bottom: 1em;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 1em;
 }
 
 .choice {
-  border: 1px solid #000;
-  border-radius: 25px;
-  padding: 10px;
-  margin: 10px 0;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
   cursor: pointer;
   text-align: center;
+}
+
+.choice:hover {
+  transform: scale(1.05);
 }
 
 .shake {

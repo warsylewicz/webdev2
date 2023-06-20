@@ -8,9 +8,9 @@ export default {
       <span style={{ color: "#00e626" }}>&lt;/&gt;</span> Web Dev 2
     </span>
   ),
-  // project: {
-  //   link: "https://github.com/warsylewicz/webdev2",
-  // },
+  project: {
+    link: "https://github.com/warsylewicz/webdev2",
+  },
   // chat: {
   //   link: "https://discord.com",
   // },
@@ -23,4 +23,12 @@ export default {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
   primaryHue: { dark: 130, light: 130 },
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "%s – Web Dev 2",
+      };
+    }
+  },
 };

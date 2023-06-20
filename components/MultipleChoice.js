@@ -41,8 +41,9 @@ function MultipleChoice({ question, choices, answer }) {
   };
 
   return (
-    <div className={styles.question}>
-      {question}
+    <div className={styles.questionContainer}>
+      <div className={styles.title}>📚 Knowledge Check</div>
+      <div className={styles.question}>{question}</div>
       {isExploding && <ConfettiExplosion />}
       {choices.map((choice, index) => (
         <div
