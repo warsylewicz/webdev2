@@ -1,5 +1,6 @@
 {
-  "index": "Welcome!",
+  "index": "Schedule",
+  "course-info": "Course Information",
   "week1": "Week 1 - Intro",
   "week2": "Week 2 - JS 1",
   "week3": "Week 3 - JS 2",
