@@ -1,0 +1,26 @@
+# Various Samples
+
+## Multiple choice demo
+
+import MultipleChoice from "components/MultipleChoice";
+
+<MultipleChoice
+  question="What is your favourite colour? Answer is blue, the second option."
+  choices={["red", "blue", "green", "yellow"]}
+  answer="2"
+/>
+
+## Code demo
+
+```js filename="demo.js" copy
+export default function App() {
+  return <strong>Hello, world!</strong>;
+}
+```
+
+## Sandpack demo
+
+import Sandbox from "components/Sandbox";
+import { files } from "./samples-demo.js";
+
+<Sandbox template="react" files={files} />
