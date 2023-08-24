@@ -23,3 +23,13 @@ export const files = {
     code: HelloJs,
   },
 };
+
+export default function Foo() {
+  return (
+    <div>
+      This function is not used. It is used to solve the bug: Build optimization
+      failed: found page without a React Component as default export in
+      pages/week1/samples-demo
+    </div>
+  );
+}
