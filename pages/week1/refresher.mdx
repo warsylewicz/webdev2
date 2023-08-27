@@ -2,11 +2,170 @@
 
 The material below is a refresher on HTML, CSS, and JavaScript. If you are already familiar with these topics, you can skip this refresher. This material was covered in the Web Development 1 course.
 
-## HTML
+Before we dive deeper into the exciting world of Next.js and React, it's crucial to revisit the foundations upon which these advanced tools are built: HTML, CSS, and JavaScript. These three technologies form the core of web development and are indispensable to any web developer's toolkit.
+
+HTML (HyperText Markup Language) provides the fundamental structure of websites, defining elements such as headings, paragraphs, links, and more. CSS (Cascading Style Sheets) is the stylistic language responsible for the layout and design of these HTML elements, controlling aspects like color, font, and positioning. JavaScript breathes life into these static elements, enabling interactivity and dynamic content on your web pages.
+
+Understanding these basics is not just important—it's essential. All advanced frameworks and libraries, including Next.js and React, are built on these technologies. They abstract and enhance these fundamental layers, allowing us to create more complex, interactive, and efficient web applications. However, a strong understanding of HTML, CSS, and JavaScript is key to fully leverage the power of these advanced tools and to troubleshoot effectively when things don't go as planned.
+
+So, let's take a step back and refresh our understanding of these fundamental web technologies. Whether you're a seasoned developer or a beginner, a good refresher never hurts. Let's start with HTML...
+
+## HTML Refresher
+
+HTML (HyperText Markup Language) forms the structure and layout of a web page. It consists of a series of elements used to enclose or wrap different parts of the content to make it appear and act in a certain way. The enclosed content could be a simple text, link, image, or even more complex structures like a table or form.
+
+Here's a refresher on some of the most common HTML elements:
+
+### Document Structure Elements
+
+- `<!DOCTYPE html>`: Defines the document type and version of HTML.
+- `<html>`: The root element that wraps an entire HTML document.
+- `<head>`: Contains meta information about the document not displayed on the web page itself.
+- `<meta charset>`: Defines the character encoding for the document.
+- `<title>`: Specifies the title of the document, displayed in the browser's title bar or tab.
+- `<body>`: Contains the content that is displayed on the web page.
+
+### Text Formatting Elements
+
+- `<h1>` to `<h6>`: Define headings, `<h1>` being the highest level.
+- `<p>`: Defines a paragraph.
+- `<em>`: Emphasizes text.
+- `<strong>`: Defines important text.
+- `<!-- comments -->`: Used to insert comments in the HTML source code.
+
+### Link and List Elements
+
+- `<a>`: Defines a hyperlink.
+- `<ol>`: Creates an ordered list.
+- `<ul>`: Creates an unordered list.
+- `<li>`: Defines a list item.
+
+### Table Elements
+
+- `<table>`: Creates a table.
+- `<tr>`: Defines a row in a table.
+- `<th>`: Defines a header cell in a table.
+- `<td>`: Defines a cell in a table.
+
+### Form Elements
+
+- `<form>`: Defines a form.
+- `<input>`: Defines an input control, e.g. a text field.
+- `<textarea>`: Defines a multiline input control (for more text).
+- `<button>`: Defines a clickable button.
+- `<label>`: Defines a label for `<input>`, `<textarea>`, and `<button>` elements.
+
+### Semantic Elements
+
+- `<header>`: Specifies a header for a document or section.
+- `<main>`: Specifies the main content of a document.
+- `<footer>`: Specifies a footer for a document or section.
+- `<article>`: Specifies independent, self-contained content.
+- `<aside>`: Specifies content aside from the content it is placed in.
+- `<nav>`: Specifies navigation links.
+- `<section>`: Defines a section in a document.
+- `<div>`: Defines a division or a section in an HTML document.
+- `<span>`: Defines a span of text.
+
+Remember, HTML elements are the building blocks of HTML pages. With HTML constructs, images and other objects, such as interactive forms, can be embedded into the rendered page. It provides a means to create structured documents by denoting structural semantics for text.
 
 ## CSS
 
+CSS (Cascading Style Sheets) is the language we use to style an HTML document. It describes how HTML elements should be displayed, controlling layout, look, and feel of your web pages. CSS can save a lot of work, as it allows you to control the layout of multiple web pages all at once.
+
+In this refresher, we'll go over some of the key CSS concepts that you've learned before. This includes CSS selectors, properties, values, the box model, and flexbox. Even though you might not be writing raw CSS syntax directly in this course, understanding these basics is essential for web development. They form the foundation upon which more advanced tools and frameworks are built.
+
+Let's dive in and refresh our understanding of how we can make our web pages not just functional, but also visually appealing and user-friendly with CSS...
+
+### CSS Selectors
+
+CSS selectors are the part of CSS rulesets that determine which elements in the document tree are styled by the declarations in the ruleset. Here are some types of selectors you might remember:
+
+- **Type selectors**: Match instances of an element. Example: `p { color: red; }` would select all paragraph elements.
+- **Class selectors**: Select elements based on the class attribute. Example: `.myClass { color: green; }`.
+- **ID selectors**: Select an element based on the id attribute. Example: `#myID { color: blue; }`.
+- **Pseudo-classes**: Used to define a special state of an element. Example: `a:hover { color: orange; }` selects an anchor element when it's being hovered over.
+
+### CSS Properties and Values
+
+CSS properties are what you use to apply styles to HTML elements. Here are some properties and their typical values:
+
+- **Color Properties**: `color` (for text color), `background-color` (for background color). Can take named colors ("red"), HEX colors ("#ff0000"), RGB values ("rgb(255,0,0)").
+- **Font Properties**: `font-family` (typeface), `font-size` (text size), `font-weight` (how bold), `font-style` (normal or italic), `text-decoration` (underline, overline, line-through), `line-height` (spacing between lines), `text-align` (text alignment).
+
+### The Box Model
+
+The CSS box model is a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content.
+
+- **Content**: The content of the box, where text and images appear.
+- **Padding**: A transparent area around the content (inside the box), between the content and the border.
+- **Border**: A border that goes around the padding and content.
+- **Margin**: A transparent area outside the box. It is the space between the border and the next box.
+
+### Flexbox
+
+CSS Flexbox is a layout module that allows responsive elements within a container to be automatically arranged depending upon screen size. A flex container expands its items to fill available free space, or shrinks them to prevent overflow.
+
+- **Flex Container**: The parent element in which flex items are enclosed. `display: flex;` is applied to it.
+- **Flex Items**: The direct children of the flex container and can be laid out in any direction.
+
 ## JavaScript
+
+JavaScript is the programming language that makes web pages interactive. It provides the ability to create dynamic responses on web pages and handle user interactions. In this refresher, we'll revisit some of the core JavaScript concepts you've learned before.
+
+### Variables
+
+Variables in JavaScript are containers for storing data values. We use the `var`, `let`, or `const` keywords to declare variables.
+
+### Data Types
+
+JavaScript has several built-in data types, including:
+
+- **Number**: Represents numeric values. Example: `let num = 25;`
+- **String**: Represents a sequence of characters. Example: `let str = "Hello World";`
+- **Boolean**: Represents logical values, `true` or `false`.
+- **Object**: Represents an instance through which we can access properties. An object is a collection of properties, and a property is an association between a name (or key) and a value.
+
+### Operators
+
+JavaScript includes arithmetic operators like `+`, `-`, `*`, `/`, `%` (modulus), and comparison operators like `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=`.
+
+### Data Type Conversion
+
+Sometimes it's necessary to convert data types for comparison or computation. JavaScript provides built-in functions like `parseInt()` and `parseFloat()` for converting strings to numbers.
+
+### Conditional Statements
+
+JavaScript supports conditional statements to control the flow of code execution. This includes `if`, `if...else`, `if...else if...else`, and `switch` statements.
+
+### Loops
+
+Loops are used to repeatedly run a block of code until a certain condition is met. JavaScript supports several types of loops including `for`, `while`, and `do...while`.
+
+### Functions
+
+Functions in JavaScript are blocks of code designed to perform a specific task. A JavaScript function is defined with the `function` keyword, followed by a name, followed by parentheses `()`.
+
+### DOM Manipulation
+
+The Document Object Model (DOM) is a programming API for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated. Some key DOM methods include:
+
+- `getElementById()`: Gets the element with the specific ID.
+- `innerHTML`: Gets or sets the HTML content of an element.
+- `addEventListener()`: Attaches an event handler to the specified element.
+
+## Example Code
+
+In this example, we will explore an interactive quiz made using HTML, CSS, and JavaScript, hosted on Sandpack - an online code editor. The quiz presents a question about the capital of France and offers four possible answers in the form of buttons. When a student selects an answer, the application provides immediate feedback indicating whether the answer is correct or not.
+
+As you explore this example, pay attention to how the HTML structures the webpage, how the CSS styles the elements, and how the JavaScript provides interactivity. Look at how the external CSS and JavaScript files are linked to the HTML document. Note how the JavaScript manipulates the HTML elements to change the content of the page in response to user actions. This example provides a compact illustration of how HTML, CSS, and JavaScript work together to create an interactive web application.
+
+> While exploring this example, if you encounter aspects that are unclear or confusing, remember there are resources available to help. You can rely on [AI-powered tools](/course-info#specific-use-cases-for-ai-tools) to answer specific questions or provide further explanations on topics you find challenging. Another valuable resource is your instructor, who has a deep understanding of the topic and can clarify complex concepts, explain the code in a different way, or help troubleshoot any issues you might be facing. Don't hesitate to seek help when needed. Learning is a journey, and asking questions is an essential part of the process.
+
+import Sandbox from "components/Sandbox";
+import { files } from "./refresher-demo.js";
+
+<Sandbox template="static" files={files} />
 
 ## Further Reading
 
