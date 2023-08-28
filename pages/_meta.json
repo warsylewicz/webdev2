@@ -16,5 +16,6 @@
   "week13": "Week 13: Next.js: Routing, SSG/SSR/CSR",
   "week14": "Week 14: Project",
   "week15": "Week 15: Project Showcase",
-  "references": "References"
+  "references": "References",
+  "announcements": { "display": "hidden" }
 }
