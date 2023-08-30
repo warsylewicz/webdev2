@@ -1,0 +1,76 @@
+# Guide: Deploying a Next.js App using Vercel
+
+This guide will walk you through the process of deploying your Next.js application using Vercel. We'll test the build locally, integrate GitHub with Vercel, set up the deployment settings, and finally, deploy your application. This guide does not require any command-line usage and is beginner-friendly.
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+## Part 1: Testing the Build Locally
+
+### Run the Build Command
+
+In your local development environment using VS Code, open a terminal in the root directory of your project and run the following command:
+bash
+
+`npm run build`
+
+This will create an optimized production build of your Next.js application.
+
+### Check for Errors
+
+If there are any errors during the build process, they will show up in the terminal. Address any issues before proceeding with deployment.
+
+## Part 2: Integrating GitHub with Vercel
+
+### Navigate to Vercel
+
+Visit the [Vercel website ↗](https://vercel.com).
+
+### Log In or Sign Up
+
+If you already have an account, log in. If not, sign up for a new account. You can use your GitHub credentials for this.
+
+### Connect Your GitHub Account
+
+After logging in, you'll be directed to your Vercel dashboard. Click on the "Add New..." button and choose "Project".
+
+On the next screen, you'll be asked to Import Git Repository. Click on the Connect with GitHub button to link your GitHub account with Vercel.
+
+If this is your first time connecting Vercel to GitHub, you'll be asked to authorize Vercel. Click on Authorize Vercel and follow the prompts.
+
+### Select Your GitHub Repository
+
+After authorizing Vercel, you should see a list of your GitHub repositories. Select the repository containing the Next.js application you want to deploy.
+
+## Part 3: Setting Up Deployment
+
+### Configure Your Project
+
+After selecting your repository, you'll be asked to configure your project. Most fields will be pre-filled and you can keep the default settings. Make sure the Framework Preset is set to Next.js.
+
+### Deploy Your Project
+
+Click on the Deploy button at the bottom of the page. Vercel will begin deploying your Next.js application. This may take a few minutes.
+
+## Part 4: Viewing Your Deployed Application
+
+### Visit Your Deployed Application
+
+Once your application has been deployed, you'll be redirected to a deployment overview page. Click on the Visit button or the URL at the top of the page to view your deployed Next.js application.
+
+And that's it! You've successfully deployed your Next.js application using Vercel. Any future changes you push to your GitHub repository will automatically trigger a new deployment, keeping your application up-to-date.
+
+import { Callout } from "nextra/components";
+
+<Callout emoji="⚠️">
+  If your application has any errors, the project will not deploy. You can view
+  the build logs by clicking on the View Build Logs button on the deployment
+  overview page.
+</Callout>
+
+</Steps>
+
+## More Resources
+
+[YouTube Video - How To Deploy a NextJS App To Vercel (EASY AND QUICK!!!)](https://www.youtube.com/watch?v=2HBIzEx6IZA)

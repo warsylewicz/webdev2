@@ -13,15 +13,15 @@ const NavBar = `function NavBar() {
 }
 `;
 
-const NavBarSolution = `export function NavBar() {
+const NavBarSolution = `export function NavBar() {  // #1. In order for App.js to import NavBar, we need to export it
   let currentPage = "Home";
 
   return (
     <nav className="navbar">
       <ul>
-        <li>{currentPage}</li>
+        <li>{currentPage}</li>  { /* #2. To use a variable in JSX, we need to wrap it in curly braces */ }
         <li>About</li>
-      </ul>
+      </ul>   { /* #3. Missing closing tag. All HTML tags must be closed. */ }
     </nav>
   );
 }

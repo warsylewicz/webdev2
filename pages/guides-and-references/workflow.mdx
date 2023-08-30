@@ -1,0 +1,69 @@
+# Guide: Coding Workflow
+
+The guide is designed to help developers streamline their coding process, ensure their code is safely versioned with Git, and keep their work synced on GitHub.
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+### Opening Your Project
+
+Open Visual Studio Code.
+
+In VS Code, go to File -> Open... and select the folder of your existing project.
+
+### Start the Development Server
+
+Open the terminal in VS Code by going to View -> Terminal or by pressing Ctrl-`
+
+In the terminal, run the command:
+
+```
+npm run dev
+```
+
+This will start the Next.js development server. Your application will typically be accessible at http://localhost:3000 in your web browser.
+
+### Coding and Seeing Changes
+
+Make the desired changes to your code.
+
+As you save your changes, the development server will automatically refresh your application. You can view these changes by opening your web browser and navigating to http://localhost:3000.
+
+### Committing and Pushing Changes to GitHub
+
+**Review Your Changes**
+
+Open GitHub Desktop. It should automatically detect the changes in your project. You can review these changes by selecting your repository and clicking on the "Changes" tab.
+
+**Commit Your Changes**
+
+In the lower left corner of the GitHub Desktop window, you'll find a summary field and a description field. Enter a brief summary of your changes in the summary field. If you want to provide a more detailed description, you can enter that in the description field. Then, click the "Commit to main" button.
+
+**Push Your Changes to GitHub**
+
+After you've committed your changes, click the "Push origin" button at the top of the GitHub Desktop window. This will upload your committed changes to GitHub.
+
+import { Callout } from "nextra/components";
+
+<Callout type="info" emoji="ℹ️">
+  It is highly have to have a quick look at your code on GitHub to make sure
+  everything looks good. You can do this by going to your repository on GitHub
+  and clicking on the "Code" tab. You can also view your commit history by
+  clicking on the "Commits" tab.
+</Callout>
+
+<Callout emoji="👍">
+  Always remember to commit frequently and write clear, descriptive commit
+  messages. Your code backup is only as good as your last commit!
+</Callout>
+
+### Shutting Down
+
+Stop the Development Server: When you're done coding, you should shut down the development server. In the terminal, press Ctrl-c to stop it.
+
+Close VS Code
+
+Remember, this is a cycle: the next time you come back to code, you'll start at Part 1 again. Happy coding!
+
+</Steps>

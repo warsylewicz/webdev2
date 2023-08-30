@@ -1,0 +1,90 @@
+# Guide: How to Create a New Next.js Project
+
+### Part 1. Create a New Next.js Project
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+### Open Visual Studio Code
+
+### Open the terminal in VS Code
+
+You can open the terminal in VS Code by going to View -> Terminal or by pressing Ctrl-` (backtick - the key is usually located at the top left of the keyboard).
+
+### Navigate to the Desired Directory
+
+Change to the desired directory where you would like your project to be located. It's recommended to NOT use a cloud drive, e.g., do NOT use Google Drive, OneDrive, or Dropbox. E.g., if you are creating your project on the Desktop, use:
+`cd /Users/[windows account name]/Desktop`
+
+Replace [windows account name] with your actual username.
+
+### Create the New Next.js Project
+
+Enter the following command, where [app-name] is the name of your app. Do not use any spaces in the name:
+`npx create-next-app@latest [app-name]`
+
+The create-next-app application will scaffold a new Next.js project. For this course, here is how you should answer the questions:
+
+```
+Would you like to use TypeScript? **No**
+Would you like to use ESLint? **Yes**
+Would you like to use Tailwind CSS? **Yes**
+Would you like to use `src/` directory? **No**
+Would you like to use App Router? (recommended) **Yes**
+Would you like to customize the default import alias? **No**
+```
+
+### Open the New Project in VS Code
+
+When create-next-app is finished, open the project in VS Code using File -> Open... and select the [app-name] folder that you have just created.
+
+</Steps>
+
+## Part 2: Running Your Next.js Application
+
+<Steps>
+
+### Start the Development Server
+
+Navigate to the terminal in VS Code (which should still be open from the previous steps). Make sure you're in the project's root directory ([app-name]), then run the following command to start the Next.js development server:
+
+```
+npm run dev
+```
+
+Your application will start, and it will typically be accessible in your web browser at http://localhost:3000.
+
+### Open the Application in Your Web Browser
+
+After running npm run dev, a link to your local application (typically `http://localhost:3000`) will appear in the terminal. You can Ctrl-click this link to open it directly in your default web browser. If this doesn't work, you can manually open your preferred web browser and enter `http://localhost:3000` in the address bar. You should see your new Next.js application running!
+
+### Stopping Development
+
+When you are finished coding for the day and wish to shut down VS Code, you should shutdown the development server. In the terminal, press Ctrl-c to shut it down.
+
+</Steps>
+
+## Part 3: Push Your Project to GitHub Using GitHub Desktop
+
+<Steps>
+
+### Open GitHub Desktop
+
+### Add Local Repository
+
+Click on File -> Add local repository... and choose the folder for [app-name].
+
+### Publish repository
+
+Click the button "Push repository". It is recommended to keep the GitHub repository the same name as the app name.
+
+**Uncheck "Keep this code private"** to allow the instructor access to your repository. Private repositories will be given a grade of 0.
+
+Click the button "Publish repository".
+
+### View the Repository Code
+
+In a browser, navigate to `https://github.com/[GitHub-username]/[app-name]` to see the code in your browser.
+
+</Steps>
