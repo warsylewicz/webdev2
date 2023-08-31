@@ -7,8 +7,8 @@ function AssignmentChecker({ week }) {
   const [repoExists, setRepoExists] = useState(null);
   const [weekExists, setWeekExists] = useState(null);
 
-  // const repoName = `cprg306-assignments`;
-  const repoName = `webdev2-demos`;
+  const repoName = `cprg306-assignments`;
+  // const repoName = `webdev2-demos`;
 
   const checkUrl = async () => {
     try {
