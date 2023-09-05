@@ -2,6 +2,8 @@ import React from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import { neoCyan } from "@codesandbox/sandpack-themes";
 
+/* Solve the problem that the code editor defaults to App.js, but the
+  App router uses page.js */
 const App = `import Page from "./page";
 
 export default function App() {
@@ -9,15 +11,12 @@ export default function App() {
 }
 `;
 
-const Sandbox = ({ template, dependencies = {}, files }) => (
+const Sandbox = ({ files }) => (
   <>
     <br />
     <Sandpack
       theme={neoCyan}
-      template={template}
-      customSetup={{
-        dependencies,
-      }}
+      template="react"
       files={{
         ...files,
         "/App.js": {

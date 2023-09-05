@@ -13,7 +13,7 @@ const NavBar = `function NavBar() {
 }
 `;
 
-const NavBarSolution = `export function NavBar() {  // #1. In order for App.js to import NavBar, we need to export it
+const NavBarSolution = `export default function NavBar() {  // #1. In order for App.js to import NavBar, we need to export it
   let currentPage = "Home";
 
   return (
@@ -27,7 +27,7 @@ const NavBarSolution = `export function NavBar() {  // #1. In order for App.js t
 }
 `;
 
-const Page = `import { NavBar } from "./NavBar";
+const Page = `import NavBar from "./NavBar";
 
 export default function Page() {
   return (

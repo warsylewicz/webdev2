@@ -262,16 +262,28 @@ function welcomeMessage() {
 
 ## 🏃 Activity
 
-The code below contains exactly 3 errors. Find and fix the errors so that the code runs without any errors. Hint: App.js contains no errors. Also, the error messages displayed are quite cryptic, so try to rely on your own knowledge of React to find the errors.
+The code below contains exactly 3 errors. Find and fix the errors so that the code runs without any errors. The error messages displayed are quite cryptic, so try to rely on your own knowledge of React to find the errors.
 
 import Sandbox from "components/Sandbox";
 import { files, filesSolution } from "./activity.js";
 
-<Sandbox template="react" files={files} />
+<Sandbox files={files} />
+
+### Hints
+
+1. page.js does not have any errors.
+
+2. Try the following AI prompts:
+
+> I am a student learning React with the Next.js framework. I have been given a React component that has exactly 3 errors. Give me one hint to help me find the errors. Do not tell me anything more than the hint. I will use the hint to find the errors myself. <br/ > // page.js <br /> [paste the code from page.js here] <br /><br /> // NavBar.js <br /> [paste the code from NavBar.js here]
+
+> Give me 3 hints.
+
+> Give me the solution.
 
 ### Solution
 
-<Sandbox template="react" files={filesSolution} />
+<Sandbox files={filesSolution} />
 
 ## 📖 Further Reading
 
