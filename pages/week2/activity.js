@@ -27,9 +27,9 @@ const NavBarSolution = `export function NavBar() {  // #1. In order for App.js t
 }
 `;
 
-const App = `import { NavBar } from "./NavBar";
+const Page = `import { NavBar } from "./NavBar";
 
-export default function App() {
+export default function Page() {
   return (
     <div>
       <h1>My App</h1>
@@ -41,20 +41,22 @@ export default function App() {
 
 // Location of file as key (always starts with /)
 export const files = {
+  "/page.js": {
+    code: Page,
+    active: true,
+  },
   "/NavBar.js": {
     code: NavBar,
-  },
-  "/App.js": {
-    code: App,
   },
 };
 
 export const filesSolution = {
+  "/page.js": {
+    code: Page,
+    active: true,
+  },
   "/NavBar.js": {
     code: NavBarSolution,
-  },
-  "/App.js": {
-    code: App,
   },
 };
 
