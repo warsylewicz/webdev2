@@ -11,12 +11,12 @@ export default function App() {
 }
 `;
 
-const Sandbox = ({ files }) => (
+const Sandbox = ({ template = "react", files }) => (
   <>
     <br />
     <Sandpack
       theme={neoCyan}
-      template="react"
+      template={template}
       files={{
         ...files,
         "/App.js": {
