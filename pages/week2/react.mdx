@@ -128,10 +128,10 @@ JSX is not mandatory for writing React applications, but it makes the code more 
 **Examples:**
 
 ```js
-// JSX expression
+// Example 1: JSX expression
 const element = <h1>Hello, world!</h1>;
 
-// function that returns a JSX expression using a fragment (<>...</>) to return multiple elements
+// Example 2: function that returns a JSX expression using a fragment (<>...</>) to return multiple elements
 function MyHeading() {
   return (
     <>
@@ -146,9 +146,9 @@ function MyHeading() {
 
 A component is a JavaScript function and are the building blocks of React applications. They are reusable pieces of code that can be used to build user interfaces. Components can be nested inside other components, i.e. just like a function can call another function, to create more complex components. Components can also be reused across different applications.
 
-```js
+```js copy
 // returns: <div><h1>Hello, world!</h1><p>3 + 4 = 7</p></div>
-export default function App() {
+export default function Page() {
   return (
     <div>
       <MyHeading />
@@ -175,6 +175,10 @@ function MyParagraph() {
 }
 ```
 
+Need help understanding this example? Try the following AI prompt:
+
+> Provide a short explanation of the following code for a beginner. Explain the use of components in this example. <br /> [paste the code from the example here]
+
 ## 🗒️ Summary
 
 To recap, here are the key points we covered in this lesson:
@@ -186,7 +190,12 @@ To recap, here are the key points we covered in this lesson:
 - **Vercel:** Vercel provides a platform for deploying websites with a "serverless" architecture, making it the ideal choice for deploying Next.js applications.
 - **React Skills:** Knowledge of JSX (JavaScript XML), a syntax extension for JavaScript that allows HTML-like code in JavaScript is required. Also, understanding of components, the reusable building blocks of React applications, is necessary.
 
-> Don't worry if you don't know all of these things just yet! We'll learn more about them as we go and repeat them often.
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info" emoji="️🐣">
+  Don't worry if you don't know all of these things just yet! We'll learn more
+  about them as we go and repeat them often.
+</Callout>
 
 ## 📚 Knowledge Check
 
