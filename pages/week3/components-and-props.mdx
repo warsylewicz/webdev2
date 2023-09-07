@@ -1,0 +1,138 @@
+# Components and Props
+
+## JS Skills Needed
+
+Mastering key JavaScript concepts such as objects, JSON, destructuring, the spread operator, and template literals equips you with the essential tools to effectively utilize React's components and props. While these JavaScript concepts are fundamental for understanding React's components and props, they can be complex and challenging to grasp, requiring focused learning and consistent practice. Take your time with these topics, and don't be afraid to revisit them as you progress through the course.
+
+### Objects
+
+Objects in JavaScript are standalone entities that can have properties and behavior. They are essentially collections of key-value pairs, where keys are property names and values are the corresponding property values. Objects are one of the most important data structures in JavaScript, and they are used extensively in React.
+
+In this first example, we are creating a simple JavaScript object called user with properties name and age, and then demonstrating how to access and modify those properties.
+
+```js
+// Create the object and assign it to a variable
+let user = { name: "John", age: 25 };
+
+// Access the properties of the object
+console.log(user.name); // Outputs: 'John'
+console.log(user.age); // Outputs: 25
+
+// Modify the properties of the object
+user.name = "Ling";
+user.age = 30;
+
+// Now, if we access the properties again, we'll see the updated values
+console.log(user.name); // Outputs: 'Ling'
+console.log(user.age); // Outputs: 30
+```
+
+The second example expands on the first by introducing a more complex, nested object, which includes an address object and a coordinates object within address; this example further demonstrates how to access and modify properties in nested objects.
+
+```js
+// Create the object and assign it to a variable
+let user = {
+  name: "John",
+  age: 25,
+  address: {
+    street: "123 Main St",
+    city: "Calgary",
+    coordinates: {
+      lat: 50.067,
+      long: 14.467,
+    },
+  },
+};
+
+// Access the properties of the object
+console.log(user.name); // Outputs: 'John'
+console.log(user.address.city); // Outputs: 'Calgary'
+console.log(user.address.coordinates.lat); // Outputs: 50.067
+
+// Modify the properties of the object
+user.name = "Ling";
+user.address.city = "Edmonton";
+user.address.coordinates.lat = 60.087;
+
+// Now, if we access the properties again, we'll see the updated values
+console.log(user.name); // Outputs: 'Ling'
+console.log(user.address.city); // Outputs: 'Edmonton'
+console.log(user.address.coordinates.lat); // Outputs: 60.087
+```
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info" emoji="️💡">
+    JavaScript is unique amongst many object-oriented (OO) languages in that it doesn't inherently utilize classes for object-oriented programming. Instead, JavaScript employs a prototype-based inheritance model, which is a form of object-oriented programming where classes are not present, and behavior reuse (known as inheritance) is performed via a process of cloning existing objects that serve as prototypes.
+
+    This approach stands in contrast to many other OO languages like Java, C++, or Python, where classes are defined and then objects are created from these classes. In JavaScript, you create objects directly and then link them to a prototype object for behavior reuse.
+
+    However, it's worth noting that as of ES6 (ECMAScript 2015), JavaScript introduced a `class` syntax that provides a much cleaner and simpler way to achieve object-oriented behavior similar to other OO languages. Yet, under the hood, JavaScript still uses its prototype-based model — the class syntax is syntactic sugar over JavaScript's existing prototype-based inheritance.
+
+</Callout>
+
+### JSON
+
+JSON, which stands for JavaScript Object Notation, is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate. JSON is purely a data format — it contains only properties, no methods. It has become a popular data interchange format due to its simplicity and lightweight nature, making it ideal for data storage and transmission over the network in web APIs.
+
+JSON data format is quite similar to a JavaScript object. For instance, a JSON representation of a person could look like this:
+
+```json
+{
+  "name": "John",
+  "age": 25,
+  "city": "Calgary"
+}
+```
+
+In this example, we have a JSON object that represents a person with properties name, age, and city. The keys in a JSON object are always strings, while the values can be a string, number, boolean, another JSON object, an array, or null.
+
+### Destructuring
+
+Destructuring assignment in JavaScript is a syntax feature that enables a developer to unpack values from objects into distinct variables. This can greatly simplify code that needs to access multiple properties of an object. Instead of accessing properties one by one using dot notation, you can extract multiple properties in one statement.
+
+Consider an object person defined as follows:
+
+```js
+const person = {
+  name: "John",
+  age: 25,
+  city: "Calgary",
+};
+```
+
+Instead of accessing the properties individually like person.name, person.age, and person.city, with destructuring, you can extract all these properties in a single line
+
+```js
+const { name, age, city } = person;
+```
+
+Now, name, age, and city are variables in their own right, each holding the corresponding value from the person object. This can make your code cleaner and more readable, especially when working with objects that have many properties.
+
+### Spread Operator
+
+### Template Literals
+
+## Tailwind CSS Skills Needed
+
+### Introduction
+
+### Flexbox
+
+### Spacing
+
+## React Skills Needed
+
+### Props (Properties)
+
+## 🗒️ Summary
+
+## 📚 Knowledge Check
+
+## 🏃 Activity
+
+### Hints
+
+### Solution
+
+## 📖 Further Reading
