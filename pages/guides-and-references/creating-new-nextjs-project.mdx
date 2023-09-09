@@ -21,19 +21,30 @@ Replace [windows account name] with your actual username.
 
 ### Create the New Next.js Project
 
-Enter the following command, where [app-name] is the name of your app. Do not use any spaces in the name:
-`npx create-next-app@latest [app-name]`
+Enter the following command:
+`npx create-next-app@latest`
 
-The create-next-app application will scaffold a new Next.js project. For this course, here is how you should answer the questions:
+The create-next-app application will scaffold a new Next.js project. For the assignments, here is how you must answer the questions:
 
 ```
-Would you like to use TypeScript? **No**
-Would you like to use ESLint? **Yes**
-Would you like to use Tailwind CSS? **Yes**
-Would you like to use `src/` directory? **No**
-Would you like to use App Router? (recommended) **Yes**
-Would you like to customize the default import alias? **No**
+What is your project named? cprg306-assignments
+Would you like to use TypeScript? No
+Would you like to use ESLint? Yes
+Would you like to use Tailwind CSS? Yes
+Would you like to use `src/` directory? No
+Would you like to use App Router? (recommended) Yes
+Would you like to customize the default import alias? No
 ```
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout emoji="😣">
+  If you receive an error like the following: `npm ERR! enoent ENOENT: no such
+  file or directory, lstat 'C:\Users\[profile-name]\AppData\Roaming\npm'`, you
+  may need to create a folder called npm in your AppData\Roaming folder. In
+  Windows File Explorer, navigate to C:\Users\\[profile-name]\AppData\Roaming
+  and create a new folder called npm.
+</Callout>
 
 ### Open the New Project in VS Code
 
