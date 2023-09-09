@@ -1,0 +1,53 @@
+const Page = `function Photo({ imageUrl, name }) {
+  return (
+    <div className="w-48 h-48 overflow-hidden rounded-full">
+      <img src={imageUrl} alt={name} className="w-full h-full" />
+    </div>
+  );
+}
+
+function ProfileInfo({ name, bio }) {
+  return (
+    <div className="my-4">
+      <h2 className="text-2xl font-bold text-gray-800">{name}</h2>
+      <p className="mt-2 text-gray-600">{bio}</p>
+    </div>
+  );
+}
+
+function Profile({ imageUrl, name, bio }) {
+  return (
+    <div className="bg-gray-100 p-8">
+      <Photo imageUrl={imageUrl} name={name} />
+      <ProfileInfo name={name} bio={bio} />
+    </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-300 p-10">
+      <Profile
+        name="Aaron Warsylewicz"
+        bio="Your instructor for this course."
+        imageUrl="https://avatars.githubusercontent.com/u/28926225?v=4"
+      />
+    </div>
+  );
+}
+`;
+
+// Location of file as key (always starts with /)
+export const files = {
+  "/page.js": {
+    code: Page,
+    active: true,
+  },
+};
+
+/* Foo is used to solve the bug: Build optimization failed:
+  found page without a React Component as default export in pages/week1/samples-demo
+*/
+export default function Foo() {
+  return <div>Foo</div>;
+}

@@ -119,7 +119,7 @@ Template literals enhance readability by allowing direct embedding of expression
 - simplifying handling of large text blocks or HTML generation
 - seamless integration of any valid JavaScript expression, including functions and arithmetic, directly into the string
 
-**Example 1:** In this example, the name variable is inserted directly into the string using the ${} syntax.
+**Example 1:**
 
 ```js
 let name = "Bob";
@@ -127,7 +127,9 @@ let greeting = `Hello, my name is ${name}.`;
 console.log(greeting); // Output: "Hello, my name is Bob."
 ```
 
-**Example 2:** In this example, we're not only inserting variables into the string, but we're also using JavaScript expressions. The `${quantity > 1 ? 's' : ''}` part is a ternary operator that adds an 's' if more than one item is bought. The total cost is calculated with `${(quantity \* price).toFixed(2)}`, showing how you can call functions like toFixed within a template literal.
+In this example, the name variable is inserted directly into the string using the ${} syntax.
+
+**Example 2:**
 
 ```js
 let item = "apple";
@@ -139,6 +141,8 @@ let receipt = `You bought ${quantity} ${item}${
 }. Total cost is $${(quantity * price).toFixed(2)}.`;
 console.log(receipt); // Output: "You bought 5 apples. Total cost is $2.50."
 ```
+
+In this example, we're not only inserting variables into the string, but we're also using JavaScript expressions. The `${quantity > 1 ? 's' : ''}` part is a ternary operator that adds an 's' if more than one item is bought. The total cost is calculated with `${(quantity \* price).toFixed(2)}`, showing how you can call functions like toFixed within a template literal.
 
 ## Tailwind CSS Skills Needed
 
@@ -152,9 +156,9 @@ Why use Tailwind CSS?
 - **Responsiveness:** It has built-in responsive design utilities, making it easier to design for various screen sizes.
 - **Efficiency:** By composing classes in your markup, you can create complex designs without switching between HTML and CSS files, improving development speed.
 
-Example: we use Tailwind's utility classes like `px-4` (padding on the x-axis), `py-2` (padding on the y-axis), `text-white` (text color), `bg-blue-500` (background color), and `rounded` (border radius) to style a button in a React component. The `hover:bg-blue-600` class applies a darker background color on hover.
+**Example:**
 
-```js
+```js copy
 const Button = () => {
   return (
     <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
@@ -164,17 +168,194 @@ const Button = () => {
 };
 ```
 
-    <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
-      Click me
-    </button>
+<button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+  Click me
+</button>
 
-### Flexbox
+In the example above, we use Tailwind's utility classes like `px-4` (padding on the x-axis), `py-2` (padding on the y-axis), `text-white` (text color), `bg-blue-500` (background color), and `rounded` (border radius) to style a button in a React component. The `hover:bg-blue-600` class applies a darker background color on hover.
 
-### Spacing
+<Callout type="info" emoji="💡">
+  You are not expected to be an expert in Tailwind CSS for this course. In
+  addition, this course will not cover Tailwind CSS in comprehensive detail.
+  Take your time to learn Tailwind CSS at your own pace.
+</Callout>
+
+### Typography Utilities
+
+To adjust the font size, you use the `text-` utility followed by the desired size. Tailwind provides a scale of predefined sizes.
+
+```js
+function Example() {
+  return (
+    <div>
+      <p className="text-xs">Extra small text</p>
+      <p className="text-sm">Small text</p>
+      <p className="text-base">Base text size</p>
+      <p className="text-lg">Large text</p>
+      <p className="text-xl">Extra large text</p>
+    </div>
+  );
+}
+```
+
+<div>
+  <p className="text-xs">Extra small text</p>
+  <p className="text-sm">Small text</p>
+  <p className="text-base">Base text size</p>
+  <p className="text-lg">Large text</p>
+  <p className="text-xl">Extra large text</p>
+</div>
+
+Font weights are controlled with the `font-` utility.
+
+```js
+function Example() {
+  return (
+    <div>
+      <p className="font-thin">Thin text</p>
+      <p className="font-normal">Normal weight text</p>
+      <p className="font-bold">Bold text</p>
+    </div>
+  );
+}
+```
+
+<div>
+  <p className="font-thin">Thin text</p>
+  <p className="font-normal">Normal weight text</p>
+  <p className="font-bold">Bold text</p>
+</div>
+
+Text alignment is controlled with the `text-` utility followed by left, center, right, or justify.
+
+```js
+function Example() {
+  return (
+    <div>
+      <p className="text-left">Left-aligned text</p>
+      <p className="text-center">Center-aligned text</p>
+      <p className="text-right">Right-aligned text</p>
+      <p className="text-justify">Justified text</p>
+    </div>
+  );
+}
+```
+
+<div>
+  <p className="text-left">Left-aligned text</p>
+  <p className="text-center">Center-aligned text</p>
+  <p className="text-right">Right-aligned text</p>
+  <p className="text-justify">Justified text</p>
+</div>
+
+Remember that Tailwind's utility classes are designed to be used together, so you can combine any of these classes to style your text exactly the way you want. For example, `<p className="text-lg font-bold">Bold large text</p>` will create a paragraph of large, bold text.
+
+### Color Utilities
+
+Text color is controlled with the `text-` utility followed by the color and shade you want to use. The color can be specified by name and the shade by number. Background color is controlled with the `bg-` utility followed by the color and shade you want to use. Border color is controlled with the `border-` utility followed by the color and shade you want to use.
+
+```js
+function Example() {
+  return (
+    <div>
+      <p className="text-red-300 bg-slate-800 border border-blue-800">
+        Light red text on a dark slate background with a medium blue border.
+      </p>
+    </div>
+  );
+}
+```
+
+<div>
+  <p className="text-red-300 bg-slate-800 border border-blue-800">
+    Light red text on a dark slate background with a medium blue border.
+  </p>
+</div>
+
+### Spacing Utilities
+
+Tailwind provides a comprehensive set of spacing utilities that allow you to control the padding and margin of an element. The `p-` utility controls the padding of an element, while the `m-` utility controls the margin. The padding and margin can be specified on the x-axis, y-axis, or both. The size of the padding and margin can be specified by step number. In the spacing scale, a step of 1 is equivalent to 0.25rem (or 4px), a step of 2 is 0.5rem (or 8px), and so on.
+
+```js
+function Example() {
+  return (
+    <div>
+      <p className="p-4 m-4 bg-slate-800">
+        This paragraph has 16px of padding and margin.
+      </p>
+      <p className="px-4 py-2 m-8 bg-slate-800">
+        This paragraph has 16px of padding on the x-axis, 8px of padding on the
+        y-axis, and 32px of margin.
+      </p>
+    </div>
+  );
+}
+```
+
+<div>
+  <p className="p-4 m-4 bg-slate-800">
+    This paragraph has 16px of padding and margin.
+  </p>
+  <p className="px-4 py-2 m-8 bg-slate-800">
+    This paragraph has 16px of padding on the x-axis, 8px of padding on the
+    y-axis, and 32px of margin.
+  </p>
+</div>
 
 ## React Skills Needed
 
 ### Props (Properties)
+
+Props (short for properties) are a way of passing data from parent components to child components in React. They are used to give components dynamic behavior. Props can include values of any data type, from strings to functions, and they are passed to components in the same way as HTML attributes.
+
+Props are used for several reasons:
+
+- Customization: Props allow us to customize components. We can use the same component with different props to display different content or styles.
+- Reuse: With props, we can create reusable components. Instead of creating several similar components, we can create one and pass different props to it.
+- Data Flow: Props facilitate the unidirectional (top-down) data flow in React. This makes the code predictable and easier to debug.
+
+**Example:**
+
+```js
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function Page() {
+  return <Greeting name="Mary" />;
+}
+
+// The output will be: "Hello, Mary!"
+```
+
+In this example, we pass the name prop to the Greeting component. The Greeting component then uses this prop to render the greeting.
+
+We can also use destructuring:
+
+```js
+function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+
+function Page() {
+  return <Greeting name="Mary" />;
+}
+
+// The output will be: "Hello, Mary!"
+```
+
+In the revised Greeting component, we're using JavaScript's destructuring assignment to pull out the name property from the props object right in the parameter list. This simplifies the code, making it easier to read and write.
+
+**Example:**
+
+Let's consider a scenario where we have a Profile component and this profile consists of a Photo component and a ProfileInfo component.
+
+import Sandbox from "components/Sandbox";
+import { files } from "./example.js";
+
+<Sandbox files={files} />
+
+In this example, the Page component renders a Profile component and passes name, bio, and imageUrl props to it. The Profile component then passes these props to the Photo and ProfileInfo components. Photo uses imageUrl and name for the image source and alternative text, while ProfileInfo uses name and bio to display the user's name and short biography.
 
 ## 🗒️ Summary
 
@@ -187,6 +368,9 @@ const Button = () => {
 ### Solution
 
 ## 📖 Further Reading
+
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics
+- https://tailwindcss.com/docs/utility-first
 
 ```
 

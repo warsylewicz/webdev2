@@ -17,6 +17,9 @@ const Sandbox = ({ template = "react", files }) => (
     <Sandpack
       theme={neoCyan}
       template={template}
+      options={{
+        externalResources: ["https://cdn.tailwindcss.com"],
+      }}
       files={{
         ...files,
         "/App.js": {
