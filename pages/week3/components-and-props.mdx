@@ -321,14 +321,14 @@ function Greeting(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
 
-function Page() {
+export default function Page() {
   return <Greeting name="Mary" />;
 }
 
 // The output will be: "Hello, Mary!"
 ```
 
-In this example, we pass the name prop to the Greeting component. The Greeting component then uses this prop to render the greeting.
+In this example, we pass the `name` prop to the `Greeting` component. The `Greeting` component then uses this prop to render the greeting.
 
 We can also use destructuring:
 
@@ -337,41 +337,137 @@ function Greeting({ name }) {
   return <h1>Hello, {name}!</h1>;
 }
 
-function Page() {
+export default function Page() {
   return <Greeting name="Mary" />;
 }
 
 // The output will be: "Hello, Mary!"
 ```
 
-In the revised Greeting component, we're using JavaScript's destructuring assignment to pull out the name property from the props object right in the parameter list. This simplifies the code, making it easier to read and write.
+In the revised `Greeting` component, we're using JavaScript's destructuring assignment to pull out the `name` property from the props object right in the parameter list. This simplifies the code, making it easier to read and write.
 
 **Example:**
 
-Let's consider a scenario where we have a Profile component and this profile consists of a Photo component and a ProfileInfo component.
+Let's consider a scenario where we have a `Profile` component and this profile consists of a `Photo` component and a `ProfileInfo` component.
 
 import Sandbox from "components/Sandbox";
-import { files } from "./example.js";
+import { example } from "./example.js";
 
-<Sandbox files={files} />
+<Sandbox files={example} />
 
-In this example, the Page component renders a Profile component and passes name, bio, and imageUrl props to it. The Profile component then passes these props to the Photo and ProfileInfo components. Photo uses imageUrl and name for the image source and alternative text, while ProfileInfo uses name and bio to display the user's name and short biography.
+In this example, the Page component renders a `Profile` component and passes `name`, `bio`, and `imageUrl` props to it. The `Profile` component then passes these props to the `Photo` and `ProfileInfo` components. `Photo` uses `imageUrl` and `name` for the image source and alternative text, while `ProfileInfo` uses `name` and `bio` to display the user's name and short biography.
 
 ## 🗒️ Summary
 
+- Key JavaScript concepts for React include understanding Objects, JSON, destructuring, and template literals. Objects are standalone entities with properties and behavior, while JSON is a lightweight data-interchange format, containing only properties, no methods.
+- Destructuring allows unpacking of values from objects into distinct variables, simplifying code that accesses multiple properties of an object. Template literals provide a more readable and concise way to work with strings.
+- Tailwind CSS is a utility-first CSS framework providing low-level utility classes for building custom designs. It supports customization, responsiveness, and improves development speed.
+- Tailwind offers utilities for typography, color, and spacing, allowing control over font size, weight, text alignment, color of text, background, border, and control over padding and margin.
+- In React, props (short for properties) allow data to be passed from parent components to child components. They enable customization, component reusability, and facilitate unidirectional data flow.
+
 ## 📚 Knowledge Check
+
+import MultipleChoice from "components/MultipleChoice";
+
+<MultipleChoice
+  question="1. Which JavaScript concept allows developers to unpack values from objects into distinct variables?"
+  choices={["Template Literals", "Destructuring", "Objects", "JSON"]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="2. In Tailwind CSS, what utility is used to control the font size?"
+  choices={["font-", "size-", "text-", "fs-"]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="3. What is the term for data passed from parent components to child components in React?"
+  choices={["States", "Data", "Props", "Elements"]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="4. In JavaScript, how do you access a property 'name' of an object 'user'?"
+  choices={["user(name)", "user[name]", "user.name", "name.user"]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="5. What does JSON stand for in JavaScript?"
+  choices={[
+    "JavaScript Object Notion",
+    "JavaScript Oriented Notation",
+    "JavaScript Object Notation",
+    "JavaScript Official Notation",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="6. In JavaScript ES6, what type of character encloses a template literal?"
+  choices={["Double quotes", "Single quotes", "Parentheses", "Backtick"]}
+  answer="4"
+/>
+
+<MultipleChoice
+  question="7. How does Tailwind CSS allow for customization?"
+  choices={[
+    "By offering pre-designed components",
+    "By providing low-level utility classes",
+    "By enforcing predetermined styles",
+    "By offering a set of high-level utility classes",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="8. In Tailwind CSS, how do you control the padding on the x-axis?"
+  choices={["px-", "x-", "p-", "padding-x-"]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="9. What distinguishes JavaScript's object-oriented programming model from that of languages like Java or C++?"
+  choices={[
+    "JavaScript uses classes for object-oriented programming",
+    "JavaScript uses a prototype-based inheritance model",
+    "JavaScript doesn't support object-oriented programming",
+    "JavaScript uses a class-based inheritance model",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="10. In a React component, what is the benefit of destructuring props in the function parameter list?"
+  choices={[
+    "It simplifies the code, making it easier to read and write",
+    "It compiles the code into a more efficient format",
+    "It prevents errors from undeclared variables",
+    "It automatically checks the type of the props",
+  ]}
+  answer="1"
+/>
 
 ## 🏃 Activity
 
+The code below is not working. Fix the code so that it displays the correct output.
+
+import { activity, solution } from "./activity.js";
+
+<Sandbox files={activity} />
+
 ### Hints
 
+1. The problem is only in the `Page` component.
+2. The `Page` component is passing the props to the `Profile` component incorrectly.
+
 ### Solution
+
+<Sandbox files={solution} />
 
 ## 📖 Further Reading
 
 - https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics
 - https://tailwindcss.com/docs/utility-first
-
-```
-
-```
+- https://react.dev/learn/passing-props-to-a-component

@@ -19,6 +19,8 @@ const Sandbox = ({ template = "react", files }) => (
       template={template}
       options={{
         externalResources: ["https://cdn.tailwindcss.com"],
+        showLineNumbers: true,
+        showTabs: true,
       }}
       files={{
         ...files,
