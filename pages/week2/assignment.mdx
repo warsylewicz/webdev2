@@ -19,32 +19,63 @@ import { Callout } from "nextra-theme-docs";
 
 ## Part 2: Application Requirements
 
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+### Create a React Component
+
 Create a React component in the project `/app` folder called `StudentInfo` that returns the following static information:
 
 - Your name
 - Your course section, e.g. `CPRG 306 A`
 - A link to your GitHub repository
 
-On the page at the root path `/`:
+<Callout type="info" emoji="️💡">
+You must use Link component from Next.js to link to your GitHub repository. Do not use the HTML anchor tag directly.
+
+You may style the component if you wish, but it is not required. The component should be exported as the default export.
+
+</Callout>
+
+### Edit Root Page
+
+For the root page path `/` which is the project file `/app/page.js`:
 
 - Display the heading: CPRG 306: Web Development 2 - Assignments
-- Renders `StudentInfo`
+- Render `StudentInfo`
 - Add a link to `/week2`
 
-Create a new page at the path `/week2`. On this page:
+<Callout type="info" emoji="️💡">
+You must use `Link` component from Next.js to link to `/week2`. Do not use the HTML anchor tag directly.
+
+You may style the page if you wish, but it is not required.
+
+Example live view: [https://cprg306-assignments.vercel.app/](https://cprg306-assignments.vercel.app/)
+
+</Callout>
+
+### Create a New Page
+
+Create a new page for `/week2`, i.e. create a project file `/app/week2/page.js`. On this page:
 
 - Display the heading: My Shopping List
-- Renders `StudentInfo`
+- Render `StudentInfo`
 
-Use the `Link` component from Next.js to link to your GitHub repository and to link from the root path `/` to the new page.
+<Callout type="info" emoji="️💡">
+You may style the page if you wish, but it is not required.
+
+Example live view: [https://cprg306-assignments.vercel.app/week2](https://cprg306-assignments.vercel.app/week2)
+
+</Callout>
+
+</Steps>
+
+### Additional information
 
 The [Guide: Coding Workflow](/guides-and-references/workflow) may help you with the coding workflow.
 
-There is no requirement to style the page.
-
 There is no requirement to deploy the application, but you may do so if you wish. See [Guide: Deploying a Next.js Application](/guides-and-references/deploying-nextjs-app) for instructions.
-
-A demo of the application can be found at [https://cprg306-assignments.vercel.app/](https://cprg306-assignments.vercel.app/).
 
 ## Part 3: Assignment Submission
 
