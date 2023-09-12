@@ -179,6 +179,19 @@ Next.js provides the framework and tools to build a React application. It also p
 
 For this course, the only files you need to worry about are the ones in the `/app` folder.
 
+### Routing and pages
+
+Next.js uses a file-system based router. This means that the file system is used to define the routes in a Next.js application. For example, if you create a file called `/app/about/page.js` in your project, it will be accessible at `https://example.com/about`. In addition, a page is unique to a route, i.e. you can't have two pages with the same name in different folders. This is because the route is based on the file path.
+
+A page is created by exporting a React component from a page.js JavaScript file in the `/app` folder. The component is then rendered when the route is visited. For example, the following code creates a page at `https://example.com/about`:
+
+```js
+// /app/about/page.js
+export default function About() {
+  return <h1>About</h1>;
+}
+```
+
 ### Next.js `Link` component
 
 The `<Link>` component in Next.js is an extension of the standard HTML`<a>` tag, specifically designed to support client-side navigation and prefetching between routes in a Next.js application. Prefetching allows the browser to load the next page in the background, which can improve load times.
