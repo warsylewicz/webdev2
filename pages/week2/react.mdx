@@ -194,7 +194,7 @@ export default function About() {
 
 ### Next.js `Link` component
 
-The `<Link>` component in Next.js is an extension of the standard HTML`<a>` tag, specifically designed to support client-side navigation and prefetching between routes in a Next.js application. Prefetching allows the browser to load the next page in the background, which can improve load times.
+The `<Link>` component in Next.js is an extension of the standard HTML `<a>` tag, specifically designed to support client-side navigation and prefetching between routes in a Next.js application. Prefetching allows the browser to load the next page in the background, which can improve load times.
 
 To use the `<Link>` component, it needs to be imported from next/link, and the href prop must be provided to specify the target route.
 
@@ -206,12 +206,8 @@ import Link from "next/link";
 export default function Navigation() {
   return (
     <nav>
-      <Link href="/">
-        <a>Home</a>
-      </Link>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
     </nav>
   );
 }
