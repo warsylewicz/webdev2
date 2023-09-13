@@ -27,7 +27,7 @@ const NavBarSolution = `export default function NavBar() {  // #1. In order for 
 }
 `;
 
-const Page = `import NavBar from "./NavBar";
+const Page = `import NavBar from "./nav-bar";
 
 export default function Page() {
   return (
@@ -45,7 +45,7 @@ export const files = {
     code: Page,
     active: true,
   },
-  "/NavBar.js": {
+  "/nav-bar.js": {
     code: NavBar,
   },
 };
@@ -55,7 +55,7 @@ export const filesSolution = {
     code: Page,
     active: true,
   },
-  "/NavBar.js": {
+  "/nav-bar.js": {
     code: NavBarSolution,
   },
 };
