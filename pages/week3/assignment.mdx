@@ -2,6 +2,141 @@
 
 ## Overview
 
-In this assignment, you will
+In this assignment, you'll build a simple static shopping list. The focus is to understand and apply React props, a core concept in React programming, to pass data between components. You'll also practice using Tailwind CSS for styling.
 
-## Part 1: ...
+## Prerequisites
+
+If you did not complete Week 1 Assignment, complete the [Guide: Setting Up Your Development Environment](/guides-and-references/development-environment-setup) guide and send your GitHub username to the instructor.
+
+If you did not complete the Week 2 Assignment, complete the [Guide: How to Create a New Next.js Project](/guides-and-references/creating-new-nextjs-project).
+
+## Part 1: Link to Week 3 Assignment
+
+Edit the project file `/app/page.js` and add a link to `week3` in the list of links.
+
+## Part 2: Build the Shopping List
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+### Create the Folder and Files
+
+Create the folder `/app/week3` and create files `item.js`, `item-list.js`, and `page.js` inside it.
+
+### Build the `Item` Component
+
+In `item.js`, create a functional component named `Item`. This component should accept `name`, `quantity`, and `category` as props and display them in a list item element. Use Tailwind classes for styling.
+
+### Build the `ItemList` Component
+
+In `item-list.js`, create a functional component named `ItemList`. Inside this component, copy paste the following item objects each with `name`, `quantity`, and `category` properties. Render these items using the `Item` component you just created, passing item data as props.
+
+```js copy
+const item1 = {
+  name: "milk, 4 L 🥛",
+  quantity: 1,
+  category: "dairy",
+};
+
+const item2 = {
+  name: "bread 🍞",
+  quantity: 2,
+  category: "bakery",
+};
+
+const item3 = {
+  name: "eggs, dozen 🥚",
+  quantity: 2,
+  category: "dairy",
+};
+
+const item4 = {
+  name: "bananas 🍌",
+  quantity: 6,
+  category: "produce",
+};
+
+const item5 = {
+  name: "broccoli 🥦",
+  quantity: 3,
+  category: "produce",
+};
+
+const item6 = {
+  name: "chicken breasts, 1 kg 🍗",
+  quantity: 1,
+  category: "meat",
+};
+
+const item7 = {
+  name: "pasta sauce 🍝",
+  quantity: 3,
+  category: "canned goods",
+};
+
+const item8 = {
+  name: "spaghetti, 454 g 🍝",
+  quantity: 2,
+  category: "dry goods",
+};
+
+const item9 = {
+  name: "toilet paper, 12 pack 🧻",
+  quantity: 1,
+  category: "household",
+};
+
+const item10 = {
+  name: "paper towels, 6 pack",
+  quantity: 1,
+  category: "household",
+};
+
+const item11 = {
+  name: "dish soap 🍽️",
+  quantity: 1,
+  category: "household",
+};
+
+const item12 = {
+  name: "hand soap 🧼",
+  quantity: 4,
+  category: "household",
+};
+```
+
+### Build the `Page` Component
+
+In `page.js`, create a functional component named `Page` that returns a `main` element wrapped around the `ItemList` component. Use Tailwind classes for styling.
+
+### Run and Test Your App
+
+Run your app and test it in the browser. You should see a list of items. Debug any errors you encounter.
+
+</Steps>
+
+### Example Output
+
+https://cprg306-assignments.vercel.app/week3
+
+### Application Requirements
+
+- Use appropriate semantic HTML elements, e.g. `li` for list items.
+- Use Tailwind CSS for styling. You are free to use any Tailwind classes you want and you do not need to match the [Example Output](https://cprg306-assignments.vercel.app/week3). However, your app should look good and be easy to use. Choose a colour scheme that is easy on the eyes. I recommend choosing two colours and using shades of those colours for your app.
+
+## Part 4: Assignment Submission
+
+The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
+
+Ensure the following:
+
+- The instructor has your current GitHub username.
+- The GitHub repository is **public** and named exactly `cprg306-assignments`.
+- The new page is named exactly `week3` (lowercase).
+
+---
+
+import AssignmentChecker from "/components/AssignmentChecker";
+
+<AssignmentChecker week="3" />
