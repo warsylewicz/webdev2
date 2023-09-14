@@ -1,6 +1,7 @@
 {
   "index": "Schedule",
   "course-info": "Course Information",
+  "github-accounts": "GitHub Accounts",
   "week1": "Week 1: Introduction to Web Application Development",
   "week2": "Week 2: Introduction to React",
   "week3": "Week 3: Components and Props",

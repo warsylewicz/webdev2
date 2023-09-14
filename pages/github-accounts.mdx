@@ -1,0 +1,22 @@
+export function AccountLinks() {
+    const  accountCSV = "3mptySpac3,aaaarvieeee,Abdulalshami,abdullahanwar1,adnansiddavatam,afern140,ahmadhmi,alexltyt,AnaJoselynAlarcon,andompun,AnthoynHo,antoniohernandezz,arantesmarcelo,aryan111354,Austin-Huynh,benroskey,Billyat5,Ccrewe92,clippycat,CryptoJoe33,DevonWoodruff,dingbull,DiyaSharma15,DorianLaycock,Duy-An,ennis-ma,espiritu-jamie,Ever-QN,fkammw,GabrielPJL12,gail-aud,Goqwin,Gurmaher,Haileyrim,HartajMann,HHafeez123,IvanTemplora,James-Sundby,JasonLMarshall,jaypatel0234,JazminHorton,JinPlanter,Jlat21,johnd959,karmdesai13,KennethDNKL,kevinchong92,KH-Tom,KingCharlesTheGr8th,Kiydo,Koulant,Leslie-Evangelista,lisakamdem,maecison,Maikiby,Malkos316,manho0107,MattYackel,maxhui923,MichaelNGAN1201,mjmorelos,mojojoruiz,mosmee21,mudittpathak,MYasin99,nathanc726,Neo711,nishant-kd,Ojifu,oribermudez,paramveersingh10,pltduchoang,Prepsld,prit-1543,raquel-castoldi,RayQM,RMR2131,roselynnlcc,samnbogen,SamuelKebert,seanlam9282,SourabhThakur01,Starviko,stephaniemartyna,SyedJawadRaza-Baquar,TamaraMah,tansimafiana,TrienXuongLu,TygerNarong,Valentine-Jingwa,Vincemanio,Wbexte,wkl761212,xBraeden,xieshuhong,Yassinenali01,ZachL54,Zainul884,ZeusEstrella";
+
+    const accounts = accountCSV.split(',');
+
+    return (
+        <div>
+            {accounts.map((account) => (
+                <span> <a href={`https://github.com/${account}`}>{account}</a> |</span>
+            ))}
+        </div>
+    )
+
+}
+
+# Student GitHub Accounts
+
+For this course, I encourage you to collaborate on the assignments to help you learn the material and improve your coding skill. Please use each other's public GitHub repositories to see how another student solved a problem, either as a comparison to how you solved it or as a solution for how to solve the lab.
+
+Below is a list of all the students in the class and a link to their GitHub account. Please use this list to find other students to collaborate with. I recommend you star and/or follow other students' repositories to help them out and to help you find them again later.
+
+<AccountLinks />
