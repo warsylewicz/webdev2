@@ -1,0 +1,22 @@
+export function AccountLinks() {
+    const  accountCSV = "3mptySpac3,aaaarvieeee,Abdulalshami,abdullahanwar1,adnansiddavatam,AEssadi91,afern140,ahmadhmi,alexltyt,AnaJoselynAlarcon,andompun,AnthoynHo,antoniohernandezz,arantesmarcelo,aryan111354,Austin-Huynh,benroskey,bilal1465,Billyat5,btleaf-t,Ccrewe92,clippycat,CryptoJoe33,DevonWoodruff,dingbull,DiyaSharma15,DonyStark,DorianLaycock,DucPhatNg9a5,Duy-An,ennis-ma,espiritu-jamie,Ever-QN,fkammw,GabrielPJL12,gail-aud,Goqwin,Gurmaher,Haileyrim,HartajMann,HHafeez123,IvanTemplora,James-Sundby,JasonLMarshall,jaypatel0234,JazminHorton,Jhio0,JinPlanter,Jlat21,johnd959,jonahscott,karmdesai13,kelvinvu19,KennethDNKL,kevinchong92,KH-Tom,KingCharlesTheGr8th,Kiydo,Koulant,lancegonzales04,Leslie-Evangelista,lisakamdem,maecison,Maikiby,Malkos316,manho0107,martinc03,MattYackel,maxhui923,MichaelNGAN1201,mjmorelos,mojojoruiz,mosmee21,mudittpathak,MYasin99,nathanc726,Neo711,nishant-kd,Ojifu,oribermudez,paramveersingh10,Parthnayu10,pltduchoang,Prepsld,prit-1543,raquel-castoldi,RayQM,RMR2131,romylomy,roselynnlcc,sahilBhamani,samnbogen,SamuelKebert,Sarbjee,seanlam9282,ShaEugenio,Shahharsh5148,SourabhThakur01,Starviko,stephaniemartyna,SyedJawadRaza-Baquar,TamaraMah,tansimafiana,TrienXuongLu,TygerNarong,Valentine-Jingwa,Vincemanio,Wbexte,wkl761212,xBraeden,xieshuhong,Yassinenali01,yorklicode,Yushu0,ZachL54,Zainul884,ZeusEstrella,zoegoodwin";
+
+    const accounts = accountCSV.split(',');
+
+    return (
+        <div>
+            {accounts.map((account) => (
+                <span> <a href={`https://github.com/${account}`}>{account}</a> |</span>
+            ))}
+        </div>
+    )
+
+}
+
+# Student GitHub Accounts
+
+For this course, I encourage you to collaborate on the assignments to help you learn the material and improve your coding skill. Please use each other's public GitHub repositories to see how another student solved a problem, either as a comparison to how you solved it or as a solution for how to solve the assignment.
+
+Below is a list of all the students in the class and a link to their GitHub account. Please use this list to find other students to collaborate with. I recommend you star and/or follow other students' repositories to help them out and to help you find them again later.
+
+<AccountLinks />

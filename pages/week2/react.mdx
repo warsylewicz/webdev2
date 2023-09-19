@@ -28,9 +28,10 @@ If a module exports a single value or wants to have a fallback value, export def
 
 ```js
 // Example:
-function myFunction {
-  console.log('Hello World');
-};
+function myFunction() {
+  console.log("Hello World");
+}
+
 export default myFunction;
 ```
 
@@ -38,7 +39,7 @@ This sets `myFunction` as the default export of the file. When importing a defau
 
 ```js
 // Example:
-import myFunction from "./myModule.js";
+import myFunction from "./another-script.js";
 ```
 
 ## Node.js Skills Needed
@@ -213,9 +214,9 @@ export default function Navigation() {
 }
 ```
 
-## Demo
+## 🌐 Demo
 
-A code demo of this lesson: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week2.
+Demo code: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week2.
 
 Live deployment: https://webdev2-demos.vercel.app/week2
 
@@ -318,19 +319,19 @@ import { files, filesSolution } from "./activity.js";
 
 <Sandbox files={files} />
 
-### Hints
+### 💡 Hints
 
 1. page.js does not have any errors.
 
 2. Try the following AI prompts:
 
-> I am a student learning React with the Next.js framework. I have been given a React component that has exactly 3 errors. Give me one hint to help me find the errors. Do not tell me anything more than the hint. I will use the hint to find the errors myself. <br/ > // page.js <br /> [paste the code from page.js here] <br /><br /> // NavBar.js <br /> [paste the code from NavBar.js here]
+> I am a student learning React with the Next.js framework. I have been given a React component that has exactly 3 errors. Give me one hint to help me find the errors. Do not tell me anything more than the hint. I will use the hint to find the errors myself. <br/ > // page.js <br /> [paste the code from page.js here] <br /><br /> // nav-bar.js <br /> [paste the code from nav-bar.js here]
 
 > Give me 3 hints.
 
 > Give me the solution.
 
-### Solution
+### ✅ Solution
 
 <Sandbox files={filesSolution} />
 

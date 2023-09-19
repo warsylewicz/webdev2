@@ -259,7 +259,7 @@ function Example() {
   return (
     <div>
       <p className="text-red-300 bg-slate-800 border border-blue-800">
-        Light red text on a dark slate background with a medium blue border.
+        Light red text on a dark slate background with a dark blue border.
       </p>
     </div>
   );
@@ -268,7 +268,7 @@ function Example() {
 
 <div>
   <p className="text-red-300 bg-slate-800 border border-blue-800">
-    Light red text on a dark slate background with a medium blue border.
+    Light red text on a dark slate background with a dark blue border.
   </p>
 </div>
 
@@ -356,6 +356,12 @@ import { example } from "./example.js";
 <Sandbox files={example} />
 
 In this example, the Page component renders a `Profile` component and passes `name`, `bio`, and `imageUrl` props to it. The `Profile` component then passes these props to the `Photo` and `ProfileInfo` components. `Photo` uses `imageUrl` and `name` for the image source and alternative text, while `ProfileInfo` uses `name` and `bio` to display the user's name and short biography.
+
+## 🌐 Demo
+
+Demo code: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week3
+
+Live deployment: https://webdev2-demos.vercel.app/week3
 
 ## 🗒️ Summary
 
@@ -457,12 +463,12 @@ import { activity, solution } from "./activity.js";
 
 <Sandbox files={activity} />
 
-### Hints
+### 💡 Hints
 
 1. The problem is only in the `Page` component.
 2. The `Page` component is passing the props to the `Profile` component incorrectly.
 
-### Solution
+### ✅ Solution
 
 <Sandbox files={solution} />
 
