@@ -488,17 +488,171 @@ In this example, we're using the `useState` hook to manage the state of the inpu
 
 When you submit the form, the `handleSubmit` function is called. This function alerts the current state value, which will be the user's input in uppercase. By controlling the input field's value with state, we ensure that the displayed input is always in sync with the component state.
 
-## 🌐 Demo
-
-Demo code: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week3
-
-Live deployment: https://webdev2-demos.vercel.app/week3
-
 ## 🗒️ Summary
+
+- **🎯 Focus:** Interactivity is key in modern web applications and React provides a robust framework to create interactive user interfaces.
+- **🏹 JS Skills:** Master JavaScript concepts like arrow functions that offer a concise way to write functions, and higher order functions that take one or more functions as arguments or return a function.
+- **🎨 Tailwind CSS:** Learn about layouts, Tailwind states, and how to use utility classes to create custom designs.
+- **📐React Skills:** Learn about Event Handlers, the useState Hook, Conditional Rendering, and Controlled Components.
+- **🖱️ Event Handlers:** Functions executed in response to specific events triggered by the user or the browser.
+- **🔄 useState Hook:** Allows you to add state to your function components.
+- **🚦 Conditional Rendering:** Choose what to render based on certain conditions.
+- **🎛️ Controlled Components:** Form elements where the state of the form element is directly controlled by the state of a component.
 
 ## 📚 Knowledge Check
 
 import MultipleChoice from "components/MultipleChoice";
+
+<MultipleChoice
+  question="1. What is the basic syntax for an arrow function in JavaScript?"
+  choices={[
+    "const myFunction = (parameters) => { // function body };",
+    "const myFunction => (parameters) { // function body };",
+    "const myFunction = parameters => { // function body };",
+    "arrowFunction myFunction = (parameters) => { // function body };",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="2. What does the 'useState' hook in React return?"
+  choices={[
+    "The initial state value",
+    "An array with two elements: the current state and a function to update it",
+    "An object with two properties: state and setState",
+    "The updated state value",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="3. What is a higher order function in JavaScript?"
+  choices={[
+    "A function that is declared inside another function",
+    "A function that is exported for use in another module",
+    "A function that either takes one or more functions as arguments, returns a function, or both",
+    "A function that is declared using the 'function' keyword",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="4. What is conditional rendering in React?"
+  choices={[
+    "Rendering components based on certain conditions",
+    "Rendering only the components that are visible on the screen",
+    "Rendering components in a specific order",
+    "Rendering components that are conditional on user interaction",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="5. What is a controlled component in React?"
+  choices={[
+    "A component that controls other components",
+    "A form element where the state is directly controlled by the state of a component",
+    "A component that is controlled by a user",
+    "A component that controls the state of a form element",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="6. What is the purpose of the 'preventDefault' method in JavaScript?"
+  choices={[
+    "It prevents a function from being called",
+    "It prevents an event from triggering its default action",
+    "It prevents a component from re-rendering",
+    "It prevents a form from being submitted",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="7. What is the difference between state and regular variables in React?"
+  choices={[
+    "State is a special property: when state changes, React automatically re-renders the component with the new state",
+    "State can be updated, but regular variables cannot",
+    "State can only hold strings, but regular variables can hold any data type",
+    "State is stored in the browser's local storage, but regular variables are not",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="8. What are event handlers in React?"
+  choices={[
+    "Props that are passed to components",
+    "Functions that are executed in response to specific events triggered by the user or the browser",
+    "Functions that are called when a component is rendered",
+    "Components that handle events",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="9. How do you style different states in Tailwind CSS?"
+  choices={[
+    "Using JavaScript functions",
+    "Using CSS classes",
+    "Using special Tailwind components",
+    "Using HTML attributes",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="10. What is the significance of a higher order function in JavaScript?"
+  choices={[
+    "It allows us to abstract over actions, not just values",
+    "It allows us to create functions with a higher order of complexity",
+    "It allows us to declare functions inside other functions",
+    "It allows us to use functions as arguments to other functions",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="11. In React, how do you prevent a form submission from doing its default action?"
+  choices={[
+    "Using the 'preventDefault' method of the event object",
+    "By returning false from the form's onSubmit event handler",
+    "By setting the form's 'action' attribute to '#'",
+    "By setting the form's 'submit' attribute to false",
+  ]}
+  answer="1"
+/>
+
+```js
+const [count, setCount] = useState(0);
+const increment = () => {
+  setCount(count + 1);
+  console.log(count);
+};
+```
+
+<MultipleChoice
+  question="12. In the above code snippet, what does the 'increment' function do?"
+  choices={[
+    "It decreases the 'count' state by 1",
+    "It sets the 'count' state to 1",
+    "It increases the 'count' state by 1",
+    "It sets the 'count' state to 0",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="13. In the above code snippet, when the 'increment' function is invoked, what is the value of 'count' logged to the console in the function's body?"
+  choices={[
+    "The updated value of 'count', incremented by 1",
+    "The initial value of 'count' before being incremented",
+    "The value of 'count' after two increments",
+    "The value of 'count' from the previous render",
+  ]}
+  answer="2"
+/>
 
 ## 🏃 Activity
 
@@ -512,16 +666,10 @@ import { activity, solution } from "./activity.js";
 
 <Sandbox files={solution} />
 
+## 🌐 Demo
+
+Demo code: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week4
+
+Live deployment: https://webdev2-demos.vercel.app/week4
+
 ## 📖 Further Reading
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
