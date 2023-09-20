@@ -1,21 +1,492 @@
-# Components and Props
+# Interactivity
+
+Interactivity is at the heart of modern web applications, and React provides a robust and intuitive framework to build interactive user interfaces. As we delve into React Interactivity, we'll explore how to handle user inputs and events, manage dynamic data with state, and conditionally render components based on user interaction or changes in state. This week is all about bringing your web applications to life and creating dynamic, interactive user experiences.
 
 ## JS Skills Needed
 
-###
+Mastering these JavaScript concepts will equip you with the essential tools to write clean, efficient, and more readable code in React. These skills will empower you to handle complex tasks such as managing user interactions and manipulating data effectively.
+
+### Arrow Functions
+
+Arrow functions offer a more concise way to write functions in JavaScript. They are especially useful when defining short functions and can make your code more readable and maintainable.
+
+Arrow functions have a syntax that's shorter than traditional function syntax. They also have some unique features, such as lexical this binding, but for now, we'll focus on their basic usage and syntax.
+
+#### Basic syntax
+
+Here's the basic syntax for an arrow function:
+
+```js
+const myFunction = (parameters) => {
+  // function body
+};
+```
+
+#### Example 1: A Simple Arrow Function
+
+Let's start with a simple example. Here's a traditional function declaration:
+
+```js
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+console.log(greet("Daisy")); // Output: Hello, Daisy!
+```
+
+And here's how you could write the same function as an arrow function:
+
+```js
+const greet = (name) => {
+  return `Hello, ${name}!`;
+};
+console.log(greet("Daisy")); // Output: Hello, Daisy!
+```
+
+#### Example 2: Arrow Function with Implicit Return
+
+If your function body consists of just a single statement that returns a value, you can use the implicit return feature of arrow functions:
+
+```js
+const greet = (name) => `Hello, ${name}!`;
+console.log(greet("Bob")); // Output: Hello, Bob!
+```
+
+Notice that we've also omitted the parentheses around the parameter since it's the only one. If you have more than one parameter, or if you have no parameters at all, you would still need the parentheses.
+
+#### Example 3: Arrow Function with Multiple Parameters
+
+Arrow functions can of course take multiple parameters. Here's an example:
+
+```js
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // Output: 5
+```
+
+In this example, the add function takes two parameters, a and b, and returns their sum.
+
+### Higher Order Functions
+
+A higher order function in JavaScript is a function that either takes one or more functions as arguments, returns a function, or both. These types of functions are a key part of functional programming in JavaScript, and understanding them can lead to cleaner, more maintainable code.
+
+Higher order functions allow us to abstract over actions, not just values. They can help reduce repetition in our code and make it more expressive and easier to read. They're a powerful tool in JavaScript, and they're used extensively in many popular libraries and frameworks, including React.
+
+#### Example 1: Function as an Argument
+
+One of the simplest examples of a higher order function is a function that takes another function as an argument. Here's an example:
+
+```js
+const greet = () => {
+  return "Hello, world";
+};
+
+const shout = (func) => {
+  const greeting = func();
+  return `${greeting.toUpperCase()}!!!`;
+};
+
+const shh = (func) => {
+  const greeting = func();
+  return `${greeting.toLowerCase()}.`;
+};
+
+console.log(shout(greet)); // Output: HELLO, WORLD!!!
+console.log(shh(greet)); // Output: hello, world.
+```
+
+In this example, `shout` and `shh` are a higher order functions because they take another function greet as its argument.
+
+#### Example 2: Function as a Return Value
+
+Higher order functions can also return other functions. Here's an example:
+
+```js
+const multiplyBy = (num1) => {
+  // Return a new function that will multiply its given argument by num1
+  return (num2) => {
+    return num1 * num2;
+  };
+};
+
+const multiplyByTwo = multiplyBy(2);
+console.log(multiplyByTwo(4)); // Output: 8
+```
+
+In this example, the `multiplyBy` function returns a new function that multiplies its given argument by the value of `num1`. We then assign the return value of `multiplyBy(2)` to the variable `multiplyByTwo`, which is a function that multiplies its given argument by 2. We can then call `multiplyByTwo` with an argument of 4, which returns 8.
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info" emoji="️🆘">
+  I understand that concepts like arrow functions and higher order function can
+  seem complex initially, especially when you're starting your journey with
+  JavaScript and React. However, these are fundamental constructs in modern
+  JavaScript development, and mastering them will significantly improve your
+  React programming skills. As you continue to practice and apply these
+  concepts, they will become second nature. Remember, every experienced
+  developer began where you are now, and through persistence and dedication,
+  they've become proficient. So keep going, keep experimenting, and soon you
+  will find yourself writing React code using these essential JavaScript
+  features.
+</Callout>
+
+### Preventing a Form Submission
+
+In web development, it's a common requirement to prevent a form submission from doing its default action, which is to submit the form data and reload the page. Instead, you might want to handle the form data using JavaScript and perform some action like sending an AJAX request.
+
+To prevent a form submission from doing its default action, you can use the `preventDefault` method of the event object. Here's an example:
+
+```js
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // Handle form data
+};
+```
+
+```html
+<form onSubmit="{handleSubmit}">
+  <input type="text" name="name" placeholder="Enter your name" />
+  <button type="submit">Submit</button>
+</form>
+```
+
+In this example, we're using the `preventDefault` method to prevent the form submission from reloading the page. Instead, we can handle the form data using JavaScript.
 
 ## Tailwind CSS Skills Needed
 
-###
+### Layouts
+
+#### Display Classes
+
+- `.block`: This class applies `display: block;` to an element.
+- `.inline-block`: Applies `display: inline-block;`.
+- `.flex`: Applies `display: flex;`. This is the starting point for most flexbox layouts.
+
+#### Flexbox Classes
+
+- `.flex-row`: Sets `flex-direction: row;` so that flex items line up horizontally.
+- `.flex-col`: Sets `flex-direction: column;` so flex items stack vertically.
+- `.justify-start`, `.justify-center`, `.justify-end`, `.justify-between`, `.justify-around`, `.justify-evenly`: These classes adjust the horizontal distribution of flex items (along the main axis).
+- `.items-start`, `.items-center`, `.items-end`, `.items-baseline`, `.items-stretch`: These classes adjust the vertical alignment of flex items (along the cross axis).
+- `.flex-grow`, `.flex-shrink`, `.flex-auto`, `.flex-initial`, `.flex-none`: These classes control how flex items grow and shrink to fill the available space.
+
+#### Width and Height Classes
+
+- `.w-`, `.h-`: These classes set an element's width and height. You can specify a number from 0-100, a fraction (like 1/2), or a keyword like auto, full, screen.
+
+#### Position Classes
+
+- `.static`, `.fixed`, `.absolute`, `.relative`, `.sticky`: These classes set an element's position property.
+- `.inset-`, `.top-`, `.right-`, `.bottom-`, `.left-`: These classes set the values of the top, right, bottom, and left properties.
+
+#### Grid Classes
+
+- `.grid`: Applies `display: grid;` to an element.
+- `.grid-cols-[number]`: Specifies the number of columns in a grid layout.
+- `.gap-`: Specifies the size of the gap between grid items.
+
+#### Layout Example
+
+```js
+<div class="flex flex-row gap-4 m-4 w-full">
+  <div class="flex-1 bg-blue-100 p-6 rounded-lg">
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Card 1</h2>
+    <p class="text-gray-700">
+      This is a simple card layout example using Tailwind CSS!
+    </p>
+  </div>
+  <div class="flex-1 bg-blue-200 p-6 rounded-lg">
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Card 2</h2>
+    <p class="text-gray-700">This is the second card.</p>
+  </div>
+  <div class="flex-1 bg-blue-300 p-6 rounded-lg">
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Card 3</h2>
+    <p class="text-gray-700">This is the third card.</p>
+  </div>
+</div>
+```
+
+<div class="flex flex-row gap-4 m-4 w-full">
+  <div class="flex-1 bg-blue-100 p-6 rounded-lg">
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Card 1</h2>
+    <p class="text-gray-700">
+      This is a simple card layout example using Tailwind CSS!
+    </p>
+  </div>
+  <div class="flex-1 bg-blue-200 p-6 rounded-lg">
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Card 2</h2>
+    <p class="text-gray-700">This is the second card.</p>
+  </div>
+  <div class="flex-1 bg-blue-300 p-6 rounded-lg">
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Card 3</h2>
+    <p class="text-gray-700">This is the third card.</p>
+  </div>
+</div>
+
+### Tailwind States
+
+In Tailwind CSS, "states" refer to the different states an HTML element can be in. For example, a button could be in a "hover" state (when the mouse is over it), a "focus" state (when it has keyboard focus), or a "disabled" state (when it is inactive and can't be clicked).
+
+Tailwind provides utility classes to style these different states, which can be very helpful for providing visual feedback to users. For instance, you might want a button to change color when it's hovered over to indicate that it's clickable.
+
+Here are some of the key states you can style in Tailwind:
+
+- `hover`: Triggered when the mouse is over an element.
+- `focus`: Triggered when an element has keyboard focus.
+- `active`: Triggered when an element is being activated by the user (for example, a button being clicked).
+- `disabled`: Triggered when an element is disabled.
+- `visited:` Triggered when a link has been visited.
+
+#### Hover Example
+
+```js
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Hover over me
+</button>
+```
+
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Hover over me
+</button>
+
+In this example, the button's background color will change from blue-500 to blue-700 when you hover over it.
+
+#### Focus Example
+
+```js
+<input
+  class="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+  type="text"
+  placeholder="Focus on me"
+/>
+```
+
+<input
+  class="focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+  type="text"
+  placeholder="Focus on me"
+/>
+
+Here, when the input field is focused, the outline is removed and a blue ring appears around it instead.
+
+#### Active Example
+
+```js
+<button class="bg-blue-500 active:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+  Click me
+</button>
+```
+
+<button class="bg-blue-500 active:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+  Click me
+</button>
+
+In this case, the button's background color changes from blue-500 to yellow-700 when it's being clicked.
 
 ## React Skills Needed
 
-###
+This week, we'll be focusing on four important aspects of React that are crucial for building interactive web applications. We'll learn about Event Handlers, which respond to user actions, and the useState Hook, a feature for managing state in your components. We'll also cover Conditional Rendering to modify what the user interface displays based on state, and Controlled Components to manage form inputs. These topics are key to creating a responsive and dynamic application. We will also revisit the concept of state management in React in two weeks, given its significance in building efficient applications.
+
+### Event Handlers
+
+Event handlers in React are a core feature that enables interactivity in your web application. They are functions that get executed in response to specific events triggered by the user or the browser, such as clicks, mouse movements, key presses, form submissions, and more.
+
+In React, event handlers are passed as props to components and are typically named with a "handle" prefix, such as `handleClick` or `handleInputChange`. Event handlers can perform a variety of tasks, from simple operations like updating the state of a component to more complex tasks like making API calls.
+
+React events are named using camel case, rather than lowercase, and with JSX you pass a function as the event handler, rather than a string.
+
+#### Example: Basic Click Event
+
+In this example, when the button is clicked, an alert is shown:
+
+```js
+export function ButtonExample() {
+  const handleClick = () => {
+    alert("Button clicked!");
+  };
+
+  return <button onClick={handleClick}>Click me</button>;
+}
+```
+
+export function ButtonExample() {
+  const handleClick = () => {
+    alert("Button clicked!");
+  };
+  return <button onClick={handleClick}>Click me</button>;
+}
+
+<ButtonExample />
+
+**Detailed explanation:**
+
+- Component Definition: The component is defined as a function named ButtonExample. This is a functional component, which is the simplest type of component in React. Functional components are defined as functions that return JSX.
+- Event Handler Definition: Inside the component, we define a function named handleClick. This function is an event handler — it's a function that will be called in response to a specific event. In this case, the event is a click event.
+- The handleClick function uses JavaScript's arrow function syntax, and all it does is call the alert function with the message "Button clicked!". The alert function is a built-in browser function that shows a popup message to the user.
+- JSX Return Statement: The component returns a JSX expression.
+- The JSX expression in this component is a single button element. This button has a prop onClick set to the handleClick function we defined earlier.
+- onClick Prop: The onClick prop is a special prop in React that allows you to specify a function to be called when the button is clicked. When you click the button in a web browser, React will call the handleClick function, causing the alert to be shown.
+- Button Text: The text inside the button is "Click me". This is what will be displayed on the button in the browser.
+
+So, all together, this ButtonExample component renders a button that, when clicked, shows an alert with the message "Button clicked!".
+
+### `useState` Hook
+
+#### What is State?
+
+In the context of React (and many other programming paradigms), "state" refers to the data that a program or component needs to keep track of and possibly modify over time. This could be anything from the current value of a form input, to whether a dropdown menu is open or closed, to more complex data like the contents of a shopping cart on an e-commerce website.
+
+#### Why is State Important?
+
+State is a fundamental concept in React because it allows components to create and manage their own data. Without state, a component would render the same output every time it's called, making it essentially static. But with state, a component can render different output in response to different state, making it dynamic and interactive.
+
+For example, a button that shows a count of how many times it's been clicked wouldn't be possible without state. The component needs some way to remember how many times the button has been clicked, and that's exactly what state provides.
+
+#### State vs Variables
+
+You might be wondering why we can't just use regular JavaScript variables instead of state. The answer is that state in React has a special property: when state changes, React automatically re-renders the component with the new state.
+
+On the other hand, changes to regular variables don't cause a re-render. If you tried to use a regular variable instead of state for the click count in a button component, the count would increase when the button is clicked, but you wouldn't see the count update in the UI because the component wouldn't re-render.
+
+#### The `useState` Hook
+
+React's useState hook is a feature that allows you to add state to your function components. The useState hook is a function that accepts one argument: the initial state. It returns an array with two elements: the current state and a function to update the state.
+
+The state updating function can be used to update the state with a new value. When the state is updated, the component re-renders with the new state.
+
+#### Example 1: Basic State Usage
+
+A simple counter that increments when a button is clicked:
+
+```js showLineNumbers
+import { useState } from "react";
+
+export function CounterExample() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+```
+
+Let's break this example down.
+
+```js
+import { useState } from "react";
+```
+
+First, we're importing the useState hook from React. This is a built-in React hook that allows us to add state to our function components.
+
+```js
+const [count, setCount] = useState(0);
+```
+
+Within our component, we're calling the useState function with an initial value of 0. useState returns an array with two elements: the current state value and a function to update that state value. Here, we're using destructuring assignment to assign these two elements to the count and setCount variables, respectively. (We'll learn more about destructuring in a couple weeks.)
+
+The `count` variable holds the current state (the number of times the button has been clicked), and `setCount` is the function we'll use to update this state.
+
+```js
+const increment = () => {
+  setCount(count + 1);
+};
+```
+
+`increment` is a function that, when called, uses `setCount` to update the `count` state to be one higher than it currently is.
+
+```js
+return (
+  <div>
+    <p>Count: {count}</p>
+    <button onClick={increment}>Increment</button>
+  </div>
+);
+```
+
+In the render return of our component, we're displaying the current `count` inside a paragraph tag, and a button that, when clicked, calls the increment function, which increases the count by one. When the count is updated, the component re-renders with the new count value.
+
+<Callout type="info" emoji="️🔁">
+  State is a fundamental concept in React, and it's important to understand how
+  it works. If you're still confused about state, don't worry — we'll be
+  revisiting this topic in more detail in a couple weeks.
+</Callout>
+
+### Conditional Rendering
+
+Conditional Rendering in React is a technique where you can choose what to render based on certain conditions (usually the state or props of a component). It's a fundamental part of creating interactive user interfaces: displaying different UIs under different conditions.
+
+In JavaScript, you can use common constructs like `if`, `else`, ternary expressions (`condition ? exprIfTrue : exprIfFalse`), and logical operators (`&&`) to create elements representing the current state, and let React update and render just the right components when your data changes.
+
+#### Example 1: Conditional Rendering with Ternary Operator and Inline Expressions
+
+```js
+function UserProfile({ name, age }) {
+  return (
+    <div>
+      <h1>Welcome, {name}!</h1>
+      {age >= 18 ? <h2>You can vote.</h2> : <h2>You can't vote yet.</h2>}
+    </div>
+  );
+}
+```
+
+In this example, we're using a ternary operator to conditionally render one of two h2 elements based on the age prop. Note that the condition is written inline, right inside the returned JSX.
+
+#### Example 2: Conditional Rendering with Logical && operator
+
+```js
+function UserProfile({ user }) {
+  if (user) {
+    return (
+      <div>
+        <h1>Welcome, {user.name}!</h1>
+        {user.isAdmin && <p>You are an admin.</p>}
+      </div>
+    );
+  } else {
+    return <p>No user information found.</p>;
+  }
+}
+```
+
+In this example, we're checking if the user prop is present.
+
+- If it is, we render a div with a welcome message and the user's name. If the user is an admin (i.e., `user.isAdmin` is true), we additionally render a paragraph indicating this.
+- If the user prop is not present (i.e., it's null or undefined), we render a paragraph saying "No user information found."
+
+<Callout type="info" emoji="🧩">
+  In JavaScript, the && operator, known as the logical AND operator, evaluates
+  its operands from left to right and returns the value of the first falsy
+  operand it encounters, or the last truthy operand if none are falsy. This
+  property enables conditional rendering in React: for expr1 && expr2, if expr1
+  is truthy, expr2 is evaluated and returned (thus rendered). If expr1 is falsy,
+  the expression short-circuits, returning expr1, and expr2 is ignored (not
+  rendered).
+</Callout>
+
+### Controlled Components
+
+Controlled Components in React refer to form elements where the state of the form element is directly controlled by the state of a component. This is opposed to uncontrolled components, where form data is handled by the DOM itself.
+
+In React, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In a controlled component, the form data is handled by a React component, and the value of the input is set by the state of the component.
+
+#### Basic Controlled Component Example
+
+Here is an example of a Controlled Component, a simple form with a single text input field:
 
 import Sandbox from "components/Sandbox";
 import { example } from "./example.js";
 
 <Sandbox files={example} />
+
+In this example, we're using the `useState` hook to manage the state of the input field in our `NameForm` functional component. The state is initially an empty string (''). When you type into the input field, the `handleChange` function is called, which updates the state with the new value (converted to uppercase, using `event.target.value.toUpperCase()`).
+
+When you submit the form, the `handleSubmit` function is called. This function alerts the current state value, which will be the user's input in uppercase. By controlling the input field's value with state, we ensure that the displayed input is always in sync with the component state.
 
 ## 🌐 Demo
 
@@ -42,3 +513,15 @@ import { activity, solution } from "./activity.js";
 <Sandbox files={solution} />
 
 ## 📖 Further Reading
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```

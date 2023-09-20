@@ -1,4 +1,27 @@
-const Page = `
+const Page = `import { useState } from "react";
+
+export default function NameForm() {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event) => {
+    setValue(event.target.value.toUpperCase());
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("A name was submitted: " + value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" placeholder="Enter your name" value={value} onChange={handleChange} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
 `;
 
 // Location of file as key (always starts with /)
