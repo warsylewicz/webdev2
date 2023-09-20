@@ -1,7 +1,54 @@
-const Activity = `
+const Activity = `import { useState } from "react";
+
+export default function Page() {
+  const [count, setCount] = useState(0)
+  
+  // TODO: Create a new state variable called 'isEnabled' with an initial value of false.
+  // This variable will be used to control the enabled/disabled state of the increment button.
+
+  const increment = () => {
+    setCount(count + 1);
+  }
+
+  const toggleEnabled = () => {
+    // TODO: Implement a function that toggles the value of 'isEnabled'.
+    // If 'isEnabled' is currently true, it should be set to false, and vice versa.
+  }
+  
+  return (
+    <div>
+      <button onClick={increment} disabled={!isEnabled} className="bg-blue-400 disabled:bg-yellow-900 rounded m-4 p-4">+1</button>
+      <input type="checkbox" onChange={toggleEnabled}/>
+      Enable button
+      <p>Current count: {count}</p>
+    </div>
+  )
+}
 `;
 
-const Solution = `
+const Solution = `import { useState } from "react";
+
+export default function Page() {
+  const [count, setCount] = useState(0);
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const increment = () => {
+    setCount(count + 1);
+  }
+
+  const toggleEnabled = () => {
+    setIsEnabled(!isEnabled);
+  }
+  
+  return (
+    <div>
+      <button onClick={increment} disabled={!isEnabled} className="bg-blue-400 hover:bg-blue-600 disabled:bg-yellow-900 rounded m-4 p-4">+1</button>
+      <input type="checkbox" onChange={toggleEnabled}/>
+      Enable button
+      <p>Current count: {count}</p>
+    </div>
+  );
+}
 `;
 
 // Location of file as key (always starts with /)

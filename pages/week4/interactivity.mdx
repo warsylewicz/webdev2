@@ -221,6 +221,8 @@ In this example, we're using the `preventDefault` method to prevent the form sub
   </div>
 </div>
 
+Here we're using a flexbox layout to create a simple card layout with three cards. The `flex` class sets the display property to flex, and the `flex-row` class sets the flex-direction property to row, so the cards are laid out horizontally. The `gap-4` class sets the gap between the cards to 1rem (16px). The `m-4` class sets the margin to 1rem (16px) on all sides. The `w-full` class sets the width to 100% of the parent element.
+
 ### Tailwind States
 
 In Tailwind CSS, "states" refer to the different states an HTML element can be in. For example, a button could be in a "hover" state (when the mouse is over it), a "focus" state (when it has keyboard focus), or a "disabled" state (when it is inactive and can't be clicked).
@@ -340,11 +342,15 @@ State is a fundamental concept in React because it allows components to create a
 
 For example, a button that shows a count of how many times it's been clicked wouldn't be possible without state. The component needs some way to remember how many times the button has been clicked, and that's exactly what state provides.
 
+<Callout type="info" emoji="🤔">
+
 #### State vs Variables
 
 You might be wondering why we can't just use regular JavaScript variables instead of state. The answer is that state in React has a special property: when state changes, React automatically re-renders the component with the new state.
 
-On the other hand, changes to regular variables don't cause a re-render. If you tried to use a regular variable instead of state for the click count in a button component, the count would increase when the button is clicked, but you wouldn't see the count update in the UI because the component wouldn't re-render.
+On the other hand, changes to regular variables don't cause a re-render. If you tried to use a regular variable instead of state for the click count in a button component, the count would increase when the button is clicked, but you wouldn't see the count update in the UI because the component wouldn't re-render. In addition, regular variables get recreated with every render, and their values get "reset" each time, which is why they cannot be used for values that need to persist across renders.
+
+</Callout>
 
 #### The `useState` Hook
 
@@ -656,11 +662,55 @@ const increment = () => {
 
 ## 🏃 Activity
 
+In this hands-on activity, you will be enhancing a basic counter application by adding a new piece of state and a function to toggle this state. This will give you the opportunity to practice creating and updating state in a React component.
+
+The provided code includes a counter with an increment button. Currently, the increment button is always disabled. Your task is to implement a feature that enables/disables the increment button when a checkbox is checked/unchecked and add a class to make the button appear interactive when hovered over.
+
 import { activity, solution } from "./activity.js";
 
 <Sandbox files={activity} />
 
 ### 💡 Hints
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+### Create a new piece of state
+
+Locate the following comment in the code:
+
+```js
+// TODO: Create a new state variable called `isEnabled` with an initial value of false.
+// This variable will be used to control the enabled/disabled state of the increment button.
+```
+
+In this spot, create a new piece of state called `isEnabled` with `useState`. The initial value should be `false`.
+
+### Implement a function to toggle the state
+
+Next, find the toggleEnabled function:
+
+```js
+const toggleEnabled = () => {
+  // TODO: Implement a function that toggles the value of 'isEnabled'.
+  // If `isEnabled` is currently true, it should be set to false, and vice versa.
+};
+```
+
+Inside this function, implement logic to toggle the value of `isEnabled`. If `isEnabled` is currently `true`, it should be set to `false`, and vice versa.
+
+### Add a hover class to the button
+
+Currently, the increment button has the following classes:
+
+```js
+className = "bg-blue-400 disabled:bg-yellow-900 rounded m-4 p-4";
+```
+
+Your task is to add a Tailwind CSS class to the button to make the button turn a darker shade of blue when it is hovered over, providing a visual indication that it is interactive.
+
+</Steps>
 
 ### ✅ Solution
 
@@ -673,3 +723,11 @@ Demo code: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week4
 Live deployment: https://webdev2-demos.vercel.app/week4
 
 ## 📖 Further Reading
+
+- [Arrow function expressions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [Higher-Order Functions :: Eloquent JavaScript](https://eloquentjavascript.net/05_higher_order.html)
+- [Adding Interactivity - React](https://react.dev/learn/adding-interactivity)
+- [Responding to Events - React](https://react.dev/learn/responding-to-events)
+- [State: A Component's Memory - React](https://react.dev/learn/state-a-components-memory)
+- [Render and Commit - React](https://react.dev/learn/render-and-commit)
+- [State as a Snapshot - React](https://react.dev/learn/state-as-a-snapshot)
