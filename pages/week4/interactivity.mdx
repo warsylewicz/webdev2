@@ -494,6 +494,33 @@ In this example, we're using the `useState` hook to manage the state of the inpu
 
 When you submit the form, the `handleSubmit` function is called. This function alerts the current state value, which will be the user's input in uppercase. By controlling the input field's value with state, we ensure that the displayed input is always in sync with the component state.
 
+## Next.js Skills Needed
+
+### `"use client"` Directive
+
+By default, Next.js renders all pages on the server side. This means that when a user visits a page, the page is rendered on the server and the resulting HTML is sent to the browser. This is known as server-side rendering (SSR).
+
+However, there are some cases where you might want to render a page or component on the client side (browser) instead. For example, if you want to use `useState` to manage state, you must render it client side since `useState` is a React hook that only works in the browser.
+
+If you don't use `"use client"` and try to use `useState` in a component, you'll get an error like this:
+
+```
+You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+Learn more: https://nextjs.org/docs/getting-started/react-essentials
+
+.....
+```
+
+In this case, just put `"use client"` at the top of the file to mark it as a client-side component:
+
+```js
+"use client";
+
+import { useState } from "react";
+
+export default function .....
+```
+
 ## 🗒️ Summary
 
 - **🎯 Focus:** Interactivity is key in modern web applications and React provides a robust framework to create interactive user interfaces.
@@ -724,13 +751,23 @@ Live deployment: https://webdev2-demos.vercel.app/week4
 
 ## 📖 Further Reading
 
+JavaScript:
+
 - [Arrow function expressions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [Higher-Order Functions :: Eloquent JavaScript](https://eloquentjavascript.net/05_higher_order.html)
 
+Tailwind CSS:
+
 - [Handling Hover, Focus and Other States - tailwindcss](https://tailwindcss.com/docs/hover-focus-and-other-states)
+
+React:
 
 - [Adding Interactivity - React](https://react.dev/learn/adding-interactivity)
 - [Responding to Events - React](https://react.dev/learn/responding-to-events)
 - [State: A Component's Memory - React](https://react.dev/learn/state-a-components-memory)
 - [Render and Commit - React](https://react.dev/learn/render-and-commit)
 - [State as a Snapshot - React](https://react.dev/learn/state-as-a-snapshot)
+
+Next.js:
+
+- [Client Components - Next.js](https://nextjs.org/docs/app/building-your-application/rendering/client-components)

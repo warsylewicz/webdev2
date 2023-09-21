@@ -1,4 +1,6 @@
-const Page = `import { useState } from "react";
+const Page = `"use client";
+
+import { useState } from "react";
 
 export default function NameForm() {
   const [value, setValue] = useState("");

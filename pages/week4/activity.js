@@ -1,4 +1,6 @@
-const Activity = `import { useState } from "react";
+const Activity = `"use client";
+
+import { useState } from "react";
 
 export default function Page() {
   const [count, setCount] = useState(0)
@@ -26,7 +28,9 @@ export default function Page() {
 }
 `;
 
-const Solution = `import { useState } from "react";
+const Solution = `"use client";
+
+import { useState } from "react";
 
 export default function Page() {
   const [count, setCount] = useState(0);
