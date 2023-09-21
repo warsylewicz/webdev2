@@ -1,17 +1,14 @@
 # Week 4 Assignment
 
-For this week's assignment, you will be creating a NewEvent component using React. This component will practice your skills with React state and managed forms.
-
 ## Overview
 
-The NewEvent component includes a form for users to enter details about a new event. The form requires the following details:
+For this week's assignment, you'll be creating a `NewItem` component using React for a Shopping List App. This component will demonstrate your understanding of React state and forms. The NewItem component allows users to enter details about a new item they wish to add to a list. The form requires the following information:
 
-- Event Name
-- Event Date
-- Event Location
-- Event Description
+- Item Name
+- Quantity
+- Category
 
-The state of each input field is managed using React's useState hook. When the form is submitted, the current state of these fields is bundled into a new event object, which is logged to the console. The form fields are then reset to their initial state.
+React's `useState` hook is used to manage the state of each input field. When the form is submitted, an alert is displayed with the current state of these fields, simulating the addition of a new item. The form fields are then reset to their initial state.
 
 ## Prerequisites
 
@@ -31,42 +28,69 @@ import { Steps } from "nextra-theme-docs";
 
 ### Create the Folder and Files
 
-Create the folder `/app/week4` and create files `page.js` and `new-event.js` inside it.
+Create the folder `/app/week4` and create files `page.js` and `new-item.js` inside it.
 
-Edit `page.js` to be a Next.js page component that renders the NewEvent component.
+Edit `page.js` to be a Next.js page component that renders the NewItem component.
 
-### Setup the NewEvent Component
+### Setup NewItem Component
 
-Import the necessary hooks from 'react' (useState) at the top of your file.
+- Add the `"use client"` directive to the top of the file.
+- Import the useState hook from React.
 
-Set up the functional component NewEvent and export it.
+### Initialize State Variables
 
-### Initialize State
+**Name Field**
 
-Inside your NewEvent component, initialize state variables for `name`, `date`, `location`, `description`, and `eventCreated` using the `useState` hook. Set initial values to an empty string ("") for all except eventCreated, which should be false.
+- Use the `useState` hook to create a state variable called `name` and a setter function called `setName`.
+- The initial value of `name` should be an empty string (`""`), indicating that the name field is initially blank.
 
-### Handle Form Input Changes
+**Quantity Field**
 
-Create handler functions (`handleNameChange`, `handleDateChange`, `handleLocationChange`, `handleDescriptionChange`) for each form input. Within each handler, update the corresponding state variable with the new value from the input field.
+- Use the `useState` hook to create a state variable called `quantity` and a setter function called `setQuantity`.
+- The initial value of `quantity` should be `1`, indicating that the quantity field is initially set to 1.
 
-### Handle Form Submission
+**Category Field**
 
-Create a `handleSubmit` function that will be triggered when the form is submitted.
+- Use the `useState` hook to create a state variable called `category` and a setter function called `setCategory`.
+- The initial value of `category` should be `"produce"`, indicating that the category field is initially set to "Produce".
 
-- Prevent the default form submission behavior.
-- Construct a newEvent object that combines the current state of name, date, location, and description.
-- Use console.log to output the newEvent object. This simulates creating a new event.
-- Set eventCreated state to true to indicate that an event has been created.
-- Reset the form fields by setting name, date, location, and description back to their initial states (empty strings).
+### Create a Form Submission Handler
 
-### Create the Form in JSX
+Create a handleSubmit function. This function should:
 
-In the component's return statement, create a form that includes:
+- Prevent the form's default submission behavior.
+- Display an alert with the current state of name, quantity, and category.
+- Reset the state variables to their initial values.
 
-- Input fields for the event `name`, `date`, `location`, and `description`. Each of these fields should use their corresponding state variable - as their value, and their corresponding handler function for their onChange event.
-- A submit button that triggers the `handleSubmit` function when clicked.
+### Render the Component
 
-Above the form, display a message "Event Created" only if eventCreated state is true. This can be done using conditional rendering.
+In the return statement of your function, create a form that includes:
+
+**Name Field**
+
+- Create an input field of type text.
+- The value of the input field should be tied to the name state variable, meaning that it displays the current value of name.
+- Use the setName function in an onChange event handler to update the state of name as the user types into the field.
+- Add required attribute to the input field to ensure that the user cannot submit the form without providing a name.
+
+**Quantity Field**
+
+- Create an input field of type number.
+- Set the min attribute to "1" and the max attribute to "99" to limit the range of valid quantities.
+- The value of the input field should be tied to the quantity state variable.
+- Use the setQuantity function in an onChange event handler to update the state of quantity as the user types into the field. Make sure to convert the input to a Number before setting the state.
+- Add required attribute to the input field to ensure that the user cannot submit the form without providing a quantity.
+
+**Category Field**
+
+- Create a select element for the category.
+- The value of the select element should be tied to the category state variable.
+- Use the setCategory function in an onChange event handler to update the state of category as the user selects a different option.
+- Create various option elements within the select for each possible category ("Produce", "Dairy", "Bakery", "Meat", "Frozen Foods", "Canned Goods", "Dry Goods", "Beverages", "Snacks", "Household", "Other"). Each option should have a value that matches the category it represents.
+
+**Submit Button**
+
+- Create a submit button that triggers the handleSubmit function when clicked.
 
 ### Style the Component
 
@@ -74,15 +98,13 @@ Style the component using Tailwind CSS. You do not need to match the example out
 
 ### Test Your Component
 
-Finally, test your component thoroughly. Ensure that when the form is filled and submitted, the new event object is logged to the console, the form fields are reset, and the "Event Created" message is displayed.
+Ensure that when the form is filled and submitted, an alert is displayed with the correct information and the form fields are reset.
 
 </Steps>
 
 ### Example Output
 
 https://cprg306-assignments.vercel.app/week4
-
-### Application Requirements
 
 ## Part 3: Assignment Submission
 
