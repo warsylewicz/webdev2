@@ -1,6 +1,17 @@
 # Week 4 Assignment
 
+For this week's assignment, you will be creating a NewEvent component using React. This component will practice your skills with React state and managed forms.
+
 ## Overview
+
+The NewEvent component includes a form for users to enter details about a new event. The form requires the following details:
+
+- Event Name
+- Event Date
+- Event Location
+- Event Description
+
+The state of each input field is managed using React's useState hook. When the form is submitted, the current state of these fields is bundled into a new event object, which is logged to the console. The form fields are then reset to their initial state.
 
 ## Prerequisites
 
@@ -18,13 +29,52 @@ import { Steps } from "nextra-theme-docs";
 
 <Steps>
 
-###
+### Create the Folder and Files
 
-###
+Create the folder `/app/week4` and create files `page.js` and `new-event.js` inside it.
 
-###
+Edit `page.js` to be a Next.js page component that renders the NewEvent component.
 
-###
+### Setup the NewEvent Component
+
+Import the necessary hooks from 'react' (useState) at the top of your file.
+
+Set up the functional component NewEvent and export it.
+
+### Initialize State
+
+Inside your NewEvent component, initialize state variables for `name`, `date`, `location`, `description`, and `eventCreated` using the `useState` hook. Set initial values to an empty string ("") for all except eventCreated, which should be false.
+
+### Handle Form Input Changes
+
+Create handler functions (`handleNameChange`, `handleDateChange`, `handleLocationChange`, `handleDescriptionChange`) for each form input. Within each handler, update the corresponding state variable with the new value from the input field.
+
+### Handle Form Submission
+
+Create a `handleSubmit` function that will be triggered when the form is submitted.
+
+- Prevent the default form submission behavior.
+- Construct a newEvent object that combines the current state of name, date, location, and description.
+- Use console.log to output the newEvent object. This simulates creating a new event.
+- Set eventCreated state to true to indicate that an event has been created.
+- Reset the form fields by setting name, date, location, and description back to their initial states (empty strings).
+
+### Create the Form in JSX
+
+In the component's return statement, create a form that includes:
+
+- Input fields for the event `name`, `date`, `location`, and `description`. Each of these fields should use their corresponding state variable - as their value, and their corresponding handler function for their onChange event.
+- A submit button that triggers the `handleSubmit` function when clicked.
+
+Above the form, display a message "Event Created" only if eventCreated state is true. This can be done using conditional rendering.
+
+### Style the Component
+
+Style the component using Tailwind CSS. You do not need to match the example output, but your component should be styled in a way that is visually appealing and easy to use.
+
+### Test Your Component
+
+Finally, test your component thoroughly. Ensure that when the form is filled and submitted, the new event object is logged to the console, the form fields are reset, and the "Event Created" message is displayed.
 
 </Steps>
 
