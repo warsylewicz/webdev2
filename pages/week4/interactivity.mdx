@@ -28,6 +28,7 @@ Let's start with a simple example. Here's a traditional function declaration:
 
 ```js
 function greet(name) {
+  console.log("Inside greet function");
   return `Hello, ${name}!`;
 }
 console.log(greet("Daisy")); // Output: Hello, Daisy!
@@ -37,6 +38,7 @@ And here's how you could write the same function as an arrow function:
 
 ```js
 const greet = (name) => {
+  console.log("Inside greet function");
   return `Hello, ${name}!`;
 };
 console.log(greet("Daisy")); // Output: Hello, Daisy!
@@ -50,8 +52,6 @@ If your function body consists of just a single statement that returns a value, 
 const greet = (name) => `Hello, ${name}!`;
 console.log(greet("Bob")); // Output: Hello, Bob!
 ```
-
-Notice that we've also omitted the parentheses around the parameter since it's the only one. If you have more than one parameter, or if you have no parameters at all, you would still need the parentheses.
 
 #### Example 3: Arrow Function with Multiple Parameters
 
