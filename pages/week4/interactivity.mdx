@@ -137,14 +137,14 @@ In web development, it's a common requirement to prevent a form submission from 
 To prevent a form submission from doing its default action, you can use the `preventDefault` method of the event object. Here's an example:
 
 ```js
-const handleSubmit = (event) => {
+const submitFunction = (event) => {
   event.preventDefault();
   // Handle form data
 };
 ```
 
 ```html
-<form onSubmit="{handleSubmit}">
+<form onSubmit="submitFunction()">
   <input type="text" name="name" placeholder="Enter your name" />
   <button type="submit">Submit</button>
 </form>
