@@ -29,9 +29,10 @@ Let's start with a simple example. Here's a traditional function declaration:
 ```js
 function greet(name) {
   console.log("Inside greet function");
+
   return `Hello, ${name}!`;
 }
-console.log(greet("Daisy")); // Output: Hello, Daisy!
+console.log(greet("Daisy")); // Output: Inside greet function\nHello, Daisy!
 ```
 
 And here's how you could write the same function as an arrow function:
@@ -39,9 +40,10 @@ And here's how you could write the same function as an arrow function:
 ```js
 const greet = (name) => {
   console.log("Inside greet function");
+
   return `Hello, ${name}!`;
 };
-console.log(greet("Daisy")); // Output: Hello, Daisy!
+console.log(greet("Daisy")); // Output: Inside greet function\nHello, Daisy!
 ```
 
 #### Example 2: Arrow Function with Implicit Return
