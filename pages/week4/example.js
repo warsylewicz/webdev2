@@ -3,22 +3,22 @@ const Page = `"use client";
 import { useState } from "react";
 
 export default function NameForm() {
-  const [value, setValue] = useState("");
+  const [name, setName] = useState("");
 
   const handleChange = (event) => {
-    setValue(event.target.value.toUpperCase());
+    setName(event.target.value.toUpperCase());
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("A name was submitted: " + value);
+    alert("A name was submitted: " + name);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" placeholder="Enter your name" value={value} onChange={handleChange} />
+        <input type="text" placeholder="Enter your name" value={name} onChange={handleChange} />
       </label>
       <input type="submit" value="Submit" />
     </form>
