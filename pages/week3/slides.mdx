@@ -7,8 +7,77 @@
 ## Review
 
 - objects
-- Tailwind CSS
 - props
+
+---
+
+## Objects
+
+- Objects are a way to store data
+- Objects are made up of key-value pairs
+- Keys are strings
+- Values can be any data type
+
+---
+
+## Object Example
+
+```js
+let person = {
+  name: "Diane",
+  age: 25,
+  isStudent: true,
+  address: {
+    street: "123 Main St",
+    city: "Calgary",
+    province: "AB",
+  },
+};
+```
+
+---
+
+## Object Properties
+
+- Access properties using dot notation
+
+```js
+console.log(person.name); // Diane
+console.log(person.address.city); // Calgary
+person.isStudent = false; // change value
+```
+
+---
+
+## React Props
+
+- Props are a way to pass data to components
+- Props are passed as attributes to components
+- Props are accessed using `props` object
+
+---
+
+## Props Example
+
+```js
+function Page() {
+  return (
+    <main>
+      <Person name="Diane" age="25" />
+      <Person name="Zach" age="21" />
+    </main>
+  );
+}
+
+function Person({ name, age }) {
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>Age: {age} years old</p>
+    </div>
+  );
+}
+```
 
 ---
 
