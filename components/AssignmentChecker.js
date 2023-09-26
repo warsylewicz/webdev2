@@ -24,16 +24,38 @@ function AssignmentChecker({ week }) {
   const checkAccount = async () => {
     setStatus({ loading: true, error: null });
     const accountExists = await checkUrl(`https://github.com/${account}`);
+
     const repoExists =
       accountExists &&
       (await checkUrl(`https://github.com/${account}/${repoName}`));
-    const weekExistsInMaster = await checkUrl(
-      `https://github.com/${account}/${repoName}/tree/master/app/week${week}/page.js`
-    );
-    const weekExistsInMain = await checkUrl(
-      `https://github.com/${account}/${repoName}/tree/main/app/week${week}/page.js`
-    );
-    const weekExists = weekExistsInMain || weekExistsInMaster;
+
+    let weekExists =
+      repoExists &&
+      (await checkUrl(
+        `https://github.com/${account}/${repoName}/tree/master/app/week${week}/page.js`
+      ));
+
+    weekExists =
+      repoExists &&
+      (weekExists ||
+        (await checkUrl(
+          `https://github.com/${account}/${repoName}/tree/main/app/week${week}/page.js`
+        )));
+
+    weekExists =
+      repoExists &&
+      (weekExists ||
+        (await checkUrl(
+          `https://github.com/${account}/${repoName}/tree/master/src/app/week${week}/page.js`
+        )));
+
+    weekExists =
+      repoExists &&
+      (weekExists ||
+        (await checkUrl(
+          `https://github.com/${account}/${repoName}/tree/main/src/app/week${week}/page.js`
+        )));
+
     setStatus({
       loading: false,
       error: null,
