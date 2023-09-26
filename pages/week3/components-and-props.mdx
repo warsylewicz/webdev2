@@ -158,14 +158,10 @@ Why use Tailwind CSS?
 
 **Example:**
 
-```js copy
-const Button = () => {
-  return (
-    <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
-      Click me
-    </button>
-  );
-};
+```js
+<button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+  Click me
+</button>
 ```
 
 <button className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
@@ -185,17 +181,13 @@ In the example above, we use Tailwind's utility classes like `px-4` (padding on 
 To adjust the font size, you use the `text-` utility followed by the desired size. Tailwind provides a scale of predefined sizes.
 
 ```js
-function Example() {
-  return (
-    <div>
-      <p className="text-xs">Extra small text</p>
-      <p className="text-sm">Small text</p>
-      <p className="text-base">Base text size</p>
-      <p className="text-lg">Large text</p>
-      <p className="text-xl">Extra large text</p>
-    </div>
-  );
-}
+<div>
+  <p className="text-xs">Extra small text</p>
+  <p className="text-sm">Small text</p>
+  <p className="text-base">Base text size</p>
+  <p className="text-lg">Large text</p>
+  <p className="text-xl">Extra large text</p>
+</div>
 ```
 
 <div>
@@ -209,15 +201,11 @@ function Example() {
 Font weights are controlled with the `font-` utility.
 
 ```js
-function Example() {
-  return (
-    <div>
-      <p className="font-thin">Thin text</p>
-      <p className="font-normal">Normal weight text</p>
-      <p className="font-bold">Bold text</p>
-    </div>
-  );
-}
+<div>
+  <p className="font-thin">Thin text</p>
+  <p className="font-normal">Normal weight text</p>
+  <p className="font-bold">Bold text</p>
+</div>
 ```
 
 <div>
@@ -229,16 +217,12 @@ function Example() {
 Text alignment is controlled with the `text-` utility followed by left, center, right, or justify.
 
 ```js
-function Example() {
-  return (
-    <div>
-      <p className="text-left">Left-aligned text</p>
-      <p className="text-center">Center-aligned text</p>
-      <p className="text-right">Right-aligned text</p>
-      <p className="text-justify">Justified text</p>
-    </div>
-  );
-}
+<div>
+  <p className="text-left">Left-aligned text</p>
+  <p className="text-center">Center-aligned text</p>
+  <p className="text-right">Right-aligned text</p>
+  <p className="text-justify">Justified text</p>
+</div>
 ```
 
 <div>
@@ -255,41 +239,29 @@ Remember that Tailwind's utility classes are designed to be used together, so yo
 Text color is controlled with the `text-` utility followed by the color and shade you want to use. The color can be specified by name and the shade by number. Background color is controlled with the `bg-` utility followed by the color and shade you want to use. Border color is controlled with the `border-` utility followed by the color and shade you want to use.
 
 ```js
-function Example() {
-  return (
-    <div>
-      <p className="text-red-300 bg-slate-800 border border-blue-800">
-        Light red text on a dark slate background with a dark blue border.
-      </p>
-    </div>
-  );
-}
+<p className="text-red-300 bg-slate-800 border border-blue-800">
+  Light red text on a dark slate background with a dark blue border.
+</p>
 ```
 
-<div>
-  <p className="text-red-300 bg-slate-800 border border-blue-800">
-    Light red text on a dark slate background with a dark blue border.
-  </p>
-</div>
+<p className="text-red-300 bg-slate-800 border border-blue-800">
+  Light red text on a dark slate background with a dark blue border.
+</p>
 
 ### Spacing Utilities
 
 Tailwind provides a comprehensive set of spacing utilities that allow you to control the padding and margin of an element. The `p-` utility controls the padding of an element, while the `m-` utility controls the margin. The padding and margin can be specified on the x-axis, y-axis, or both. The size of the padding and margin can be specified by step number. In the spacing scale, a step of 1 is equivalent to 0.25rem (or 4px), a step of 2 is 0.5rem (or 8px), and so on.
 
 ```js
-function Example() {
-  return (
-    <div>
-      <p className="p-4 m-4 bg-slate-800">
-        This paragraph has 16px of padding and margin.
-      </p>
-      <p className="px-4 py-2 m-8 bg-slate-800">
-        This paragraph has 16px of padding on the x-axis, 8px of padding on the
-        y-axis, and 32px of margin.
-      </p>
-    </div>
-  );
-}
+<div>
+  <p className="p-4 m-4 bg-slate-800">
+    This paragraph has 16px of padding and margin.
+  </p>
+  <p className="px-4 py-2 m-8 bg-slate-800">
+    This paragraph has 16px of padding on the x-axis, 8px of padding on the
+    y-axis, and 32px of margin.
+  </p>
+</div>
 ```
 
 <div>
