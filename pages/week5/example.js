@@ -2,26 +2,40 @@ const Page = `"use client";
 
 import { useState } from "react";
 
-export default function NameForm() {
-  const [name, setName] = useState("");
+export default function FruitList() {
+  const [selectedFruit, setSelectedFruit] = useState(null);
 
-  const handleChange = (event) => {
-    setName(event.target.value.toUpperCase());
-  };
+  const items = ['apple', 'banana', 'cherry'];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert("A name was submitted: " + name);
-  };
+  function handleClick(item) {
+    if (selectedFruit === item) {
+      setSelectedFruit(null); // deselect item
+      return;
+    }
+
+    setSelectedFruit(item);
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" placeholder="Enter your name" value={name} onChange={handleChange} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold mb-4">Select a fruit:</h1>
+      <ul className="mb-4">
+        {items.map((item) => (
+          <li
+            key={item}
+            onClick={() => handleClick(item)}
+            className={\`cursor-pointer \${selectedFruit === item ? "text-red-500" : ""}\`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      {selectedFruit && (
+        <p className="text-xl">
+          You selected: <span className="font-bold">{selectedFruit}</span>
+        </p>
+      )}
+    </main>
   );
 }
 `;

@@ -221,7 +221,7 @@ let people = [
     age: 30,
     addresses: [
       { type: "home", street: "123 Main St", city: "Calgary" },
-      { type: "vacation", street: "123 Lakeshore Ave", city: "Pigeon lake" },
+      { type: "vacation", street: "123 Lakeshore Ave", city: "Pigeon Lake" },
     ],
   },
   {
@@ -231,7 +231,7 @@ let people = [
   },
 ];
 
-console.log(people[0].addresses[1].city); // Output: 'Pigeon lake'
+console.log(people[0].addresses[1].city); // Output: 'Pigeon Lake'
 ```
 
 In this example, people is an array of objects. Each object has three properties: name, age, and addresses. The third property, addresses, is an array of objects. Each object in the addresses array has three properties: type, street, and city.
@@ -326,14 +326,102 @@ Here's what the classes in this example do:
 
 ## React Skills
 
-### Lists
+### Rendering Lists
+
+Rendering lists is an essential skill when working with React. It involves creating a set of React elements for each item in a list and displaying them in the user interface.
+
+React uses JavaScript's map method to iterate through an array and create a new array of React elements. Each list item should have a unique key prop, which helps React optimize the rendering by quickly identifying which items have changed, are added, or are removed. If you don't specify a key prop, React will display a warning in the console.
+
+Here's an example of rendering a list of items in React:
+
+```js
+const items = ["apple", "banana", "cherry"];
+
+function FruitList() {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+The map function is being used to create a new array of JSX elements (specifically, `<li>` elements) from the items array.
+
+Here is a step-by-step explanation:
+
+1. `items.map((item) => (...))` is calling the map function on the items array. map is a built-in JavaScript function that creates a new array with the results of calling a provided function on every element in the calling array.
+2. `(item) => (...)` is an arrow function that is provided as an argument to the map function. This function will be called for each element in the items array, with the current element being passed as an argument (`item`).
+3. `<li key={item}>{item}</li>` is the JSX that is returned for each element in the items array. The key prop is set to the value of the current item, and the text content of the `<li>` element is also set to the value of the current item. This creates a new `<li>` element for each item in the items array.
+4. Finally, `{items.map((item) => (<li key={item}>{item}</li>))}` is where the new array of `<li>` elements is inserted into the JSX. When React renders this component, it will replace this expression with the actual array of elements.
+
+The result is that FruitList will render a list of fruits, with each fruit in the items array being displayed as a separate list item:
+
+export function FruitList() {
+    const items = ["apple", "banana", "cherry"];
+
+    return (
+        <ul>
+        {items.map((item) => (
+        <li key={item}>{item}</li>
+        ))}
+        </ul>
+    );
+
+}
+
+<FruitList />
+
+### Handling Events in Lists
+
+Handling events in lists is about understanding how to manage user interactions, such as clicks or form submissions, within a list of items in a React application. When an event occurs on a list item, you often need to know which specific item it occurred on. This is typically achieved by passing additional parameters to your event handlers or by creating unique event handlers for each item.
+
+Here's an example of handling events in a list in React:
+
+```js
+const items = ["apple", "banana", "cherry"];
+
+function FruitList() {
+  function handleClick(item) {
+    console.log(`You clicked on ${item}`);
+  }
+
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item} onClick={() => handleClick(item)}>
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+In this example, the onClick event handler is used in combination with the map function to add a click event to each list item in the FruitList component. The event handling part is centered around the `handleClick` function and the `onClick` prop.
+
+Here's how it works:
+
+1. `function handleClick(item) {...}`: This function is an event handler, which logs a message to the console indicating which fruit was clicked. It takes one argument, item, which represents the name of the fruit.
+2. `onClick={() => handleClick(item)}`: This is where the handleClick function is hooked up to the click event of the list item (`<li>`). The `onClick` prop is a special prop in React that can be used to register click events.
+3. `() => handleClick(item)`: This is an arrow function that calls handleClick(item). It's necessary to wrap `handleClick(item)` in another function because you want to pass item as an argument to handleClick. If you wrote `onClick={handleClick(item)}`, handleClick would be called immediately when the component renders, not when the list item is clicked.
+
+When you click on a list item in this rendered list, the handleClick function will be called with the item that was clicked on, and a message will be logged to the console.
+
+### Example - Selecting a Fruit
+
+Here's an example of a React component that renders a list of fruits and allows the user to select a fruit from the list. The selected fruit is displayed in the user interface.
 
 import Sandbox from "components/Sandbox";
 import { example } from "./example.js";
 
-<Sandbox files="{example}" />
+<Sandbox files={example} />
 
-## 🗒️ Summary ## 📚 Knowledge Check
+## 🗒️ Summary
+
+## 📚 Knowledge Check
 
 import MultipleChoice from "components/MultipleChoice";
 
@@ -341,32 +429,29 @@ import MultipleChoice from "components/MultipleChoice";
 
 import { activity, solution } from "./activity.js";
 
-<Sandbox files="{activity}" />
+<Sandbox files={activity} />
 
 ### 💡 Hints
 
 import { Steps } from "nextra-theme-docs";
 
-<Steps> ### C </Steps>
+<Steps>
+
+###
+
+</Steps>
 
 ### ✅ Solution
 
 <Sandbox files="{solution}" />
 
-## 🌐 Demo Demo code:
+## 🌐 Demo
 
-https://github.com/warsylewicz/webdev2-demos/tree/master/app/week5 Live
-deployment: https://webdev2-demos.vercel.app/week5 ## 📖 Further Reading - [Data
-Structures: Objects and Arrays](https://eloquentjavascript.net/04_data.html) -
-[JS Reference -
-Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [Week 5 Demo code](https://github.com/warsylewicz/webdev2-demos/tree/master/app/week5)
+- [Live deployment](https://webdev2-demos.vercel.app/week5)
 
-- [Tailwind CSS - Responsive
-  Design](https://tailwindcss.com/docs/responsive-design)
+## 📖 Further Reading
 
-````
-
-```
-
-```
-````
+- [Data Structures: Objects and Arrays](https://eloquentjavascript.net/04_data.html)
+- [JS Reference - Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [Tailwind CSS - Responsive Design](https://tailwindcss.com/docs/responsive-design)
