@@ -1,0 +1,372 @@
+# Lists
+
+This week we slow down just a bit and focus on lists. We will first learn how to use the array methods in JavaScript to manipulate lists, and then we will learn how to use React to render lists of elements. Finally, we will learn how to use Tailwind CSS to make our pages responsive and look good on all screen sizes.
+
+## JS Skills
+
+### Arrays
+
+In JavaScript, arrays are high-level, list-like objects that are incredibly versatile and serve as one of the basic data structures in the language. Understanding arrays and their common operations is crucial for any JavaScript developer.
+
+### Array Notation
+
+Arrays in JavaScript are created and accessed using square bracket notation. Here is how you declare an array:
+
+```js
+let myArray = ["apple", "banana", "cherry"];
+```
+
+In this example, myArray is an array containing three strings. The elements in the array are ordered and each one has an index, starting from 0. So, 'apple' is at index 0, 'banana' is at index 1, and 'cherry' is at index 2. You can access the elements of the array using their indexes like so:
+
+```js
+console.log(myArray[0]); // Output: 'apple'
+```
+
+An empty array is an array that does not contain any elements. You can declare an empty array like this:
+
+```js
+let emptyArray = [];
+```
+
+Even though the array is initially empty, you can still add elements to it later on which will increase by internally increasing the length of the array.
+
+### Array Operations
+
+Arrays come with a wide range of built-in methods that allow you to manipulate and interact with them. These methods can be categorized based on whether they mutate (change) the original array or not, and what kind of output they return. The following is a list of the most common array methods, grouped by their category. There are many more methods available, but these are the ones you will use most often.
+
+#### Methods that mutate the original array
+
+- **`push`:** Add elements to the end of an array.
+- **`pop`:** Remove the last element from an array.
+- **`splice`:** Remove (or add) elements from a specific array index.
+
+```js
+// Start with an array of numbers
+let numbers = [1, 2, 3, 4, 5];
+console.log(numbers); // Output: [1, 2, 3, 4, 5]
+
+// push: Add elements to the end of an array.
+numbers.push(6);
+console.log(numbers); // Output: [1, 2, 3, 4, 5, 6]
+
+// pop: Remove the last element from an array.
+let lastElement = numbers.pop();
+console.log(lastElement); // Output: 6
+console.log(numbers); // Output: [1, 2, 3, 4, 5]
+
+// splice: Remove elements from a specific array index.
+// Example of removing elements: Remove 2 elements starting from index 1
+numbers.splice(1, 2);
+console.log(numbers); // Output: [1, 4, 5]
+```
+
+In the above examples, we started with an array of numbers from 1 to 5. We then used push to add 6 to the end of the array. After that, we used pop to remove the last element (6) from the array. Lastly, we demonstrated splice to remove elements from the array (removing 2 and 3).
+
+Other valuable methods to consider include: `sort`, `shift` (remove first element of the array), `unshift` (add elements to beginning of the array), and `reverse`.
+
+#### Methods that return a new array (do not mutate the original array):
+
+- **`map`:** Create a new array with the result of a function on each element.
+- **`filter`:** Create a new array with elements that pass a test.
+- **`concat`:** Merge two or more arrays.
+- **`slice`:** Return a shallow copy of a portion of an array.
+- **`toSorted`:** Create a new array with the elements sorted.
+
+```js
+// Start with an array of numbers
+let numbers = [5, 3, 9, 1, 4];
+console.log(numbers); // Output: [5, 3, 9, 1, 4]
+
+// map: Create a new array with the result of a function on each element.
+// the arrow function takes each element of the array and multiplies it by 2
+let doubled = numbers.map((num) => num * 2);
+console.log(doubled); // Output: [10, 6, 18, 2, 8]
+
+// filter: Create a new array with elements that pass a test.
+// the arrow function takes each element of the array and returns true if it is less than 5
+let lessThanFive = numbers.filter((num) => num < 5);
+console.log(lessThanFive); // Output: [3, 1, 4]
+
+// concat: Merge two or more arrays.
+let moreNumbers = [6, 7, 8];
+let allNumbers = numbers.concat(moreNumbers);
+console.log(allNumbers); // Output: [5, 3, 9, 1, 4, 6, 7, 8]
+
+// slice: Return a shallow copy of a portion of an array.
+// slice takes two parameters: start index (inclusive) and end index (not inclusive)
+let someNumbers = numbers.slice(1, 3);
+console.log(someNumbers); // Output: [3, 9]
+
+// toSorted: Create a new array with the elements sorted.
+// the arrow function compares two numbers and returns the difference between them
+// if the difference is negative, a goes before b
+// if the difference is positive, b goes before a
+let sortedNumbers = numbers.toSorted((a, b) => a - b);
+console.log(sortedNumbers); // Output: [1, 3, 4, 5, 9]
+```
+
+Other valuable methods to consider include: `fill` (fill all elements of an array with a static value) and `flat` (flatten nested arrays into a single array).
+
+#### Methods that return a specific output (do not mutate the original array):
+
+- **`reduce`:** Apply a function against an accumulator and each element (reduces the array to a single output value).
+- **`join`:** Join all elements of an array into a string.
+
+```js
+// Start with an array of numbers
+let numbers = [1, 2, 3, 4, 5];
+console.log(numbers); // Output: [1, 2, 3, 4, 5]
+
+// reduce: Apply a function against an accumulator and each element (reduces the array to a single output value).
+// the arrow function returns the sum of the accumulator and the current value
+// the second parameter of reduce is the initial value of the accumulator
+let sum = numbers.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  0
+);
+console.log(sum); // Output: 15
+
+// join: Join all elements of an array into a string.
+let joined = numbers.join(", ");
+console.log(joined); // Output: '1, 2, 3, 4, 5'
+```
+
+`reduce` is a very powerful method that can be used to solve a wide range of problems. Here is a great video that explains how it works with more advanced examples.
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/s1XVfm5mIuU?si=2U5tXH2Dsk4lVccw"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+Other valuable methods to consider include: `forEach` (loop through each element of the array and perform an action), `find` (return the first element that passes a test), `findIndex` (return the index of the first element that passes a test), `some` (return true if at least one element passes a test), `every` (return true if all elements pass a test), `includes` (return true if an array contains a specific element), and `indexOf` (return the index of a specific element).
+
+#### JavaScript Syntax Used with Arrays
+
+**The Spread Operator (`...`)**
+
+The Spread Operator (...) in JavaScript is used to spread the elements of an iterable (like an array, string, or object literals) into individual elements. It allows an iterable to expand in places where zero or more arguments or elements are expected.
+
+For example, it can be used to combine arrays:
+
+```js
+let array1 = [1, 2, 3];
+let array2 = [4, 5, 6];
+
+let combined = [...array1, ...array2];
+console.log(combined); // Output: [1, 2, 3, 4, 5, 6]
+```
+
+**Array Destructuring**
+
+Array Destructuring is a syntax feature that allows you to unpack values from arrays, or properties from objects, into distinct variables.
+
+For example, you can unpack the first two elements of an array like this:
+
+```js
+let array = ["apple", "banana", "cherry"];
+
+let [firstFruit, secondFruit] = array;
+console.log(firstFruit, secondFruit); // Output: 'apple' 'banana'
+```
+
+In this example, Array Destructuring is used to assign the first two elements of array to the variables firstFruit and secondFruit, respectively.
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info" emoji="💡">
+You've already seen array destructuring in action from last week, right? When we were using the useState hook, we were using array destructuring to unpack the first and second elements of the array returned by useState into the state variable and the set state function, respectively. For example:
+
+```js
+const [count, setCount] = useState(0);
+```
+
+</Callout>
+
+Other valuable methods to consider include: `for...of` Loop (loop through each element of the array), `in` Operator (check if an object has a specific property
+
+### Arrays and Objects
+
+#### Array of Objects
+
+Arrays can contain objects as elements. For example:
+
+```js
+let people = [
+  { name: "John", age: 30 },
+  { name: "Jane", age: 25 },
+  { name: "Jack", age: 40 },
+];
+```
+
+In this example, people is an array of objects. Each object has two properties: name and age. You can access the elements of the array using their indexes like so:
+
+```js
+console.log(people[0]); // Output: { name: 'John', age: 30 }
+console.log(people[1].name); // Output: 'Jane'
+```
+
+#### Further Nesting of Arrays and Objects
+
+Arrays and objects can be nested inside each other. For example:
+
+```js
+let people = [
+  {
+    name: "John",
+    age: 30,
+    addresses: [
+      { type: "home", street: "123 Main St", city: "Calgary" },
+      { type: "vacation", street: "123 Lakeshore Ave", city: "Pigeon lake" },
+    ],
+  },
+  {
+    name: "Jane",
+    age: 25,
+    addresses: [],
+  },
+];
+
+console.log(people[0].addresses[1].city); // Output: 'Pigeon lake'
+```
+
+In this example, people is an array of objects. Each object has three properties: name, age, and addresses. The third property, addresses, is an array of objects. Each object in the addresses array has three properties: type, street, and city.
+
+### Array Review
+
+Here's a good video that reviews 33 array methods in JavaScript:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/RVxuGCWZ_8E?si=NEJTLzaVMGDZ6xXS"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+## Tailwind CSS Skills
+
+### Responsive Design
+
+Responsive design is an approach to web page creation that makes use of flexible layouts, flexible images and cascading style sheet media queries. The goal of responsive design is to build web pages that detect the visitor's screen size and orientation and change the layout accordingly.
+
+Tailwind CSS has built-in support for responsive design. You can use the following classes to make your pages responsive:
+
+- **`sm:`** Apply the following styles on screens that are 640px wide or wider.
+- **`md:`** Apply the following styles on screens that are 768px wide or wider.
+- **`lg:`** Apply the following styles on screens that are 1024px wide or wider.
+- **`xl:`** Apply the following styles on screens that are 1280px wide or wider.
+- **`2xl:`** Apply the following styles on screens that are 1536px wide or wider.
+
+Here's an example of a responsive page that uses Tailwind CSS. **Try resizing the browser window** to see how the layout changes based on screen size. (Mind you, it's a little tricky because this whole documentation site is also responsive, so you'll have to resize the browser window and scroll to this demo to see the effect.)
+
+```js
+<header className="text-center py-5 bg-blue-500 text-white">
+  <h1 className="text-4xl">My Responsive Webpage</h1>
+</header>
+
+<nav className="bg-blue-100 p-5 block sm:flex justify-between">
+  <Link href="#" className="block sm:inline-block m-2 p-2 bg-blue-500 text-white rounded">Home</Link>
+  <Link href="#" className="block sm:inline-block m-2 p-2 bg-blue-500 text-white rounded">About</Link>
+  <Link href="#" className="block sm:inline-block m-2 p-2 bg-blue-500 text-white rounded">Contact</Link>
+</nav>
+
+<main className="p-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div className="p-5 bg-blue-500 rounded">Content 1</div>
+  <div className="p-5 bg-blue-600 rounded">Content 2</div>
+  <div className="p-5 bg-blue-700 rounded">Content 3</div>
+  <div className="p-5 bg-blue-800 text-white rounded">Content 4</div>
+</main>
+```
+
+<header className="text-center py-5 bg-blue-500 text-white">
+  <h1 className="text-4xl">My Responsive Webpage</h1>
+</header>
+
+<nav className="bg-blue-100 p-5 block sm:flex justify-between">
+  <a
+    href="#"
+    className="block sm:inline-block m-2 p-2 bg-blue-500 text-white rounded"
+  >
+    Home
+  </a>
+  <a
+    href="#"
+    class="block sm:inline-block m-2 p-2 bg-blue-500 text-white rounded"
+  >
+    About
+  </a>
+  <a
+    href="#"
+    class="block sm:inline-block m-2 p-2 bg-blue-500 text-white rounded"
+  >
+    Contact
+  </a>
+</nav>
+
+<main class="p-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="p-5 bg-blue-500 rounded">Content 1</div>
+  <div class="p-5 bg-blue-600 rounded">Content 2</div>
+  <div class="p-5 bg-blue-700 rounded">Content 3</div>
+  <div class="p-5 bg-blue-800 text-white rounded">Content 4</div>
+</main>
+
+Here's what the classes in this example do:
+
+- The `sm:` classes apply to screens that are 640px wide or more.
+- The `lg:` classes apply to screens that are 1024px wide or more.
+- The `block`, `sm:inline-block`, and `sm:flex` classes change the layout of the navigation links and main content based on screen size.
+- The `grid`, `sm:grid-cols-2`, and `lg:grid-cols-4` classes create a responsive grid layout for the main content.
+
+## React Skills
+
+### Lists
+
+import Sandbox from "components/Sandbox";
+import { example } from "./example.js";
+
+<Sandbox files="{example}" />
+
+## 🗒️ Summary ## 📚 Knowledge Check
+
+import MultipleChoice from "components/MultipleChoice";
+
+## 🏃 Activity
+
+import { activity, solution } from "./activity.js";
+
+<Sandbox files="{activity}" />
+
+### 💡 Hints
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps> ### C </Steps>
+
+### ✅ Solution
+
+<Sandbox files="{solution}" />
+
+## 🌐 Demo Demo code:
+
+https://github.com/warsylewicz/webdev2-demos/tree/master/app/week5 Live
+deployment: https://webdev2-demos.vercel.app/week5 ## 📖 Further Reading - [Data
+Structures: Objects and Arrays](https://eloquentjavascript.net/04_data.html) -
+[JS Reference -
+Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+- [Tailwind CSS - Responsive
+  Design](https://tailwindcss.com/docs/responsive-design)
+
+````
+
+```
+
+```
+````
