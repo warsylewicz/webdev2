@@ -374,6 +374,18 @@ export function FruitList() {
 
 <FruitList />
 
+Here is a good video that explains how to render lists in React:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/Jh47pOXwGq0?si=xE1RFwh06MKLOm8b"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
 ### Handling Events in Lists
 
 Handling events in lists is about understanding how to manage user interactions, such as clicks or form submissions, within a list of items in a React application. When an event occurs on a list item, you often need to know which specific item it occurred on. This is typically achieved by passing additional parameters to your event handlers or by creating unique event handlers for each item.
@@ -421,11 +433,140 @@ import { example } from "./example.js";
 
 ## 🗒️ Summary
 
+- **🎯 Array Notation:** Arrays can be declared using square bracket notation, and their elements accessed via indices.
+- **🛠️ Array Methods:** JavaScript arrays come with built-in methods for manipulation:
+  - **🔄 Mutating Methods:** Methods that mutate the original array include push, pop, and splice.
+  - **🔀 Non-mutating Methods:** Methods that return a new array include map, filter, concat, and slice.
+  - **1️⃣ Specific Output Methods:** Methods that return a specific output and don't mutate the original array include reduce and join.
+- **🧰 JavaScript Syntax with Arrays:** Other JavaScript syntax used with arrays include the Spread Operator (...) for expanding elements and Array Destructuring for unpacking values from arrays.
+- **🏗️ Arrays and Objects:** Arrays can contain objects and can be further nested, creating complex data structures for versatile use.
+- **🖥️ Responsive Design:** Responsive design in Tailwind CSS is achieved using specific classes for different screen sizes (sm:, md:, lg:, xl:, 2xl:).
+- **🔑 Rendering Lists in React:** React makes use of JavaScript's map method to render lists of elements, with each list item requiring a unique key prop.
+- **🎛️ Handling Events in Lists:** Event handling in lists involves managing user interactions with specific list items. Events are handled by passing additional
+
 ## 📚 Knowledge Check
 
 import MultipleChoice from "components/MultipleChoice";
 
+<MultipleChoice
+  question="1. What method in JavaScript is used to create a new array with elements that pass a test?"
+  choices={["filter", "concat", "reduce", "map"]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="2. What does the 'sm:' class in Tailwind CSS apply to?"
+  choices={[
+    "Screens that are 640px wide or wider",
+    "Screens that are less than 640px wide",
+    "Small screen devices like phones and tablets",
+    "All screen sizes",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="3. What is the purpose of assigning a unique 'key' prop when rendering a list of items in React?"
+  choices={[
+    "To ensure that each item has a unique identifier for styling",
+    "To help React optimize the rendering by quickly identifying which items have changed, are added, or are removed",
+    "To prevent warnings in the console",
+    "To improve the performance of the map function",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="4. In the context of handling events in a list in React, what does the 'onClick' prop do?"
+  choices={[
+    "It registers a click event on a list item",
+    "It defines a function to be executed when a list item is clicked",
+    "It changes the style of a list item when it's clicked",
+    "It enables a list item to be clicked",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="5. How would you create a new array with the squares of each number from an array [1, 2, 3, 4, 5]?"
+  choices={[
+    "[1, 2, 3, 4, 5].map((num) => num ** 2)",
+    "[1, 2, 3, 4, 5].filter((num) => num ** 2)",
+    "[1, 2, 3, 4, 5].reduce((num) => num ** 2)",
+    "All of the above",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="6. How would you get the sum of all numbers in an array [1, 2, 3, 4, 5]?"
+  choices={[
+    "[1, 2, 3, 4, 5].map((acc, num) => acc + num, 0)",
+    "[1, 2, 3, 4, 5].reduce((acc, num) => acc + num, 0)",
+    "[1, 2, 3, 4, 5].filter((acc, num) => acc + num, 0)",
+    "None of the above",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="7. How would you join all elements of an array ['apple', 'banana', 'cherry'] into a single string, separated by a comma and a space?"
+  choices={[
+    "['apple', 'banana', 'cherry'].join(', ')",
+    "['apple', 'banana', 'cherry'].reduce((acc, item) => acc + ', ' + item, '')",
+    "['apple', 'banana', 'cherry'].map((item) => item + ', ').join('')",
+    "['apple', 'banana', 'cherry'].concat(', ')",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="8. How would you find the largest number in an array [10, 12, 3, 4, 2]?"
+  choices={[
+    "[10, 12, 3, 4, 2].reduce((max, num) => num > max ? num : max)",
+    "Math.max(...[10, 12, 3, 4, 2])",
+    "[10, 12, 3, 4, 2].toSorted((a, b) => b - a)[0]",
+    "All of the above",
+  ]}
+  answer="4"
+/>
+
+<MultipleChoice
+  question="9. How do you render a list of items in React?"
+  choices={[
+    "Use a for loop to create a new array of JSX elements.",
+    "Use the map() method to create a new array of JSX elements.",
+    "Use the forEach() method to create a new array of JSX elements.",
+    "Use an if statement to create a new array of JSX elements.",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="10. Consider the following code snippet: <button onClick={() => console.log('Clicked!')}>Click me</button>. What will happen when the button is clicked?"
+  choices={[
+    "The text 'Clicked!' will be printed to the console.",
+    "A new function will be created that logs 'Clicked!' to the console, but it won't be called.",
+    "An error will occur because console.log('Clicked!') is not a valid event handler.",
+    "The text 'Click me' will change to 'Clicked!'.",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="11. Consider the following code snippet: <ul>{['apple', 'banana', 'cherry'].map(<li key={item}>{item}</li>)}</ul>. What will be rendered by this code?"
+  choices={[
+    "An unordered list with the items 'apple', 'banana', and 'cherry'.",
+    "An error message because 'key' is not a valid prop.",
+    "An unordered list with one item: 'apple, banana, cherry'.",
+    "Nothing, because the map function is not used correctly.",
+  ]}
+  answer="4"
+/>
+
 ## 🏃 Activity
+
+In this activity, your task is to implement a filter for the `displayedItems` array in the `FruitList` component. The filter should be applied based on the `filter` state. When the `filter` state is `true`, `displayedItems` should only include fruits that start with the letter 'a'. When the `filter` state is `false`, `displayedItems` should include all fruits.
 
 import { activity, solution } from "./activity.js";
 
@@ -439,11 +580,21 @@ import { Steps } from "nextra-theme-docs";
 
 ###
 
+Replace the code on line 15. You'll need to use a JavaScript array method that allows you to create a new array with only the elements that pass a certain condition. This method is called on the original array and takes a function as an argument. This function is called for each item in the array and should return `true` for items you want to include in the new array.
+
+###
+
+The JavaScript array method you need is `filter()`. This method is called on the `items` array. The function you pass to `filter()` should return `true` for items that start with the letter 'a' and `false` otherwise. Remember to use this method only when the `filter` state is `true`.
+
+###
+
+You can use a ternary operator to choose between the filtered and unfiltered list based on the `filter` state. The `filter()` method call should look like this: `items.filter(item => item.startsWith('a'))`. Remember, the `startsWith()` method is case-sensitive. If your list contains items that start with an uppercase 'A', you might want to convert them to lowercase using the `toLowerCase()` method before checking if they start with 'a'.
+
 </Steps>
 
 ### ✅ Solution
 
-<Sandbox files="{solution}" />
+<Sandbox files={solution} />
 
 ## 🌐 Demo
 
@@ -455,3 +606,4 @@ import { Steps } from "nextra-theme-docs";
 - [Data Structures: Objects and Arrays](https://eloquentjavascript.net/04_data.html)
 - [JS Reference - Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 - [Tailwind CSS - Responsive Design](https://tailwindcss.com/docs/responsive-design)
+- [Rendering Lists](https://react.dev/learn/rendering-lists)

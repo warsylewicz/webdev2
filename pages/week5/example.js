@@ -24,7 +24,7 @@ export default function FruitList() {
           <li
             key={item}
             onClick={() => handleClick(item)}
-            className={\`cursor-pointer \${selectedFruit === item ? "text-red-500" : ""}\`}
+            className={\`cursor-pointer hover:text-blue-700 \${selectedFruit === item ? "text-red-500" : ""}\`}
           >
             {item}
           </li>
