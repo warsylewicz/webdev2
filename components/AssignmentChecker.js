@@ -66,7 +66,7 @@ function AssignmentChecker({ week }) {
   };
 
   return (
-    <div>
+    <div className="border p-4 m-4 rounded-md">
       <p>
         Check your GitHub account to see if your assignment has been correctly
         pushed.

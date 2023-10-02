@@ -2,27 +2,172 @@
 
 ## Overview
 
-## Prerequisites
-
-If you did not complete Week 1 Assignment, complete the [Guide: Setting Up Your Development Environment](/guides-and-references/development-environment-setup) and send your GitHub username to the instructor.
-
-If you did not complete the Week 2 Assignment, complete the [Guide: How to Create a New Next.js Project](/guides-and-references/creating-new-nextjs-project).
-
-## Part 1: Link to Week 5 Assignment
-
-Edit the project file `/app/page.js` and add a link to `week5` in the list of links.
-
-## Part 2:
+This week's assignment adds sorting functionality to the shopping list application. The source of the items will be from a JSON file, demonstrating how to load and use static data.
 
 import { Steps } from "nextra-theme-docs";
 
+## Part 1: Initial Setup
+
 <Steps>
+
+### Link to the Week 5 Page
+
+Edit the project file `/app/page.js` and add a link to `week5` in the list of links.
 
 ### Create the Folder and Files
 
-Create the folder `/app/week5` and
+Create the folder `/app/week5` and the files `pages.js`, `item-list.js`, and `item.js` inside it. If you completed the Week 3 Assignment, you can copy the files from that assignment into this folder.
+
+### `items.json`
+
+Create a file called `items.json` in the `/app/week5` folder. This file contains the data for the shopping list. It is an array of objects, where each object represents an item in the list.
+
+Copy the following data into the file:
+
+```js copy
+[
+  {
+    id: "1h2GJKH12gkHG31h1H",
+    name: "milk, 4 L 🥛",
+    quantity: 1,
+    category: "dairy",
+  },
+  {
+    id: "2KJH3k2j3H1k2J3K1H",
+    name: "bread 🍞",
+    quantity: 2,
+    category: "bakery",
+  },
+  {
+    id: "3h2KJH3k2j3H1k2J3",
+    name: "eggs, dozen 🥚",
+    quantity: 2,
+    category: "dairy",
+  },
+  {
+    id: "4k2J3K1H2GJKH12gk",
+    name: "bananas 🍌",
+    quantity: 6,
+    category: "produce",
+  },
+  {
+    id: "5H1h1H2KJH3k2j3H",
+    name: "broccoli 🥦",
+    quantity: 3,
+    category: "produce",
+  },
+  {
+    id: "6H1k2J3K1H2GJKH1",
+    name: "chicken breasts, 1 kg 🍗",
+    quantity: 1,
+    category: "meat",
+  },
+  {
+    id: "7gkHG31h1H2KJH3k",
+    name: "pasta sauce 🍝",
+    quantity: 3,
+    category: "canned goods",
+  },
+  {
+    id: "8j3H1k2J3K1H2GJK",
+    name: "spaghetti, 454 g 🍝",
+    quantity: 2,
+    category: "dry goods",
+  },
+  {
+    id: "9H12gkHG31h1H2KJ",
+    name: "toilet paper, 12 pack 🧻",
+    quantity: 1,
+    category: "household",
+  },
+  {
+    id: "10H3k2j3H1k2J3K1",
+    name: "paper towels, 6 pack",
+    quantity: 1,
+    category: "household",
+  },
+  {
+    id: "11k2J3K1H2GJKH12",
+    name: "dish soap 🍽️",
+    quantity: 1,
+    category: "household",
+  },
+  {
+    id: "12GJKH12gkHG31h1",
+    name: "hand soap 🧼",
+    quantity: 4,
+    category: "household",
+  },
+];
+```
+
+### Build the `Item` Component
+
+No change from the Week 3 Assignment.
+
+> In `item.js`, create a functional component named `Item`. This component should accept `name`, `quantity`, and `category` as props and display them in a list item element.
+
+### Build the `Page` Component
+
+No change from the Week 3 Assignment.
+
+> In `page.js`, create a functional component named `Page` that returns a `main` element wrapped around an `h1` "Shopping List" header and the `ItemList` component.
 
 </Steps>
+
+## Part 2: Build the `ItemList` Component
+
+<Steps>
+
+### Setup ItemList Component
+
+Import the useState hook from React, the Item component, and the items from the JSON file.
+
+### Initialize State Variable
+
+- Use the `useState` hook to create a state variable `sortBy` and its setter function `setSortBy`. This will be used to determine the sorting preference of the user.
+- Set the initial value of sortBy to `"name"`, indicating that the list should initially be sorted by name.
+
+### Sort the Items
+
+- Use JavaScript's sort function to sort the items array based on the `sortBy` state variable.
+- If sortBy is `"name"`, sort the items by their name property.
+- If sortBy is `"category"`, sort the items by their category property.
+
+### Create Sort Buttons
+
+- Create two buttons that allow the user to change the value of sortBy to `"name"` or `"category"`. These buttons should change the sorting of the items when clicked.
+- Use the `setSortBy` function in the `onClick` event handlers of these buttons to change the value of `sortBy`.
+- Use conditional rendering to change the background color of the buttons based on the current value of `sortBy`. This gives the user a visual indication of what the current sorting preference is.
+
+### Render the Items
+
+Use the `map` function to create a new `Item` component for each item in the items array. Don't forget to provide a unique key prop for each `Item` (you can use the item's id for this purpose).
+
+</Steps>
+
+### Optional Extra Challenge
+
+Add a third button to the page that groups the list by category. The categories and items for each category are sorted alphabetically. Hints: use the JS `reduce` method and Tailwind CSS `capitalize`.
+
+For example:
+
+<div className="border p-3">
+**Bakery**
+- bread 🍞
+
+**Canned Goods**
+
+- pasta sauce 🍝
+
+**Dairy**
+
+- eggs, dozen 🥚
+- milk, 4 L 🥛
+
+etc.
+
+</div>
 
 ### Example Output
 
@@ -31,14 +176,6 @@ https://cprg306-assignments.vercel.app/week5
 ## Part 3: Assignment Submission
 
 The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
-
-Ensure the following:
-
-- The instructor has your current GitHub username.
-- The GitHub repository is **public** and named exactly `cprg306-assignments`.
-- The new page is named exactly `week5` (lowercase).
-
----
 
 import AssignmentChecker from "/components/AssignmentChecker";
 
