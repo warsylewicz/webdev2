@@ -105,6 +105,12 @@ let sortedNumbers = numbers.toSorted((a, b) => a - b);
 console.log(sortedNumbers); // Output: [1, 3, 4, 5, 9]
 ```
 
+<Callout type="warning" emoji="❗">
+  My sincere apologies! `toSorted()` is too new. It is available in the browser
+  but not with Node.js. In the meantime in your React code, please use the
+  mutating `sort()` method instead.
+</Callout>
+
 Other valuable methods to consider include: `fill` (fill all elements of an array with a static value) and `flat` (flatten nested arrays into a single array).
 
 #### Methods that return a specific output (do not mutate the original array):
