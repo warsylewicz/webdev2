@@ -29,6 +29,12 @@ function AssignmentChecker({ week }) {
       accountExists &&
       (await checkUrl(`https://github.com/${account}/${repoName}`));
 
+    const repoNotEmpty =
+      repoExists &&
+      (await checkUrl(
+        `https://api.github.com/repos/${account}/${repoName}/contributors`
+      ));
+
     let weekExists =
       repoExists &&
       (await checkUrl(
@@ -60,6 +66,7 @@ function AssignmentChecker({ week }) {
       loading: false,
       error: null,
       accountExists,
+      repoNotEmpty,
       repoExists,
       weekExists,
     });
@@ -92,11 +99,18 @@ function AssignmentChecker({ week }) {
       )}
       {status.accountExists === true &&
         status.repoExists === true &&
+        status.repoNotEmpty === false && <p>Repository is empty!</p>}
+
+      {status.accountExists === true &&
+        status.repoExists === true &&
+        status.repoNotEmpty === true &&
         status.weekExists === false && (
           <p>Week {week} does not exist in your repo!</p>
         )}
+
       {status.accountExists === true &&
         status.repoExists === true &&
+        status.repoNotEmpty === true &&
         status.weekExists === true && (
           <p>Congratulations! Week {week} exists in your repo!</p>
         )}

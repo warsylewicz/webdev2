@@ -47,13 +47,20 @@ async function checkSubmission(account, week) {
     return false;
   }
 
+  const repoNotEmpty = await checkUrl(`https://api.github.com/repos/${account}/${repoName}/contributors`)
+
+  if (!repoNotEmpty) {
+    return false;
+  }
+
   const weekExistsInMaster = await checkUrl(
     `https://github.com/${account}/${repoName}/tree/master/app/week${week}/page.js`
   );
   const weekExistsInMain = await checkUrl(
     `https://github.com/${account}/${repoName}/tree/main/app/week${week}/page.js`
   );
-  return weekExistsInMain || weekExistsInMaster;
+
+  return (weekExistsInMain || weekExistsInMaster)
 }
 
 const checkUrl = async (url) => {
