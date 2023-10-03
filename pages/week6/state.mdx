@@ -349,6 +349,171 @@ In this example, the count will be incremented by just 1! This is because each c
 
 ## 📚 Knowledge Check
 
+<MultipleChoice
+  question="1. What is immutability in functional programming?"
+  choices={[
+    "When a value can be changed.",
+    "When a value can't be changed.",
+    "When a value changes from one type to another.",
+    "When a function can change its own value.",
+  ]}
+  answer={2}
+/>
+
+<MultipleChoice
+  question="2. How can the spread operator be used?"
+  choices={[
+    "To spread an array into multiple arrays.",
+    "To create a copy of an object or array.",
+    "To merge multiple objects into one.",
+    "To spread a function into multiple functions.",
+  ]}
+  answer={2}
+/>
+
+<MultipleChoice
+  question="3. What is the purpose of lifting state up in React?"
+  choices={[
+    "To improve performance.",
+    "To share and manipulate a single source of truth.",
+    "To reduce the size of the component tree.",
+    "To make the code easier to read.",
+  ]}
+  answer={2}
+/>
+
+<MultipleChoice
+  question="4. What is a component library?"
+  choices={[
+    "A library of pre-built UI components for faster development.",
+    "A library of JavaScript functions.",
+    "A collection of React components.",
+    "A library of CSS stylesheets.",
+  ]}
+  answer={1}
+/>
+
+<MultipleChoice
+  question="5. What is the purpose of state in a React component?"
+  choices={[
+    "To store user input.",
+    "To determine if a component should re-render.",
+    "To store data that can change over time.",
+    "All of the above.",
+  ]}
+  answer={4}
+/>
+
+<MultipleChoice
+  question="6. What is a functional update in React's `setState`?"
+  choices={[
+    "An update that involves calling a function.",
+    "An update that uses the previous state as its basis.",
+    "An update that only affects functional components.",
+    "An update that is made within a function.",
+  ]}
+  answer={2}
+/>
+
+<MultipleChoice
+  question="7. What is prop drilling in React?"
+  choices={[
+    "Passing props to child components.",
+    "Passing props to sibling components.",
+    "Passing state through multiple layers of components.",
+    "A technique for avoiding prop collisions.",
+  ]}
+  answer={3}
+/>
+
+<MultipleChoice
+  question="8. What is a pure component in React?"
+  choices={[
+    "A component without state.",
+    "A component without props.",
+    "A component that only renders based on its props and state.",
+    "A component that doesn't use any third-party libraries.",
+  ]}
+  answer={3}
+/>
+
+<MultipleChoice
+  question="9. What does it mean for React components to have a lifecycle?"
+  choices={[
+    "Components are created, updated, and eventually removed from the DOM.",
+    "Components can change their state over time.",
+    "Components can receive new props over time.",
+    "Components can change their appearance over time.",
+  ]}
+  answer={1}
+/>
+
+<MultipleChoice
+  question="10. What does it mean to say that state in React is 'minimal'?"
+  choices={[
+    "State should only be used when necessary.",
+    "State should be kept as small as possible.",
+    "State should only store the information that can't be computed from props or is needed for rendering.",
+    "All of the above.",
+  ]}
+  answer={3}
+/>
+
+<MultipleChoice
+  question="11. Why is immutability important in React?"
+  choices={[
+    "It allows us to compare the previous state with the new state to determine if a component needs to re-render.",
+    "It makes the code easier to read.",
+    "It improves performance.",
+    "It helps to avoid bugs in the code.",
+  ]}
+  answer={1}
+/>
+
+<MultipleChoice
+  question="12. When does an actual state update occur in React?"
+  choices={[
+    "Immediately after the `setState` function is called.",
+    "After all components have been rendered.",
+    "When React decides it's time to re-render the component.",
+    "When the user interacts with the UI.",
+  ]}
+  answer={3}
+/>
+
+<MultipleChoice
+  question="13. How does the `useState` hook work in React?"
+  choices={[
+    "It creates a new state variable and a function to update it.",
+    "It creates a new state variable and a function to read it.",
+    "It creates a new state variable and a function to delete it.",
+    "It creates a new state variable and a function to copy it.",
+  ]}
+  answer={1}
+/>
+
+<MultipleChoice
+  question="14. In which scenario would you use a global state in a React application?"
+  choices={[
+    "When the state is only used within a single component.",
+    "When the state is used in multiple components but doesn't need to be shared globally.",
+    "When the state is used in multiple places and needs to be shared globally.",
+    "When the state doesn't change over time.",
+  ]}
+  answer={3}
+/>
+
+<MultipleChoice
+  question="15. How does React decide whether an actual DOM update is necessary?"
+  choices={[
+    "By comparing the newly returned element with the previous one.",
+    "By checking if the state has changed.",
+    "By checking if the props have changed.",
+    "By determining if the user has interacted with the UI.",
+  ]}
+  answer={1}
+/>
+
 ## 🏃 Activity
 
 import { activity, solution } from "./activity.js";
