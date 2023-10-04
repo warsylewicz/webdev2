@@ -516,6 +516,14 @@ In this example, the count will be incremented by just 1! This is because each c
 
 ## 🏃 Activity
 
+In this activity, you are tasked with enhancing the functionality of a date picker component. The component currently enables users to select both a start and an end date. However, there is one crucial aspect missing - the component does not enforce the condition that the start date should always precede the end date, and vice versa. Your challenge is to incorporate this rule into the component's functionality.
+
+Additionally, you'll notice that the end date feature in the component is not functioning as expected. Your job also includes rectifying this issue.
+
+To assist you in identifying what needs to be done, there are three 'TODO' comments in the code. Your task is to address each of these comments by implementing the necessary changes in the code. This will involve updating the state with the new end date and ensuring that the start date does not fall after the end date, and vice versa.
+
+By successfully completing this activity, you will not only fix existing issues but also add essential functionality to the date picker component. Good luck!
+
 import { activity, solution } from "./activity.js";
 
 <Sandbox files={activity} />
@@ -524,7 +532,31 @@ import { activity, solution } from "./activity.js";
 
 <Steps>
 
-###
+### Understand the Existing Code
+
+Before you start modifying the code, make sure you understand what it currently does.
+
+The code provided consists of two main React components: `DatePicker` and `DateInput`.
+
+1. **`DatePicker` Component:** This component is responsible for maintaining and updating the state of the start and end dates. It uses the useState hook from React to create a state object dates with properties startDate and endDate. This state can be updated using the provided setDates function.
+
+   Two handler functions, `handleStartDateChange` and `handleEndDateChange`, are defined for updating the start and end dates, respectively. These functions are incomplete, and part of your task is to implement them properly.
+
+   In the component's return statement, two `DateInput` components are rendered for collecting the start and end dates from the user. The current date value and the corresponding handler function are passed as props to each DateInput.
+
+2. **`DateInput` Component:** This component is a controlled component, which means it receives its current value and a function to update that value as `props` from its parent component. It consists of a label and a date input field. When the user selects a date, it triggers the `onChange` event which calls the `handleDateChange` function. This function then calls the `onChange` prop to update the corresponding date in the `DatePicker`'s state.
+
+### Updating the End Date
+
+For the `TODO` in the `handleEndDateChange` function, you need to update the state with the new end date. This can be done by calling `setDates`, passing in a new object that contains the previous state (using the spread operator `...`) and the updated `endDate`.
+
+Remember, when updating state objects in React, you should not mutate the state directly. Instead, produce a new object that includes changes.
+
+### Ensuring Correct Date Order
+
+The other two `TODO`s relate to ensuring that the start date is not after the end date and vice versa. When a new start date is selected, check if it's after the current end date. If it is, update both the start and end dates to the new start date. Similarly, when a new end date is selected, check if it's before the current start date. If it is, update both dates to the new end date.
+
+These checks can be done using regular JavaScript date comparison inside the `handleStartDateChange` and `handleEndDateChange` functions.
 
 </Steps>
 
@@ -538,3 +570,10 @@ import { activity, solution } from "./activity.js";
 - [Live deployment](https://webdev2-demos.vercel.app/week6)
 
 ## 📖 Further Reading
+
+- [Keeping Components Pure](https://react.dev/learn/keeping-components-pure#side-effects-unintended-consequences)
+- [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
+- [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
+- [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
+- [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+-
