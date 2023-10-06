@@ -581,15 +581,15 @@ import { Steps } from "nextra-theme-docs";
 
 <Steps>
 
-###
+### Hint 1
 
 Replace the code on line 15. You'll need to use a JavaScript array method that allows you to create a new array with only the elements that pass a certain condition. This method is called on the original array and takes a function as an argument. This function is called for each item in the array and should return `true` for items you want to include in the new array.
 
-###
+### Hint 2
 
 The JavaScript array method you need is `filter()`. This method is called on the `items` array. The function you pass to `filter()` should return `true` for items that start with the letter 'a' and `false` otherwise. Remember to use this method only when the `filter` state is `true`.
 
-###
+### Hint 3
 
 You can use a ternary operator to choose between the filtered and unfiltered list based on the `filter` state. The `filter()` method call should look like this: `items.filter(item => item.startsWith('a'))`. Remember, the `startsWith()` method is case-sensitive. If your list contains items that start with an uppercase 'A', you might want to convert them to lowercase using the `toLowerCase()` method before checking if they start with 'a'.
 
