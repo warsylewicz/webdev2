@@ -216,6 +216,17 @@ It's important to remember that the set function returned by useState does not i
 
 Understanding the component lifecycle and how state updates trigger re-renders is crucial for writing efficient React applications, and this knowledge will help you avoid unnecessary renders and make your app perform better.
 
+Here is a advanced video that explains the component lifecycle in more detail:
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/7YhdqIR2Yzo?si=RDHww92baW4nz3er"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen="allowFullScreen"
+></iframe>
+
 ### State Structure
 
 When working with state in React, it's important to think about how to structure the state. There are a few different strategies for structuring state in a React application. The best strategy depends on the specific use case, but here are some general guidelines:
@@ -261,40 +272,51 @@ Consider two sibling components, ComponentA and ComponentB. Each has a button an
 function ParentComponent() {
   const [count, setCount] = React.useState(0);
 
-  const incrementCount = () => {
+  const handleClick = () => {
     setCount(count + 1);
   };
 
   return (
     <div>
-      <ComponentA count={count} incrementCount={incrementCount} />
-      <ComponentB count={count} incrementCount={incrementCount} />
+      <ComponentA count={count} onClick={handleClick} />
+      <ComponentB count={count} onClick={handleClick} />
     </div>
   );
 }
 
-function ComponentA({ count, incrementCount }) {
+function ComponentA({ count, onClick }) {
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={incrementCount}>Increment</button>
+      <button onClick={onClick}>Increment</button>
     </div>
   );
 }
 
-function ComponentB({ count, incrementCount }) {
+function ComponentB({ count, onClick }) {
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={incrementCount}>Increment</button>
+      <button onClick={onClick}>Increment</button>
     </div>
   );
 }
 ```
 
-In this example, the state of the counter (count and setCount) is stored in ParentComponent and passed down to ComponentA and ComponentB via props. When the button in either component is clicked, it calls the incrementCount function from ParentComponent, updating the state at the top level. This ensures both components always display the same count value.
+In this example, the state of the counter (count and setCount) is stored in ParentComponent and passed down to ComponentA and ComponentB via props. When the button in either component is clicked, it calls the `handleClick` function from ParentComponent, updating the state at the top level. This ensures both components always display the same count value.
 
 Lifting state up can make the data flow in your application more predictable and easier to understand. However, for complex applications with deep component trees, prop drilling (passing down state through multiple layers of components) can become cumbersome.
+
+Here is a beginner level video that explains how to lift state up in React:
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/ahKsy1FS45k?si=N9C_Jqmpc2t-srP1"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen="allowFullScreen"
+></iframe>
 
 ### Functional Updates with useState
 
@@ -337,6 +359,17 @@ In this example, the count will be incremented by just 1! This is because each c
   implementation isn't perfect, your app could still function perfectly fine.
   (This is why a code review is so important!)
 </Callout>
+
+Here is an excellent video that explains a common mistake made with state. It also demonstrates how to use the functional form of setState to avoid this mistake.
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/oc_TNtCe2sY?si=p6nGw1rzrhsSqrVX&amp;start=722"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen="allowFullScreen"
+></iframe>
 
 ## 🗒️ Summary
 
