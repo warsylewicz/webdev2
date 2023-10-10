@@ -18,8 +18,6 @@ In addition to the project, there are 10 small assignments due every two weeks a
 
 Happy coding, and here's to a great semester together!
 
-Aaron
-
 ## MS Teams Announcements
 
 ### Start of Semester
@@ -33,10 +31,6 @@ Here's what you need to know for the first week:
 **In-Person Class:** Our first in-person class will take place on Friday, September 8, 2023, at 12:00 pm (noon) in Room MC305. This class will be an excellent opportunity to learn more about the course, meet your instructor (me!), and begin working on the Week 1 Assignment.
 
 I look forward to meeting all of you very soon.
-
-Cheers,
-
-Aaron Warsylewicz
 
 ### Week 1
 
