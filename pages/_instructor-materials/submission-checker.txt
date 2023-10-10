@@ -1,4 +1,4 @@
-// run this script with `node _check-assignment-submissions.js`
+// run this script with `node submission-checker.txt`
 const readline = require("readline");
 
 // Repo name is the same for all students
@@ -11,7 +11,7 @@ const rl = readline.createInterface({
 });
 const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
 
-// Usage inside aync function do not need closure demo only
+// Usage inside async function do not need closure demo only
 (async () => {
   try {
     const usernamesCSV = await prompt(
@@ -24,7 +24,9 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
     const usernames = usernamesCSV.split(",");
     for (const username of usernames) {
       const res = await checkSubmission(username, week);
-      console.log(`${username}: \t ${res ? "✅" : "❌"}`);
+      console.log(
+        `${username}: \t ${res.status ? "✅" : "❌"} (${res.message})`
+      );
     }
 
     rl.close();
@@ -40,17 +42,23 @@ async function checkSubmission(account, week) {
   const accountExists = await checkUrl(`https://github.com/${account}`);
 
   if (week === "1") {
-    return accountExists;
+    return {
+      status: accountExists,
+      message: accountExists ? "" : "no account",
+    };
   }
 
   if (!accountExists) {
-    return false;
+    return { status: false, message: "no account" };
   }
 
-  const repoNotEmpty = await checkUrl(`https://api.github.com/repos/${account}/${repoName}/contributors`)
+  // This API is rated limited to 60 requests per hour
+  const repoNotEmpty = await checkUrl(
+    `https://api.github.com/repos/${account}/${repoName}/contributors`
+  );
 
   if (!repoNotEmpty) {
-    return false;
+    return { status: false, message: "no repo" };
   }
 
   const weekExistsInMaster = await checkUrl(
@@ -60,7 +68,13 @@ async function checkSubmission(account, week) {
     `https://github.com/${account}/${repoName}/tree/main/app/week${week}/page.js`
   );
 
-  return (weekExistsInMain || weekExistsInMaster)
+  if (weekExistsInMaster) {
+    return { status: true, message: "master" };
+  } else if (weekExistsInMain) {
+    return { status: true, message: "main" };
+  } else {
+    return { status: false, message: "no week" };
+  }
 }
 
 const checkUrl = async (url) => {

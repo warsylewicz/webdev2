@@ -1,5 +1,5 @@
 {
-  "index": "Schedule",
+  "index": "Home",
   "course-info": "Course Information",
   "github-accounts": "GitHub Accounts",
   "week1": "Week 1: Introduction to Web Application Development",
@@ -17,6 +17,5 @@
   "week13": "Week 13: Advanced Data Fetching",
   "week14": "Week 14: Project",
   "week15": "Week 15: Project Showcase",
-  "guides-and-references": "Guides and References",
-  "instructor-announcements": { "display": "hidden" }
+  "guides-and-references": "Guides and References"
 }

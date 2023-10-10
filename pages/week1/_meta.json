@@ -3,7 +3,5 @@
   "refresher": "HTML/CSS/JS Refresher",
   "refresher-demo": { "display": "hidden" },
   "assignment": "Week 1 Assignment",
-  "slides": { "display": "hidden" },
-  "samples": { "display": "hidden" },
-  "samples-demo": { "display": "hidden" }
+  "slides": { "display": "hidden" }
 }

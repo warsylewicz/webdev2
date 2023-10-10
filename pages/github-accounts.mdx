@@ -1,14 +1,16 @@
 export function AccountLinks() {
-    const  accountCSV = "3mptySpac3,aaaarvieeee,Abdulalshami,abdullahanwar1,adnansiddavatam,AEssadi91,afern140,ahmadhmi,alexltyt,AnaJoselynAlarcon,andompun,AnthoynHo,antoniohernandezz,arantesmarcelo,aryan111354,Austin-Huynh,benroskey,bilal1465,Billyat5,btleaf-t,Ccrewe92,clippycat,CryptoJoe33,DevonWoodruff,dingbull,DiyaSharma15,DonyStark,DorianLaycock,DucPhatNg9a5,Duy-An,ennis-ma,espiritu-jamie,Ever-QN,fkammw,GabrielPJL12,gail-aud,Goqwin,Gurmaher,Haileyrim,HartajMann,HHafeez123,IvanTemplora,James-Sundby,JasonLMarshall,jaypatel0234,JazminHorton,Jhio0,JinPlanter,Jlat21,johnd959,jonahscott,karmdesai13,kelvinvu19,KennethDNKL,kevinchong92,KH-Tom,KingCharlesTheGr8th,Kiydo,Koulant,lancegonzales04,Leslie-Evangelista,lisakamdem,maecison,Maikiby,Malkos316,manho0107,martinc03,MattYackel,maxhui923,MichaelNGAN1201,mjmorelos,mojojoruiz,mosmee21,MrMatt6362,mudittpathak,MYasin99,nathanc726,Neo711,nishant-kd,Ojifu,oribermudez,paramveersingh10,Parthnayu10,pltduchoang,Prepsld,prit-1543,raquel-castoldi,RayQM,RMR2131,romylomy,roselynnlcc,sahilBhamani,samnbogen,SamuelKebert,Sarbjee,seanlam9282,ShaEugenio,Shahharsh5148,SourabhThakur01,Starviko,stephaniemartyna,SyedJawadRaza-Baquar,TamaraMah,tansimafiana,TrienXuongLu,TygerNarong,Valentine-Jingwa,Vincemanio,Wbexte,wkl761212,xBraeden,xieshuhong,Yassinenali01,yorklicode,Yushu0,ZachL54,Zainul884,ZeusEstrella,zoegoodwin";
+    const  accountCSV = process.env.NEXT_PUBLIC_STUDENT_GITHUB_USERNAMES;
 
     const accounts = accountCSV.split(',');
 
     return (
-        <div>
-            {accounts.map((account) => (
-                <span> <a href={`https://github.com/${account}`}>{account}</a> |</span>
-            ))}
-        </div>
+    <div>
+      {accounts.map((account) => (
+        <span>
+          <a href={`https://github.com/${account}`}>{account}</a> |
+        </span>
+      ))}
+    </div>
     )
 
 }

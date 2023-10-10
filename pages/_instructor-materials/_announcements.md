@@ -135,7 +135,7 @@ As always, I am available to help you with any questions you may have about the 
 
 ### Week 5
 
-** Week 5: Handling Lists**
+**Week 5: Handling Lists**
 
 Lists are everywhere in programming - they're one of the fundamental structures that hold and organize data in our applications. We'll be learning about JavaScript arrays and how they can be used to render lists in React.
 
@@ -150,10 +150,30 @@ Week 5 Course Materials: https://webdev2.warsylewicz.ca/week5
 For this online class, I recommend the following:
 
 - **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week5/lists
-- **🥈 Second Best Option:** Finish the Week 4 Assignment: https://webdev2.warsylewicz.ca/week3/assignment
+- **🥈 Second Best Option:** Finish the Week 4 Assignment: https://webdev2.warsylewicz.ca/week4/assignment
 
 For either option, I am available to help you with any questions you may have about the course content or assignments.
 
 ### Week 6
 
 **Week 6: Managing State**
+
+State is a crucial concept in React applications, allowing components to create, track, and modify data that is required for rendering. You've already learned a bit about state, but this week, we'll delve into the fundamentals of state management, explore how to structure and share state between components, and understand the lifecycle of a React component in relation to state.
+
+Here's a rundown of the concepts we'll be covering:
+
+- **Immutability:** Learn about the differences between mutable and immutable data types, and demonstrate how to handle immutable data.
+- **Component Lifecycle:** Examine the lifecycle of a React component, focusing on how state updates impact each lifecycle stage.
+- **Sharing State Between Components:** Understand how to pass state between components using props, and discuss the concept of 'lifting state up'.
+- **Functional Updates with `useState`:** We'll cover the use of functional updates with the `useState` hook, especially when the new state depends on the previous state.
+
+Week 6 Course Materials: https://webdev2.warsylewicz.ca/week6
+
+For this online class, I recommend the following:
+
+- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week6/state
+- **🥈 Second Best Option:** Finish the Week 5 Assignment: https://webdev2.warsylewicz.ca/week5/assignment
+
+For either option, I am available to help you with any questions you may have about the course content or assignments.
+
+Have a great week and see you in class!

@@ -1,10 +1,10 @@
 // The files example used in an earlier demo
 
 // App.js
-const AppJs = `import Hello from './Hello.js'
+const PageJs = `import Hello from './Hello.js'
 	
-export default function App () {
-  return <Hello name="Aaron" />
+export default function Page () {
+  return <Hello name="Bob" />
 }
 `;
 
@@ -16,8 +16,8 @@ const HelloJs = `export default function Hello ({ name }) {
 
 // Location of file as key (always starts with /)
 export const files = {
-  "/App.js": {
-    code: AppJs,
+  "/page.js": {
+    code: PageJs,
   },
   "/Hello.js": {
     code: HelloJs,
