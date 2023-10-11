@@ -4,15 +4,32 @@ import { useState, useEffect } from 'react';
 
 export default function PublicAPIs() {
   const [apis, setApis] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchAPIs() {
-      const response = await fetch('https://api.publicapis.org/entries');
-      const data = await response.json();
-      setApis(data.entries);
+      try {
+        const response = await fetch('https://api.publicapis.org/entries');
+        if (!response.ok) {
+          throw new Error(\`HTTP error! status: \${response.status}\`);
+        }
+        const data = await response.json();
+        setApis(data.entries);
+        setError(null);
+      } catch (e) {
+        setError(e.message);
+      }
     }
+
     fetchAPIs();
   }, []); // Run the effect only once after the initial render
+
+  if (error) return (
+    <div>
+      <h2>Public APIs:</h2>
+      <p>{error}</p>
+    </div>
+  );
   
   return (
     <div>

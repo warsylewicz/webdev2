@@ -417,6 +417,20 @@ In this component, the `useEffect` hook runs the `fetchAPI`s function once after
 
 ## 🏃 Activity
 
+In this exercise, we'll be building an email validation component in React using the Disify API.
+
+This component will allow a user to enter an email address into an input field, and then it will validate the email address by interacting with the Disify API. The Disify API provides valuable information about an email address such as whether it's in a valid format and if it's a disposable email.
+
+Disposable email addresses are temporary email addresses that are typically used for a short period of time to sign up for services or receive information, after which they become inactive or are discarded, helping to protect user's primary email from spam or unwanted communications. However, they can also be used for malicious purposes, such as creating fake accounts or sending spam. Services like Disify exist primarily to help protect the integrity of online services, platforms, and applications from abuse and to maintain the quality of user data. For example, if you're building a social media platform, you might want to prevent users from signing up with disposable email addresses to prevent spam or abuse.
+
+The initial code provided gives you a basic setup for the component. It fetches data from the API and then displays the raw JSON response data to the user. However, we can provide a much better user experience by interpreting the data and giving the user a clear and friendly message about the validity and disposability of the entered email. The output should be one of the following:
+
+- "This email is valid and not disposable."
+- "This email is valid and disposable."
+- "This email is not valid."
+
+In addition, the component fails to handle errors. Add appropriate error handling.
+
 import { activity, solution } from "./activity.js";
 
 <Sandbox files={activity} />
@@ -425,7 +439,17 @@ import { activity, solution } from "./activity.js";
 
 <Steps>
 
-###
+### Data Object Structure
+
+Try a variety of email addresses, e.g. `test@test.com`, `fake@mailinator.com`, `real_address@gmail.com`, `broken@@.com`. Look at the structure of the data object returned by the API. You'll see there are two properties: `format` and `disposable`. The `format` property indicates whether the email is valid, and the `disposable` property indicates whether the email is disposable. You can use these properties to determine what message to display to the user.
+
+### Conditional Logic
+
+Consider using conditional logic (if statements) to check the values of format and disposable and set the result state accordingly. Remember that the format property will be true if the email is valid and false otherwise. The disposable property will be true if the email is disposable and false otherwise.
+
+### Error Handling
+
+Make sure to add error handling to your code. The solution code uses a try/catch block to handle any errors that might occur when fetching the data from the API. In the catch block, it logs the error to the console using console.error(error). This is a good practice to follow in your own code.
 
 </Steps>
 
