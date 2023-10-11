@@ -284,6 +284,17 @@ postData();
 
 In this example, we're making a POST request to the same URL, but this time we're sending data along with the request. We use the method property to specify that this is a POST request, the body property to provide the data we're sending, and the headers property to set the content type of our request. As before, we use fetch to make the request, await the Promise it returns, extract the JSON data from the response object, await the Promise this returns, and then log the data to the console.
 
+Recommended YouTube video on Async Await, Promises, and Fetch API:
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/spvYqO_Kp9Q?si=vSnylSbNwCcwd43R"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
 ## React Skills
 
 ### useEffect
@@ -294,6 +305,15 @@ The `useEffect` hook runs after every render by default. However, you can contro
 
 - If you pass an empty array (`[]`), the `useEffect` hook will run the effect only once after the initial render, similar to the '[mounted](/week6/state#component-lifecycle)' phase in the component lifecycle.
 - If you pass values (e.g., props or state) in the array, the effect will run whenever any of these values change.
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/0ZJgIjIuY7U?si=AG-RnaEDiJQc6PKp"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
 
 #### Using useEffect with Fetch
 
@@ -461,5 +481,53 @@ Make sure to add error handling to your code. The solution code uses a try/catch
 
 - [Week 7 Demo code](https://github.com/warsylewicz/webdev2-demos/tree/master/app/week7)
 - [Live deployment](https://webdev2-demos.vercel.app/week7)
+
+The Weather component has been updated to use live weather data for Calgary. As you read through the code for this component, pay attention to how the data is fetched from the API and how it's used to update the component's state.
+
+Here are some things to look for:
+
+1. **`useEffect` Hook:** The `useEffect` hook is used to perform side effects in the component. It takes two parameters: a function where you perform your side effects and a dependency array.
+
+```js
+useEffect(() => {
+  // side effect
+}, []); // <-- dependency array
+```
+
+In this component, the `useEffect` hook is used to fetch data from a weather API. The function passed to `useEffect` is an Immediately Invoked Function Expression (IIFE) that is an async function. This is because `useEffect` cannot be an async function itself, but it can contain one.
+
+The dependency array is empty `[]`, which means this effect will run only once after the component's initial render. If there were dependencies in this array, the effect would run again whenever those dependencies change.
+
+2. **Fetching Data:** Inside the `useEffect` hook, a `fetch` request is made to a weather API. The URL includes parameters for latitude, longitude, and other weather details.
+
+```js
+const response = await fetch(
+  `https://api.open-meteo.com/v1/forecast?latitude=51.064&longitude=-114.08&current=temperature_2m,is_day,precipitation,rain,showers,snowfall,cloudcover&timezone=auto`
+);
+const data = await response.json();
+setWeather(data);
+```
+
+After the data is fetched, it is converted to a JavaScript object using `response.json()`. Then, the `setWeather` function is called to update the `weather` state with the fetched data.
+
+3. **Rendering the Component:** In the return statement of the component, the fetched data is displayed. If the data hasn't been fetched yet (i.e., weather is still null), "unavailable" will be displayed.
+
+```js
+<p>
+  Temperature:{" "}
+  {weather
+    ? weather?.current.temperature_2m +
+      weather?.current_units.temperature_2m
+    : "unavailable"}
+</p>
+<p>
+  Cloud cover:{" "}
+  {weather
+    ? weather.current.cloudcover + weather?.current_units.cloudcover
+    : "unavailable"}
+</p>
+```
+
+The `?` used in `weather?.current.temperature_2m` and `weather?.current_units.temperature_2m` is optional chaining. It means that if `weather` or `weather.current` is `null` or `undefined`, it won't throw an error but will return `undefined`. This helps to avoid errors when trying to access properties of `null` or `undefined`.
 
 ## 📖 Further Reading
