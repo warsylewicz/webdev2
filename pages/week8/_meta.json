@@ -1,4 +1,5 @@
 {
+  "firebase-auth": "Firebase Authentication",
   "assignment": "Week 8 Assignment",
   "slides": { "display": "hidden" }
 }

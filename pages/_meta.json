@@ -1,6 +1,7 @@
 {
   "index": "Home",
   "course-info": "Course Information",
+  "guides-and-references": "Guides and References",
   "github-accounts": "GitHub Accounts",
   "week1": "Week 1: Introduction to Web Application Development",
   "week2": "Week 2: Introduction to React",
@@ -16,6 +17,5 @@
   "week12": "Week 12: Advanced Routing",
   "week13": "Week 13: Advanced Data Fetching",
   "week14": "Week 14: Project",
-  "week15": "Week 15: Project Showcase",
-  "guides-and-references": "Guides and References"
+  "week15": "Week 15: Project Showcase"
 }
