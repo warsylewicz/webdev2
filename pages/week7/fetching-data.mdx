@@ -327,6 +327,10 @@ import { example } from "./example.js";
 
 In this component, the `useEffect` hook runs the `fetchAPI`s function once after the initial render. This function fetches a list of public APIs from the API and sets the `apis` state with the fetched data. The component then renders a list of API names, or a "Loading..." message if the data is not yet available. This example is "meta" because it uses an API to fetch a list of APIs!
 
+It is possible to view the data returned by the API by navigating directly to the API URL in your browser. For example, if you navigate to [https://api.publicapis.org/entries](https://api.publicapis.org/entries), you'll see the data returned by the API.
+
+However, this is not always the case. Some APIs require authentication or have other restrictions that prevent you from viewing the data in your browser. In these cases, you can use a tool like [Postman](https://www.postman.com/) or [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to view the data.
+
 <Callout type="warning" emoji="‼️">
   If you forget to pass the dependency array (the second argument to useEffect),
   the effect will run after every render. This can cause performance issues,
@@ -482,55 +486,59 @@ Make sure to add error handling to your code. The solution code uses a try/catch
 - [Week 7 Demo code](https://github.com/warsylewicz/webdev2-demos/tree/master/app/week7)
 - [Live deployment](https://webdev2-demos.vercel.app/week7)
 
-The Weather component has been updated to use live weather data for Calgary. As you read through the code for this component, pay attention to how the data is fetched from the API and how it's used to update the component's state.
+The `Weather` component fetches and displays real-time weather data for a specific location, in this case, Calgary. The key steps and parts of the code are as follows:
 
-Here are some things to look for:
+1. **`useEffect` Hook:** The `useEffect` hook is used to perform side effects in the component such as data fetching. It takes two parameters: a function where you perform your side effects, and a dependency array.
 
-1. **`useEffect` Hook:** The `useEffect` hook is used to perform side effects in the component. It takes two parameters: a function where you perform your side effects and a dependency array.
+   ```js
+   useEffect(() => {
+     // side effect
+   }, []); // <-- dependency array
+   ```
 
-```js
-useEffect(() => {
-  // side effect
-}, []); // <-- dependency array
-```
+   This component's `useEffect` hook fetches data from a weather API. The function passed to `useEffect` is an Immediately Invoked Function Expression (IIFE) that is an async function. This is because `useEffect` itself cannot be an async function, but it can contain one.
 
-In this component, the `useEffect` hook is used to fetch data from a weather API. The function passed to `useEffect` is an Immediately Invoked Function Expression (IIFE) that is an async function. This is because `useEffect` cannot be an async function itself, but it can contain one.
+   The dependency array is empty `[]`, which means this effect will run only once after the component's initial render. If there were dependencies in this array, the effect would run again whenever those dependencies change.
 
-The dependency array is empty `[]`, which means this effect will run only once after the component's initial render. If there were dependencies in this array, the effect would run again whenever those dependencies change.
+2. **Fetching Data:** Inside the `useEffect` hook, an async function `getWeather()` is invoked. This function is responsible for making the `fetch` request to the weather API.
 
-2. **Fetching Data:** Inside the `useEffect` hook, a `fetch` request is made to a weather API. The URL includes parameters for latitude, longitude, and other weather details.
+   ```js
+   async function getWeather() {
+     const response = await fetch(
+       `https://api.open-meteo.com/v1/forecast?latitude=51.064&longitude=-114.08&current=temperature_2m,is_day,precipitation,rain,showers,snowfall,cloudcover&timezone=auto`
+     );
+     const data = await response.json();
+     return data;
+   }
 
-```js
-const response = await fetch(
-  `https://api.open-meteo.com/v1/forecast?latitude=51.064&longitude=-114.08&current=temperature_2m,is_day,precipitation,rain,showers,snowfall,cloudcover&timezone=auto`
-);
-const data = await response.json();
-setWeather(data);
-```
+   // Inside useEffect
+   const data = await getWeather();
+   setWeather(data);
+   ```
 
-After the data is fetched, it is converted to a JavaScript object using `response.json()`. Then, the `setWeather` function is called to update the `weather` state with the fetched data.
+   The `getWeather()` function sends a request to the weather API with specific parameters for latitude, longitude, and other weather details. After the data is fetched, it is converted to a JavaScript object using `response.json()`. The data is then returned and subsequently used to update the `weather` state via the `setWeather` function.
 
-3. **Rendering the Component:** In the return statement of the component, the fetched data is displayed. If the data hasn't been fetched yet (i.e., weather is still null), "unavailable" will be displayed.
+3. **Rendering the Component:** The fetched data is displayed in the return statement of the component. If the data hasn't been fetched yet (i.e., `weather` is still `null`), "unavailable" will be displayed.
 
-```js
-<p>
-  Temperature:{" "}
-  {weather
-    ? weather?.current.temperature_2m +
-      weather?.current_units.temperature_2m
-    : "unavailable"}
-</p>
-<p>
-  Cloud cover:{" "}
-  {weather
-    ? weather.current.cloudcover + weather?.current_units.cloudcover
-    : "unavailable"}
-</p>
-```
+   ```js
+   <p>
+     Temperature:{" "}
+     {temp !== null && temp !== undefined && tempUnit
+       ? `${temp}${tempUnit}`
+       : "unavailable"}
+   </p>
+   <p>
+     Cloud cover:{" "}
+     {cloudCover !== null && cloudCover !== undefined && cloudCoverUnit
+       ? `${cloudCover}${cloudCoverUnit}`
+       : "unavailable"}
+   </p>
+   ```
 
-The `?` used in `weather?.current.temperature_2m` and `weather?.current_units.temperature_2m` is optional chaining. It means that if `weather` or `weather.current` is `null` or `undefined`, it won't throw an error but will return `undefined`. This helps to avoid errors when trying to access properties of `null` or `undefined`.
+   Here, the temperature and cloud cover are only displayed if their values are not `null` or `undefined`, and if the corresponding units are available. This ensures that even if the temperature or cloud cover is `0`, it is correctly displayed.
 
 ## 📖 Further Reading
 
 - [Asynchronous Programming](https://eloquentjavascript.net/11_async.html)
 - [useEffect Hook](https://react.dev/reference/react/useEffect#useeffect)
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
