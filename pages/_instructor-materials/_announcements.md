@@ -171,3 +171,28 @@ For this online class, I recommend the following:
 For either option, I am available to help you with any questions you may have about the course content or assignments.
 
 Have a great week and see you in class!
+
+### Week 7
+
+**Week 7: Fetching Data**
+
+Week 7: Fetching Data
+
+Building upon our understanding of state in React applications from last week, we move onto the topic of fetching data. This process involves retrieving data from a source, typically a server or an API (Application Programming Interface), and using that data to update your application's state or display on the user interface. Fetching data allows your application to be dynamic, displaying up-to-date information from databases, other websites, or user inputs.
+
+Here's a rundown of the concepts we'll be covering:
+
+- **Understanding HTTP and CORS**: HTTP, or Hypertext Transfer Protocol, is the protocol used for transferring data over the internet. It defines a set of rules for how messages should be formatted and transmitted. CORS, or Cross-Origin Resource Sharing, is a mechanism that allows resources on a web page to be requested from another domain outside the domain from which the first resource was served.
+- **JavaScript Skills for Fetching Data**: Fundamental JavaScript skills that are essential for fetching data include understanding asynchronous programming, error handling, and using the Fetch API.
+- **React `useEffect` Hook**: The useEffect hook in React allows you to perform side effects in function components. Side effects could be anything that affects something outside of the scope of the function being executed, such as data fetching.
+
+Week 7 Course Materials: https://webdev2.warsylewicz.ca/week7
+
+For this online class, I recommend the following:
+
+- **🥇 Best Option**: Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week7
+- **🥈 Second Best Option**: Finish the Week 6 Assignment: https://webdev2.warsylewicz.ca/week6/assignment
+
+For either option, I am available to help you with any questions you may have about the course content or assignments.
+
+Have a great week and see you in class!
