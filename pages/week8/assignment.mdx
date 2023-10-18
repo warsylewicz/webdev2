@@ -24,8 +24,8 @@ Follow this step-by-step guide to create a Firebase project with GitHub OAuth we
   src="https://scribehow.com/embed/Step-by-step_Guide_Creating_a_Firebase_Project_and_GitHub_OAuth_App__KNrdc1CJR1unzOCkX_K-KA?skipIntro=true"
   width="100%"
   height="640"
-  allowfullscreen
-  frameborder="0"
+  allowFullScreen="allowFullScreen"
+  frameBorder="0"
 ></iframe>
 
 ## Part 2: Add Firebase Authentication
@@ -168,7 +168,7 @@ The following code snippets may be helpful:
 ```js copy
 import { useUserAuth } from "./_utils/auth-context";
 
-const { user, gitHubSignIn, logOut } = useUserAuth();
+const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
 await gitHubSignIn();
 
@@ -212,6 +212,14 @@ In the GitHub OAuth settings, change the Homepage URL from `http://localhost:300
 In the Firebase console, go to your project settings. Click on "Authorized domains". Click the "Add Domain" button and add your Vercel URL.
 
 </Steps>
+
+## Example Output
+
+https://cprg306-assignments.vercel.app/week8
+
+Also, try to go to the shopping list page directly without signing in:
+
+- [https://cprg306-assignments.vercel.app/week8/shopping-list](https://cprg306-assignments.vercel.app/week8/shopping-list)
 
 ## Assignment Submission
 
