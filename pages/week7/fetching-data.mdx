@@ -492,7 +492,7 @@ The `Weather` component fetches and displays real-time weather data for a specif
 
    ```js
    useEffect(() => {
-     // side effect
+     loadWeather(); // side effect
    }, []); // <-- dependency array
    ```
 
@@ -500,25 +500,34 @@ The `Weather` component fetches and displays real-time weather data for a specif
 
    The dependency array is empty `[]`, which means this effect will run only once after the component's initial render. If there were dependencies in this array, the effect would run again whenever those dependencies change.
 
-2. **Fetching Data:** Inside the `useEffect` hook, an async function `getWeather()` is invoked. This function is responsible for making the `fetch` request to the weather API.
+2. **State:** The component has one piece of state: `weather`. The `weather` state is initialized to `null` and is updated with the fetched data. The function is asynchronous because it uses `await` to wait for the data to be fetched before updating the state.
 
    ```js
-   async function getWeather() {
+   async function loadWeather() {
+     try {
+       const data = await fetchWeatherData();
+       setWeather(data);
+     } catch (error) {
+       console.error(error);
+     }
+   }
+   ```
+
+3. **Fetching Data:** `fetchWeatherData()` is responsible for making the `fetch` request to the weather API.
+
+   ```js
+   async function fetchWeatherData() {
      const response = await fetch(
        `https://api.open-meteo.com/v1/forecast?latitude=51.064&longitude=-114.08&current=temperature_2m,is_day,precipitation,rain,showers,snowfall,cloudcover&timezone=auto`
      );
      const data = await response.json();
      return data;
    }
-
-   // Inside useEffect
-   const data = await getWeather();
-   setWeather(data);
    ```
 
-   The `getWeather()` function sends a request to the weather API with specific parameters for latitude, longitude, and other weather details. After the data is fetched, it is converted to a JavaScript object using `response.json()`. The data is then returned and subsequently used to update the `weather` state via the `setWeather` function.
+   The `fetchWeatherData()` function sends a request to the weather API with specific parameters for latitude, longitude, and other weather details. After the data is fetched, it is converted to a JavaScript object using `response.json()`. The data is then returned.
 
-3. **Rendering the Component:** The fetched data is displayed in the return statement of the component. If the data hasn't been fetched yet (i.e., `weather` is still `null`), "unavailable" will be displayed.
+4. **Rendering the Component:** The fetched data is displayed in the return statement of the component. If the data hasn't been fetched yet (i.e., `weather` is still `null`), "unavailable" will be displayed.
 
    ```js
    <p>
