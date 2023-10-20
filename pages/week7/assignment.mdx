@@ -53,17 +53,21 @@ The MealIdeas component is responsible for fetching and displaying meal ideas ba
 
 3. Define API Fetching Function
 
-- Next, define a function called `fetchMealIdeas`, which fetch data from the API. `fetchMealIdeas` should take an ingredient as a parameter, make a fetch request to the [TheMealDB API](https://www.themealdb.com/), and return the meals that include that ingredient.
+- Next, outside your component, define a function called `fetchMealIdeas`, which fetch data from the API. `fetchMealIdeas` should take an ingredient as a parameter, make a fetch request to the [TheMealDB API](https://www.themealdb.com/), and return the meals that include that ingredient.
 - The API endpoint for fetching meal ideas is: `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`. For example, if the ingredient is "chicken", the API endpoint would be: [https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken](https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken). The API returns a list of meals that include the specified ingredient. Each meal has three properties:
   - `idMeal`: id of the meal
   - `strMeal`: name of the meal
   - `strMealThumb`: URL of an image of the meal
 
-4. Use the `useEffect` Hook
+4. Define Load Function
 
-- Use the `useEffect` hook to call `fetchMealIdeas` whenever the `ingredient` prop changes. Store the result in the `meals` state variable.
+- Next, inside your component, define a function called `loadMealIdeas`. This function should call `fetchMealIdeas` with the `ingredient` prop and store the result in the `meals` state variable.
 
-5. Render the Component
+5. Use the `useEffect` Hook
+
+- Use the `useEffect` hook to call `loadMealIdeas` whenever the `ingredient` prop changes.
+
+6. Render the Component
 
 - Finally, define your component's render method. This should return a `div` that includes a header and a list of meals. Each meal should be a list item that displays the meal's name.
 

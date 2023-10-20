@@ -1,28 +1,148 @@
-# 🚧 Firebase Auth
+import { Callout, Steps } from "nextra-theme-docs";
+import MultipleChoice from "components/MultipleChoice";
+
+# Firebase Authentication
+
+Firebase Authentication provides an end-to-end identity solution for your web applications that supports authentication using passwords, phone numbers, popular identity providers like Google, Facebook, GitHub, and more. Firebase Authentication also handles user sessions, allowing your application to remain secure while still being easy to integrate with.
+
+Authentication for a web app is an important function that is often difficult to implement correctly. For this reason, it is often a good idea to use a third-party authentication service like Firebase Authentication. Firebase Authentication provides a secure and easy-to-use authentication system that can be integrated into your web app with just a few lines of code. In general, do not try to implement your own authentication system unless you have a very good reason to do so.
 
 ## Security Skills
 
+In web application development, understanding key security concepts is crucial. These include the difference between authentication and authorization, the function and use of JSON Web Tokens (JWTs), and how to handle and store sensitive information.
+
 ### Authentication vs Authorization
+
+Authentication and Authorization are two sides of the same coin, both crucial in securing web applications, but they serve different purposes.
+
+- **Authentication**: the process of verifying who a user is. When a user logs into your application, they provide credentials such as a username and password. The authentication process checks these credentials and, if they match a record in your user database, the user is authenticated.
+
+- **Authorization**: determines what an authenticated user is allowed to do. Once a user is authenticated, the authorization process checks their permissions to determine what resources they can access or actions they can perform.
 
 ### JSON Web Tokens (JWTs)
 
+JSON Web Tokens (JWTs) are an open standard for securely transmitting information between parties as a JSON object. They are often used for authentication and information exchange.
+
+A JWT is divided into three parts: a header, a payload, and a signature. The header typically contains the type of token and the algorithm used for encryption. The payload contains the claims or pieces of information being passed. The signature is computed from the header, the payload, and a secret key.
+
+JWTs are commonly used in Firebase Authentication to help manage user sessions. When a user logs in, Firebase Authentication returns a JWT that is stored in the browser's local storage. This JWT is then sent with every request to the server. The server can then verify the JWT and use the information it contains to determine if the user is authenticated and authorized to access the requested resource.
+
+Example of a (non-functioning) JWT:
+
+```json
+{
+  "header": {
+    "alg": "HS256",
+    "typ": "JWT"
+  },
+  "payload": {
+    "iss": "https://github.com",
+    "sub": "1234567890",
+    "aud": "https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit",
+    "exp": 1609459200,
+    "iat": 1609455600,
+    "auth_time": 1609455600,
+    "user_id": "abcdefghijk",
+    "firebase": {
+      "identities": {
+        "github.com": ["1234567890"]
+      },
+      "sign_in_provider": "github.com"
+    }
+  },
+  "signature": "abcdefgHIJKLMNOP1234567890"
+}
+```
+
+JWTs are often used in place of session cookies. The main advantage of JWTs is that they are stateless, meaning that the server does not need to keep track of user sessions. This makes them ideal for use in REST APIs. You will learn more about REST APIs in week 11.
+
 ### Handling and Storing Sensitive Information
+
+Handling and storing sensitive information securely is a crucial part of web application development. Firebase Authentication helps with this by securely managing and storing user credentials.
 
 #### Encryption
 
+Encryption is the process of converting data into a format that is unreadable without a decryption key. Encryption is used to protect sensitive information like user passwords and personal data. For example, in Firebase Authentication, user passwords are securely encrypted before they are stored.
+
 #### Access Controls
+
+Access controls determine who has access to what data. Firebase Authentication uses access controls to ensure that only authenticated and authorized users can access certain data. This is critical for maintaining the privacy and security of user information.
+
+<Callout type="info" emoji="🔐">
+  Always remember, storing sensitive information in plain text is a big no-no.
+  Always use encryption and proper access controls!
+</Callout>
 
 ### SSO with OAuth
 
+Single Sign-On (SSO) is a user authentication process that allows a user to use one set of login credentials to access multiple applications. OAuth is an open standard for access delegation that is commonly used in SSO systems.
+
+Firebase Authentication supports SSO with OAuth, allowing users to sign in with their Google, Facebook, X, or GitHub accounts. This not only improves the user experience by allowing users to sign in with their existing accounts, but also enhances security by reducing the risk of password reuse. OAuth 2.0 is the industry-standard protocol for authorization.
+
 ## React Skills
 
-### React Context API
+### React Context
+
+React context is a feature provided by the React library that allows you to pass data through the component tree without having to pass props manually at every level. It is particularly useful when you want to share some global data with many components, such as user information, theme settings, or language preferences.
+
+Authentication is a good example of when to use React context. When a user logs in, you want to make sure that all components have access to the user's information. React context allows you to do this without having to pass the user information as props to every component.
+
+The context system in React consists of three main parts:
+
+- **`createContext`**: Creates a new context object.
+- **`Context.Provider`**: A React component that allows consuming components to subscribe to context changes.
+- **`useContext`**: Allows you to consume the context data.
+
+Here's a simple example of how you could use context in a functional component with the useContext Hook:
+
+```js
+import { useContext } from "react";
+
+// Create a Context
+const MyContext = React.createContext();
+
+// Create a component that uses the Context
+function MyComponent() {
+  const contextValue = useContext(MyContext);
+  return <div>{contextValue}</div>;
+}
+
+// Use the Context Provider to allow MyComponent to consume the context data
+function MyApp() {
+  return (
+    <MyContext.Provider value="Hello from context!">
+      <MyComponent />
+    </MyContext.Provider>
+  );
+}
+
+export default MyApp;
+```
+
+In this example, `MyComponent` is able to consume the value from the context without having to receive it as a prop.
+
+The context API is a powerful feature, but that doesn't mean it should be used everywhere. Here's some guidance on when and when not to use it:
+
+- **When to Use Context**: Use context when you have global data that many components share.
+- **When Not to Use Context**: Avoid using context for low-level or component-specific state. For small or medium-sized applications, it might be better to stick with prop passing. Also, remember that every Context Provider re-render causes all its consumers to re-render too, which might affect performance.
+
+<Callout type="warning" emoji="🌏">
+  You can think of React Context as a kind of global variable for your React
+  application. It allows you to store data that you want to be accessible to
+  many different parts of your application, without having to pass the data
+  around manually via props.
+</Callout>
 
 ### Custom Hooks
 
-Example?
+Custom hooks, as the name suggests, are user-defined hooks that allow you to extract component logic into reusable functions. They are JavaScript functions whose names are prefixed with the word `use`.
 
-https://medium.com/@morerahul620/creating-a-custom-hook-in-react-js-next-js-986ed99ba18
+Custom hooks are a mechanism to reuse stateful logic (such as setting up a subscription and remembering the current value), not state itself. Each time you use a custom hook, all state and effects inside of it are fully isolated.
+
+You can write custom hooks that cover a wide range of use cases like form validation, animation, and data fetching. For example, you could write a custom hook that fetches data from an API and returns the data and a loading state. You could then use this hook in multiple components to fetch data from the same API.
+
+
+
 
 ## Next.js Skills
 
