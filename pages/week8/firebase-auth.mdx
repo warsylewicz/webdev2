@@ -81,6 +81,33 @@ Firebase Authentication supports SSO with OAuth, allowing users to sign in with 
 
 ## React Skills
 
+### `{ children }` prop
+
+In React, `children` is a special prop that is used to pass components as data to other components. This allows you to create component structures in JSX and makes your components more reusable.
+
+The children prop can be used to pass elements directly in between the opening and closing tags of a parent component, just like you might with a regular HTML element. The parent component can then render these children by including `{children}` in its return statement.
+
+Here's a simple example of how you could use the `children` prop:
+
+```js
+// A "Card" component that wraps content in a div with some styling
+function Card({ children }) {
+  return <div className="border">{children}</div>;
+}
+
+// Using the "Card" component
+export default function Page() {
+  return (
+    <Card>
+      <h1>Hello, world!</h1>
+      <p>Welcome to my app.</p>
+    </Card>
+  );
+}
+```
+
+In this example, MyApp is passing two elements (an `<h1>` and a `<p>`) as children into the `Card` component. The `Card` component is then rendering these children inside a styled `<div>`. This makes the Card component reusable with different content.
+
 ### React Context
 
 React context is a feature provided by the React library that allows you to pass data through the component tree without having to pass props manually at every level. It is particularly useful when you want to share some global data with many components, such as user information, theme settings, or language preferences.
@@ -141,20 +168,154 @@ Custom hooks are a mechanism to reuse stateful logic (such as setting up a subsc
 
 You can write custom hooks that cover a wide range of use cases like form validation, animation, and data fetching. For example, you could write a custom hook that fetches data from an API and returns the data and a loading state. You could then use this hook in multiple components to fetch data from the same API.
 
+Here's a simple example of how you could create and use a custom hook:
 
+```js
+import { useState } from "react";
 
+// A custom hook that manages state for a counter
+function useCounter() {
+  const [count, setCount] = useState(0);
+  const increment = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+  return { count, increment };
+}
+
+// A component that uses the custom hook
+function CounterComponent() {
+  const { count, increment } = useCounter();
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+
+export default CounterComponent;
+```
+
+In this example, `useCounter` is a custom hook that encapsulates the logic for a counter. The CounterComponent uses this custom hook and doesn't need to worry about maintaining its own state or implementing an increment function.
+
+#### Custom Hooks, Context, and Authentication
+
+When combined, custom hooks, context, and authentication can be a powerful pattern for managing user sessions in a React application. Here's how they can work together:
+
+- **Context**: You can create a context to hold the user's authentication status and information. This context can be provided at the top level of your application so that all components in your application tree can access the user's authentication status.
+
+- **Custom Hook**: You can create a custom hook to consume the authentication context. This hook can return the user's authentication status and any user information stored in the context. It can also return functions to log in, log out, sign up, etc., that update the context. By encapsulating this logic in a custom hook, you can easily access and manipulate the user's authentication status from any component.
+
+```js
+import { useContext, useState } from "react";
+
+// Create an Auth context
+const AuthContext = React.createContext();
+
+// Create a custom hook that uses the Auth context
+function useAuth() {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+}
+
+// Create a Provider component for the Auth context
+function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const login = (username, password) => {
+    // Logic to authenticate user and set current user
+  };
+
+  const logout = () => {
+    // Logic to log out user and unset current user
+  };
+
+  // The value provided will be available to all components in the tree
+  const value = {
+    currentUser,
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export { useAuth, AuthProvider };
+```
+
+This is a simplified example and a real-world application would include more complex logic for handling authentication, error states, and asynchronous actions. However, this pattern of using custom hooks and context can be a clean and efficient way to manage user authentication in a React application.
 
 ## Next.js Skills
 
 ### Environment Variables
 
-### `{ children }` prop
+Environment variables are a fundamental part of developing with Node.js, allowing your app to behave differently based on the environment you want them to run in. They are essentially external variables that are defined outside your application, and can be brought into your application and used whenever required.
+
+Environment variables can store various types of data, like API keys, database connections, or any other sensitive data that you do not want to expose in your codebase. This is crucial for maintaining the security of your application and allows for flexibility, as the values of these variables can change depending on the environment (development, testing, production, etc).
+
+#### Using Environment Variables in Next.js
+
+In a Next.js project, environment variables are typically stored in `.env.local` files. These are simple text files that hold key-value pairs in the format `KEY=VALUE`. Next.js has built-in support for loading environment variables from these .env files into process.env.
+
+<Callout type="info" emoji="🚫">
+  The `.env.local` files are used to store environment variables that shouldn't
+  be committed to the Git repository. The file `.gitignore` is used to ignore
+  these files when committing to Git. This is important because you don't want
+  to expose sensitive information like API keys in your Git repository.
+</Callout>
+
+Let's say you have the following environment variables stored in your .env.local file.
+
+```env
+DATABASE_API_KEY=MySuperSecretApiKey
+NEXT_PUBLIC_ANALYTICS_ID=abcdefghijk
+```
+
+You can then access this in your Next.js code using `process.env`. Environment variables prefixed with `NEXT_PUBLIC_` are available on both the server and the client. Other environment variables are only available on the server.
+
+```js
+// server code
+const apiKey = process.env.DATABASE_API_KEY;
+console.log("The API key is", apiKey);
+
+// server or client code
+const analyticsId = process.env.NEXT_PUBLIC_ANALYTICS_ID;
+console.log("The analytics ID is", analyticsId);
+```
+
+When deploying your Next.js app to Vercel, you can set environment variables in the project settings.
 
 ### `layout.js`
 
+A crucial part of any application is the layout - the UI that's shared across multiple pages. Utilizing layouts can improve your application's efficiency by preserving state, remaining interactive, and preventing unnecessary re-renders during navigation. In Next.js, layouts can be defined using a special `layout.js` file and can even be nested for more complex UI structures.
+
+Layouts in Next.js are defined by exporting a React component from a `layout.js` file. This component should accept a `children` prop, which will be either a nested layout or a page during rendering.
+
+```js
+export default function MyLayout({ children }) {
+  return (
+    <div>
+      <header>My Shared Header</header>
+      {children}
+      <footer>My Shared Footer</footer>
+    </div>
+  );
+}
+```
+
+In this example, the MyLayout component defines a layout with a shared header and footer. The `{children}` placeholder is where child layouts or pages will be rendered.
+
+A `layout.js` file is optional and can be located on any level with `page.js`.
+
 ## Firebase Skills
 
-### Firebase SDK
+Firebase is a powerful platform developed by Google that provides a variety of services for building web and mobile applications. It offers a suite of cloud-based tools, which includes a realtime database, user authentication, analytics, hosting, and much more. Firebase simplifies the process of building and scaling applications, allowing developers to focus more on creating fantastic user experiences.
+
+Firebase provides a Backend-as-a-Service (BaaS), which means that you don't have to manage servers or write APIs. Firebase's services are accessible via APIs, which you can call directly from your client apps.
 
 <iframe
   style={{ width: "100%", aspectRatio: "16/9" }}
@@ -165,11 +326,174 @@ You can write custom hooks that cover a wide range of use cases like form valida
   allowFullScreen="allowFullScreen"
 ></iframe>
 
+### Firebase SDK
+
+The Firebase Software Development Kit (SDK) is a library that allows developers to easily interact with Firebase's services within their applications. You can install the Firebase SDK into your project using npm or yarn, or by including it directly in your HTML for web projects.
+
+To install the Firebase SDK in a JavaScript project, you can use the following npm command:
+
+```bash
+npm install firebase
+```
+
+Once installed, you can import Firebase into your files and initialize an app like so:
+
+```js
+import * as firebase from "firebase/app";
+import "firebase/auth"; // for authentication
+import "firebase/database"; // for database
+
+const firebaseConfig = {
+  // your config here
+};
+
+firebase.initializeApp(firebaseConfig);
+```
+
+The `firebaseConfig` object includes the configuration details for your specific Firebase project, which you can obtain from the Firebase console.
+
+### Firebase Authentication
+
+Firebase Authentication provides a complete authentication solution for your application. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook, and Twitter, and more.
+
+Firebase Authentication also seamlessly integrates with other Firebase services and provides utilities for user management, secure password reset, account merging, and so on.
+
+Here's a basic example of how to use Firebase Authentication to create a new user with an email and password:
+
+```js
+import firebase from "firebase/app";
+import "firebase/auth";
+
+const auth = firebase.auth();
+
+async function createUser(email, password) {
+  try {
+    const userCredential = await auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+    // The user account has been created
+    const user = userCredential.user;
+    console.log("User created:", user);
+  } catch (error) {
+    console.error("Error creating user:", error);
+  }
+}
+```
+
+In this example, we use `auth.createUserWithEmailAndPassword(email, password)` to create a new user. The function returns a promise that resolves with a `UserCredential` object.
+
 ## 🗒️ Summary
+
+- Firebase Authentication offers a comprehensive identity solution for web apps, supporting multiple authentication methods including passwords, phone numbers, and identity providers like Google, Facebook, and GitHub.
+- Firebase Authentication is beneficial due to its secure, user-friendly system that can be integrated into a web app with just a few lines of code.
+- Key security concepts include understanding the distinction between authentication and authorization, the use of JSON Web Tokens (JWTs), and the management and storage of sensitive data.
+- Authentication verifies a user's identity, while authorization checks an authenticated user's permissions to determine their access privileges.
+- JWTs are an open standard for securely transmitting information between parties as a JSON object, often used for authentication and information exchange. JWTs are stateless and ideal for use in REST APIs.
+- Firebase Authentication ensures secure management and storage of user credentials. Sensitive information must always be encrypted and proper access controls followed.
+- Single Sign-On (SSO) with OAuth allows a user to use one set of login credentials to access multiple applications. Firebase Authentication supports SSO with OAuth.
+- Firebase SDK is a library that allows developers to interact with Firebase's services. Firebase Authentication can be used to create new users and manage user sessions.
+- React concepts include the use of the children prop to pass components as data, React context for passing data through the component tree, and custom hooks for reusing component logic.
+- Custom hooks, context, and authentication can be combined to effectively manage user sessions in a React application.
+- In Next.js, environment variables are a key part of development, allowing the app to behave differently based on the environment. Layouts in Next.js can be defined using a layout.js file and can be nested for complex UI structures.
 
 ## 📚 Knowledge Check
 
+<MultipleChoice
+  question="What is Firebase Authentication?"
+  choices={[
+    "A library for building user interfaces",
+    "A web application development framework",
+    "An identity solution for web applications",
+    "A database management system",
+  ]}
+  answer="3"
+/>
+<MultipleChoice
+  question="What is the main function of a JWT in Firebase Authentication?"
+  choices={[
+    "To style the web app",
+    "To manage user sessions",
+    "To create animations",
+    "To make API calls",
+  ]}
+  answer="2"
+/>
+<MultipleChoice
+  question="Which of the following is not a part of a JWT?"
+  choices={["Header", "Payload", "Signature", "Footer"]}
+  answer="4"
+/>
+<MultipleChoice
+  question="In React, what is the `children` prop used for?"
+  choices={[
+    "To pass components as data to other components",
+    "To style components",
+    "To make API calls",
+    "To manage state",
+  ]}
+  answer="1"
+/>
+<MultipleChoice
+  question="What is the purpose of React Context?"
+  choices={[
+    "To style components",
+    "To pass data through the component tree without having to pass props manually at every level",
+    "To make API calls",
+    "To manage animations",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="What are custom hooks in React?"
+  choices={[
+    "A type of styling method",
+    "User-defined hooks that allow you to extract component logic into reusable functions",
+    "A type of API call",
+    "A type of component",
+  ]}
+  answer="2"
+/>
+<MultipleChoice
+  question="In Next.js, where are environment variables typically stored?"
+  choices={[".env.local files", "Database", "API server", "Cloud storage"]}
+  answer="1"
+/>
+<MultipleChoice
+  question="What is a layout in Next.js?"
+  choices={[
+    "A type of database",
+    "The UI that's shared across multiple pages",
+    "An environment variable",
+    "A type of API call",
+  ]}
+  answer="2"
+/>
+<MultipleChoice
+  question="What is Firebase SDK?"
+  choices={[
+    "A library that allows developers to interact with Firebase's services",
+    "A type of database",
+    "A type of environment variable",
+    "A layout in Next.js",
+  ]}
+  answer="1"
+/>
+<MultipleChoice
+  question="What is Firebase?"
+  choices={[
+    "A library for building user interfaces",
+    "A type of environment variable",
+    "A platform that provides a variety of services for building web and mobile applications",
+    "A layout in Next.js",
+  ]}
+  answer="3"
+/>
+
 ## 🌐 Demo
+
+In this demo, we have added Firebase Authentication to our Next.js app. Only authenticated users can add a new event.
 
 - [Week 8 Demo code](https://github.com/warsylewicz/webdev2-demos/tree/master/app/week8)
 - [Live deployment](https://webdev2-demos.vercel.app/week8)
