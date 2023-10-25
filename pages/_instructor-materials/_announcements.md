@@ -196,3 +196,32 @@ For this online class, I recommend the following:
 For either option, I am available to help you with any questions you may have about the course content or assignments.
 
 Have a great week and see you in class!
+
+### Week 8
+
+Week 8: Firebase Authentication
+
+We've explored fetching data and managing state in our React applications, and now we're diving into the realm of authentication. This week, we will learn about Firebase Authentication, a comprehensive identity solution for web applications. Firebase Authentication provides support for multiple authentication methods such as passwords, phone numbers, and popular identity providers like Google, Facebook, and GitHub.
+
+Here are the key concepts we will cover this week:
+
+- **Firebase Authentication**: Understand how Firebase Authentication provides an end-to-end identity solution for web applications. Learn how Firebase handles user sessions, making your applications secure and easy to integrate.
+
+- **Security Skills**: Get to know the core concepts of web application security, including the difference between authentication and authorization, the use, and function of JSON Web Tokens (JWTs), and how to handle and store sensitive information securely.
+
+- **React Skills**: Deepen your understanding of key React concepts, including the use of children prop, React context for passing data through the component tree, and custom hooks for reusing component logic. We'll explore how these concepts can be applied in the context of user authentication.
+
+- **Next.js Skills**: Learn how to use environment variables to allow your Next.js app to behave differently based on the environment, and how to define layouts using a layout.js file.
+
+- **Firebase Skills**: Dive deeper into Firebase and explore its software development kit (SDK) and how to use it to interact with Firebase services. We'll also learn about Firebase Authentication in more detail, including how to manage user sessions.
+
+Week 8 Course Materials: https://webdev2.warsylewicz.ca/week8
+
+For this online class, I recommend the following:
+
+- 🥇 Best Option: Complete the Week 8 readings: https://webdev2.warsylewicz.ca/week8
+- 🥈 Second Best Option: Work on and finish the Week 7 Assignment: https://webdev2.warsylewicz.ca/week7/assignment
+
+For either option, I am available to assist you with any questions you may have about the course content or assignments.
+
+Have a fantastic week and hope to see you in class!
