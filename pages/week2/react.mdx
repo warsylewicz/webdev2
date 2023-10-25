@@ -84,6 +84,10 @@ If you look in any of the files in the `/app` folder, you'll see something like 
 
 Each of those classes are from a CSS framework called Tailwind CSS. Tailwind CSS is a utility-first CSS framework. It provides a set of utility classes that you can use to style your application. Hover your mouse over each class to see the specific CSS style. You will learn more about Tailwind CSS next week.
 
+### `globals.css` file
+
+In general, you should not be adding any CSS to your application. Instead, you should be using Tailwind CSS classes. However, if you do need to add some CSS, you can do so in the `/app/globals.css` file. This file is imported in the `/app/layout.js` file, and `/app/layout.js` is applied to every page in the application. This means that any CSS added to `/app/globals.css` will be applied to every page in the application. This is useful for adding global styles, like a global font family or global background color. Be careful not to add too much CSS to this file, as it can make your application difficult to maintain.
+
 ## Vercel
 
 Vercel is a company that provides a platform for deploying websites using a "serverless" architecture. It is the easiest way to deploy a Next.js application. We will be using Vercel to deploy our applications.

@@ -6,54 +6,65 @@ import { Steps } from "nextra-theme-docs";
 
 <Steps>
 
-### Open Visual Studio Code
+### Open a Terminal
 
-### Open the terminal in VS Code
-
-You can open the terminal in VS Code by going to View -> Terminal or by pressing Ctrl-` (backtick - the key is usually located at the top left of the keyboard).
+Open a terminal on your computer. On Windows, you can open a terminal by pressing the Windows key and typing "cmd" and pressing Enter.
 
 ### Navigate to the Desired Directory
 
-Change to the desired directory where you would like your project to be located. It's recommended to NOT use a cloud drive, e.g., do NOT use Google Drive, OneDrive, or Dropbox. E.g., if you are creating your project on the Desktop, use:
-`cd /Users/[windows account name]/Desktop`
+Change to the desired directory (folder) where you would like your project to be located. For example, if you want to create a project in a folder called `cprg306-projects`, you would type the following commands:
 
-Replace [windows account name] with your actual username.
+```shell
+C:
+cd \
+mkdir cprg306
+cd cprg306
+```
+
+<Callout type="error" emoji="⚠️">
+  Do not use a cloud drive (e.g., Google Drive, OneDrive, Dropbox) for your
+  project. This can cause problems with the `node_modules` folder because it
+  contains thousands of files and will cause the cloud drive to sync constantly.
+</Callout>
 
 ### Create the New Next.js Project
 
-Enter the following command:
-`npx create-next-app@latest`
+Enter the following command in the terminal to create a new Next.js project:
 
-The create-next-app application will scaffold a new Next.js project. For the assignments, here is how you must answer the questions:
-
+```shell
+npx create-next-app@latest
 ```
-What is your project named? cprg306-assignments
-Would you like to use TypeScript? No
-Would you like to use ESLint? Yes
-Would you like to use Tailwind CSS? Yes
-Would you like to use `src/` directory? No
-Would you like to use App Router? (recommended) Yes
-Would you like to customize the default import alias? No
-```
-
-Use the arrow keys to select the desired answer, then press Enter.
 
 import { Callout } from "nextra-theme-docs";
 
 <Callout emoji="😣">
   If you receive an error like the following: `npm ERR! enoent ENOENT: no such
   file or directory, lstat 'C:\Users\[profile-name]\AppData\Roaming\npm'`, you
-  may need to create a folder called npm in your AppData\Roaming folder. In
-  Windows File Explorer, navigate to C:\Users\\[profile-name]\AppData\Roaming
-  and create a new folder called `npm`.
+  may need to create a folder called `npm` in your Windows AppData\Roaming
+  folder. You can do this by typing the following command in the terminal:
+  `mkdir %AppData%\npm`
 </Callout>
+
+The create-next-app application will scaffold (create/generate) a new Next.js project. For the assignments, here is how you must answer the questions:
+
+| Question                                              | Answer              |
+| ----------------------------------------------------- | ------------------- |
+| What is your project named?                           | cprg306-assignments |
+| Would you like to use TypeScript?                     | No                  |
+| Would you like to use ESLint?                         | Yes                 |
+| Would you like to use Tailwind CSS?                   | Yes                 |
+| Would you like to use `src/` directory?               | No                  |
+| Would you like to use App Router? (recommended)       | Yes                 |
+| Would you like to customize the default import alias? | No                  |
+
+Use the arrow keys to select the desired answer, then press Enter.
 
 > Note: It is also possible to use the following non-interactive command to create a new Next.js project:
 > `npx create-next-app@latest cprg306-assignments --js --eslint --tailwind --no-src-dir --app --import-alias "@/*"`
 
-### Open the New Project in VS Code
+### Close the Terminal
 
-When create-next-app is finished, open the project in VS Code using File -> Open... and select the [app-name] folder that you have just created.
+You can close the terminal now. From now on, you will only use the terminal in VS Code.
 
 </Steps>
 
@@ -61,15 +72,21 @@ When create-next-app is finished, open the project in VS Code using File -> Open
 
 <Steps>
 
+### Open the New Project in VS Code
+
+Open the project in VS Code using File -> Open... and select the [app-name] folder that you have just created.
+
+### Open the terminal in VS Code
+
+You can open the terminal in VS Code by going to View -> Terminal or by pressing Ctrl-` (backtick - the key is usually located at the top left of the keyboard).
+
 ### Start the Development Server
 
-Navigate to the terminal in VS Code (which should still be open from the previous steps). Make sure you're in the project's root directory ([app-name]), then run the following command to start the Next.js development server:
+Run the following command to start the Next.js development server:
 
-```
+```shell
 npm run dev
 ```
-
-Your application will start, and it will typically be accessible in your web browser at http://localhost:3000.
 
 ### Open the Application in Your Web Browser
 
