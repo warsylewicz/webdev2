@@ -336,21 +336,7 @@ To install the Firebase SDK in a JavaScript project, you can use the following n
 npm install firebase
 ```
 
-Once installed, you can import Firebase into your files and initialize an app like so:
-
-```js
-import * as firebase from "firebase/app";
-import "firebase/auth"; // for authentication
-import "firebase/database"; // for database
-
-const firebaseConfig = {
-  // your config here
-};
-
-firebase.initializeApp(firebaseConfig);
-```
-
-The `firebaseConfig` object includes the configuration details for your specific Firebase project, which you can obtain from the Firebase console.
+Once installed, you can import Firebase into your files. See the assignment for more details.
 
 ### Firebase Authentication
 
@@ -358,30 +344,7 @@ Firebase Authentication provides a complete authentication solution for your app
 
 Firebase Authentication also seamlessly integrates with other Firebase services and provides utilities for user management, secure password reset, account merging, and so on.
 
-Here's a basic example of how to use Firebase Authentication to create a new user with an email and password:
-
-```js
-import firebase from "firebase/app";
-import "firebase/auth";
-
-const auth = firebase.auth();
-
-async function createUser(email, password) {
-  try {
-    const userCredential = await auth.createUserWithEmailAndPassword(
-      email,
-      password
-    );
-    // The user account has been created
-    const user = userCredential.user;
-    console.log("User created:", user);
-  } catch (error) {
-    console.error("Error creating user:", error);
-  }
-}
-```
-
-In this example, we use `auth.createUserWithEmailAndPassword(email, password)` to create a new user. The function returns a promise that resolves with a `UserCredential` object.
+In the assignment, you will learn how to use Firebase Authentication to manage user sessions.
 
 ## 🗒️ Summary
 
