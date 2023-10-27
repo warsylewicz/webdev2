@@ -225,3 +225,25 @@ For this online class, I recommend the following:
 For either option, I am available to assist you with any questions you may have about the course content or assignments.
 
 Have a fantastic week and hope to see you in class!
+
+### Week 9
+
+Week 9: Midterm Exam and Project
+
+Lots to do this week! Here's what's happening.
+
+1. Midterm Exam.
+
+The midterm exam is now available. Please go to our Brightspace shell and complete the exam there. You have until Nov. 6, 2023 to finish the exam.
+
+2. Project: Phase 1 Project Selection, Planning, and Design
+
+Review the [details of the project](https://webdev2.warsylewicz.ca/week9/project) and submit this [MS Form](https://forms.office.com/r/58ApykiZEK) with your project details. A group only needs to submit one form.
+
+3. Week 8 Assignment
+
+Don't forget that the Week 8 Assignment is due at the end of this week.
+
+All classes this week are work periods. Please attend class if you need help with the exam, project, or assignment.
+
+Thanks!
