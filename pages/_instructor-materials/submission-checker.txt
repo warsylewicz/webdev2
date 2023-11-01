@@ -53,13 +53,13 @@ async function checkSubmission(account, week) {
   }
 
   // This API is rated limited to 60 requests per hour
-  const repoNotEmpty = await checkUrl(
-    `https://api.github.com/repos/${account}/${repoName}/contributors`
-  );
+  //const repoNotEmpty = await checkUrl(
+  //  `https://api.github.com/repos/${account}/${repoName}/contributors`
+  //);
 
-  if (!repoNotEmpty) {
-    return { status: false, message: "no repo" };
-  }
+  //if (!repoNotEmpty) {
+  //  return { status: false, message: "no repo" };
+  //}
 
   const weekExistsInMaster = await checkUrl(
     `https://github.com/${account}/${repoName}/tree/master/app/week${week}/page.js`

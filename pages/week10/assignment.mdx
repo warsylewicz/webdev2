@@ -87,13 +87,20 @@ export const db = getFirestore();
 
 Create a new folder called `_services` in your `week10` folder. Create a new file called `shopping-list-service.js` in the `_services` folder.
 
+In the `shopping-list-service.js` file, add the following import statements:
+
+```js
+import { db } from "../_utils/firebase";
+import { collection, getDocs, addDoc, query } from "firebase/firestore";
+```
+
 ### Add the `getShoppingList` function
 
-First, you'll define an asynchronous function `getItems` that takes `userId` as a parameter. Inside this function, create an empty array `items` and a query `q` that points to the `items` subcollection of the `user` document with the given `userId` in the `users` collection. Then, use the `getDocs` function to fetch the documents from Firestore based on your query, storing the result in `querySnapshot`. Iterate over `querySnapshot` using `forEach`, and for each document, push an object into the items array that includes the document ID and data. Finally, return the `items` array from the function.
+This async function retrieves all items for a specific user from Firestore. It takes a `userId` as a parameter, and uses it to query a subcollection named `items` under a document in the `users` collection with the same `userId`. It fetches the documents in the `items` subcollection, and for each document, it adds an object to the items array containing the document ID and data. It then returns this `items` array.
 
 ### Add the `addItem` function
 
-Begin by defining an asynchronous function `addItem` that takes in `userId` and `item` as parameters. Within this function, first construct a reference `itemsCollection` to the `items` subcollection of the `user` document with the provided `userId` in the `users` collection. Then, use the `addDoc` function to add the `item` to this collection. `addDoc` will return a `DocumentReference` to the newly added document, which you store in `docRef`. Finally, return the `id` of the newly created document from the function.
+This function adds a new item to a specific user's list of items in Firestore. It takes a `userId` and an `item` as parameters. It uses the `userId` to reference the items subcollection of a document in the `users` collection, and then adds the `item` to this subcollection. It returns the id of the newly created document.
 
 </Steps>
 
