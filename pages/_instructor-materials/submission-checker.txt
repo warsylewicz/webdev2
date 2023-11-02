@@ -52,7 +52,7 @@ async function checkSubmission(account, week) {
     return { status: false, message: "no account" };
   }
 
-  // This API is rated limited to 60 requests per hour
+  // This API is rated limited to 60 requests per hour unless you authenticate with a token
   //const repoNotEmpty = await checkUrl(
   //  `https://api.github.com/repos/${account}/${repoName}/contributors`
   //);
