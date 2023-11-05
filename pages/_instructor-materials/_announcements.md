@@ -247,3 +247,24 @@ Don't forget that the Week 8 Assignment is due at the end of this week.
 All classes this week are work periods. Please attend class if you need help with the exam, project, or assignment.
 
 Thanks!
+
+### Week 10
+
+Week 10: Cloud Firestore
+
+Adding a database to our web app is the last piece of the puzzle. In this week, we'll learn about Cloud Firestore, a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud Platform. We'll learn how to use Cloud Firestore to store and sync data for client- and server-side development.
+
+Here are the key concepts we will cover this week:
+
+- **Cloud Firestore**: Learn how to structure data and perform CRUD (Create, Read, Update, Delete) operations using Cloud Firestore. We'll also explore how to use Firebase security rules to secure your database.
+
+- **Next.js Routing**: Learn how to use Next.js routing to create dynamic routes.
+
+Week 10 Course Materials: https://webdev2.warsylewicz.ca/week10
+
+For this online class, I recommend the following:
+
+- 🥇 Best Option: Take a break. You've earned it after the midterm and project (phase 1)!
+- 🥈 Second Best Option: Complete the Week 10 readings: https://webdev2.warsylewicz.ca/week10
+
+Have a fantastic week and hope to see you in class!

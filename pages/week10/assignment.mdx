@@ -34,7 +34,7 @@ Select "Start in production mode" and click "Enable".
 
 ### Configure Firestore rules
 
-Click on the "Rules" tab and replace the default rules with the following. These rules will only allow authenticated users (`request.auth != null`) to read and write to their own documents (`request.auth.uid == userId`).
+Click on the "Rules" tab and replace the default rules with the following. These rules will only allow authenticated users (`request.auth != null`) to read and write to their own documents (`request.auth.uid == userId`). These rules are "good enough" for security purposes.
 
 ```js
 rules_version = '2';
@@ -45,6 +45,35 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
         match /items/{itemId} {
           allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
+```
+
+Feel free to try the following more restrictive rules. However, you will need to ensure that your data structure matches the rules exactly.
+
+```js
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId && request.resource.data.size() == 0;
+
+      match /items/{itemId} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if request.auth != null && request.auth.uid == userId
+                          && request.resource.data.keys().hasOnly(['name', 'quantity', 'category'])
+                          && request.resource.data.name is string
+                          && request.resource.data.name.size() >= 1
+                          && request.resource.data.name.size() <= 50
+                          && request.resource.data.quantity is int
+                          && request.resource.data.quantity >= 1
+                          && request.resource.data.quantity <= 100
+                          && request.resource.data.category is string
+                          && request.resource.data.category in ['produce', 'dairy', 'bakery', 'meat', 'frozen foods', 'canned goods', 'dry goods', 'beverages', 'snacks', 'household', 'other'];
       }
     }
   }
