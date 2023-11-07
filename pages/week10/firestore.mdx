@@ -245,7 +245,15 @@ Dynamic routes are used when the exact segment names are not known ahead of time
   </FileTree.Folder>
 </FileTree>
 
-In this example, we define routes for `/`, `/users`, and a dynamic route for a user's profile page, e.g. `/users/user1`. The user's ID will be used to fetch the user's data from the database.
+In this example, we define routes for `/`, `/users`, and a dynamic route for a user's profile page, e.g. `/users/user1`. For a route like `/users/user1`, the `[id]` can be accessed in page.js using the `params` prop, e.g.
+
+```js
+export default function Page({ params }) {
+  return <h1>User id: {params.id}</h1>;
+}
+```
+
+### Catch-all Segments
 
 Adding `...` to the beginning of a folder name will make it a catch-all route. This means that all routes that match the folder name will be handled by the file. For example, if we add a file named `...` to the users's id folder, `/users/[...id]`, it will handle all routes that start with `/users/`, e.g. `/users`, `/users/user1`, `/users/user1/profile`, etc.
 
