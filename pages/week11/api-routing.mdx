@@ -1,17 +1,530 @@
-# 🚧 API Routing
+# API Routing
 
 ## TypeScript Skills
 
-## API Routing
+Now that you have a solid foundation in JavaScript, it's time to learn TypeScript. TypeScript is a superset of JavaScript that adds type annotations and other features to the language. It's a great way to catch errors early and make your code more readable.
 
-### REST Architecture
+Instead of providing the usual documentation, please read through [TypeScript for JavaScript Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html). It's a short guide that will help you understand the basics of TypeScript.
 
-### RESTful API
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/WlxcujsvcIY?si=oIpOfw3SrzIRSsK_"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+To add TypeScript in Next.js is easy! When creating a new project with `npx create-next-app@latest`, just say "yes" when asked if you want to use TypeScript.
+
+## API Routing with Next.js
+
+### Definition of REST and RESTful APIs
+
+REST stands for Representational State Transfer, a software architectural style that defines a set of constraints for creating web services. Web services that adhere to these constraints are called RESTful APIs.
+
+RESTful APIs are based on the following principles:
+
+- **Client-Server Architecture:** The client is responsible for the user interface and user experience, and the server manages the data. The separation allows development on both sides to progress independently.
+
+- **Stateless:** Each request from a client to a server must contain all the necessary information to understand and respond to the request. The server should not store anything about the latest HTTP request the client made. It must be provided with every request.
+
+- **Cacheable:** Responses from the server can be cached by the client to improve performance.
+
+- **Uniform Interface:** The method of communication between the client and server is uniform, meaning the same set of constraints is applied to the interaction.
+
+A RESTful API uses HTTP methods, which are typically `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, to perform operations. These methods correspond to read, create, update, and delete (or CRUD) operations, respectively.
+
+In the context of Next.js, we'll use these principles to build our API routes, allowing clients to interact with our server to create, read, update, and delete data.
+
+### How to Create an API Route
+
+Creating an API route in Next.js is as simple as creating a `route.ts` file in a directory. Although a `route.js` can go in any folder, it typically would be named `/api`. For example, if you create a file called `route.ts` in the `/app/api/hello` directory, you can access it at the `/api/hello` endpoint.
+
+```ts
+// /app/api/hello/route.ts
+
+export async function GET() {
+  const res = await fetch("https://data.mongodb-api.com/...", {
+    headers: {
+      "Content-Type": "application/json",
+      "API-Key": process.env.DATA_API_KEY,
+    },
+  });
+  const data = await res.json();
+
+  return Response.json({ data }); // convert to JSON
+}
+```
+
+The following HTTP methods are supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, and `OPTIONS`.
+
+### Creating Data with POST Requests
+
+The HTTP POST method is used to send data to a server to create a new resource. In a RESTful API, we typically use POST requests to create new data.
+
+Let's create an API route in Next.js that handles a POST request to create a new user. For the sake of this example, we'll use a simple array to store our users.
+
+```typescript
+export async function POST(request: Request) {
+  const newUser = await request.json();
+
+  // store in database
+  // ...
+  // update id
+  newUser.id = 1;
+
+  return new Response(JSON.stringify(newUser), { status: 201 });
+}
+```
+
+In this example, when a POST request is made to /api/users, we extract the newUser from the request body, store the user in the database, update the user's id, and return a response with a status of 201 (which means a new resource was successfully created) along with the newly created user data.
+
+### Reading Data with GET Requests
+
+### Updating Data with PUT/PATCH Requests
+
+### Deleting Data with DELETE Requests
+
+### Debugging API Routes
+
+Several tools exist to help you debug your API routes. The most common one is [Postman](https://www.postman.com/), which is a free tool that allows you to test your API routes and see the responses. VS Code has several extensions that can help you debug your API routes, e.g. [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/-MFiza7ZRzs?si=CRGN4t2p0Z8yFkNl"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
 
 ## Validation
 
+Validation is the process of checking if data is valid. It is an important part of any application because it helps prevent errors and improve the user experience. In this section, we will discuss how to validate data using a library called `zod`.
+
 ### zod
 
-https://github.com/redpangilinan/iotawise
+Zod is a TypeScript-first library for building schemas and validating JavaScript and TypeScript data. It supports complex object validation, nested schemas, transformation, and more.
 
-https://github.com/shadcn-ui/taxonomy
+To install `zod`, run the following command in your project directory.
+
+```bash
+npm install zod
+```
+
+To use `zod`, import the `z` object from the `zod` library.
+
+```ts
+import { z } from "zod";
+```
+
+The core of Zod is its ability to define schemas to match the shape of our data. Here's a simple example:
+
+```ts
+import { z } from "zod";
+
+const PersonSchema = z.object({
+  name: z.string(),
+  age: z.number(),
+  isMarried: z.boolean().optional(),
+});
+
+type Person = z.infer<typeof PersonSchema>;
+```
+
+In this example, `PersonSchema` is a Zod schema that matches an object with a `name` (string), `age` (number), and an optional `isMarried` (boolean) property. The `infer` keyword is used to create a `Person` type from the schema.
+
+#### Validating Data with Zod
+
+We can use the `parse` method provided by Zod to validate data against our schema:
+
+```ts
+try {
+  const data = { name: "John Doe", age: 30 };
+  const person = PersonSchema.parse(data);
+
+  console.log(person); // { name: 'John Doe', age: 30 }
+} catch (error) {
+  console.error(error);
+}
+```
+
+In this example, we're attempting to parse an object against our `PersonSchema`. If the object matches the schema, it's returned by the `parse` method. If it doesn't match, an error is thrown.
+
+Zod provides a flexible way to ensure your data matches the shape and type you expect, which can help catch errors early and improve code quality.
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/o4h8PUVy5J8?si=KuSmvDALpITlGPSR"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+## 🌐 Real-World Example
+
+Below is a real-world examples of a Next.js app that is more advanced that the examples presented so far. Nevertheless, it should still be approachable and understandable. We will use this project as a reference for the rest of the course.
+
+For this week, please read through the code of this project and try to understand how it works. You don't need to understand every single line of code, but try to get a general idea of how the code is structured and how the different parts of the app work together.
+
+### Iotawise
+
+Original GitHub Repository: [https://github.com/redpangilinan/iotawise](https://github.com/redpangilinan/iotawise)
+
+Forked GitHub Repository[https://github.com/warsylewicz/iotawise](https://github.com/warsylewicz/iotawise)
+
+Live Demo: [https://iotawise.rdev.pro/](https://iotawise.rdev.pro/)
+
+Iotawise is an open-source habit tracking app that lets you track daily habits and monitor your activity streaks and progress with little effort. The technology stack includes:
+
+- Next.js /app dir
+- TypeScript
+- Tailwind CSS
+- shadcn/ui Components
+- NextAuth.js
+- Prisma ORM
+- Zod Validations
+- PlanetScale Database (MySQL)
+
+For this week, let's focus on the API routes of one feature (activities) and how they are used to fetch and update data.
+
+#### API Routes
+
+The API routes for the activities feature are located in the [`/api/activities/route.ts`](https://github.com/warsylewicz/iotawise/blob/main/app/api/activities/route.ts) and [`/api/activities/[activityId]/route.ts`](https://github.com/warsylewicz/iotawise/blob/main/app/api/activities/%5BactivityId%5D/route.ts). The first file contains the routes for fetching and creating activities, while the second file contains the routes for updating and deleting activities. The paths are as follows:
+
+| Path                           | Method | Description           |
+| ------------------------------ | ------ | --------------------- |
+| `/api/activities`              | GET    | Fetch all activities  |
+| `/api/activities`              | POST   | Create a new activity |
+| `/api/activities/[activityId]` | PATCH  | Update an activity    |
+| `/api/activities/[activityId]` | DELETE | Delete an activity    |
+
+#### Fetching Activities
+
+Below is the `GET` function in `/api/activities/route.ts`.
+
+```ts
+export async function GET() {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return new Response("Unauthorized", { status: 403 });
+    }
+
+    // Get all of current user's activities
+    const activities = await db.activity.findMany({
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        colorCode: true,
+        createdAt: true,
+      },
+      where: {
+        userId: session.user.id,
+      },
+    });
+
+    return new Response(JSON.stringify(activities));
+  } catch (error) {
+    return new Response(null, { status: 500 });
+  }
+}
+```
+
+The function first checks if the user is authenticated. If not, it returns a 403 (Forbidden) status code. If the user is authenticated, it fetches all of the user's activities from the database and returns them as a JSON string. If there is an error, it returns a 500 (Internal Server Error) status code.
+
+The `Response` constructor is part of the [`Web Response API`](https://developer.mozilla.org/en-US/docs/Web/API/Response) and is used to create a response object that can be returned by an API route. The `Response` constructor takes two arguments: the body of the response and an object containing the response options. In the example above, the body is a JSON string containing the user's activities, and the response options contain the status code.
+
+Ignore the `auth` and `db` variables for now. We will discuss them in the next couple of weeks. For now, just know that they are used to authenticate the user and fetch data from the database.
+
+#### Creating Activities
+
+Below is the `POST` function in `/api/activities/route.ts`.
+
+```ts
+const activityCreateSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  colorCode: z.string(),
+});
+
+export async function POST(req: Request) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+      return new Response("Unauthorized", { status: 403 });
+    }
+
+    // Create new activity for authenticated user
+    const json = await req.json();
+    const body = activityCreateSchema.parse(json);
+
+    const activity = await db.activity.create({
+      data: {
+        name: body.name,
+        description: body.description,
+        colorCode: body.colorCode,
+        userId: session.user.id,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    return new Response(JSON.stringify(activity));
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 });
+    }
+
+    return new Response(null, { status: 500 });
+  }
+}
+```
+
+The function first checks if the user is authenticated. If not, it returns a 403 (Forbidden) status code. If the user is authenticated, it parses the request body and validates it using the `activityCreateSchema` schema. If the request body is invalid, it returns a 422 (Unprocessable Entity) status code along with the validation errors. If the request body is valid, it creates a new activity in the database and returns the activity ID as a JSON string. If there is an error, it returns a 500 (Internal Server Error) status code.
+
+The `Request` constructor is part of the [`Web Request API`](https://developer.mozilla.org/en-US/docs/Web/API/Request) and is used to create a request object that can be passed to an API route. The `Request` constructor takes two arguments: the request body and an object containing the request options. In the example above, the request body is a JSON string containing the activity data, and the request options contain the request method.
+
+The `zod` library is used to validate the request body. The `activityCreateSchema` schema defines the shape of the request body and the types of its properties. If the request body does not match the schema, the `zod` library throws a `z.ZodError` error. The `z.ZodError` error contains an `issues` property that contains the validation errors.
+
+#### Updating Activities
+
+Below are the `PATCH` and `DELETE` functions in `/api/activities/[activityId]/route.ts`.
+
+```ts
+const routeContextSchema = z.object({
+  params: z.object({
+    activityId: z.string(),
+  }),
+});
+
+export async function PATCH(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  try {
+    const { params } = routeContextSchema.parse(context);
+
+    if (!(await verifyActivity(params.activityId))) {
+      return new Response(null, { status: 403 });
+    }
+
+    const json = await req.json();
+    const body = activityPatchSchema.parse(json);
+
+    // Update the activity
+    await db.activity.update({
+      where: {
+        id: params.activityId,
+      },
+      data: {
+        name: body.name,
+        description: body.description,
+        colorCode: body.colorCode,
+        updatedAt: new Date(),
+      },
+    });
+
+    return new Response(null, { status: 200 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 });
+    }
+
+    return new Response(null, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  try {
+    const { params } = routeContextSchema.parse(context);
+
+    if (!(await verifyActivity(params.activityId))) {
+      return new Response(null, { status: 403 });
+    }
+
+    // Delete the activity
+    await db.activity.delete({
+      where: {
+        id: params.activityId as string,
+      },
+    });
+
+    return new Response(null, { status: 204 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 });
+    }
+
+    return new Response(null, { status: 500 });
+  }
+}
+```
+
+Both functions first check if the user is authenticated. If not, they return a 403 (Forbidden) status code. If the user is authenticated, they parse the request context and validate it using the `routeContextSchema` schema. If the request context is invalid, they return a 422 (Unprocessable Entity) status code along with the validation errors. If the request context is valid, they verify that the activity ID in the request context belongs to the authenticated user. If the activity ID does not belong to the authenticated user, they return a 403 (Forbidden) status code. If the activity ID belongs to the authenticated user, they parse the request body and validate it using the `activityPatchSchema` schema. If the request body is invalid, they return a 422 (Unprocessable Entity) status code along with the validation errors. If the request body is valid, they update or delete the activity in the database and return a 200 (OK) or 204 (No Content) status code. If there is an error, they return a 500 (Internal Server Error) status code.
+
+### API Consumption
+
+Let's take a look at how the API routes are consumed.
+
+#### Fetching Activities
+
+For the path `/dashboard/activities`, we find the following code in [`/app/dashboard/activities/page.tsx`](https://github.com/warsylewicz/iotawise/blob/main/app/dashboard/activities/page.tsx).
+
+```tsx
+import { getUserActivities } from "@/lib/api/activities";
+
+const activities = await getUserActivities(user.id);
+
+<div className="divide-y divide-border rounded-md border">
+  {activities.map((activity) => (
+    <ActivityItem key={activity.id} activity={activity} />
+  ))}
+</div>;
+```
+
+It is interesting to note that this page is a server component and does not use the directive `"use client"`. As such, it is rendered on the server and not on the client. This means that the `activities` variable is populated with data before the page is rendered. In addition, the call to the `getUserActivities` function is not wrapped in a `useEffect` hook.
+
+The `getUserActivities` function is defined in [`/lib/api/activities.ts`](https://github.com/warsylewicz/iotawise/blob/main/lib/api/activities.ts).
+
+```ts
+// Fetch all of the activities for the selected user
+export async function getUserActivities(
+  userId: string
+): Promise<UserActivities[]> {
+  const results: UserActivities[] = await db.$queryRaw`
+    SELECT
+      A.id,
+      A.name,
+      A.description,
+      A.color_code AS 'colorCode',
+      A.created_at AS 'createdAt',
+      SUM(AL.count) AS total_count
+    FROM
+      activities A
+    LEFT JOIN
+      activity_log AL ON A.id = AL.activity_id
+    WHERE
+      A.user_id = ${userId}
+    GROUP BY
+      A.id, A.name, A.description, A.color_code
+    ORDER BY
+      total_count DESC;`;
+
+  return results.map((result) => ({
+    ...result,
+    total_count: Number(result.total_count),
+  }));
+}
+```
+
+Because the `getUserActivities` function is a server function, it can access the database directly. It uses a raw SQL query to fetch all of the activities for the selected user. It then returns the results as an array of `UserActivities` objects.
+
+#### Creating Activities
+
+When the user clicks the "Add Activity" button, the `onClick` function in the component [/components/activity/activity-add-button.tsx](https://github.com/warsylewicz/iotawise/blob/main/components/activity/activity-add-button.tsx) is called.
+
+```tsx {1}
+<Button onClick={onClick} disabled={isLoading}>
+  {isLoading ? (
+    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+  ) : (
+    <Icons.add className="mr-2 h-4 w-4" />
+  )}
+  <span>Add activity</span>
+</Button>
+```
+
+```tsx
+async function onClick() {
+  setIsLoading(true);
+
+  const response = await fetch("/api/activities", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: "New Activity",
+      colorCode: "#ffffff",
+    }),
+  });
+
+  if (!response?.ok) {
+    setIsLoading(false);
+    setShowAddAlert(false);
+
+    return toast({
+      title: "Something went wrong.",
+      description: "Your activity was not created. Please try again.",
+      variant: "destructive",
+    });
+  }
+
+  toast({
+    description: "A new activity has been created successfully.",
+  });
+
+  const activity = await response.json();
+
+  setIsLoading(false);
+  setShowAddAlert(false);
+
+  router.push(`/dashboard/activities/${activity.id}/settings`);
+  router.refresh();
+}
+```
+
+The `onClick` function first sets the `isLoading` state to `true` to disable the button and show a loading spinner. It then makes a `POST` request to the `/api/activities` route to create a new activity. If the request is successful, it shows a success toast and redirects the user to the activity settings page. If the request is unsuccessful, it shows an error toast and sets the `isLoading` state to `false` to enable the button again.
+
+#### Updating Activities
+
+When the user edits an activity in the [/components/activity/activity-edit-form.tsx](https://github.com/warsylewicz/iotawise/blob/main/components/activity/activity-edit-form.tsx) component and clicks the "Save changes" button, the `onSubmit` function is called. The `onSubmit` function contains the following code.
+
+```tsx
+const response = await fetch(`/api/activities/${activity.id}`, {
+  method: "PATCH",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: data.name,
+    description: data.description,
+    colorCode: color,
+  }),
+});
+```
+
+The `onSubmit` function makes a `PATCH` request to the `/api/activities/[activityId]` route to update the activity.
+
+#### Deleting Activities
+
+The delete button can be found in the [/components/activity/activity-operations.tsx](https://github.com/warsylewicz/iotawise/blob/main/components/activity/activity-operations.tsx) component. When the user clicks the delete button, the `onClick` function is called. The `onClick` function contains the following code.
+
+```tsx
+const deleted = await deleteActivity(activity.id);
+
+async function deleteActivity(activityId: string) {
+  const response = await fetch(`/api/activities/${activityId}`, {
+    method: "DELETE",
+  });
+}
+```
+
+The `onClick` function makes a `DELETE` request to the `/api/activities/[activityId]` route to delete the activity.
+
+## 📖 Further Reading
+
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+- [REST API Tutorial](https://restfulapi.net/)
+- [JavaScript Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+- [Next.js Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
