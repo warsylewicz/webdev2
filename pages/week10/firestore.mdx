@@ -253,7 +253,7 @@ export default function Page({ params }) {
 }
 ```
 
-### Catch-all Segments
+#### Catch-all Segments
 
 Adding `...` to the beginning of a folder name will make it a catch-all route. This means that all routes that match the folder name will be handled by the file. For example, if we add a file named `...` to the users's id folder, `/users/[...id]`, it will handle all routes that start with `/users/`, e.g. `/users`, `/users/user1`, `/users/user1/profile`, etc.
 
