@@ -123,7 +123,7 @@ import { db } from "../_utils/firebase";
 import { collection, getDocs, addDoc, query } from "firebase/firestore";
 ```
 
-### Add the `getShoppingList` function
+### Add the `getItems` function
 
 This async function retrieves all items for a specific user from Firestore. It takes a `userId` as a parameter, and uses it to query a subcollection named `items` under a document in the `users` collection with the same `userId`. It fetches the documents in the `items` subcollection, and for each document, it adds an object to the items array containing the document ID and data. It then returns this `items` array.
 
