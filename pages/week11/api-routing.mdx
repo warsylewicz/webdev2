@@ -41,31 +41,54 @@ In the context of Next.js, we'll use these principles to build our API routes, a
 
 Creating an API route in Next.js is as simple as creating a `route.ts` file in a directory. Although a `route.js` can go in any folder, it typically would be named `/api`. For example, if you create a file called `route.ts` in the `/app/api/hello` directory, you can access it at the `/api/hello` endpoint.
 
-```ts
+```tsx
 // /app/api/hello/route.ts
-
 export async function GET() {
-  const res = await fetch("https://data.mongodb-api.com/...", {
-    headers: {
-      "Content-Type": "application/json",
-      "API-Key": process.env.DATA_API_KEY,
-    },
-  });
-  const data = await res.json();
-
-  return Response.json({ data }); // convert to JSON
+  return new Response("Hello, world!");
 }
 ```
 
-The following HTTP methods are supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, and `OPTIONS`.
+Consuming the API route from a component is as simple as making a request to the `/api/hello` endpoint.
 
-### Creating Data with POST Requests
+```tsx
+const response = await fetch("/api/hello");
+```
+
+For each HTTP verb (GET, POST, PUT, PATCH, DELETE), you can export a function with the same name. For example, if you want to create a POST route, you can export a function called `POST`. The function takes two arguments: a `Request` object a `params` prop. The `Request` object contains information about the request, and the `params` prop contains information about the request parameters.
+
+```typescript
+// update partial information of a user
+// request is a Request object and contains information about the request, e.g. request body
+// params is an object containing information about the request parameters, e.g. params.id
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: number } }
+) {
+  const id = params.id;
+  const newUser = await request.json();
+
+  if (newUser.name) {
+    // update name in database
+    // const result = await db.query("UPDATE users SET name = ? WHERE id = ?", newUser.name, id);
+  }
+}
+```
+
+The return value of the function is a `Response` object. The `Response` object contains information about the response, e.g. the response body and status code.
+
+```ts
+return new Response(JSON.stringify(newUser), { status: 201 });
+```
+
+In this example, we're returning a response with a status code of 201 (which means a new resource was successfully created) along with the newly created user data.
+
+### `POST` Requests
 
 The HTTP POST method is used to send data to a server to create a new resource. In a RESTful API, we typically use POST requests to create new data.
 
 Let's create an API route in Next.js that handles a POST request to create a new user. For the sake of this example, we'll use a simple array to store our users.
 
-```typescript
+```ts
 export async function POST(request: Request) {
   const newUser = await request.json();
 
@@ -80,11 +103,102 @@ export async function POST(request: Request) {
 
 In this example, when a POST request is made to /api/users, we extract the newUser from the request body, store the user in the database, update the user's id, and return a response with a status of 201 (which means a new resource was successfully created) along with the newly created user data.
 
-### Reading Data with GET Requests
+### `GET` Requests
 
-### Updating Data with PUT/PATCH Requests
+The HTTP GET method is used to request data from a specified resource. In a RESTful API, we typically use GET requests to fetch data.
 
-### Deleting Data with DELETE Requests
+```ts
+// fetch list of users
+export async function GET() {
+  // fetch users from database
+  // const users = await db.query("SELECT * FROM users");
+  const users: User[] = [
+    { id: 1, name: "Abe", age: 30 },
+    { id: 2, name: "Bob", age: 20 },
+  ];
+
+  console.log(`fetch users`);
+  return new Response(JSON.stringify(users), { status: 200 });
+}
+```
+
+In this example, when a GET request is made to /api/users, we fetch the users from the database and return a response with a status of 200 (which means the request was successful) along with the users data.
+
+### `PUT` Requests
+
+The HTTP PUT method is used to update an existing resource. In a RESTful API, we typically use PUT requests to update data.
+
+```ts
+// update all the information of a user
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: number } }
+) {
+  const newUser = await request.json();
+
+  const id = params.id;
+
+  // update user in database
+  // const result = await db.query("UPDATE users SET name = ?, age = ? WHERE id = ?", newUser.name, newUser.age, id);
+
+  console.log(`(full) update user ${id}`);
+  return new Response(null, { status: 204 });
+}
+```
+
+In this example, when a PUT request is made to /api/users/:id, we extract the newUser from the request body, update the user in the database, and return a response with a status of 204 (which means the request was successful but there is no content to return) along with the updated user data.
+
+### `PATCH` Requests
+
+The HTTP PATCH method is used to update partial information of an existing resource.
+
+```ts
+// update partial information of a user
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: number } }
+) {
+  const id = params.id;
+  const newUser = await request.json();
+
+  if (newUser.name) {
+    // update name in database
+    // const result = await db.query("UPDATE users SET name = ? WHERE id = ?", newUser.name, id);
+  }
+
+  if (newUser.age) {
+    // update age in database
+    // const result = await db.query("UPDATE users SET age = ? WHERE id = ?", newUser.age, newUser.id);
+  }
+
+  console.log(`(partial) update user ${id}`);
+  return new Response(null, { status: 204 });
+}
+```
+
+In this example, when a PATCH request is made to /api/users/:id, we extract the newUser from the request body, update the user in the database, and return a response with a status of 204 (which means the request was successful but there is no content to return).
+
+### `DELETE` Requests
+
+The HTTP DELETE method is used to delete an existing resource.
+
+```ts
+// delete a user
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: number } }
+) {
+  const id = params.id;
+
+  // delete user in database
+  // const result = await db.query("DELETE FROM users WHERE id = ?", newUser.id);
+
+  console.log(`delete user ${id}`);
+  return new Response(null, { status: 204 });
+}
+```
+
+In this example, when a DELETE request is made to /api/users/:id, we delete the user from the database and return a response with a status of 204 (which means the request was successful but there is no content to return).
 
 ### Debugging API Routes
 
