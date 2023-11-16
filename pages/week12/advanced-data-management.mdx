@@ -1,9 +1,126 @@
-# 🚧 Advanced Data Management
+import { Steps, Callout } from "nextra-theme-docs";
+
+# Advanced Data Management
 
 ## Relational Databases
 
+Relational databases have been the backbone of data storage for many years. They store data in a structured format, using tables with rows and columns. Each row represents a unique record, and each column represents a field of that record. This structure allows for efficient storage and retrieval of data and supports complex operations, like joining data from multiple tables.
+
+Relational databases use Structured Query Language (SQL) to interact with the data. SQL is a powerful language that can perform a variety of operations, including creating, reading, updating, and deleting records (known as CRUD operations).
+
+Because CRUD operations are so common, many web frameworks provide an Object Relational Mapping (ORM) layer that abstracts the database interactions. This allows developers to interact with the database using objects and methods, rather than writing SQL queries directly.
+
+This course will not go into the details of relational databases. We'll leave that for your database courses. Instead, we'll focus on how to use relational databases in your applications.
+
+### Serverless Relational Databases
+
+Serverless databases are a relatively new concept. They are fully managed databases that scale automatically and charge based on usage. This means you don't have to worry about provisioning servers, configuring backups, or scaling your database. You simply create a database and start using it. Some common serverless relational databases include:
+
+- [Supabase](https://supabase.com/)
+- [Vercel Postgres](https://vercel.com/docs/databases/vercel-postgres)
+- [Microsoft Azure SQL](https://azure.microsoft.com/en-us/products/azure-sql/database/)
+- [Google Cloud SQL](https://cloud.google.com/sql)
+
 ### Vercel Postgres
+
+Vercel Postgres is a serverless relational database that is fully managed by Vercel. It is based on PostgreSQL, which is one of the most popular open source relational databases. Because you have already deployed your application to Vercel, you can easily add a Vercel Postgres database to your project.
+
+#### Getting Started with Vercel Postgres
+
+Use this quickstart guide to get started with Vercel Postgres.
+
+[https://vercel.com/docs/storage/vercel-postgres/quickstart](https://vercel.com/docs/storage/vercel-postgres/quickstart)
+
+#### Vercel Postgres SDK
+
+Vercel Postgres provides a [Software Development Kit (SDK)](https://vercel.com/docs/storage/vercel-postgres/sdk) that allows you to interact with your database from your application. The `sql` function in the SDK allows you to execute SQL queries against your database.
+
+The `sql` function returns an object of the form `{ rows, fields }` where `rows` is an array of the rows returned by the query and `fields` is an array of the fields in the result set.
+
+This function creates a pooled connection to the database, so you don't have to worry about managing connections. Pooled connections are more efficient than creating a new connection for each query.
+
+```ts
+import { sql } from "@vercel/postgres";
+
+export async function GET() {
+  const result = await sql`SELECT * FROM users`;
+  return result.rows;
+}
+```
+
+In the example above, we use the `sql` function to execute a query that returns all the rows from the `users` table. The `result` object contains the rows returned by the query.
+
+<Callout type="info" emoji="💡">
+
+The `sql` function is a [tagged template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). The template strings are parsed by the `sql` function and the values are escaped to prevent SQL injection attacks!
+
+</Callout>
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/mpcE5rxgLxM?si=VSIbxBL9oD42B90T"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
 
 ## Object Relational Mapping (ORM)
 
+Object-Relational Mapping, more commonly known as ORM, is a programming technique that allows developers to interact with their database like they would with SQL. However, instead of writing SQL queries or stored procedures, with ORM, you directly use your programming language of choice.
+
+The ORM software will convert these lines of code into SQL and send it to the database to perform the requested operation. This allows developers to think and program in their language of choice, thus abstracting away the SQL language.
+
+### Understanding ORM
+
+ORM translates the database's tabular data into a format more fitting with the language you're working with. For instance, in JavaScript, a row in a database table can be represented as an object, where each attribute of the object corresponds to a column of the table.
+
+Consider a `createUser` function in JavaScript:
+
+```js
+function createUser(id, name, email) {
+  // Create a new user
+  // ... (ORM magic)
+
+  return {
+    id,
+    name,
+    age,
+  };
+}
+
+// Creating a new user
+let user = createUser(1, "John Doe", 35);
+```
+
+The ORM software will convert this code into SQL and send it to the database to create a new user. The ORM software will also convert the result of the query into a JavaScript object and return it to the caller.
+
+### Advantages of ORM
+
+ORM comes with several advantages:
+
+- Abstraction of SQL: With ORM, you don't need to write SQL code. The ORM system takes care of this. This can lead to faster development and less room for SQL syntax errors.
+- Database Agnostic: ORMs allow you to switch between different types of SQL databases (MySQL, SQLite, PostgreSQL, etc.) with minimal code changes.
+- Maintainability: Since the database operations are written in the same language as the rest of your code, it's easier to maintain and understand.
+- Use of Language Features: ORM lets you utilize the full power of your programming language to manipulate data, including functions, data types, loops, and more.
+- Advanced features: Many ORMs come with additional features like caching, transactions, and more.
+
 ### Prisma
+
+https://www.prisma.io/docs/concepts/overview/what-is-prisma
+
+https://vercel.com/docs/storage/vercel-postgres/using-an-orm#prisma
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/_ER9jHiylAo?si=FpSGylzPjvel9gKy"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+## 📖 Further Reading
+
+- [Vercel Postgres SDK](https://vercel.com/docs/storage/vercel-postgres/sdk)
+- [Prisma](https://www.prisma.io/)

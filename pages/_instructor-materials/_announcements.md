@@ -268,3 +268,41 @@ For this online class, I recommend the following:
 - 🥈 Second Best Option: Complete the Week 10 readings: https://webdev2.warsylewicz.ca/week10
 
 Have a fantastic week and hope to see you in class!
+
+### Week 11
+
+Week 11: API Routing
+
+Here are the key concepts we will cover this week:
+
+- **API Routing**: Implement API routes with Next.js, including how to handle dynamic routes. HTTP methods such as GET, POST, PUT, and DELETE will be covered.
+- **TypeScript**: Learn how to use TypeScript with Next.js, including how to define types and interfaces, and how to use them in your code.
+- **zod**: Learn how to use zod, a TypeScript-first schema declaration and validation library, to validate data in your Next.js API routes.
+
+Week 11 Course Materials: https://webdev2.warsylewicz.ca/week11
+
+For this online class, I recommend the following:
+
+- 🥇 Best Option: Complete the Week 11 readings: https://webdev2.warsylewicz.ca/week11
+- 🥈 Second Best Option: Work on and finish the Week 10 Assignment: https://webdev2.warsylewicz.ca/week10/assignment
+- 🥉 Third Best Option: Start working on your project!
+
+Hope you have a productive week and see you in class!
+
+### Week 12
+
+Week 12: Advanced Data Management
+
+Here are the key concepts we will cover this week:
+
+- **Vercel Postgres**: Learn how to use Vercel Postgres, a managed PostgreSQL database, to store and sync data.
+- **Prisma**: Learn how to use Prisma, an Object Relational Mapping (ORM) tool, to interact with your database. Avoid writing SQL queries and instead use Prisma's declarative API to perform CRUD operations.
+
+Week 12 Course Materials: https://webdev2.warsylewicz.ca/week12
+
+For this online class, I recommend the following:
+
+- 🥇 Best Option: Start working on your project!
+- 🥈 Best Option: Complete the Week 12 readings: https://webdev2.warsylewicz.ca/week12
+
+Hope you have a productive week and see you in class!
