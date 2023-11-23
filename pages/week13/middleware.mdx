@@ -4,7 +4,7 @@ import { Callout, Steps } from "nextra-theme-docs";
 
 Middleware is a powerful feature that allows you to run server-side code during the lifecycle of a request. Middleware functions can perform tasks like manipulating the request or response objects, handling cookies, checking authentication status, and more. Most modern web frameworks have some sort of middleware system.
 
-This week we'll learn how to create and use middleware in Next.js, and then we'll use middleware to create a custom authentication system for our application.
+This week we'll learn how to create and use middleware in Next.js, and then we'll learn how middleware can be used to implement authentication in our applications.
 
 ## Next.js Middleware
 
@@ -45,36 +45,6 @@ New documentation can be found here: https://authjs.dev/getting-started/introduc
 
 Old documentation can be found here: https://next-auth.js.org/getting-started/introduction
 
-### Email Authentication
-
-When a user signs up for your application using their email address, you need to send them an email containing a magic link. A magic link is a link that, when clicked, logs the user in. It's a great way to implement passwordless authentication. Auth.js supports magic links out of the box. You can read more about magic links here: https://authjs.dev/getting-started/providers/email-tutorial
-
-Here are the steps outlining how a magic link works in next-auth.js:
-
-<Steps>
-
-### User requests a magic link
-
-The user enters their email address into a form on your application. When they submit the form, a POST request is sent to your Next.js API route (usually /api/auth/send-magic-link) with their email address.
-
-### Application generates a unique token and sends an email
-
-The next-auth.js library creates a unique, one-time-use token associated with the user's email address. It then sends an email to the user containing a magic link. This link includes the token as a query parameter and points to your application (e.g., https://your-app.com/api/auth/callback/magic-link?token=abcd1234).
-
-### User clicks the magic link
-
-The user opens their email and clicks the magic link. This sends a GET request to the callback URL included in the link.
-
-### Application verifies the token and authenticates the user
-
-The next-auth.js library checks the token in the URL against the token stored on the server. If they match, next-auth.js knows the user is genuine. It then creates an authenticated session for the user. The token is invalidated as soon as it's used, ensuring it can't be used again.
-
-### User is redirected to the application
-
-Once the user is authenticated, next-auth.js redirects them to your application (typically the page they were on when they requested the magic link). They will now be logged in and can access authenticated routes and data.
-
-</Steps>
-
 ### Next-Auth.js Tutorials
 
 Here are some tutorials that will help you get started with Next-Auth.js:
@@ -96,3 +66,7 @@ Here are some tutorials that will help you get started with Next-Auth.js:
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowFullScreen="allowFullScreen"
 ></iframe>
+
+## Starter Templates
+
+As we move into more complex applications, you may find it helpful to use a starter template. For example, here are some starter templates that use Next-Auth.js and PlanetScale: https://vercel.com/templates?framework=next.js&auth=nextauth.js&database=planetscale

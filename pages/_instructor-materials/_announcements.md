@@ -306,3 +306,21 @@ For this online class, I recommend the following:
 - 🥇 Best Option: Complete the Week 12 readings: https://webdev2.warsylewicz.ca/week12
 
 Hope you have a productive week and see you in class!
+
+### Week 13
+
+Week 13: Middleware
+
+Here are the key concepts we will cover this week:
+
+- **Middleware**: Learn how to implement middleware, a function that runs before the route handler.
+- **NextAuth.js**: Learn how to use NextAuth.js, a powerful authentication library for Next.js, to add authentication to your Next.js application.
+
+Week 13 Course Materials: https://webdev2.warsylewicz.ca/week13
+
+For this online class, I recommend the following:
+
+- 🥇 Best Option: Keep working on your project!
+- 🥇 Best Option: Complete the Week 13 readings: https://webdev2.warsylewicz.ca/week13
+
+Hope you have a productive week and see you in class!
