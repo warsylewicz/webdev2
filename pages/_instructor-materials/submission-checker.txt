@@ -39,7 +39,7 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
 rl.on("close", () => process.exit(0));
 
 async function checkSubmission(account, week) {
-  const accountExists = await checkUrl(`https://github.com/${account}`);
+  
 
   if (week === "1") {
     return {
@@ -48,9 +48,6 @@ async function checkSubmission(account, week) {
     };
   }
 
-  if (!accountExists) {
-    return { status: false, message: "no account" };
-  }
 
   // This API is rated limited to 60 requests per hour unless you authenticate with a token
   //const repoNotEmpty = await checkUrl(
@@ -62,23 +59,32 @@ async function checkSubmission(account, week) {
   //}
 
   const weekExistsInMaster = await checkUrl(
-    `https://github.com/${account}/${repoName}/tree/master/app/week${week}/page.js`
+    `https://github.com/${account}/${repoName}/blob/master/app/week${week}/page.js`
   );
-  const weekExistsInMain = await checkUrl(
-    `https://github.com/${account}/${repoName}/tree/main/app/week${week}/page.js`
-  );
-
   if (weekExistsInMaster) {
     return { status: true, message: "master" };
-  } else if (weekExistsInMain) {
+  } 
+
+  const weekExistsInMain = await checkUrl(
+    `https://github.com/${account}/${repoName}/blob/main/app/week${week}/page.js`
+  );
+  if (weekExistsInMain) {
     return { status: true, message: "main" };
-  } else {
-    return { status: false, message: "no week" };
   }
+
+  const accountExists = await checkUrl(`https://github.com/${account}`);
+  if (!accountExists) {
+    return { status: false, message: "no account" };
+  }
+
+  return { status: false, message: "no week" };
+
+
 }
 
 const checkUrl = async (url) => {
   try {
+    console.log(`Checking ${url}`);
     const response = await fetch(url);
     return response.ok;
   } catch (error) {

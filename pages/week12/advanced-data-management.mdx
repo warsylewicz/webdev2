@@ -1,3 +1,5 @@
+import { Callout, Steps } from "nextra-theme-docs";
+
 # Advanced Data Management
 
 ## Relational Databases
@@ -158,6 +160,93 @@ ORM comes with several advantages:
 Prisma is an open-source ORM for Node.js and TypeScript. It supports various databases including PostgreSQL, MySQL, SQLite, and SQL Server. One of the key benefits of Prisma is its focus on type safety and the ability to auto-generate a client based on your database schema, thus reducing a lot of boilerplate and potential for human error.
 
 Read more about Prisma here: https://www.prisma.io/docs/concepts/overview/what-is-prisma
+
+Here are a few steps to help you get started with Prisma.
+
+<Steps>
+
+### Install the Prisma CLI
+
+The Prisma CLI is a command-line interface that allows you to interact with Prisma. To install it, run the following command:
+
+```shell
+npm install prisma -D
+```
+
+### Initialize Prisma
+
+Next, you need to initialize Prisma in your project. This will create a new prisma directory in your project root with a schema.prisma file. Run the following command:
+
+```shell
+npx prisma init
+```
+
+### Configure your database
+
+Open the prisma/schema.prisma file and update the datasource db block to point to your own database. Here's an example using MySQL on PlanetScale:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+```
+
+Next, define the DATABASE_URL in the .env file in your project root:
+
+```env
+DATABASE_URL="mysql://user:password@localhost:3306/mydb?schema=public"
+```
+
+### Define your data model
+
+In the prisma/schema.prisma file, you can define your data model. Here's an example:
+
+```prisma
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model User {
+  id    Int      @id @default(autoincrement())
+  email String   @unique
+  name  String?
+  posts Post[]
+}
+```
+
+In this example, we have two models: `Post` and `User`. The `Post` model has fields for `id`, `title`, `content`, `published`, `author`, and `authorId`. The `User` model has fields for `id`, `email`, `name`, and `posts`. The `author` field on the `Post` model is a relation to the `User` model. This is known as a _one-to-many_ relationship. A user can have many posts, but a post can only have one user.
+
+### Generate Prisma Client
+
+Prisma Client is an auto-generated database client that enables type-safe database access and reduces boilerplate. You can generate it using the following command:
+
+```shell
+npx prisma generate
+```
+
+### Push your schema to the database
+
+Normally, you can push your schema to the database using the following command:
+
+```shell
+npx prisma db push
+```
+
+However, because the command relies on the environment file being called `.env`, you'll need to install the dotenv package and then run the command like this:
+
+```shell
+npm install dotenv
+npx dotenv -e .env.local prisma db push
+```
+
+</Steps>
 
 ### Prisma and PlanetScale
 
