@@ -1,117 +1,6 @@
-import { Callout, Steps } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
 
-# Advanced Data Management
-
-## Relational Databases
-
-Relational databases have been the backbone of data storage for many years. They store data in a structured format, using tables with rows and columns. Each row represents a unique record, and each column represents a field of that record. This structure allows for efficient storage and retrieval of data and supports complex operations, like joining data from multiple tables.
-
-Relational databases use Structured Query Language (SQL) to interact with the data. SQL is a powerful language that can perform a variety of operations, including creating, reading, updating, and deleting records (known as CRUD operations).
-
-Because CRUD operations are so common, many web frameworks provide an Object Relational Mapping (ORM) layer that abstracts the database interactions. This allows developers to interact with the database using objects and methods, rather than writing SQL queries directly.
-
-This course will not go into the details of relational databases. We'll leave that for your database courses. Instead, we'll focus on how to use relational databases in your applications.
-
-### Serverless Relational Databases
-
-Serverless databases are a relatively new concept. They are fully managed databases that scale automatically and charge based on usage. This means you don't have to worry about provisioning servers, configuring backups, or scaling your database. You simply create a database and start using it. Some common serverless relational databases include:
-
-- [PlanetScale](https://planetscale.com/)
-- [Supabase](https://supabase.com/)
-- [Vercel Postgres](https://vercel.com/docs/databases/vercel-postgres)
-- [Microsoft Azure SQL](https://azure.microsoft.com/en-us/products/azure-sql/database/)
-- [Google Cloud SQL](https://cloud.google.com/sql)
-
-### PlanetScale MySQL
-
-PlanetScale MySQL is a serverless relational database that is fully managed by PlanetScale. It is based on MySQL, which is one of the most popular open source relational databases. PlanetScale MySQL is a good choice for students because it is free to use for up to 1B row reads/month, 10M row writes/month, and 5 GB of storage. It also supports unlimited tables, unlimited queries, and unlimited users. (Vercel Postgres is also free but it very limited.)
-
-#### Getting Started with PlanetScale MySQL
-
-Use this quickstart guide to get started with PlanetScale MySQL.
-
-[https://planetscale.com/docs/tutorials/planetscale-quick-start-guide](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide)
-
-#### Using SQL with PlanetScale MySQL
-
-PlanetScale MySQL uses the MySQL protocol, so you can use any MySQL client to connect to it.
-
-The first step is setting up the `.env.local` file with the database credentials. You can find these credentials in the PlanetScale dashboard.
-
-```bash
-DATABASE_HOST=aws.connect.psdb.cloud
-DATABASE_USERNAME=xxxxxxxxxxxxxxxx
-DATABASE_PASSWORD=************
-```
-
-Next, you'll need to install the PlanetScale database library. This library provides a wrapper around the MySQL client that handles the connection and authentication for you.
-
-```shell
-npm install @planetscale/database
-```
-
-Finally, you can use the library to connect to the database and run queries.
-
-```ts
-import { connect } from "@planetscale/database";
-
-const config = {
-  host: process.env.DATABASE_HOST,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-};
-
-async function getUsers() {
-  const conn = connect(config);
-  const { rows } = await conn.execute("SELECT * FROM users;");
-  return rows;
-}
-```
-
-In the example above, we're using the `@planetscale/database` library to connect to the database and run a query. The `connect` function takes a configuration object with the database credentials. It returns a connection object that can be used to run queries.
-
-The `execute` method takes a SQL query and returns an object with the results. The results object contains information about the query, including the number of rows affected, the insert ID, and the time it took to run the query. It also contains the rows returned by the query.
-
-```json
-{
-  "headers": ["id", "email", "name", "age", "role"],
-  "types": {
-    "id": "INT32",
-    "email": "VARCHAR",
-    "name": "VARCHAR",
-    "age": "INT32",
-    "role": "VARCHAR"
-  },
-  "fields": [
-    {
-      "name": "id",
-      "type": "INT32",
-      "table": "users",
-      "orgTable": "users",
-      "database": "webdev2-demo",
-      "orgName": "id",
-      "columnLength": 11,
-      "charset": 63,
-      "flags": 49667
-    },
-    ... more fields ...
-  ],
-  "rows": [
-    {
-      "id": 1,
-      "email": "cprg352+abe@gmail.com",
-      "name": "Abe",
-      "age": 20,
-      "role": "admin"
-    }
-  ],
-  "rowsAffected": 0,
-  "insertId": "0",
-  "size": 1,
-  "statement": "SELECT * FROM users;",
-  "time": 4.839211000000001
-}
-```
+# ORM and Middleware
 
 ## Object Relational Mapping (ORM)
 
@@ -254,6 +143,77 @@ The following YouTube playlist shows how to use Prisma with PlanetScale MySQL.
 
 https://www.youtube.com/playlist?list=PLlRapu2ErjJ9DGsGHRwhRlm1FJVSN3FK7
 
+## Middleware
+
+Middleware is a powerful feature that allows you to run server-side code during the lifecycle of a request. Middleware functions can perform tasks like manipulating the request or response objects, handling cookies, checking authentication status, and more. Most modern web frameworks have some sort of middleware system.
+
+This week we'll learn how to create and use middleware in Next.js, and then we'll learn how middleware can be used to implement authentication in our applications.
+
+## Next.js Middleware
+
+To implement middleware in Next.js, we need to create a file called `middleware.js` in the root of the project.
+
+Here is an example of a middleware function that redirects the user to the login page if they are not authenticated:
+
+```ts
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import { getSession } from "next-auth/client";
+
+export function middleware(request: NextRequest) {
+  const session = await getSession({ request });
+
+  if (!session) {
+    return NextResponse.redirect(new URL("/login", request.nextUrl));
+  }
+}
+```
+
+Please read through this short page on [middleware in Next.js](https://nextjs.org/docs/app/building-your-application/routing/middleware) or watch the video below.
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/NUHAc1wjL3A?si=LtbI50mvskMIJkBo"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+## Auth.js
+
+Auth.js (formerly NextAuth.js) is a library that makes it easy to add authentication to your Next.js application. It supports a wide variety of authentication providers, including email/password, OAuth, and more. It also supports a wide variety of databases, including MongoDB, Postgres, and Prisma ORM.
+
+New documentation can be found here: https://authjs.dev/getting-started/introduction
+
+Old documentation can be found here: https://next-auth.js.org/getting-started/introduction
+
+### Next-Auth.js Tutorials
+
+Here are some tutorials that will help you get started with Next-Auth.js:
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/w2h54xz6Ndw?si=8hNonqZsd-NQ2-vD"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/md65iBX5Gxg?si=dQRnlXYe3Oxt9rhH"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+## Starter Templates
+
+As we move into more complex applications, you may find it helpful to use a starter template. For example, here are some starter templates that use Next-Auth.js and PlanetScale: https://vercel.com/templates?framework=next.js&auth=nextauth.js&database=planetscale
+
 ## 🌐 Real-World Example
 
 Let return to the Iotawise project and see how PlanetScale MySQL and Prisma were used to build the backend. We will continue to focus on the _activities_.
@@ -365,8 +325,3 @@ await db.activity.delete({
 ```
 
 In this code, we're using the `activity.delete` method to delete an activity. The `where` attribute tells Prisma which activity to delete. In this case, we're using the `activityId` from the URL, and `as string` to tell TypeScript that it's a string.
-
-## 📖 Further Reading
-
-- [PlanetScale ](https://planetscale.com/docs/concepts/what-is-planetscale)
-- [Prisma](https://www.prisma.io/)

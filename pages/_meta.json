@@ -12,9 +12,9 @@
   "week8": "Week 8: Firebase Auth",
   "week9": "Week 9: Exam + Project Topic",
   "week10": "Week 10: Cloud Firestore",
-  "week11": "Week 11: API Routing",
-  "week12": "Week 12: Advanced Data Management",
-  "week13": "Week 13: Middleware",
+  "week11": "Week 11: API Implementation",
+  "week12": "Week 12: API Database Integration",
+  "week13": "Week 13: ORM and Middleware",
   "week14": "Week 14: Project",
   "week15": "Week 15: Project Showcase"
 }

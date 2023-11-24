@@ -271,11 +271,11 @@ Have a fantastic week and hope to see you in class!
 
 ### Week 11
 
-Week 11: API Routing
+Week 11: API Implementation
 
 Here are the key concepts we will cover this week:
 
-- **API Routing**: Implement API routes with Next.js, including how to handle dynamic routes. HTTP methods such as GET, POST, PUT, and DELETE will be covered.
+- **API Implementation**: Implement API routes with Next.js, including how to handle dynamic routes. HTTP methods such as GET, POST, PUT, and DELETE will be covered.
 - **TypeScript**: Learn how to use TypeScript with Next.js, including how to define types and interfaces, and how to use them in your code.
 - **zod**: Learn how to use zod, a TypeScript-first schema declaration and validation library, to validate data in your Next.js API routes.
 
@@ -309,12 +309,11 @@ Hope you have a productive week and see you in class!
 
 ### Week 13
 
-Week 13: Middleware
+Week 13: ORM and Middleware
 
 Here are the key concepts we will cover this week:
 
 - **Middleware**: Learn how to implement middleware, a function that runs before the route handler.
-- **NextAuth.js**: Learn how to use NextAuth.js, a powerful authentication library for Next.js, to add authentication to your Next.js application.
 
 Week 13 Course Materials: https://webdev2.warsylewicz.ca/week13
 
