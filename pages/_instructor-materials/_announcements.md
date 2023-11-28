@@ -291,12 +291,11 @@ Hope you have a productive week and see you in class!
 
 ### Week 12
 
-Week 12: Advanced Data Management
+Week 12: API Database Integration
 
 Here are the key concepts we will cover this week:
 
 - **PlanetScale MySQL**: Learn how to use PlanetScale MySQL, a managed MySQL database.
-- **Prisma**: Learn how to use Prisma, an Object Relational Mapping (ORM) tool, to interact with your database. Avoid writing SQL queries and instead use Prisma's declarative API to perform CRUD operations.
 
 Week 12 Course Materials: https://webdev2.warsylewicz.ca/week12
 
@@ -313,13 +312,14 @@ Week 13: ORM and Middleware
 
 Here are the key concepts we will cover this week:
 
+- **Prisma**: Learn how to use Prisma, an Object Relational Mapping (ORM) tool, to interact with your database. Avoid writing SQL queries and instead use Prisma's declarative API to perform CRUD operations.
 - **Middleware**: Learn how to implement middleware, a function that runs before the route handler.
 
 Week 13 Course Materials: https://webdev2.warsylewicz.ca/week13
 
 For this online class, I recommend the following:
 
-- 🥇 Best Option: Keep working on your project!
-- 🥇 Best Option: Complete the Week 13 readings: https://webdev2.warsylewicz.ca/week13
+- Keep working on your project!
+- Complete the Week 13 readings: https://webdev2.warsylewicz.ca/week13
 
 Hope you have a productive week and see you in class!
