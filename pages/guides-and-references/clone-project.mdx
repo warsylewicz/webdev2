@@ -1,0 +1,55 @@
+import { Steps } from "nextra-theme-docs";
+
+# Guide: Cloning a Next.js Project Repository
+
+## Clone Repository and Run Locally
+
+You can use the following steps to clone and run any Next.js project repository from GitHub. In this part, you will clone a Community Event app. Each week, the course content references this app and you will be able to see the changes in the app as you progress through the course.
+
+<Steps>
+
+### Clone the course demo repository
+
+Open GitHub Desktop and select "Clone a repository from the Internet...".
+
+Choose the tab "URL" and enter the following repository URL: https://github.com/warsylewicz/webdev2-community-events
+
+Choose a local path where you want to clone the repository to on your computer. It is recommended to NOT use a location that is synced with a cloud service such as OneDrive, Google Drive, or Dropbox.
+
+Click "Clone".
+
+### View and run the course demos
+
+Open Visual Studio Code and select "File" > "Open Folder..." and select the folder where you cloned the course demo repository to.
+
+For the question "Do you trust the authors of the files in this folder?" selected "Yes, I trust the authors".
+
+Open a terminal in VS Code by selecting "View" -> "Terminal" and type the following commands:
+
+```PowerShell
+npm install
+
+npm run dev
+```
+
+You should see output that shows something like this:
+
+```PowerShell
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000"
+```
+
+Ctrl-click on the URL to open the application in your browser. You should see a page where you can click "Week 1".
+
+To stop the application, press Ctrl-C in the terminal.
+
+**Congratulations! You have successfully cloned and run the course demo repository.**
+
+### Pulling latest changes
+
+As the course progresses, I may update this the code in the GitHub repository. You can pull the latest changes from the course demo repository to get the latest content.
+
+To do this, open the course demo repository in GitHub Desktop and click "Fetch origin" in the top right corner. Then, if available, click "Pull origin" to pull the latest changes.
+
+If "Pull origin" does not appear, that means you already have the latest changes.
+
+</Steps>

@@ -6,7 +6,7 @@ function AssignmentChecker({ week }) {
   const [status, setStatus] = useState({ loading: false, error: null });
 
   const repoName = `cprg306-assignments`;
-  // const repoName = `webdev2-demos`;
+  // const repoName = `webdev2-community-events`;
 
   const checkUrl = async (url) => {
     try {
@@ -38,28 +38,28 @@ function AssignmentChecker({ week }) {
     let weekExists =
       repoExists &&
       (await checkUrl(
-        `https://github.com/${account}/${repoName}/tree/master/app/week${week}/page.js`
+        `https://github.com/${account}/${repoName}/tree/master/app/week-${week}/page.js`
       ));
 
     weekExists =
       repoExists &&
       (weekExists ||
         (await checkUrl(
-          `https://github.com/${account}/${repoName}/tree/main/app/week${week}/page.js`
+          `https://github.com/${account}/${repoName}/tree/main/app/week-${week}/page.js`
         )));
 
     weekExists =
       repoExists &&
       (weekExists ||
         (await checkUrl(
-          `https://github.com/${account}/${repoName}/tree/master/src/app/week${week}/page.js`
+          `https://github.com/${account}/${repoName}/tree/master/src/app/week-${week}/page.js`
         )));
 
     weekExists =
       repoExists &&
       (weekExists ||
         (await checkUrl(
-          `https://github.com/${account}/${repoName}/tree/main/src/app/week${week}/page.js`
+          `https://github.com/${account}/${repoName}/tree/main/src/app/week-${week}/page.js`
         )));
 
     setStatus({

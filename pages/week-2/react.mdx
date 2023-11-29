@@ -1,0 +1,356 @@
+# Introduction to React
+
+## JS Skills Needed
+
+### `import`
+
+The import statement is used to import functions that are exported by another JavaScript file.
+
+```js
+// import myFunction from the file another-script.js
+import { myFunction } from "./another-script.js";
+```
+
+### `export`
+
+The export statement is used to export functions from a JavaScript file.
+
+```js
+// export myFunction
+export function myFunction() {
+  // ...
+}
+```
+
+### `export default`
+
+If a module exports a single value or wants to have a fallback value, export default is used.
+
+```js
+// Example:
+function myFunction() {
+  console.log("Hello World");
+}
+
+export default myFunction;
+```
+
+This sets `myFunction` as the default export of the file. When importing a default export, you don't need to use curly braces:
+
+```js
+// Example:
+import myFunction from "./another-script.js";
+```
+
+## Node.js Skills Needed
+
+Node.js is a JavaScript runtime environment that allows you to run JavaScript outside of the browser. It is used to run JavaScript on the server, but it can also be used to run JavaScript on your local machine. The following commands are run in a terminal.
+
+### `node`
+
+The `node` command is used to run a JavaScript file. We won't be using this command very often, but it's good to know about.
+
+### `npm`
+
+The `npm` (Node Package Manager) command is used to install and manage JavaScript packages. Packages are JavaScript files that can be imported into other JavaScript files. `npm` is also used to run scripts that are defined in a `package.json` file.
+
+```powershell
+# install a specific package
+npm install my-package
+
+# install all packages defined in package.json
+npm install
+
+# run a script defined in package.json
+npm run dev
+```
+
+### `npx`
+
+The `npx` command is used to run a package without installing it.
+
+```powershell
+# create a new Next.js project
+npx create-next-app@latest
+```
+
+## Tailwind CSS Skills Needed
+
+If you look in any of the files in the `/app` folder, you'll see something like the following:
+
+```js
+<main className="flex min-h-screen flex-col items-center justify-between p-24">
+```
+
+Each of those classes are from a CSS framework called Tailwind CSS. Tailwind CSS is a utility-first CSS framework. It provides a set of utility classes that you can use to style your application. Hover your mouse over each class to see the specific CSS style. You will learn more about Tailwind CSS next week.
+
+### `globals.css` file
+
+In general, you should not be adding any CSS to your application. Instead, you should be using Tailwind CSS classes. However, if you do need to add some CSS, you can do so in the `/app/globals.css` file. This file is imported in the `/app/layout.js` file, and `/app/layout.js` is applied to every page in the application. This means that any CSS added to `/app/globals.css` will be applied to every page in the application. This is useful for adding global styles, like a global font family or global background color. Be careful not to add too much CSS to this file, as it can make your application difficult to maintain.
+
+## Vercel
+
+Vercel is a company that provides a platform for deploying websites using a "serverless" architecture. It is the easiest way to deploy a Next.js application. We will be using Vercel to deploy our applications.
+
+## React Skills Needed
+
+### JSX
+
+JSX stands for JavaScript XML. It is a syntax extension for JavaScript, developed by Facebook, and is used with libraries and frameworks like React to describe what the user interface should look like. By using JSX, we can write HTML structures in the same file that contains JavaScript code.
+
+JSX is not mandatory for writing React applications, but it makes the code more readable and easier to write, which is why it's widely adopted by the React community. It needs to be transpiled into regular JavaScript using tools like Babel before it can be run in a browser.
+
+**Rules for JSX:**
+
+- JSX tags have to be closed, either with a closing tag or with a self-closing tag.
+- JSX tags can only return a single parent element, e.g. this is not allowed: `return <h1>Heading</h1><p>Paragraph</p>`.
+- curly braces `{}` are used to embed JavaScript expressions in JSX.
+
+> In JSX, you have to use `className` instead of `class` to add CSS classes to HTML elements. This is because JSX is closer to JavaScript than to HTML, and `class` is a reserved keyword in JavaScript.
+
+**Examples:**
+
+```js
+// Example 1: JSX expression
+const element = <h1>Hello, world!</h1>;
+
+// Example 2: function that returns a JSX expression using a fragment (<>...</>) to return multiple elements
+function MyHeading() {
+  return (
+    <>
+      <h1>Hello, world!</h1>
+      <p>3 + 4 = {3 + 4}</p>;
+    </>
+  );
+}
+```
+
+### Components
+
+A component is a JavaScript function and are the building blocks of React applications. They are reusable pieces of code that can be used to build user interfaces. Components can be nested inside other components, i.e. just like a function can call another function, to create more complex components. Components can also be reused across different applications.
+
+```js copy
+// returns: <div><h1>Hello, world!</h1><p>3 + 4 = 7</p></div>
+export default function Page() {
+  return (
+    <div>
+      <MyHeading />
+      <MyParagraph />
+    </div>
+  );
+}
+
+// returns: <h1>Hello, world!</h1>
+function MyHeading() {
+  return <h1>Hello, world!</h1>;
+}
+
+// returns: <p>3 + 4 = 7</p>
+function MyParagraph() {
+  let a = 3;
+  let b = 4;
+
+  return (
+    <p>
+      {a} + {b} = {a + b}
+    </p>
+  );
+}
+```
+
+Need help understanding this example? Try the following AI prompt:
+
+> Provide a short explanation of the following code for a beginner. Explain the use of components in this example. <br /> [paste the code from the example here]
+
+## Next.js Skills Needed
+
+### Next.js project structure
+
+Next.js provides the framework and tools to build a React application. It also provides a project structure that is optimized for Next.js applications. The following is the project structure for a Next.js application.
+
+- `/.git`: A hidden folder that git uses to store all the metadata for the repository. This includes objects representing the project's content, references to commit objects, a HEAD file, and more.
+- **`/app`**: The new App Router folder containing all pages and components.
+- `/node_modules`: This is where npm (Node Package Manager) stores the packages (libraries, frameworks, plugins, etc.) that your project depends on, as specified in your package.json file. These dependencies are installed when you run npm install. The directory can contain thousands of subdirectories, each housing a different package, which is why it's often excluded from version control using .gitignore.
+- `/public`: A directory where you can put any static resources. Files within this folder will be served on / path, e.g. /public/image.jpg will be served on https://example.com/image.jpg.
+- `.eslintrc.json`: The configuration file for ESLint, a tool that identifies and reports on patterns in JavaScript to help you avoid bugs and make your code more consistent.
+- `.gitignore`: A file where you specify the files or directories that you do not want to track in Git.
+- `jsconfig.json`: Provides a way to set compiler options and tell the JavaScript language service how to interpret the files in your project.
+- `next.config.js`: A configuration file for Next.js. You can adjust various settings of your Next.js application, like custom webpack configurations, environment variables, etc.
+- `package-lock.json`: Automatically generated by npm. It describes the exact tree that was generated when you last ran npm install. It helps to ensure that the dependencies remain the same on all systems the project is installed on.
+- `package.json`: Lists the packages your project depends on, specifies versions of a package that your project can use, and makes your build reproducible, so that you can share your project with others.
+- `postcss.config.js`: A configuration file for PostCSS, a tool for transforming styles with JS plugins. These plugins can lint your CSS, support variables and mixins, transpile future CSS syntax, inline images, and more.
+- `README.md`: A text file that introduces and explains a project. It contains information about the project, like how to install and use the project, the problems it solves, and so on.
+- `tailwind.config.js`: The configuration file for Tailwind CSS, a utility-first CSS framework. You can customize your design constraints here, like colors, typography, spacings, etc.
+
+For this course, the only files you need to worry about are the ones in the `/app` folder.
+
+### Routing and pages
+
+Next.js uses a file-system based router. This means that the file system is used to define the routes in a Next.js application. For example, if you create a file called `/app/about/page.js` in your project, it will be accessible at `https://example.com/about`. In addition, a page is unique to a route, i.e. you can't have two pages with the same name in different folders. This is because the route is based on the file path.
+
+A page is created by exporting a React component from a page.js JavaScript file in the `/app` folder. The component is then rendered when the route is visited. For example, the following code creates a page at `https://example.com/about`:
+
+```js
+// /app/about/page.js
+export default function About() {
+  return <h1>About</h1>;
+}
+```
+
+### Next.js `Link` component
+
+The `<Link>` component in Next.js is an extension of the standard HTML `<a>` tag, specifically designed to support client-side navigation and prefetching between routes in a Next.js application. Prefetching allows the browser to load the next page in the background, which can improve load times.
+
+To use the `<Link>` component, it needs to be imported from next/link, and the href prop must be provided to specify the target route.
+
+Here's a basic usage example in a React component:
+
+```js
+import Link from "next/link";
+
+export default function Navigation() {
+  return (
+    <nav>
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+    </nav>
+  );
+}
+```
+
+## 🌐 Demo
+
+Demo code: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week-2.
+
+Live deployment: https://webdev2-demos.vercel.app/week-2
+
+## 🗒️ Summary
+
+To recap, here are the key points we covered in this lesson:
+
+- **JavaScript Skills:** Knowledge of `import`, `export`, and `export default` statements is necessary. These are used to import or export functions from or to other JavaScript files.
+- **Node.js Skills:** Familiarity with commands like `npm` and `npx` is needed. `npm` installs and manages JavaScript packages, and `npx` runs a package without installing it.
+- **Tailwind CSS Skills:** Introduced to Tailwind CSS, a utility-first CSS framework used for styling applications. More detailed learning is required in the following week.
+- **Vercel:** Vercel provides a platform for deploying websites with a "serverless" architecture, making it the ideal choice for deploying Next.js applications.
+- **React Skills:** Knowledge of JSX (JavaScript XML), a syntax extension for JavaScript that allows HTML-like code in JavaScript is required. Also, understanding of components, the reusable building blocks of React applications, is necessary.
+- **Next.js Skills:** Understanding of the structure of a Next.js project, which includes important files and folders such as `/app` and `package.json`. Also, knowledge of the `Link` component, which is used to navigate between pages in a Next.js application.
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info" emoji="️🐣">
+  Don't worry if you don't know all of these things just yet! We'll learn more
+  about them as we go and repeat them often.
+</Callout>
+
+## 📚 Knowledge Check
+
+import MultipleChoice from "/components/MultipleChoice";
+
+<MultipleChoice
+  question="1. What does the 'npm install' command do?"
+  choices={[
+    "It installs Node.js on your system.",
+    "It installs the specified package in your project and saves it in the package.json dependencies.",
+    "It installs npx on your system.",
+    "It installs all packages specified in package.json into a local node_modules folder.",
+  ]}
+  answer="4"
+/>
+
+<MultipleChoice
+  question="2. How do you create a new Next.js project called my-app using the latest version of create-next-app?"
+  choices={[
+    "npm create-next-app@latest my-app",
+    "npm install create-next-app@latest my-app",
+    "npx create-next-app@latest my-app",
+    "npm new create-next-app@latest my-app",
+  ]}
+  answer="3"
+/>
+
+For the following question, consider this code which contains an error:
+
+```js
+function welcomeMessage() {
+  return (
+    <div className="welcome-message">
+      <h1>Welcome to our app!</h1>
+      <p>We hope you enjoy your stay.</p>
+    </div>
+  );
+}
+```
+
+<MultipleChoice
+  question="3. What is the error?"
+  choices={[
+    "The WelcomeMessage function is not exported.",
+    "The returned JSX is not wrapped in parentheses.",
+    "It's not possible to return two elements: h1 and p",
+    "The function name must begin with a capital letter.",
+  ]}
+  answer="4"
+/>
+
+<MultipleChoice
+  question="4. What is the purpose of the import keyword in JavaScript?"
+  choices={[
+    "To include code from another JavaScript file.",
+    "To export code to another JavaScript file.",
+    "To delete code from the current JavaScript file.",
+    "None of the above.",
+  ]}
+  answer="1"
+/>
+
+<MultipleChoice
+  question="5. Which of the following is a correct way to define a functional component in React?"
+  choices={[
+    "function Component() { return <p>Hello</p>; }",
+    "function Component { return <p>Hello</p>; }",
+    'function Component() { return "Hello"; }',
+    "function Component = () { return <p>Hello</p>; }",
+  ]}
+  answer="1"
+/>
+
+## 🏃 Activity
+
+The code below contains exactly 3 errors. Find and fix the errors so that the code runs without any errors. The error messages displayed are quite cryptic, so try to rely on your own knowledge of React to find the errors.
+
+import Sandbox from "components/Sandbox";
+import { files, filesSolution } from "./activity.js";
+
+<Sandbox files={files} />
+
+### 💡 Hints
+
+1. page.js does not have any errors.
+
+2. Try the following AI prompts:
+
+> I am a student learning React with the Next.js framework. I have been given a React component that has exactly 3 errors. Give me one hint to help me find the errors. Do not tell me anything more than the hint. I will use the hint to find the errors myself. <br/ > // page.js <br /> [paste the code from page.js here] <br /><br /> // nav-bar.js <br /> [paste the code from nav-bar.js here]
+
+> Give me 3 hints.
+
+> Give me the solution.
+
+### ✅ Solution
+
+<Sandbox files={filesSolution} />
+
+## 🌐 Community Events App
+
+Last week you cloned the Community Events app. This week, please read through the code for Week 2 and try to understand how it works. Focus on how the `Page` component imports and uses the `EventList` component.
+
+Learning to read and understand code is an important skill for developers. It's also a skill that takes time to develop. Don't worry if you don't understand everything right away. Just try to understand as much as you can.
+
+- [Week 2 Code](https://github.com/warsylewicz/webdev2-community-events/tree/master/app/week-2)
+- [Live deployment](https://webdev2-demos.vercel.app/week-2)
+
+## 📖 Further Reading
+
+- [React Components](https://react.dev/learn/your-first-component)
+- [Importing and Exporting Components](https://react.dev/learn/importing-and-exporting-components)
+- [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+- [`<Link Component>`](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#link-component)

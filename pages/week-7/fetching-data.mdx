@@ -1,0 +1,555 @@
+import { Callout, Steps } from "nextra-theme-docs";
+import MultipleChoice from "components/MultipleChoice";
+import Sandbox from "components/Sandbox";
+
+# Fetching Data
+
+Fetching data is a crucial aspect of many modern web applications. It involves retrieving data from a source, typically a server or an API (Application Programming Interface), and using that data to update your application's state or display on the user interface. Fetching data allows your application to be dynamic, displaying up-to-date information from databases, other websites, or user inputs. In this section, we'll explore the fundamental skills and concepts needed to fetch data effectively, starting with understanding HTTP and CORS, followed by mastering important JavaScript skills related to asynchronous operations and error handling, and finally applying these concepts in a React context using the useEffect hook.
+
+## Web Development Skills
+
+Web development skills form the bedrock of any application that interacts with the internet, making them a crucial addition to our curriculum. This is the first time we're including this section because these skills, such as understanding HTTP and CORS, while not specific to JavaScript, are foundational to effectively fetching data from APIs.
+
+### Understanding HTTP
+
+HTTP, or Hypertext Transfer Protocol, is the protocol used for transferring data over the internet. It defines a set of rules for how messages should be formatted and transmitted, and what actions web servers and browsers should take in response to various commands. Understanding HTTP is key to web development because it's the protocol used when making requests to APIs and receiving responses.
+
+- **Request:** An HTTP request is made when you try to access data from a server. This could be when you're loading a webpage, submitting a form, or making an API call from your application. Each request contains a method, a URL, headers, and sometimes, a body with additional information.
+
+- **Response:** An HTTP response is what the server sends back after processing your request. The response includes a status code, which tells you whether the request was successful or not, headers with metadata, and usually, a body with the requested data or a message detailing any errors.
+
+#### HTTP Methods
+
+HTTP methods, also known as HTTP verbs, are commands that indicate the desired action to be performed on a given resource. Each method represents a different type of operation and is used in different scenarios in web development.
+
+Here's a table with a summary of the most commonly used HTTP methods:
+
+| HTTP Method | Description                                                                   | Use in HTML or JS | Examples                                                                  |
+| ----------- | ----------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------- |
+| GET         | Requests data from a specified resource.                                      | Both HTML and JS  | Retrieving a webpage, fetching data from an API.                          |
+| POST        | Sends data to a server to create a new resource.                              | Both HTML and JS  | Submitting a form, creating a new database entry.                         |
+| PUT         | Updates a specified resource with new data.                                   | JS only           | Updating user profile information, changing a setting.                    |
+| DELETE      | Deletes a specified resource.                                                 | JS only           | Deleting a blog post, removing an item from a cart.                       |
+| HEAD        | Similar to GET, but only requests the headers (not the body) of the resource. | JS only           | Checking if a webpage exists, testing link validity.                      |
+| PATCH       | Partially updates a specified resource with new data.                         | JS only           | Updating a single field of a resource, such as changing an email address. |
+
+Please note that while HTML forms only support GET and POST methods, JavaScript can use all these methods, providing more flexibility when interacting with APIs or other resources.
+
+<Callout type="info" emoji="😅">
+
+This week we will only focus on the GET method, but you can learn more about the other methods in a few weeks when we cover API routes.
+
+</Callout>
+
+#### HTTP Status Codes
+
+HTTP status codes are three-digit codes returned by a server in response to an HTTP request made by a client. These codes indicate the result of the request, providing a quick way to understand if the request was successful, and if not, what kind of error occurred.
+
+| Status Code | Name                  | Description                                                                                    | Example                                                                     |
+| ----------- | --------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 200         | OK                    | The request was successful, and the server returned the requested data.                        | Successfully fetching data from an API.                                     |
+| 201         | Created               | The request was successful, and a new resource was created as a result.                        | Successfully creating a new database entry.                                 |
+| 204         | No Content            | The server successfully processed the request, but is not returning any content.               | Successfully deleting an item, where no content is returned.                |
+| 400         | Bad Request           | The server could not understand the request due to invalid syntax.                             | Sending a malformed request to an API.                                      |
+| 401         | Unauthorized          | The request requires user authentication.                                                      | Trying to access protected resources without proper authorization.          |
+| 403         | Forbidden             | The server understood the request, but it refuses to authorize it.                             | Trying to delete a database entry without having the necessary permissions. |
+| 404         | Not Found             | The server can't find the requested resource.                                                  | Trying to fetch a webpage or a resource that doesn't exist.                 |
+| 500         | Internal Server Error | The server encountered an unexpected condition which prevented it from fulfilling the request. | An error in server-side scripting causing a request to fail.                |
+
+These status codes are part of the HTTP standard, and they are used universally in web development. Understanding them can help you debug issues when making HTTP requests.
+
+#### HTTP Headers
+
+HTTP headers are an integral part of HTTP requests and responses. They carry additional information about the request or the response, or about the object sent in the message body. Headers can include fields indicating the requested page, the server or client sending the request, the date of the request, the type of data returned, and more. Understanding HTTP headers is key to controlling and diagnosing how your HTTP requests and responses are handled.
+
+Here are some common headers that are included in HTTP requests and responses:
+
+**Request Headers:**
+
+- **`Accept`:** Indicates the type of data the client is expecting in the response. For example, `Accept: application/json` indicates that the client is expecting a JSON response.
+- **`Content-Type`:** Indicates the type of data sent in the request body. For example, `Content-Type: application/json` indicates that the request body contains JSON data.
+- **`Authorization`:** Contains credentials to authenticate a user-agent with a server, usually after the server has responded with a 401 Unauthorized status.
+- **`User-Agent`:** Contains information about the user-agent originating the request, such as the browser type, operating system, and software version.
+
+**Response Headers:**
+
+- **`Access-Control-Allow-Origin`**: Specifies which websites are allowed to view the response. This is used in CORS (Cross-Origin Resource Sharing) headers.
+- **`Content-Type`**: The Media type of the body of the response, like application/json, text/html, etc.
+- **`Set-Cookie`**: Sends a cookie from the server to the user's browser.
+- **`WWW-Authenticate`**: Defines the authentication method that should be used to access a resource after a 401 Unauthorized status has been sent.
+
+These are just a few examples. There are many more HTTP headers, and they provide a wide range of information about the request and response.
+
+<Callout type="info" emoji="🏊">
+#### Activity: Explore HTTP Transactions
+
+1. Open your favorite browser and navigate to a website of your choice (for example, `https://www.example.com`).
+
+2. Right-click anywhere on the webpage and click on "Inspect" or "Inspect Element" to open the developer tools.
+
+3. Head over to the "Network" tab in the developer tools.
+
+4. Refresh the webpage. You'll see a list of network requests made by the page while loading. Each request represents an HTTP transaction.
+
+5. Click on any one of the requests in the list. You'll see a panel with several tabs like "Headers", "Preview", "Response", etc.
+
+6. In the "Headers" tab, you'll see detailed information about the request and response. Here's what to look for:
+
+   - **General:** This section provides information about the request URL, the HTTP method used, and the status code of the response.
+   - **Response Headers:** Here you'll see the headers that came back with the response from the server.
+   - **Request Headers:** These headers were sent with your HTTP request. You can see your `User-Agent` string, `Accept` types, and more.
+
+7. Spend some time exploring different requests and their respective headers. Try to find examples of different HTTP methods (like GET and POST), look at the status codes returned by the server, and observe the different types of information provided in the request and response headers.
+
+Remember, the goal of this activity is to become familiar with how HTTP transactions occur in real-time, the different components of these transactions, and how to inspect them using your browser's developer tools.
+
+</Callout>
+
+### Cross-Origin Resource Sharing (CORS)
+
+Cross-Origin Resource Sharing, or CORS, is a mechanism that allows resources on a web page to be requested from another domain outside the domain from which the first resource was served. This is a security feature that prevents malicious scripts from accessing data from other websites. For example, if you're on `https://www.example.com`, a script on that page can't make a request to `https://www.google.com` unless the server at `https://www.google.com` explicitly allows it.
+
+From the point of view of a web application developer, CORS is a mechanism that allows you to make requests to APIs from your application. Without CORS, you wouldn't be able to fetch data from an API, and your application would be limited to only displaying data from your own server.
+
+## JS Skills
+
+In order to fetch data from an API, you'll need to master some fundamental JavaScript skills. These include understanding asynchronous programming, error handling, and using the Fetch API.
+
+### Error Handling (try/catch)
+
+In JavaScript, `try`/`catch` statements are used to catch and handle errors or exceptions that occur in code.
+
+The `try` block contains the code that may potentially throw an exception. The `catch` block contains the code that will be executed if an error is thrown in the `try` block.
+
+Here's a simple example:
+
+```js
+try {
+  nonExistentFunction();
+} catch (error) {
+  console.error("An error occurred:", error.message);
+}
+```
+
+The catch block takes the thrown error object as a parameter (in this case, error) and logs a message to the console along with the error message.
+
+### Asychronous Programming
+
+Asynchronous programming is a design pattern which ensures the non-blocking code execution. Unlike traditional synchronous programming, where code is executed sequentially from top-to-bottom, asynchronous programming allows a unit of work to run separately from the main application thread. When the work is complete, it notifies the main thread about its completion or failure, allowing other operations to continue in the meantime.
+
+In JavaScript, asynchronous programming is commonly used for actions that are time-consuming and thus would block further execution of code, such as network requests, reading files, or interacting with databases. Without asynchronous programming, these actions would block the main thread, causing the application to freeze until the action is complete.
+
+#### Callbacks
+
+Callbacks are a fundamental way of handling asynchronous operations in JavaScript. A callback function is passed as an argument to another function and is executed after its parent function has finished execution.
+
+Here's an example of a callback function:
+
+```js
+function doSomething(callback) {
+  console.log("Doing something...");
+  callback();
+}
+```
+
+The `doSomething` function takes a callback function as an argument and executes it after logging a message to the console.
+
+#### Promises
+
+A Promise in JavaScript represents a value that may not be available yet but will be resolved at some point in the future, or it might get rejected. Promises are an improvement on callbacks for handling asynchronous operations, providing a more concise, clean syntax and better error handling.
+
+A Promise has three states:
+
+- **`pending`**: The Promise's result hasn't yet been determined.
+- **`fulfilled`**: The operation completed successfully.
+- **`rejected`**: The operation failed.
+
+Here's a short example of creating and using a Promise:
+
+```js
+let promise = new Promise((resolve, reject) => {
+  let condition = true; // This can be the result of any asynchronous operation
+
+  if (condition) {
+    resolve("Operation was successful.");
+  } else {
+    reject("Operation failed.");
+  }
+});
+
+promise
+  .then((message) => {
+    console.log(message); // 'Operation was successful.'
+  })
+  .catch((error) => {
+    console.log(error); // 'Operation failed.'
+  });
+```
+
+In this example, we create a new Promise that checks a condition (which could be the result of an asynchronous operation). If the condition is true, we call `resolve()` with a success message. If it's false, we call `reject()` with a failure message.
+
+The `then()` method is called when the Promise is fulfilled, and the `catch()` method is called when the Promise is rejected. Both methods take a function as an argument, which is executed with the value passed to `resolve()` or `reject()`. This is how we can handle the result of a Promise once it's been resolved or rejected.
+
+<Callout type="info" emoji="💡">
+  For this course, we won't be creating Promises from scratch. Instead, we'll be
+  using functions, which return a Promise that we can use to handle the result.
+</Callout>
+
+#### Async/Await
+
+The `async` and `await` keywords in JavaScript are used to work with promises in a more comfortable, less `.then()` cluttered manner. An `async` function can contain an `await` expression that pauses the execution of the function and waits for the passed Promise's resolution, then resumes the function's execution and returns the resolved value.
+
+Here's the same example as above, but using `async`/`await` instead of `.then()` and `.catch()`:
+
+```js
+let promise = new Promise((resolve, reject) => {
+  let condition = true; // This can be the result of any asynchronous operation
+
+  if (condition) {
+    resolve("Operation was successful.");
+  } else {
+    reject("Operation failed.");
+  }
+});
+
+async function executeAsyncTask() {
+  try {
+    const message = await promise;
+    console.log(message); // 'Operation was successful.'
+  } catch (error) {
+    console.log(error); // 'Operation failed.'
+  }
+}
+
+executeAsyncTask();
+```
+
+In this rewritten example, the promise code remains the same. What changes is how we handle the promise.
+
+We create a new async function called `executeAsyncTask()`. Inside this function, we use the `await` keyword to pause execution of the function until promise settles. If the promise is fulfilled, the fulfilled value is assigned to message, and if the promise is rejected, an error is thrown.
+
+The `try/catch` block is used to handle both the fulfillment and rejection of the promise. If the promise is fulfilled, the message is logged to the console. If the promise is rejected, the catch block catches the error, and the error is logged to the console.
+
+This async/await version is easier to read and understand, especially when dealing with multiple asynchronous operations.
+
+### Fetch API
+
+he Fetch API is a modern interface in JavaScript for making HTTP requests to resources across the network. It's built into the global scope of JavaScript, meaning you can use it in the browser without importing any additional resources. The Fetch API provides a more powerful and flexible feature set compared to older APIs like `XMLHttpRequest`.
+
+The Fetch API returns a `Promise` that resolves to the Response object representing the response to the request. This can be used with the `async/await` syntax for easier handling.
+
+Here's an example of how to use the Fetch API to make a `GET` request:
+
+```js
+async function getData() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+getData();
+```
+
+In this example, we use fetch to make a `GET` request to the URL. The `fetch` method returns a Promise, which we `await`. Once the Promise resolves, it gives us a `response` object, from which we can extract the JSON data using the `json()` method. This also returns a Promise, which we again await. Once this Promise resolves, we have the data we requested, which we log to the console.
+
+Here's an example of how to use the Fetch API to make a POST request:
+
+```js
+async function postData() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        title: "foo",
+        body: "bar",
+        userId: 1,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+postData();
+```
+
+In this example, we're making a POST request to the same URL, but this time we're sending data along with the request. We use the method property to specify that this is a POST request, the body property to provide the data we're sending, and the headers property to set the content type of our request. As before, we use fetch to make the request, await the Promise it returns, extract the JSON data from the response object, await the Promise this returns, and then log the data to the console.
+
+Recommended YouTube video on Async Await, Promises, and Fetch API:
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/spvYqO_Kp9Q?si=vSnylSbNwCcwd43R"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+## React Skills
+
+### useEffect
+
+React's `useEffect` hook allows you to perform side effects in function components. Side effects could be anything that affects something outside of the scope of the function being executed, such as data fetching.
+
+The `useEffect` hook runs after every render by default. However, you can control when it runs by passing in a second argument, an array of dependencies. If the values in this array remain the same between renders, React will skip executing the effect.
+
+- If you pass an empty array (`[]`), the `useEffect` hook will run the effect only once after the initial render, similar to the '[mounted](/week-6/state#component-lifecycle)' phase in the component lifecycle.
+- If you pass values (e.g., props or state) in the array, the effect will run whenever any of these values change.
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/0ZJgIjIuY7U?si=AG-RnaEDiJQc6PKp"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+#### Using useEffect with Fetch
+
+The `useEffect` hook can be combined with the Fetch API or other data fetching libraries to retrieve data when a component loads. This data can then be stored in the component's local state and used as needed.
+
+Here's an example of a component that fetches data from an API using `useEffect`:
+
+import { example } from "./example.js";
+
+<Sandbox files={example} />
+
+In this component, the `useEffect` hook runs the `fetchAPI`s function once after the initial render. This function fetches a list of public APIs from the API and sets the `apis` state with the fetched data. The component then renders a list of API names, or a "Loading..." message if the data is not yet available. This example is "meta" because it uses an API to fetch a list of APIs!
+
+It is possible to view the data returned by the API by navigating directly to the API URL in your browser. For example, if you navigate to [https://api.publicapis.org/entries](https://api.publicapis.org/entries), you'll see the data returned by the API.
+
+However, this is not always the case. Some APIs require authentication or have other restrictions that prevent you from viewing the data in your browser. In these cases, you can use a tool like [Postman](https://www.postman.com/) or [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to view the data.
+
+<Callout type="warning" emoji="‼️">
+  If you forget to pass the dependency array (the second argument to useEffect),
+  the effect will run after every render. This can cause performance issues,
+  especially if the effect is fetching data from an API. For example, you might
+  end up fetching the same data thousands of times!
+</Callout>
+
+## 🗒️ Summary
+
+- 🌐 Fetching data from a source like an API is critical for modern web applications to display up-to-date information.
+- 🛠 Understanding HTTP, CORS, and mastering JavaScript skills related to asynchronous operations and error handling are fundamental for effective data fetching.
+- 🔄 HTTP (Hypertext Transfer Protocol) is the protocol used for transferring data over the internet, including making requests to APIs and receiving responses.
+- 🚀 HTTP methods (GET, POST, PUT, DELETE, HEAD, PATCH) indicate the desired action to be performed on a given resource.
+- 🚦 HTTP status codes are three-digit codes returned by a server in response to an HTTP request, indicating the result of the request.
+- 📃 HTTP headers carry additional information about the request or response.
+- 🛡 CORS (Cross-Origin Resource Sharing) is a mechanism that allows resources on a web page to be requested from another domain outside the domain from which the first resource was served.
+- 🎯 JavaScript skills for data fetching include understanding asynchronous programming, error handling, and using the Fetch API.
+- ⚛ In React, the `useEffect` hook allows performing side effects in function components, such as data fetching.
+
+## 📚 Knowledge Check
+
+<MultipleChoice
+  question="1. Which HTTP method is used to request data from a specified resource?"
+  choices={["POST", "GET", "PUT", "DELETE"]}
+  answer={2}
+/>
+<MultipleChoice
+  question="2. What does the status code '200' stand for in HTTP?"
+  choices={["Created", "No Content", "Bad Request", "OK"]}
+  answer={4}
+/>
+<MultipleChoice
+  question="3. What is CORS short for?"
+  choices={[
+    "Cross-Origin Resource Sharing",
+    "Cross-Object Resource Sharing",
+    "Cross-Origin Resource Securing",
+    "Cross-Object Resource Securing",
+  ]}
+  answer={1}
+/>
+<MultipleChoice
+  question="4. Which React Hook allows performing side effects in function components?"
+  choices={["useState", "useEffect", "useContext", "useRef"]}
+  answer={2}
+/>
+
+<MultipleChoice
+  question="5. Which HTTP method is used to update a specified resource with new data?"
+  choices={["POST", "GET", "PUT", "DELETE"]}
+  answer={3}
+/>
+<MultipleChoice
+  question="6. Which HTTP status code indicates that the server could not understand the request due to invalid syntax?"
+  choices={["400", "404", "500", "201"]}
+  answer={1}
+/>
+<MultipleChoice
+  question="7. In JavaScript, which statement is used to catch and handle errors or exceptions that occur in code?"
+  choices={["if/else", "for/while", "try/catch", "switch/case"]}
+  answer={3}
+/>
+<MultipleChoice
+  question="8. In asynchronous programming, what is a function passed as an argument to another function and is executed after its parent function has finished execution?"
+  choices={["Promise", "Callback", "Await", "Async"]}
+  answer={2}
+/>
+<MultipleChoice
+  question="9. In the Fetch API, which method is used to extract the JSON data from the response object?"
+  choices={["fetch()", "text()", "json()", "data()"]}
+  answer={3}
+/>
+<MultipleChoice
+  question="10. In JavaScript, what represents a value that may not be available yet but will be resolved at some point in the future, or it might get rejected?"
+  choices={["Promise", "Async function", "Callback function", "Fetch API"]}
+  answer={1}
+/>
+<MultipleChoice
+  question="11. What does the 'await' keyword do in JavaScript?"
+  choices={[
+    "Defines a new Promise",
+    "Pauses the execution of the function and waits for the passed Promise's resolution",
+    "Executes an asynchronous task in the background",
+    "Starts a new Promise chain",
+  ]}
+  answer={2}
+/>
+<MultipleChoice
+  question="12. In the Fetch API, what does the 'method' property specify?"
+  choices={[
+    "The URL of the API to fetch",
+    "The type of HTTP request to make",
+    "The data to send with the request",
+    "The headers of the request",
+  ]}
+  answer={2}
+/>
+<MultipleChoice
+  question="13. In React, when does the 'useEffect' hook run by default?"
+  choices={[
+    "Before every render",
+    "After every render",
+    "Once before the initial render",
+    "Once after the initial render",
+  ]}
+  answer={2}
+/>
+
+## 🏃 Activity
+
+In this exercise, we'll be building an email validation component in React using the Disify API.
+
+This component will allow a user to enter an email address into an input field, and then it will validate the email address by interacting with the Disify API. The Disify API provides valuable information about an email address such as whether it's in a valid format and if it's a disposable email.
+
+Disposable email addresses are temporary email addresses that are typically used for a short period of time to sign up for services or receive information, after which they become inactive or are discarded, helping to protect user's primary email from spam or unwanted communications. However, they can also be used for malicious purposes, such as creating fake accounts or sending spam. Services like Disify exist primarily to help protect the integrity of online services, platforms, and applications from abuse and to maintain the quality of user data. For example, if you're building a social media platform, you might want to prevent users from signing up with disposable email addresses to prevent spam or abuse.
+
+The initial code provided gives you a basic setup for the component. It fetches data from the API and then displays the raw JSON response data to the user. However, we can provide a much better user experience by interpreting the data and giving the user a clear and friendly message about the validity and disposability of the entered email. The output should be one of the following:
+
+- "This email is valid and not disposable."
+- "This email is valid and disposable."
+- "This email is not valid."
+
+In addition, the component fails to handle errors. Add appropriate error handling.
+
+import { activity, solution } from "./activity.js";
+
+<Sandbox files={activity} />
+
+### 💡 Hints
+
+<Steps>
+
+### Data Object Structure
+
+Try a variety of email addresses, e.g. `test@test.com`, `fake@mailinator.com`, `real_address@gmail.com`, `broken@@.com`. Look at the structure of the data object returned by the API. You'll see there are two properties: `format` and `disposable`. The `format` property indicates whether the email is valid, and the `disposable` property indicates whether the email is disposable. You can use these properties to determine what message to display to the user.
+
+### Conditional Logic
+
+Consider using conditional logic (if statements) to check the values of format and disposable and set the result state accordingly. Remember that the format property will be true if the email is valid and false otherwise. The disposable property will be true if the email is disposable and false otherwise.
+
+### Error Handling
+
+Make sure to add error handling to your code. The solution code uses a try/catch block to handle any errors that might occur when fetching the data from the API. In the catch block, it logs the error to the console using console.error(error). This is a good practice to follow in your own code.
+
+</Steps>
+
+### ✅ Solution
+
+<Sandbox files={solution} />
+
+## 🌐 Community Events App
+
+Week 7 of the Community Events App is all about fetching data from an API. The app fetches data from the Open Meteo API to display real-time weather data for Calgary.
+
+- [Week 7 Code](https://github.com/warsylewicz/webdev2-community-events/tree/master/app/week-7)
+- [Live deployment](https://webdev2-community-events.vercel.app/week-7)
+
+The `Weather` component fetches and displays real-time weather data for a specific location, in this case, Calgary. The key steps and parts of the code are as follows:
+
+1. **`useEffect` Hook:** The `useEffect` hook is used to perform side effects in the component such as data fetching. It takes two parameters: a function where you perform your side effects, and a dependency array.
+
+   ```js
+   useEffect(() => {
+     loadWeather(); // side effect
+   }, []); // <-- dependency array
+   ```
+
+   This component's `useEffect` hook fetches data from a weather API. The function passed to `useEffect` is an Immediately Invoked Function Expression (IIFE) that is an async function. This is because `useEffect` itself cannot be an async function, but it can contain one.
+
+   The dependency array is empty `[]`, which means this effect will run only once after the component's initial render. If there were dependencies in this array, the effect would run again whenever those dependencies change.
+
+2. **State:** The component has one piece of state: `weather`. The `weather` state is initialized to `null` and is updated with the fetched data. The function is asynchronous because it uses `await` to wait for the data to be fetched before updating the state.
+
+   ```js
+   async function loadWeather() {
+     try {
+       const data = await fetchWeatherData();
+       setWeather(data);
+     } catch (error) {
+       console.error(error);
+     }
+   }
+   ```
+
+3. **Fetching Data:** `fetchWeatherData()` is responsible for making the `fetch` request to the weather API.
+
+   ```js
+   async function fetchWeatherData() {
+     const response = await fetch(
+       `https://api.open-meteo.com/v1/forecast?latitude=51.064&longitude=-114.08&current=temperature_2m,is_day,precipitation,rain,showers,snowfall,cloudcover&timezone=auto`
+     );
+     const data = await response.json();
+     return data;
+   }
+   ```
+
+   The `fetchWeatherData()` function sends a request to the weather API with specific parameters for latitude, longitude, and other weather details. After the data is fetched, it is converted to a JavaScript object using `response.json()`. The data is then returned.
+
+4. **Rendering the Component:** The fetched data is displayed in the return statement of the component. If the data hasn't been fetched yet (i.e., `weather` is still `null`), "unavailable" will be displayed.
+
+   ```js
+   <p>
+     Temperature:{" "}
+     {temp !== null && temp !== undefined && tempUnit
+       ? `${temp}${tempUnit}`
+       : "unavailable"}
+   </p>
+   <p>
+     Cloud cover:{" "}
+     {cloudCover !== null && cloudCover !== undefined && cloudCoverUnit
+       ? `${cloudCover}${cloudCoverUnit}`
+       : "unavailable"}
+   </p>
+   ```
+
+   Here, the temperature and cloud cover are only displayed if their values are not `null` or `undefined`, and if the corresponding units are available. This ensures that even if the temperature or cloud cover is `0`, it is correctly displayed.
+
+## 📖 Further Reading
+
+- [Asynchronous Programming](https://eloquentjavascript.net/11_async.html)
+- [useEffect Hook](https://react.dev/reference/react/useEffect#useeffect)
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)

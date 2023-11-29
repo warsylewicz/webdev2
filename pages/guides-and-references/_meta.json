@@ -1,7 +1,7 @@
 {
   "course-info": "Course Information",
   "development-environment-setup": "Guide: Setting Up Your Development Environment",
-  "code-demos": "Guide: Accessing the Code Demos",
+  "clone-project": "Guide: Cloning a Next.js Project Repository",
   "creating-new-nextjs-project": "Guide: Creating a New Next.js Project",
   "workflow": "Guide: Coding Workflow",
   "deploying-nextjs-app": "Guide: Deploying a Next.js App",

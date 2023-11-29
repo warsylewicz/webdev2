@@ -26,7 +26,7 @@ Happy coding, and here's to a great semester together!
 
 Here's what you need to know for the first week:
 
-**Online Class:** Our first online class is scheduled for Tuesday, September 5, at 12:00 pm (noon). For this class, you'll need to review the Week 1 materials available at https://webdev2.warsylewicz.ca/week1. If any questions arise as you go through the material, feel free to message me privately in the chat, post your question publicly here, or call me through MS Teams for one-on-one support. Please note that our online sessions won't involve live meetings; they're designed for self-guided learning and individual support as needed.
+**Online Class:** Our first online class is scheduled for Tuesday, September 5, at 12:00 pm (noon). For this class, you'll need to review the Week 1 materials available at https://webdev2.warsylewicz.ca/week-1. If any questions arise as you go through the material, feel free to message me privately in the chat, post your question publicly here, or call me through MS Teams for one-on-one support. Please note that our online sessions won't involve live meetings; they're designed for self-guided learning and individual support as needed.
 
 **In-Person Class:** Our first in-person class will take place on Friday, September 8, 2023, at 12:00 pm (noon) in Room MC305. This class will be an excellent opportunity to learn more about the course, meet your instructor (me!), and begin working on the Week 1 Assignment.
 
@@ -40,7 +40,7 @@ Week 1 is an 'Introduction to Web Application Development'. You'll familiarize y
 
 Week 1 of CPRG306A is an 'Introduction to Web Application Development'. You'll familiarize yourself with the course, the schedule, some basic concepts, and get your development environment set up.
 
-For the online portion of this week's content, please review the week 1 materials found here: https://webdev2.warsylewicz.ca/week1
+For the online portion of this week's content, please review the week 1 materials found here: https://webdev2.warsylewicz.ca/week-1
 
 Please note that there won't be online meetings for this class. This course is designed to give you the freedom to learn at your own pace during the online component of the class.
 
@@ -65,12 +65,12 @@ Here's a brief overview of the concepts we'll be covering:
 - **Next.js Skills:** We'll understand the structure of a Next.js project, routing, and the Link component.
 - **React Skills:** We'll delve deep into JSX (JavaScript XML) and understand the concept of Components.
 
-Week 2 Course Materials: https://webdev2.warsylewicz.ca/week2
+Week 2 Course Materials: https://webdev2.warsylewicz.ca/week-2
 
 Here are some suggestions on how to use this 2-hour class time:
 
-- 🥇 **Best Option:** Complete the online class reading and activities before our in-person class: https://webdev2.warsylewicz.ca/week2/react
-- 🥈 **Second Best Option:** Finish the Week 1 Assignment: https://webdev2.warsylewicz.ca/week1/assignment
+- 🥇 **Best Option:** Complete the online class reading and activities before our in-person class: https://webdev2.warsylewicz.ca/week-2/react
+- 🥈 **Second Best Option:** Finish the Week 1 Assignment: https://webdev2.warsylewicz.ca/week-1/assignment
 
 Depending on your progress, I am available to help you with any questions you may have about the course content or assignments. I'm also happy to help you with any other questions you may have about web development.
 
@@ -88,12 +88,12 @@ Here's a brief overview of the concepts we'll be covering:
 - **Tailwind CSS Skills:** We'll expand our knowledge of Tailwind CSS, learning about its typography, color, and spacing utilities.
 - **React Skills:** We'll be focusing on props, a crucial concept in React that allows data to be passed from parent components to child components.
 
-Week 3 Course Materials: https://webdev2.warsylewicz.ca/week3
+Week 3 Course Materials: https://webdev2.warsylewicz.ca/week-3
 
 Here are some suggestions on how to use this 2-hour class time:
 
-1. 🥇 Best Option: Complete the online class reading and activities before our in-person class: https://webdev2.warsylewicz.ca/week3/components-and-props . Understanding props is the goal. Focus on getting there.
-2. 🥈 Second Best Option: Finish the Week 2 Assignment: https://webdev2.warsylewicz.ca/week2/assignment
+1. 🥇 Best Option: Complete the online class reading and activities before our in-person class: https://webdev2.warsylewicz.ca/week-3/components-and-props . Understanding props is the goal. Focus on getting there.
+2. 🥈 Second Best Option: Finish the Week 2 Assignment: https://webdev2.warsylewicz.ca/week-2/assignment
 3. 🥉 Third Best Option: For the few students that haven't done so, get me your GitHub username ASAP!
 
 As always, I am available to help you with any questions you may have about the course content or assignments. I'm also happy to help you with any other questions you may have about web development.
@@ -112,12 +112,12 @@ Here's a brief overview of the concepts we'll be covering:
 - **Tailwind CSS Skills:** We'll keep expanding our Tailwind CSS knowledge, focusing on layouts and Tailwind states.
 - **React Skills:** We'll be focusing on Event Handlers, the useState Hook, Conditional Rendering, and Controlled Components, all of which are key to creating a responsive and dynamic application.
 
-Week 4 Course Materials: https://webdev2.warsylewicz.ca/week4
+Week 4 Course Materials: https://webdev2.warsylewicz.ca/week-4
 
 For this week:
 
-- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week4/interactivity
-- **🥈 Second Best Option:** Finish the Week 3 Assignment: https://webdev2.warsylewicz.ca/week3/assignment
+- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week-4/interactivity
+- **🥈 Second Best Option:** Finish the Week 3 Assignment: https://webdev2.warsylewicz.ca/week-3/assignment
 
 Note for Sections A and C: Due to the recognition of National Day for Truth and Reconciliation, there will be no class on Friday. Please make sure to watch the video materials for this week and try to start working on the Week 4 Assignment.
 
@@ -139,12 +139,12 @@ Here's a snapshot of the concepts we'll be covering:
 - **Lists:** We'll learn how to render lists in React, using the map() method to iterate over an array and render a list of components.
 - **Responsive Design:** We'll learn how to use Tailwind CSS to create a responsive layout that adapts to different screen sizes.
 
-Week 5 Course Materials: https://webdev2.warsylewicz.ca/week5
+Week 5 Course Materials: https://webdev2.warsylewicz.ca/week-5
 
 For this online class, I recommend the following:
 
-- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week5/lists
-- **🥈 Second Best Option:** Finish the Week 4 Assignment: https://webdev2.warsylewicz.ca/week4/assignment
+- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week-5/lists
+- **🥈 Second Best Option:** Finish the Week 4 Assignment: https://webdev2.warsylewicz.ca/week-4/assignment
 
 For either option, I am available to help you with any questions you may have about the course content or assignments.
 
@@ -161,12 +161,12 @@ Here's a rundown of the concepts we'll be covering:
 - **Sharing State Between Components:** Understand how to pass state between components using props, and discuss the concept of 'lifting state up'.
 - **Functional Updates with `useState`:** We'll cover the use of functional updates with the `useState` hook, especially when the new state depends on the previous state.
 
-Week 6 Course Materials: https://webdev2.warsylewicz.ca/week6
+Week 6 Course Materials: https://webdev2.warsylewicz.ca/week-6
 
 For this online class, I recommend the following:
 
-- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week6/state
-- **🥈 Second Best Option:** Finish the Week 5 Assignment: https://webdev2.warsylewicz.ca/week5/assignment
+- **🥇 Best Option:** Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week-6/state
+- **🥈 Second Best Option:** Finish the Week 5 Assignment: https://webdev2.warsylewicz.ca/week-5/assignment
 
 For either option, I am available to help you with any questions you may have about the course content or assignments.
 
@@ -186,12 +186,12 @@ Here's a rundown of the concepts we'll be covering:
 - **JavaScript Skills for Fetching Data**: Fundamental JavaScript skills that are essential for fetching data include understanding asynchronous programming, error handling, and using the Fetch API.
 - **React `useEffect` Hook**: The useEffect hook in React allows you to perform side effects in function components. Side effects could be anything that affects something outside of the scope of the function being executed, such as data fetching.
 
-Week 7 Course Materials: https://webdev2.warsylewicz.ca/week7
+Week 7 Course Materials: https://webdev2.warsylewicz.ca/week-7
 
 For this online class, I recommend the following:
 
-- **🥇 Best Option**: Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week7
-- **🥈 Second Best Option**: Finish the Week 6 Assignment: https://webdev2.warsylewicz.ca/week6/assignment
+- **🥇 Best Option**: Watch the video materials and complete the online class reading and activities: https://webdev2.warsylewicz.ca/week-7
+- **🥈 Second Best Option**: Finish the Week 6 Assignment: https://webdev2.warsylewicz.ca/week-6/assignment
 
 For either option, I am available to help you with any questions you may have about the course content or assignments.
 
@@ -215,12 +215,12 @@ Here are the key concepts we will cover this week:
 
 - **Firebase Skills**: Dive deeper into Firebase and explore its software development kit (SDK) and how to use it to interact with Firebase services. We'll also learn about Firebase Authentication in more detail, including how to manage user sessions.
 
-Week 8 Course Materials: https://webdev2.warsylewicz.ca/week8
+Week 8 Course Materials: https://webdev2.warsylewicz.ca/week-8
 
 For this online class, I recommend the following:
 
-- 🥇 Best Option: Complete the Week 8 readings: https://webdev2.warsylewicz.ca/week8
-- 🥈 Second Best Option: Work on and finish the Week 7 Assignment: https://webdev2.warsylewicz.ca/week7/assignment
+- 🥇 Best Option: Complete the Week 8 readings: https://webdev2.warsylewicz.ca/week-8
+- 🥈 Second Best Option: Work on and finish the Week 7 Assignment: https://webdev2.warsylewicz.ca/week-7/assignment
 
 For either option, I am available to assist you with any questions you may have about the course content or assignments.
 
@@ -238,7 +238,7 @@ The midterm exam is now available. Please go to our Brightspace shell and comple
 
 2. Project: Phase 1 Project Selection, Planning, and Design
 
-Review the [details of the project](https://webdev2.warsylewicz.ca/week9/project) and submit this [MS Form](https://forms.office.com/r/58ApykiZEK) with your project details. A group only needs to submit one form.
+Review the [details of the project](https://webdev2.warsylewicz.ca/week-9/project) and submit this [MS Form](https://forms.office.com/r/58ApykiZEK) with your project details. A group only needs to submit one form.
 
 3. Week 8 Assignment
 
@@ -260,12 +260,12 @@ Here are the key concepts we will cover this week:
 
 - **Next.js Routing**: Learn how to use Next.js routing to create dynamic routes.
 
-Week 10 Course Materials: https://webdev2.warsylewicz.ca/week10
+Week 10 Course Materials: https://webdev2.warsylewicz.ca/week-10
 
 For this online class, I recommend the following:
 
 - 🥇 Best Option: Take a break. You've earned it after the midterm and project (phase 1)!
-- 🥈 Second Best Option: Complete the Week 10 readings: https://webdev2.warsylewicz.ca/week10
+- 🥈 Second Best Option: Complete the Week 10 readings: https://webdev2.warsylewicz.ca/week-10
 
 Have a fantastic week and hope to see you in class!
 
@@ -279,12 +279,12 @@ Here are the key concepts we will cover this week:
 - **TypeScript**: Learn how to use TypeScript with Next.js, including how to define types and interfaces, and how to use them in your code.
 - **zod**: Learn how to use zod, a TypeScript-first schema declaration and validation library, to validate data in your Next.js API routes.
 
-Week 11 Course Materials: https://webdev2.warsylewicz.ca/week11
+Week 11 Course Materials: https://webdev2.warsylewicz.ca/week-11
 
 For this online class, I recommend the following:
 
-- 🥇 Best Option: Complete the Week 11 readings: https://webdev2.warsylewicz.ca/week11
-- 🥈 Second Best Option: Work on and finish the Week 10 Assignment: https://webdev2.warsylewicz.ca/week10/assignment
+- 🥇 Best Option: Complete the Week 11 readings: https://webdev2.warsylewicz.ca/week-11
+- 🥈 Second Best Option: Work on and finish the Week 10 Assignment: https://webdev2.warsylewicz.ca/week-10/assignment
 - 🥉 Third Best Option: Start working on your project!
 
 Hope you have a productive week and see you in class!
@@ -297,12 +297,12 @@ Here are the key concepts we will cover this week:
 
 - **PlanetScale MySQL**: Learn how to use PlanetScale MySQL, a managed MySQL database.
 
-Week 12 Course Materials: https://webdev2.warsylewicz.ca/week12
+Week 12 Course Materials: https://webdev2.warsylewicz.ca/week-12
 
 For this online class, I recommend the following:
 
 - 🥇 Best Option: Start working on your project!
-- 🥇 Best Option: Complete the Week 12 readings: https://webdev2.warsylewicz.ca/week12
+- 🥇 Best Option: Complete the Week 12 readings: https://webdev2.warsylewicz.ca/week-12
 
 Hope you have a productive week and see you in class!
 
@@ -315,11 +315,11 @@ Here are the key concepts we will cover this week:
 - **Prisma**: Learn how to use Prisma, an Object Relational Mapping (ORM) tool, to interact with your database. Avoid writing SQL queries and instead use Prisma's declarative API to perform CRUD operations.
 - **Middleware**: Learn how to implement middleware, a function that runs before the route handler.
 
-Week 13 Course Materials: https://webdev2.warsylewicz.ca/week13
+Week 13 Course Materials: https://webdev2.warsylewicz.ca/week-13
 
 For this online class, I recommend the following:
 
 - Keep working on your project!
-- Complete the Week 13 readings: https://webdev2.warsylewicz.ca/week13
+- Complete the Week 13 readings: https://webdev2.warsylewicz.ca/week-13
 
 Hope you have a productive week and see you in class!

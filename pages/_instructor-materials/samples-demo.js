@@ -25,7 +25,7 @@ export const files = {
 };
 
 /* Foo is used to solve the bug: Build optimization failed:
-  found page without a React Component as default export in pages/week1/samples-demo
+  found page without a React Component as default export in pages/week-1/samples-demo
 */
 export default function Foo() {
   return <div>Foo</div>;

@@ -1,0 +1,125 @@
+# Week 4 Assignment
+
+## Overview
+
+For this week's assignment, you'll be creating a `NewItem` component using React for a Shopping List App. This component will demonstrate your understanding of React state and forms. The NewItem component allows users to enter details about a new item they wish to add to a list. The form requires the following information:
+
+- Item Name
+- Quantity
+- Category
+
+React's `useState` hook is used to manage the state of each input field. When the form is submitted, an alert is displayed with the current state of these fields, simulating the addition of a new item. The form fields are then reset to their initial state.
+
+## Prerequisites
+
+If you did not complete Week 1 Assignment, complete the [Guide: Setting Up Your Development Environment](/guides-and-references/development-environment-setup) and send your GitHub username to the instructor.
+
+If you did not complete the Week 2 Assignment, complete the [Guide: How to Create a New Next.js Project](/guides-and-references/creating-new-nextjs-project).
+
+## Part 1: Link to Week 4 Assignment
+
+Edit the project file `/app/page.js` and add a link to `week-4` in the list of links.
+
+## Part 2:
+
+import { Steps } from "nextra-theme-docs";
+
+<Steps>
+
+### Create the Folder and Files
+
+Create the folder `/app/week-4` and create files `page.js` and `new-item.js` inside it.
+
+Edit `page.js` to be a Next.js page component that renders the NewItem component.
+
+### Setup NewItem Component
+
+- Add the `"use client"` directive to the top of the file.
+- Import the useState hook from React.
+
+### Initialize State Variables
+
+**Name Field**
+
+- Use the `useState` hook to create a state variable called `name` and a setter function called `setName`.
+- The initial value of `name` should be an empty string (`""`), indicating that the name field is initially blank.
+
+**Quantity Field**
+
+- Use the `useState` hook to create a state variable called `quantity` and a setter function called `setQuantity`.
+- The initial value of `quantity` should be `1`, indicating that the quantity field is initially set to 1.
+
+**Category Field**
+
+- Use the `useState` hook to create a state variable called `category` and a setter function called `setCategory`.
+- The initial value of `category` should be `"produce"`, indicating that the category field is initially set to "Produce".
+
+### Create a Form Submission Handler
+
+Create a handleSubmit function. This function should:
+
+- Prevent the form's default submission behavior.
+- Create an `item` object with the current values of `name`, `quantity`, and `category`.
+- Log the item object to the console.
+- Display an alert with the current state of name, quantity, and category.
+- Reset the state variables to their initial values.
+
+### Render the Component
+
+In the return statement of your function, create a form that includes:
+
+**Name Field**
+
+- Create an input field of type text.
+- The value of the input field should be tied to the name state variable, meaning that it displays the current value of name.
+- Use the setName function in an onChange event handler to update the state of name as the user types into the field.
+- Add required attribute to the input field to ensure that the user cannot submit the form without providing a name.
+
+**Quantity Field**
+
+- Create an input field of type number.
+- Set the min attribute to "1" and the max attribute to "99" to limit the range of valid quantities.
+- The value of the input field should be tied to the quantity state variable.
+- Use the setQuantity function in an onChange event handler to update the state of quantity as the user types into the field. Make sure to convert the input to a Number before setting the state.
+- Add required attribute to the input field to ensure that the user cannot submit the form without providing a quantity.
+
+**Category Field**
+
+- Create a select element for the category.
+- The value of the select element should be tied to the category state variable.
+- Use the setCategory function in an onChange event handler to update the state of category as the user selects a different option.
+- Create various option elements within the select for each possible category ("Produce", "Dairy", "Bakery", "Meat", "Frozen Foods", "Canned Goods", "Dry Goods", "Beverages", "Snacks", "Household", "Other"). Each option should have a value that matches the category it represents.
+
+**Submit Button**
+
+- Create a submit button that triggers the handleSubmit function when clicked.
+
+### Style the Component
+
+Style the component using Tailwind CSS. You do not need to match the example output, but your component should be styled in a way that is visually appealing and easy to use.
+
+### Test Your Component
+
+Ensure that when the form is filled and submitted, an alert is displayed with the correct information and the form fields are reset.
+
+</Steps>
+
+### Example Output
+
+https://cprg306-assignments.vercel.app/week-4
+
+## Part 3: Assignment Submission
+
+The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
+
+Ensure the following:
+
+- The instructor has your current GitHub username.
+- The GitHub repository is **public** and named exactly `cprg306-assignments`.
+- The new page is named exactly `week-4` (lowercase).
+
+---
+
+import AssignmentChecker from "/components/AssignmentChecker";
+
+<AssignmentChecker week="4" />

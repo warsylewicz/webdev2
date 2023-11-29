@@ -1,0 +1,162 @@
+# Introduction to Web Application Development
+
+## What is Web Application Development?
+
+Web Application Development is a specialized area of software development involving the creation of applications that run on a web server and are accessed through a web browser. Unlike traditional desktop applications that are installed on a user's computer, web applications are accessed over the Internet, providing the ability to interact with users in real-time.
+
+### Defining Web Application Development
+
+Web applications are dynamic systems that utilize server-side and client-side programming to perform complex tasks, process user inputs, and deliver customized content. Server-side scripts handle the logic, data manipulation, and storage retrieval operations. Client-side scripts deal with presenting information and user interactions. The two sides work together to create a seamless user experience.
+
+### Comparing Websites and Web Applications
+
+While websites primarily deliver static content, web applications are designed for user interaction and task execution. They encapsulate complex client-server communication, database interactions, and dynamic content updates. The distinction between websites and web applications is becoming increasingly blurred, but the key differentiator is the level of interactivity and functionality. For example, sait.ca mostly has a database of content but its output is a static website, whereas learn.sait.ca (Brightspace) is a web application with its ability for users to login and interact with personalized content.
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/rD-4NemBpdg?si=tJRjzaeN3gHPnKmt"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+### The Role of User Experience (UX) in Web Applications
+
+User Experience (UX) in web applications goes beyond mere aesthetics. It encompasses how the application feels, how easy it is for the user to accomplish their tasks, how well the application serves the user's needs, and how performant the application is. UX is influenced by elements of interaction design, information architecture, user research, and other disciplines. A well-designed UX can greatly enhance the effectiveness and satisfaction of web applications. This includes minimizing loading times, optimizing interactions for various devices and screen sizes, and ensuring a smooth, intuitive flow for completing tasks.
+
+## Technologies Used in Web Application Development
+
+Web application development involves a variety of technologies, both on the front-end and back-end. These technologies work together to create a seamless and interactive web application.
+
+### Front-End Frameworks: An Introduction
+
+Front-end frameworks, also known as "client-side" frameworks, are libraries or packages that help developers build the user-facing side of web applications efficiently. They provide pre-written code to handle common tasks, allowing developers to focus on the specific functionality of their application.
+
+JavaScript is the primary language for front-end web development, and there are several popular JavaScript frameworks, including:
+
+- **React.js:** Developed by Facebook, React is known for its virtual DOM feature which optimizes rendering and improves application performance.
+
+- **Angular.js:** Developed by Google, Angular is a comprehensive framework that uses TypeScript and includes features such as two-way data binding, dependency injection, and declarative templates.
+
+- **Vue.js:** Vue is a progressive framework for building user interfaces. It is designed to be incrementally adoptable and can easily scale between a library and a full-featured framework.
+
+Each of these frameworks has its own strengths and is suited to different types of projects.
+
+### Back-End Technologies: A Brief Overview
+
+Back-end technologies, also known as "server-side" technologies, deal with the application's data and handle the business logic. They communicate with the front-end, process requests, and return responses.
+
+There are numerous back-end programming languages and their associated frameworks. Here are a few common ones:
+
+- **Node.js:** A JavaScript runtime built on Chrome's V8 JavaScript engine, Node.js is used to build scalable network applications. Express.js is a popular framework often used with Node.js.
+
+- **Python:** Python is known for its simplicity and readability. Django and Flask are widely used Python-based back-end frameworks.
+
+- **Ruby:** Ruby is a dynamic, open-source programming language. Ruby on Rails, or Rails, is a server-side web application framework written in Ruby.
+
+- **Java:** Java is a popular, object-oriented programming language used worldwide. Spring Boot is a popular application framework for building stand-alone, production-grade Spring based applications.
+
+- **PHP:** PHP is a popular general-purpose scripting language that is especially suited to web development. Laravel is a commonly used PHP framework.
+
+Selecting the right back-end technology depends on the requirements of the project, the expertise of the development team, and other factors such as performance, scalability, and security needs.
+
+## Practical Examples of Web Application Development
+
+To further understand the roles of front-end and back-end technologies in web application development, let's consider a few practical examples:
+
+### User Registration and Authentication
+
+A commonplace feature in web applications is the ability for users to register and login. When a user fills out a registration form on the client-side (handled by React.js, Angular.js, Vue.js, etc.), this data is sent to the server-side (Node.js, Python, Ruby, Java, PHP, etc.). The server processes the data, securely stores user information in a database, and then sends a confirmation back to the client-side. When the user attempts to login, the server verifies the entered credentials against the stored data and, if valid, sends a response back to the client-side to grant the user access.
+
+![User Registration and Authentication](/images/week-1/user-registration-authentication.png)
+
+### Creating and Displaying Blog Posts
+
+This example demonstrates the concept of CRUD (Create, Read, Update, Delete) operations, essential in many web applications. Suppose a user creates a blog post through a form on the client-side. This information is then sent to the server-side, where it is processed and stored in a database. When the user wants to view a blog post, the server retrieves the appropriate data from the database and sends it to the client-side to be displayed. Similarly, updates or deletions made by the user to their blog posts are reflected in the database through server-side operations.
+
+![Creating and Displaying Blog Posts](/images/week-1/creating-displaying-blog-posts.png)
+
+### E-commerce Shopping Cart
+
+Consider an e-commerce application where a user can add items to a shopping cart on the client-side. This cart information is stored on the server-side, allowing the user to access their cart from different devices. When the user checks out, the server processes the transaction, updates the inventory data in the database, and sends a confirmation back to the client-side.
+
+### Real-Time Chat Application
+
+In a real-time chat application, messages are sent from one user's client-side interface to the server-side. The server broadcasts these messages to other users in real-time. This could involve technologies like WebSockets or server-side events and illustrates how web applications can handle real-time data.
+
+These practical examples demonstrate how the front-end and back-end technologies work together to perform complex tasks, process user inputs, and deliver customized content in a web application. Understanding these interactions is key to mastering web application development.
+
+## Next.js: A Full-Stack Solution
+
+Next.js, developed and maintained by Vercel, is a popular React framework for building JavaScript applications. It is unique in that it can function as both a front-end and a back-end framework, making it a comprehensive solution for web application development.
+
+On the **front-end**, Next.js leverages the power of React to build interactive user interfaces. It provides enhancements over create-react-app or vite, such as server-side rendering and static site generation, which can significantly improve the performance and SEO (searchEngine Optimization) of your web application.
+
+On the **back-end**, Next.js provides a lightweight solution to develop server-side logic. It features an API Routes function where you can build your APIs directly into your Next.js application without needing to set up an express server or use another back-end framework. These APIs can then be used to perform server-side operations such as interacting with a database, handling authentication, or processing form submissions.
+
+The reasons for selecting Next.js as the technology for this course are:
+
+1. **Ease of Learning**: Next.js simplifies the configuration process, allowing students to focus on learning the core concepts of web application development without getting overwhelmed by the setup.
+1. **Full-Stack Development**: As Next.js covers both front-end and back-end, students can gain exposure to full-stack development within a single framework.
+1. **Real-World Applicability**: Next.js is widely used in the industry, and learning it will equip students with a valuable and marketable skill.
+1. **Community and Resources**: Next.js has a large and active community, which means plenty of resources, tutorials, and third-party libraries are available to help students learn and solve problems.
+
+## 🗒️ Summary
+
+- Web application development involves creating applications accessed through web browser over the internet, allowing real-time user interaction
+- Web apps utilize server-side and client-side programming to perform tasks, process user inputs, and deliver customized content
+- Websites deliver static content, web apps designed for interactivity and task execution
+- Front-end frameworks like React, Angular, Vue handle UI, optimize performance, improve developer productivity
+- Back-end technologies like Node, Python, Ruby, Java, PHP handle server-side logic, data, business logic
+- Front-end and back-end work together for features like user registration, content CRUD, shopping carts, real-time chat
+- Next.js is a full-stack React framework covering front-end UI and back-end API routes
+- Benefits of Next.js include ease of learning, full-stack capabilities, real-world applicability, strong community
+
+## 📚 Knowledge Check
+
+import MultipleChoice from "components/MultipleChoice";
+
+<MultipleChoice
+  question="1. What is the main difference between a website and a web application?"
+  choices={[
+    "Websites are interactive, while web applications are static.",
+    "Websites and web applications are the same thing.",
+    "Websites are primarily informational and display static content, while web applications are interactive and can perform tasks.",
+    "Web applications can be accessed through a browser, while websites cannot.",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="2. In the context of web application development, what does CRUD stand for?"
+  choices={[
+    "Create, Read, Unlink, Delete",
+    "Compute, Return, Update, Delete",
+    "Create, Read, Update, Delete",
+    "Copy, Rewrite, Update, Delete",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="3. Which of the following examples best illustrates the use of front-end and back-end technologies in a web application?"
+  choices={[
+    "A user edits a photo using an online tool, and the changes are visible in real time.",
+    "A user adds items to their shopping cart on an e-commerce website. The cart is updated in real time, and the user can view the cart from different devices.",
+    "A user downloads a file from a website.",
+    "A user views a static informational website about a local library.",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="4. Consider a web application built with a full JavaScript stack, including React.js for the front-end, Node.js for the back-end, and MongoDB as the database. A user submits a form on the client-side to update their profile information. Which of the following sequences accurately describes the flow of data and interactions between the technologies?"
+  choices={[
+    "The updated information is sent to MongoDB, MongoDB sends it to Node.js, and then React.js renders the updated profile.",
+    "React.js sends the updated information to Node.js, Node.js updates the information in MongoDB, and then React.js renders the updated profile.",
+    "Node.js sends the updated information to MongoDB, MongoDB sends it to React.js, and then React.js renders the updated profile.",
+    "MongoDB sends the updated information to Node.js, Node.js sends it to React.js, and then React.js renders the updated profile.",
+  ]}
+  answer="2"
+/>
