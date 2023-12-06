@@ -323,3 +323,23 @@ For this online class, I recommend the following:
 - Complete the Week 13 readings: https://webdev2.warsylewicz.ca/week-13
 
 Hope you have a productive week and see you in class!
+
+### Week 14
+
+Week 14: Project!
+
+This whole week is dedicated to your project. I'll be available during class time to help you with any questions you may have.
+
+The project and reflection form (https://forms.office.com/r/kT8RimSU4c) are due on Monday December 11, 2023 at 11:59 pm. Everyone must submit the form individually.
+
+Good luck!
+
+### Week 15: Project Showcase
+
+Week 15: Project Showcase
+
+Congratulations on completing the course! I hope you enjoyed the semester and learned a lot about web development. I'm proud of all the hard work you put into your projects and I'm excited to see what you've built.
+
+For those students who have decided to share their projects, head on over to https://webdev2.warsylewicz.ca/student-work/showcase to see what your peers have created.
+
+If at any time you would like to include your project (or remove it), please let me know and I'll update the showcase.
