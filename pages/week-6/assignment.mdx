@@ -50,7 +50,7 @@ Next, we're going to update `page.js` to serve as the orchestrator of our shoppi
 Next, our attention shifts to `new-item.js`. We'll be enhancing this component by introducing a new prop and redefining its behavior upon form submission. Rather than triggering an alert, it will now invoke the onAddItem prop, passing along the item object.
 
 - Add a new prop `{ onAddItem }`.
-- Replace the alert functionality by calling the onAddItem prop with the item object when the form is submitted. The item object should have the following properties: `name`, `quantity`, and `category`.
+- Replace the alert functionality by calling the onAddItem prop with the item object when the form is submitted. The item object should have the following properties: `id`, `name`, `quantity`, and `category`. `id` should be a random string.
 
 ### Modify `item-list.js`
 
