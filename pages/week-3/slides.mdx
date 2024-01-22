@@ -4,19 +4,12 @@
 
 ---
 
-## Review
-
-- objects
-- props
-
----
-
 ## Objects
 
 - Objects are a way to store data
 - Objects are made up of key-value pairs
 - Keys are strings
-- Values can be any data type
+- Values can be any data type (numbers, strings, booleans, arrays, objects, etc.)
 
 ---
 
@@ -45,6 +38,23 @@ let person = {
 console.log(person.name); // Diane
 console.log(person.address.city); // Calgary
 person.isStudent = false; // change value
+```
+
+---
+
+## Object Destructuring
+
+- Destructuring is a way to extract properties from an object
+- Destructuring is useful when passing data to components
+
+```js
+let { name, age } = person;
+console.log(name); // Diane
+console.log(age); // 25
+let {
+  address: { city },
+} = person;
+console.log(city); // Calgary
 ```
 
 ---
