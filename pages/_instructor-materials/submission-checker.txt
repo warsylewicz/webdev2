@@ -59,14 +59,14 @@ async function checkSubmission(account, week) {
   //}
 
   const weekExistsInMaster = await checkUrl(
-    `https://github.com/${account}/${repoName}/blob/master/app/week${week}/page.js`
+    `https://github.com/${account}/${repoName}/blob/master/app/week-${week}/page.js`
   );
   if (weekExistsInMaster) {
     return { status: true, message: "master" };
   } 
 
   const weekExistsInMain = await checkUrl(
-    `https://github.com/${account}/${repoName}/blob/main/app/week${week}/page.js`
+    `https://github.com/${account}/${repoName}/blob/main/app/week-${week}/page.js`
   );
   if (weekExistsInMain) {
     return { status: true, message: "main" };
