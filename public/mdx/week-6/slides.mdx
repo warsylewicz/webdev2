@@ -2,18 +2,40 @@
 
 # Managing State
 
----
-
-## Review
-
 - Immutability
 - Component Lifecycle
 - Sharing State Between Components
-- Lifting State Up
 
 ---
 
-## Coding Demo
+## Immutability
+
+- State should be treated as immutable
+- Never mutate state directly
+- Always use `setState` to update state
+
+Demo: Create a broken counter that increments by 1 that doesn't use `setState`
+
+---
+
+## Component Lifecycle
+
+- Initial Render
+- State Change
+- Schedule Update
+- Reconciliation
+- Update State
+- Re-render
+
+Demo: Create a broken counter that increments by 3 that uses `setState`
+
+---
+
+## Sharing State Between Components
+
+- Lifting State Up
+
+Demo
 
 1. Create a Dog component, display name and age
 2. Create a DogList component, display a list of Dogs
