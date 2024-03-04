@@ -163,17 +163,22 @@ export default Layout;
 
 In the `week-8` folder, create a `page.js` file. This will be the landing page for our application. Display a login button if the user is not logged in. If the user is logged in, display a welcome message, a logout button, and a link to the shopping list page.
 
-The following code snippets may be helpful:
+The following code snippets may be helpful. _This is not a complete component!_
 
 ```js copy
+// Import the useUserAuth hook
 import { useUserAuth } from "./_utils/auth-context";
 
+// Use the useUserAuth hook to get the user object and the login and logout functions
 const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
+// Sign in to Firebase with GitHub authentication
 await gitHubSignIn();
 
+// Sign out of Firebase
 await firebaseSignOut();
 
+// Display some of the user's information
 <p>
   Welcome, {user.displayName} ({user.email})
 </p>;
