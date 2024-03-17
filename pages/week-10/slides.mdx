@@ -4,8 +4,9 @@
 
 ---
 
-## Review
+## Topics
 
+- NoSQL Databases
 - Cloud Firestore
   - Rules
   - CRUD Operations
@@ -13,6 +14,151 @@
 
 ---
 
+## NoSQL Databases
+
+- Non-relational databases
+- No fixed schema, flexible data model
+- Large scale
+
+---
+
+## Terminology
+
+- Collection: Array of documents (table)
+- Document: JSON object (row)
+- Field, Value: Key-value pair (column, cell)
+- Subcollection: Collection within a document (subtable)
+- Query: Retrieve data from a collection
+- Rules: Security and validation
+
+---
+
+## Design Considerations
+
+- Data model
+- Denormalization, no joins
+- Query performance, Reads vs Writes
+- Security
+
+---
+
+## Cloud Firestore
+
+- Serverless, managed NoSQL database
+- Real-time updates
+- Scalable
+- Integration with Firebase Authentication
+
+---
+
+## Rules
+
+- Security and validation rules
+- Example: Allow anyone to read. Write only if user is authenticated.
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
+```
+
+---
+
+## CRUD Operations
+
+- Create, Read, Update, Delete
+- Example: Create a document
+
+```javascript
+db.collection("blog-posts").add({
+  title: "Hello, World!",
+  content: "This is my first post.",
+});
+```
+
+---
+
+## Read a Document
+
+- `doc()` is a reference to a document
+- `getDoc()` is an asynchronous function that returns a `DocumentSnapshot`
+- `doc.data()` is a method that returns the document data
+
+```javascript
+const docRef = doc(db, "blog-posts", id);
+const docSnap = await getDoc(docRef);
+if (docRef.exists()) {
+  console.log("Document data:", docRef.data());
+} else {
+  console.log("No such document!");
+}
+```
+
+---
+
+## Read All Documents
+
+- `collection()` is a reference to a collection
+- `getDocs()` is an asynchronous function that is used to retrieve all documents in a collection
+
+```javascript
+const ref = collection(db, "blog-posts");
+const docs = await getDocs(ref);
+docs.forEach((doc) => {
+  console.log(doc.id, " => ", doc.data());
+});
+```
+
+---
+
+## Update a Document
+
+- `updateDoc()` is an asynchronous function that updates a document
+
+```javascript
+const docRef = doc(db, "blog-posts", id);
+await updateDoc(docRef, {
+  title: "New Title",
+  content: "New Content",
+});
+```
+
+---
+
+## Delete a Document
+
+- `deleteDoc()` is an asynchronous function that deletes a document
+
+```javascript
+const docRef = doc(db, "blog-posts", id);
+await deleteDoc(docRef);
+```
+
+---
+
+## Next.js Dynamic Routing
+
+- Dynamic routes are used to create routes based on the data
+- Folder name is enclosed in square brackets
+- prop `params` is an object with the route parameters
+- Example: `app/[id]/page.js`
+
+```javascript
+export default function Page({ params }) {
+  return <h1>{params.id}</h1>;
+}
+```
+
+- request to `http://localhost:3000/app/123` will render `<h1>123</h1>`
+
+---
+
 ## Coding Demo
 
-- Build a simple blog app with Next.js and Cloud Firestore
+- Demo a simple blog app with Next.js and Cloud Firestore

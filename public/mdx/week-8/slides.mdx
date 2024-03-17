@@ -4,13 +4,51 @@
 
 ---
 
-## Review
+## Topics
 
-- Web Security
 - Authentication vs Authorization
 - React Context
 - Custom Hooks
 - Environment Variables
+
+---
+
+## Authentication vs Authorization
+
+- **Authentication**: Verifying the identity of a user
+- **Authorization**: Verifying what a user has access to
+- **Firebase Auth**: Service that provides authentication for web, mobile, and desktop applications
+- **OAuth**: Open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords
+
+---
+
+## React Context
+
+- A way to pass data through the component tree without having to pass props down manually at every level avoiding prop drilling
+- A global state that can be accessed from any component (e.g. user info, language, theme)
+- `createContext` is a function that creates a new context
+- `Context.Provider` and `Context.Consumer` are the two main components to use
+- `useContext` is a hook that allows you to use the context
+
+---
+
+## Custom Hooks
+
+- A JavaScript function whose name starts with "use" and that may call other hooks
+- A way to share logic between components
+- A way to abstract complex logic into a single function
+- e.g. `useUserAuth` to handle user authentication logic
+
+---
+
+## Environment Variables
+
+- A way to store sensitive configuration settings for an application
+- Not hard-coded in the source code
+- Not stored in the version control system (e.g. Git)
+- Stored in a `.env.local` file
+- Must be copied to deployment environment
+- e.g. API keys, database connection strings, passwords
 
 ---
 
