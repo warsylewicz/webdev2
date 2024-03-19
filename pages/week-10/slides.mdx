@@ -147,7 +147,7 @@ await deleteDoc(docRef);
 - Dynamic routes are used to create routes based on the data
 - Folder name is enclosed in square brackets
 - prop `params` is an object with the route parameters
-- Example: `app/[id]/page.js`
+- Example: `app/week/[id]/page.js`
 
 ```javascript
 export default function Page({ params }) {
@@ -155,7 +155,7 @@ export default function Page({ params }) {
 }
 ```
 
-- request to `http://localhost:3000/app/123` will render `<h1>123</h1>`
+- request to `http://localhost:3000/week/123` will render `<h1>123</h1>`
 
 ---
 
