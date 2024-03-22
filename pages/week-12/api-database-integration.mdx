@@ -14,103 +14,33 @@ This course will not go into the details of relational databases. We'll leave th
 
 Serverless databases are a relatively new concept. They are fully managed databases that scale automatically and charge based on usage. This means you don't have to worry about provisioning servers, configuring backups, or scaling your database. You simply create a database and start using it. Some common serverless relational databases include:
 
+- [Neon](https://neon.tech/)
 - [PlanetScale](https://planetscale.com/)
 - [Supabase](https://supabase.com/)
 - [Vercel Postgres](https://vercel.com/docs/databases/vercel-postgres)
 - [Microsoft Azure SQL](https://azure.microsoft.com/en-us/products/azure-sql/database/)
 - [Google Cloud SQL](https://cloud.google.com/sql)
 
-### PlanetScale MySQL
+### Neon
 
-PlanetScale MySQL is a serverless relational database that is fully managed by PlanetScale. It is based on MySQL, which is one of the most popular open source relational databases. PlanetScale MySQL is a good choice for students because it is free to use for up to 1B row reads/month, 10M row writes/month, and 5 GB of storage. It also supports unlimited tables, unlimited queries, and unlimited users. (Vercel Postgres is also free but it very limited.)
+Neon provides a fully managed serverless PostgreSQL database service. It features a generous free tier and separates storage and compute to offer autoscaling, branching, and unlimited storage. Neon is designed to be scalable, cost-efficient, and easy to use.
 
-#### Getting Started with PlanetScale MySQL
+Key features of Neon include:
 
-Use this quickstart guide to get started with PlanetScale MySQL.
+- **Serverless Postgres**: Neon offers a serverless architecture for PostgreSQL, handling the management and scaling of the database infrastructure.
+- **Branching**: Similar to how code is managed in version control systems, Neon allows instant branching of the Postgres database, useful for test environments and CI/CD pipelines.
+- **Autoscaling**: Compute resources scale dynamically based on demand. The system activates on an incoming connection and scales to zero when not in use, ensuring that you only pay for what you use.
+- **On-demand Storage**: Neon's storage is designed to be fault-tolerant and integrates with cloud object stores like S3 for cold data, aiming for cost optimization and high availability.
+- **Neon CLI**: A command-line interface is provided to manage Neon databases directly from the terminal, allowing users to create projects, manage branches, and retrieve connection strings easily.
+- **Integration**: It seamlessly integrates with other services and platforms like Hasura, Replit, Cloudflare, Vercel, Koyeb, and WunderGraph.
+- **Open Source**: The storage technology used by Neon is open source and written in Rust, employing techniques like copy-on-write for database operations.
 
-[https://planetscale.com/docs/tutorials/planetscale-quick-start-guide](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide)
+#### Getting Started with Neon
 
-#### Using SQL with PlanetScale MySQL
+Use this guide to get started with Neon Postgres.
 
-PlanetScale MySQL uses the MySQL protocol, so you can use any MySQL client to connect to it.
+https://neon.tech/docs/guides/nextjs
 
-The first step is setting up the `.env.local` file with the database credentials. You can find these credentials in the PlanetScale dashboard.
+#### Using SQL with Neon Postgres
 
-```bash
-DATABASE_HOST=aws.connect.psdb.cloud
-DATABASE_USERNAME=xxxxxxxxxxxxxxxx
-DATABASE_PASSWORD=************
-```
-
-Next, you'll need to install the PlanetScale database library. This library provides a wrapper around the MySQL client that handles the connection and authentication for you.
-
-```shell
-npm install @planetscale/database
-```
-
-Finally, you can use the library to connect to the database and run queries.
-
-```ts
-import { connect } from "@planetscale/database";
-
-const config = {
-  host: process.env.DATABASE_HOST,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-};
-
-async function getUsers() {
-  const conn = connect(config);
-  const { rows } = await conn.execute("SELECT * FROM users;");
-  return rows;
-}
-```
-
-In the example above, we're using the `@planetscale/database` library to connect to the database and run a query. The `connect` function takes a configuration object with the database credentials. It returns a connection object that can be used to run queries.
-
-The `execute` method takes a SQL query and returns an object with the results. The results object contains information about the query, including the number of rows affected, the insert ID, and the time it took to run the query. It also contains the rows returned by the query.
-
-```json
-{
-  "headers": ["id", "email", "name", "age", "role"],
-  "types": {
-    "id": "INT32",
-    "email": "VARCHAR",
-    "name": "VARCHAR",
-    "age": "INT32",
-    "role": "VARCHAR"
-  },
-  "fields": [
-    {
-      "name": "id",
-      "type": "INT32",
-      "table": "users",
-      "orgTable": "users",
-      "database": "webdev2-demo",
-      "orgName": "id",
-      "columnLength": 11,
-      "charset": 63,
-      "flags": 49667
-    },
-    ... more fields ...
-  ],
-  "rows": [
-    {
-      "id": 1,
-      "email": "cprg352+abe@gmail.com",
-      "name": "Abe",
-      "age": 20,
-      "role": "admin"
-    }
-  ],
-  "rowsAffected": 0,
-  "insertId": "0",
-  "size": 1,
-  "statement": "SELECT * FROM users;",
-  "time": 4.839211000000001
-}
-```
-
-## 📖 Further Reading
-
-- [PlanetScale ](https://planetscale.com/docs/concepts/what-is-planetscale)
+Since we're working in a serverless environment, it is recommended to use the serverless driver. More information can be found here: https://neon.tech/docs/serverless/serverless-driver
