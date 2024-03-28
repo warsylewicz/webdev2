@@ -6,9 +6,36 @@
 
 ## Topics
 
+- Tagged Template Literals
 - Serverless Relational Databases
 - Connections
 - API Integration
+
+---
+
+## Tagged Template Literals
+
+- allow you to parse and manipulate template strings with a custom function
+- Commonly used for:
+  - Creating domain-specific languages (DSLs)
+  - Securely embedding expressions (e.g., SQL queries)
+  - Localization and formatting
+
+---
+
+## Example
+
+```javascript
+// Define an asynchronous function to insert a new user
+async function insertUser(email, name, age, role) {
+  // Use the sql tagged template literal to construct the query
+  const result = await sql`
+    INSERT INTO users (email, name, age, role)
+    VALUES (${email}, ${name}, ${age}, ${role});
+  `;
+  return result;
+}
+```
 
 ---
 
@@ -18,6 +45,7 @@
 - scalable and can be accessed from anywhere
 - easy to set up and use
 - cost-effective, as you only pay for what you use
+- e.g. Neon, PlanetScale, FaunaDB, Supabase, Vercel Postgres
 
 ---
 
