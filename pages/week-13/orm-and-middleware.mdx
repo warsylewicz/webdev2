@@ -72,20 +72,19 @@ npx prisma init
 
 ### Configure your database
 
-Open the prisma/schema.prisma file and update the datasource db block to point to your own database. Here's an example using MySQL on PlanetScale:
+Open the prisma/schema.prisma file and update the datasource db block to point to your own database. Here's an example using PostgreSQL:
 
 ```prisma
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
-  relationMode = "prisma"
 }
 ```
 
 Next, define the DATABASE_URL in the .env file in your project root:
 
 ```env
-DATABASE_URL="mysql://user:password@localhost:3306/mydb?schema=public"
+DATABASE_URL="postgresql://user:password@localhost:3306/mydb?sslmode=require"
 ```
 
 ### Define your data model
@@ -137,11 +136,18 @@ npx dotenv -e .env.local prisma db push
 
 </Steps>
 
-### Prisma and PlanetScale
+### Prisma and PostgreSQL
 
-The following YouTube playlist shows how to use Prisma with PlanetScale MySQL.
+Here's a video that shows how to use Prisma with PostgreSQL.
 
-https://www.youtube.com/playlist?list=PLlRapu2ErjJ9DGsGHRwhRlm1FJVSN3FK7
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/RebA5J-rlwg?si=DPu79UpROaohw2JW"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
 
 ## Middleware
 

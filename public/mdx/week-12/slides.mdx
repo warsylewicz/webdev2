@@ -4,13 +4,66 @@
 
 ---
 
-## Review
+## Topics
 
-- SQL
+- Tagged Template Literals
+- Serverless Relational Databases
+- Connections
+- API Integration
+
+---
+
+## Tagged Template Literals
+
+- allow you to parse and manipulate template strings with a custom function
+- Commonly used for:
+  - Creating domain-specific languages (DSLs)
+  - Securely embedding expressions (e.g., SQL queries)
+  - Localization and formatting
+
+---
+
+## Example
+
+```javascript
+// Define an asynchronous function to insert a new user
+async function insertUser(email, name, age, role) {
+  // Use the sql tagged template literal to construct the query
+  const result = await sql`
+    INSERT INTO users (email, name, age, role)
+    VALUES (${email}, ${name}, ${age}, ${role});
+  `;
+  return result;
+}
+```
+
+---
+
+## Serverless Relational Databases
+
+- hosted in the cloud and are managed by a cloud provider
+- scalable and can be accessed from anywhere
+- easy to set up and use
+- cost-effective, as you only pay for what you use
+- e.g. Neon, PlanetScale, FaunaDB, Supabase, Vercel Postgres
+
+---
+
+## Connections
+
+- Connection string
+  - a string that contains the information required to connect to a database
+- Connection pool
+  - a cache of database connections maintained so that the connections can be reused when required
+- Connection timeout
+  - the maximum time that a connection can be idle before it is closed
+- Cold start
+  - the time it takes for a serverless database to start up when it is not being used
 
 ---
 
 ## Coding Demo
 
-- Use an API to perform CRUD operations on a serverless database
-  - with SQL
+- Create an API to perform CRUD operations on a serverless database
+- Test the API
+- Consume the API in a client application
