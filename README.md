@@ -28,7 +28,6 @@ Update the following in your D2L Brightspace shell:
 - Instructor name and contact information. Navigate to: Instructor tools -> Manage files -> homepage -> edit `InstructorInfo.html`.
 - Student message. Navigate to: Content. Edit this message to include your own information and your deployment URL.
 - Assignment and project due dates.
-- Create a new midterm exam.
 
 ### `/pages/index.mdx`
 
