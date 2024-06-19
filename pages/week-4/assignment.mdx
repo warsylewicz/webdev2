@@ -2,13 +2,15 @@
 
 ## Overview
 
-For this week's assignment, you'll be creating a `NewItem` component using React for a Shopping List App. This component will demonstrate your understanding of React state and forms. The NewItem component allows users to enter details about a new item they wish to add to a list. The form requires the following information:
+For this week's assignment, you'll begin creating a `NewItem` component using React for a Shopping List App. You will finish creating this component in Week 5.
+
+The NewItem component allows users to enter details about a new item they wish to add to a list which contains the following information:
 
 - Item Name
 - Quantity
 - Category
 
-React's `useState` hook is used to manage the state of each input field. When the form is submitted, an alert is displayed with the current state of these fields, simulating the addition of a new item. The form fields are then reset to their initial state.
+For this week, we will focus just on the quantity.
 
 ## Prerequisites
 
@@ -39,60 +41,34 @@ Edit `page.js` to be a Next.js page component that renders the NewItem component
 
 ### Initialize State Variables
 
-**Name Field**
-
-- Use the `useState` hook to create a state variable called `name` and a setter function called `setName`.
-- The initial value of `name` should be an empty string (`""`), indicating that the name field is initially blank.
-
-**Quantity Field**
+**Quantity**
 
 - Use the `useState` hook to create a state variable called `quantity` and a setter function called `setQuantity`.
 - The initial value of `quantity` should be `1`, indicating that the quantity field is initially set to 1.
 
-**Category Field**
+### Create `increment` and `decrement` Functions
 
-- Use the `useState` hook to create a state variable called `category` and a setter function called `setCategory`.
-- The initial value of `category` should be `"produce"`, indicating that the category field is initially set to "Produce".
+- Create a function called `increment` that increments the `quantity` state variable by 1. Ensure that the quantity does not exceed 20.
+- Create a function called `decrement` that decrements the `quantity` state variable by 1. Ensure that the quantity does not go below 1.
 
-### Create a Form Submission Handler
+import { Callout } from "nextra-theme-docs";
 
-Create a handleSubmit function. This function should:
-
-- Prevent the form's default submission behavior.
-- Create an `item` object with the current values of `name`, `quantity`, and `category`.
-- Log the item object to the console.
-- Display an alert with the current state of name, quantity, and category.
-- Reset the state variables to their initial values.
+<Callout type="info" emoji="️🙅">
+  Don't forget to never modify the state directly. Always use the setter
+  function provided by the `useState` hook, i.e. `setQuantity`.
+</Callout>
 
 ### Render the Component
 
-In the return statement of your function, create a form that includes:
+In the return statement of your function, render the following:
 
-**Name Field**
-
-- Create an input field of type text.
-- The value of the input field should be tied to the name state variable, meaning that it displays the current value of name.
-- Use the setName function in an onChange event handler to update the state of name as the user types into the field.
-- Add required attribute to the input field to ensure that the user cannot submit the form without providing a name.
-
-**Quantity Field**
-
-- Create an input field of type number.
-- Set the min attribute to "1" and the max attribute to "99" to limit the range of valid quantities.
-- The value of the input field should be tied to the quantity state variable.
-- Use the setQuantity function in an onChange event handler to update the state of quantity as the user types into the field. Make sure to convert the input to a Number before setting the state.
-- Add required attribute to the input field to ensure that the user cannot submit the form without providing a quantity.
-
-**Category Field**
-
-- Create a select element for the category.
-- The value of the select element should be tied to the category state variable.
-- Use the setCategory function in an onChange event handler to update the state of category as the user selects a different option.
-- Create various option elements within the select for each possible category ("Produce", "Dairy", "Bakery", "Meat", "Frozen Foods", "Canned Goods", "Dry Goods", "Beverages", "Snacks", "Household", "Other"). Each option should have a value that matches the category it represents.
-
-**Submit Button**
-
-- Create a submit button that triggers the handleSubmit function when clicked.
+- The current quantity value.
+- Decrement button
+  - The button should call the `decrement` function when clicked.
+  - The button should be disabled if the quantity is 1 to indicate to the user that the quantity cannot go below 1.
+- Increment button
+  - The button should call the `increment` function when clicked.
+  - The button should be disabled if the quantity is 20 to indicate to the user that the quantity cannot exceed 20.
 
 ### Style the Component
 

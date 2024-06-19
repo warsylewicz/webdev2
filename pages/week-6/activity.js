@@ -1,99 +1,110 @@
-const Page = `
-import DatePicker from './date-picker';
+const Activity = `"use client";
 
-export default function Page() {
+import { useState } from "react";
+
+export default function FruitList() {
+  const [selectedFruit, setSelectedFruit] = useState(null);
+  const [filter, setFilter] = useState(false);
+
+  const items = ['apple', 'banana', 'apricot', 'cherry', 'avocado'];
+
+  function handleClick(item) {
+    if (selectedFruit === item) {
+      setSelectedFruit(null); // deselect item
+      return;
+    }
+
+    setSelectedFruit(item);
+  }
+
+  function toggleFilter() {
+    setFilter(!filter);
+  }
+
+  // TODO: filter items based on filter state
+  const displayedItems = items;
+
   return (
-    <main>
-      <h1 className="text-4xl">Hotel Booking</h1>
-      <DatePicker />
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold mb-4">Select a fruit:</h1>
+      <ul className="mb-4">
+        {displayedItems.map((item) => (
+          <li
+            key={item}
+            onClick={() => handleClick(item)}
+            className={\`cursor-pointer hover:text-blue-700 \${selectedFruit === item ? "text-red-500" : ""}\`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      <button 
+        onClick={toggleFilter} 
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        {filter ? 'Show All' : 'Show Only Starting with "a"'}
+      </button>
+      {selectedFruit && (
+        <p className="text-xl">
+          You selected: <span className="font-bold">{selectedFruit}</span>
+        </p>
+      )}
     </main>
-  )
-}
-`;
-
-const DatePicker = `"use client";
-
-import { useState } from 'react';
-import DateInput from './date-input';
-
-export default function DatePicker() {
-  const [dates, setDates] = useState({ startDate: "", endDate: "" });
-
-  const handleStartDateChange = (newStartDate) => {
-    setDates(prevDates => ({ ...prevDates, startDate: newStartDate }));
-    // TODO: Ensure that the end date is not before the start date
-  };
-
-  const handleEndDateChange = (newEndDate) => {
-    // TODO: Update the state with the new end date
-    // TODO: Ensure that the start date is not after the end date
-  };
-
-  return (
-    <div>
-      <DateInput label="Start Date:" value={dates.startDate} onChange={handleStartDateChange} />
-      <DateInput label="End Date:" value={dates.endDate} onChange={handleEndDateChange} />
-    </div>
   );
 }
 `;
 
-const DateInput = `
-export default function DateInput({ label, value, onChange }) {
-  const handleDateChange = (event) => {
-    onChange(event.target.value);
-  };
+const Solution = `"use client";
+
+import { useState } from "react";
+
+export default function FruitList() {
+  const [selectedFruit, setSelectedFruit] = useState(null);
+  const [filter, setFilter] = useState(false);
+
+  const items = ['apple', 'banana', 'apricot', 'cherry', 'avocado'];
+
+  function handleClick(item) {
+    if (selectedFruit === item) {
+      setSelectedFruit(null); // deselect item
+      return;
+    }
+
+    setSelectedFruit(item);
+  }
+
+  function toggleFilter() {
+    setFilter(!filter);
+  }
+
+  const displayedItems = filter ? items.filter(item => item.startsWith('a')) : items;
 
   return (
-    <label>
-      {label}
-      <input
-        type="date"
-        value={value}
-        onChange={handleDateChange}
-      />
-    </label>
-  );
-}
-`;
-
-const DatePickerSolution = `"use client";
-
-import { useState } from 'react';
-import DateInput from './date-input';
-
-export default function DatePicker() {
-  const [dates, setDates] = useState({ startDate: "", endDate: "" });
-
-  const handleStartDateChange = (newStartDate) => {
-    setDates(prevDates => {
-      // If the new start date is after the current end date, 
-      // update the end date to the new start date
-      if (newStartDate > prevDates.endDate) {
-        return { startDate: newStartDate, endDate: newStartDate };
-      } else {
-        return { ...prevDates, startDate: newStartDate };
-      }
-    });
-  };
-
-  const handleEndDateChange = (newEndDate) => {
-    setDates(prevDates => {
-      // If the new end date is before the current start date, 
-      // update the start date to the new end date
-      if (newEndDate < prevDates.startDate) {
-        return { startDate: newEndDate, endDate: newEndDate };
-      } else {
-        return { ...prevDates, endDate: newEndDate };
-      }
-    });
-  };
-
-  return (
-    <div>
-      <DateInput label="Start Date:" value={dates.startDate} onChange={handleStartDateChange} />
-      <DateInput label="End Date:" value={dates.endDate} onChange={handleEndDateChange} />
-    </div>
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold mb-4">Select a fruit:</h1>
+      <ul className="mb-4">
+        {displayedItems.map((item) => (
+          <li
+            key={item}
+            onClick={() => handleClick(item)}
+            className={\`cursor-pointer hover:text-blue-700 \${selectedFruit === item ? "text-red-500" : ""}\`}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      <button 
+        onClick={toggleFilter} 
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        {filter ? 'Show All' : 'Show Only Starting with "a"'}
+      </button>
+      {selectedFruit && (
+        <p className="text-xl">
+          You selected: <span className="font-bold">{selectedFruit}</span>
+        </p>
+      )}
+    </main>
   );
 }
 `;
@@ -101,31 +112,15 @@ export default function DatePicker() {
 // Location of file as key (always starts with /)
 export const activity = {
   "/page.js": {
-    code: Page,
+    code: Activity,
     active: true,
-  },
-  "/date-picker.js": {
-    code: DatePicker,
-    active: false,
-  },
-  "/date-input.js": {
-    code: DateInput,
-    active: false,
   },
 };
 
 export const solution = {
   "/page.js": {
-    code: Page,
+    code: Solution,
     active: true,
-  },
-  "/date-picker.js": {
-    code: DatePickerSolution,
-    active: false,
-  },
-  "/date-input.js": {
-    code: DateInput,
-    active: false,
   },
 };
 

@@ -1,0 +1,333 @@
+# Interactivity with Forms
+
+In "Interactivity with Forms" we focus on React features for handling form elements and managing state. You'll learn to control form behaviors with the useState hook, handle events effectively, and employ conditional rendering to adapt UI components based on user inputs. By week's end, you'll be adept at creating interactive forms that respond intelligently to user actions, enhancing user experience and functionality.
+
+## HTML Skills Needed
+
+### Review Form Elements
+
+Forms are a fundamental part of web development, allowing users to input data and interact with web applications. HTML provides a range of form elements that you can use to create interactive forms, such as text inputs, checkboxes, radio buttons, dropdowns, and buttons.
+
+Here are some common form elements you might use in your web applications:
+
+- `<input type="text">`: A text input field where users can enter text.
+- `<input type="checkbox">`: A checkbox that users can select or deselect.
+- `<input type="radio">`: A radio button that users can select from a group of options.
+- `<select>`: A dropdown menu that allows users to select an option from a list.
+- `<textarea>`: A multi-line text input field for longer text entries.
+- `<button>`: A button that users can click to submit a form or trigger an action.
+
+  ```html
+  <form action="/submit" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+    <label for="message">Message:</label>
+    <textarea id="message" name="message"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  ```
+
+  In this example, we have a simple form with text input fields for name and email, a textarea for a message, and a submit button. When the user fills out the form and clicks the submit button, the form data is sent to a server for processing. The action attribute specifies the URL where the form data will be sent, and the method attribute specifies the HTTP method (in this case, POST).
+
+## JS Skills Needed
+
+Mastering these JavaScript concepts will equip you with the essential tools to write clean, efficient, and more readable code in React. These skills will empower you to handle complex tasks such as managing user interactions and manipulating data effectively.
+
+### `event` object
+
+In JavaScript, the `event` object is a built-in object that contains information about an event that has occurred, such as a mouse click, keypress, or form submission. When an event is triggered, the browser creates an `event` object and passes it as an argument to the event handler function.
+
+You can access properties and methods of the `event` object to get information about the event, such as the target element that triggered the event, the type of event, and the key that was pressed. You can also use the `event` object to prevent the default action of an event, stop the event from bubbling up the DOM tree, or pass data between event handlers.
+
+#### Example: Accessing Event Properties
+
+```js
+const getValues = (event) => {
+  console.log(event.target.value);
+};
+
+// In JSX
+<input type="text" onChange={getValues} />;
+```
+
+In this example, we're defining a function called `getValues` that takes an `event` object as an argument. When the `onChange` event is triggered on the input field, the `getValues` function is called with the `event` object. We can access the value of the input field that triggered the event using `event.target.value`.
+
+Another way of writing the `onChange` event handler is by using an arrow function directly in the JSX:
+
+```js
+<input type="text" onChange={(event) => getValues(event)} />
+```
+
+### Preventing a Form Submission
+
+In web development, it's a common requirement to prevent a form submission from doing its default action, which is to submit the form data and reload the page. Instead, you might want to handle the form data using JavaScript and perform some action like sending an AJAX request instead.
+
+To prevent a form submission from doing its default action, you can use the `preventDefault` method of the event object. Here's an example:
+
+```js
+const submitFunction = (event) => {
+  event.preventDefault();
+  // Handle form data
+};
+
+// In JSX
+<form onSubmit={submitFunction}>
+  <input type="text" name="name" placeholder="Enter your name" />
+  <button type="submit">Submit</button>
+</form>;
+```
+
+In this example, we're using the `preventDefault` method to prevent the form submission from reloading the page. Instead, we can handle the form data using JavaScript. The `action` attribute may be omitted from the form element since we're handling the form submission manually.
+
+## React Skills Needed
+
+We'll cover Conditional Rendering to modify what the user interface displays based on state, and Controlled Components to manage form inputs. We will revisit the concept of state management in React in two weeks, given its significance in building efficient applications.
+
+### Conditional Rendering
+
+Conditional Rendering in React is a technique where you can choose what to render based on certain conditions (usually the state or props of a component). It's a fundamental part of creating interactive user interfaces: displaying different UIs under different conditions.
+
+In JavaScript, you can use common constructs like `if`, `else`, ternary expressions (`condition ? exprIfTrue : exprIfFalse`), and logical operators (`&&`) to create elements representing the current state, and let React update and render just the right components when your data changes.
+
+#### Example 1: Conditional Rendering with Ternary Operator and Inline Expressions
+
+In JavaScript, the ternary operator (`condition ? exprIfTrue : exprIfFalse`) is a concise way to write conditional statements. Instead of:
+
+```js
+let a;
+if (condition) {
+  a = exprIfTrue;
+} else {
+  a = exprIfFalse;
+}
+```
+
+You can write:
+
+```js
+const a = condition ? exprIfTrue : exprIfFalse;
+```
+
+The ternary operator is a concise way to conditionally render elements in React. Here's an example:
+
+```js
+function UserProfile({ name, age }) {
+  return (
+    <div>
+      <h1>Welcome, {name}!</h1>
+      {age >= 18 ? <h2>You can vote.</h2> : <h2>You can't vote yet.</h2>}
+    </div>
+  );
+}
+```
+
+In this example, we're rendering a `UserProfile` component that takes `name` and `age` as props. If the age is greater than or equal to 18, we render a message saying "You can vote." Otherwise, we render a message saying "You can't vote yet."
+
+#### Example 2: Conditional Rendering with Logical && operator
+
+The `&&` operator is based on the concept of short-circuiting in JavaScript. It allows you to conditionally render elements based on a single condition. If the first operand is falsy, it returns the first operand; otherwise, it returns the second operand.
+
+```js
+function notCalled() {
+  console.log("I'm not called!");
+  return true;
+}
+
+let a = false;
+
+if (a && notCalled()) {
+  console.log("This is never executed.");
+}
+```
+
+In this example, the `notCalled` function is not called because the first operand (`a`) is `false`, so the `&&` operator short-circuits and returns `false`. The `notCalled` function is never executed.
+
+The `&&` operator is another way to conditionally render elements in React. It works by short-circuiting: if the first operand is falsy, it returns the first operand; otherwise, it returns the second operand. Short-circuiting allows you to conditionally render elements based on a single condition.
+
+```js
+function UserProfile({ user }) {
+  if (user) {
+    return (
+      <div>
+        <h1>Welcome, {user.name}!</h1>
+        {user.isAdmin && <p>You are an admin.</p>}
+      </div>
+    );
+  } else {
+    return <p>No user information found.</p>;
+  }
+}
+```
+
+In this example, we're checking if the user prop is present.
+
+- If it is, we render a div with a welcome message and the user's name. If the user is an admin (i.e., `user.isAdmin` is true), we additionally render a paragraph indicating this.
+- If the user prop is not present (i.e., it's null or undefined), we render a paragraph saying "No user information found."
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info" emoji="🧩">
+  In JavaScript, the && operator, known as the logical AND operator, evaluates
+  its operands from left to right and returns the value of the first falsy
+  operand it encounters, or the last truthy operand if none are falsy. This
+  property enables conditional rendering in React: for expr1 && expr2, if expr1
+  is truthy, expr2 is evaluated and returned (thus rendered). If expr1 is falsy,
+  the expression short-circuits, returning expr1, and expr2 is ignored (not
+  rendered).
+</Callout>
+
+### Controlled Components
+
+Controlled Components in React refer to form elements where the state of the form element is directly controlled by the state of a component. This is opposed to uncontrolled components, where form data is handled by the DOM itself.
+
+In React, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In a controlled component, the form data is handled by a React component, and the value of the input is set by the state of the component.
+
+#### Basic Controlled Component Example
+
+Here is an example of a Controlled Component, a simple form with a single text input field:
+
+import Sandbox from "components/Sandbox";
+import { example } from "./example.js";
+
+<Sandbox files={example} />
+
+In this example, we're using the `useState` hook to manage the state of the input field in our `NameForm` functional component. The state is initially an empty string (''). When you type into the input field, the `handleChange` function is called, which updates the state with the new value (converted to uppercase, using `event.target.value.toUpperCase()`).
+
+When you submit the form, the `handleSubmit` function is called. This function alerts the current state value, which will be the user's input in uppercase. By controlling the input field's value with state, we ensure that the displayed input is always in sync with the component state.
+
+<Callout type="info" emoji="🧩">
+  In React, Controlled Components are a common pattern for managing form
+  elements. By controlling the form data with React state, you can handle user
+  input, validation, and submission more effectively. Controlled Components
+  provide a single source of truth for form data, making it easier to manage and
+  update the form state.
+</Callout>
+
+## 🗒️ Summary
+
+- **🏹 HTML Skills:** Review how HTML forms work.
+- **🔧 JS Skills:** Understand the `event` object and how to prevent form submissions.
+- **🚦 Conditional Rendering:** Choose what to render based on certain conditions.
+- **🎛️ Controlled Components:** Form elements where the state of the form element is directly controlled by the state of a component.
+
+## 📚 Knowledge Check
+
+import MultipleChoice from "components/MultipleChoice";
+
+<MultipleChoice
+  question="1. What is a controlled component in React?"
+  choices={[
+    "A component that controls other components",
+    "A form element where the state is directly controlled by the state of a component",
+    "A component that is controlled by a user",
+    "A component that controls the state of a form element",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="2. What is the purpose of the 'preventDefault' method in JavaScript?"
+  choices={[
+    "It prevents a function from being called",
+    "It prevents an event from triggering its default action",
+    "It prevents a component from re-rendering",
+    "It prevents a form from being submitted",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="3. What are event handlers in React?"
+  choices={[
+    "Props that are passed to components",
+    "Functions that are executed in response to specific events triggered by the user or the browser",
+    "Functions that are called when a component is rendered",
+    "Components that handle events",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="4. What is the role of the `required` attribute in the input fields?"
+  choices={[
+    "To style the input field",
+    "To make the input field mandatory",
+    "To disable the input field",
+    "To set a default value for the input field",
+  ]}
+  answer="2"
+/>
+
+<MultipleChoice
+  question="5. Which HTML element is used to create a multi-line text input field?"
+  choices={[
+    "<input type='text'>",
+    "<input type='textarea'>",
+    "<textarea>",
+    "<input type='multiline'>",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="6. Which property of the event object is used to access the input field's value in an event handler?"
+  choices={[
+    "event.value",
+    "event.input",
+    "event.target.value",
+    "event.field.value",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="7. What does the && operator do when used in conditional rendering in React?"
+  choices={[
+    "It always renders the second operand",
+    "It prevents the component from rendering",
+    "It renders the second operand only if the first operand is true",
+    "It toggles the rendering of the second operand",
+  ]}
+  answer="3"
+/>
+
+<MultipleChoice
+  question="8. In a controlled component, how is the value of a form element typically managed?"
+  choices={[
+    "By the DOM",
+    "By the React component state",
+    "By the parent component's state",
+    "By an external library",
+  ]}
+  answer="2"
+/>
+
+## 🌐 Community Events App
+
+In the Community Events app for Week 5, an interactive form is used to create new events. Read the code to see how changes in the form inputs are handled using state, and how the form submission is prevented from doing its default action.
+
+- [Week 5 Code](https://github.com/warsylewicz/webdev2-community-events/tree/master/app/week-5)
+- [Live deployment](https://webdev2-community-events.vercel.app/week-5)
+
+The following video is a walkthrough of the Community Events app for Week 5, focusing on the interactivity with forms and how the form data is managed using React state. (It used to be for Week 4 but the content is now relevant for Week 5.)
+
+<iframe
+  style={{ width: "100%", aspectRatio: "16/9" }}
+  src="https://www.youtube.com/embed/KCO7_qsnW4Q?si=HqgPY107lxQVt8dQ"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen="allowFullScreen"
+></iframe>
+
+## 📖 Further Reading
+
+React:
+
+- [Adding Interactivity - React](https://react.dev/learn/adding-interactivity)
+- [Responding to Events - React](https://react.dev/learn/responding-to-events)
+- [State: A Component's Memory - React](https://react.dev/learn/state-a-components-memory)
+- [Render and Commit - React](https://react.dev/learn/render-and-commit)
+- [State as a Snapshot - React](https://react.dev/learn/state-as-a-snapshot)

@@ -1,122 +1,54 @@
-# CPRG-306 Week 7
+# CPRG-306 Week 6
 
-# Fetching Data
+# Managing State
 
----
-
-## Topics
-
-- HTTP Methods, Status Codes
-- JS Promises, Async/Await, and Fetch API
-- React useEffect Hook
+- Immutability
+- Component Lifecycle
+- Sharing State Between Components
 
 ---
 
-## HTTP Methods
+## Immutability
 
-- GET: Retrieve data
-- POST: Create new data
-- PUT: Update existing data
-- PATCH: Partial update
-- DELETE: Remove data
+- State should be treated as immutable
+- Never mutate state directly
+- Always use `setState` to update state
 
 ---
 
-## HTTP Status Codes
+## Immutability Demo
 
-- 1xx: Informational
-- 2xx: Success
-- 3xx: Redirection
-- 4xx: Client Error
-- 5xx: Server Error
-
-E.g. 200 OK, 201 Created, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error
+Create a broken counter that increments by 1 that doesn't use `setState`
 
 ---
 
-## JS Promises
+## Component Lifecycle
 
-- A promise is an object that represents the eventual completion (or failure) of an asynchronous operation
-- Three states: pending, fulfilled, rejected
-- Pending -> Fulfilled (`.then`) or Rejected (`.catch`)
-- Callback functions are passed to `.then` and `.catch`
-- Promises are chainable and can be used to handle multiple asynchronous operations
-
----
-
-## JS Async/Await
-
-- Instead of using `.then` and `.catch`, we can use `async` and `await` to handle promises
-- `async` keyword is used to define an asynchronous function
-- `await` keyword is used to "pause" the execution of the function until the promise is resolved
-- `try` and `catch` blocks can be used to handle errors
-- Much cleaner and easier to read than using `.then` and `.catch`
+- Initial Render
+- State Change
+- Schedule Update
+- Reconciliation
+- Update State
+- Re-render
 
 ---
 
-## Notation Comparison
+## React State Batching Demo
 
-```javascript
-// Using .then and .catch
-fetch("https://api.example.com/data") // Fetching data returns a promise
-  .then((response) => response.json()) // When the fetch promise is resolved, prarsing the JSON returns another promise
-  .then((data) => console.log(data)) // When the parsing promise is resolved, logs the data
-  .catch((error) => console.error(error)); // If there is an error, logs the error
-
-// Using async/await
-async function fetchData() {
-  try {
-    const response = await fetch("https://api.example.com/data"); // Pauses here until the promise is resolved returning the response.
-    const data = await response.json(); // Pauses here until the promise is resolved returning the data.
-    console.log(data); // Does not pause here.
-  } catch (error) {
-    console.error(error);
-  }
-}
-```
+Demo: Create a broken counter that uses `setState` multiple times
 
 ---
 
-## Fetch API
+## Sharing State Between Components
 
-- Provides a way to make HTTP requests and handle responses
-- Returns a promise which when resolved, returns the response to the request
-- Can be used to fetch data from an API, send data to a server, etc.
-
-```javascript
-const response = await fetch("https://api.example.com/data");
-const data = await response.json(); // or response.text(), etc.
-```
+- Lifting State Up
 
 ---
 
-### React `useEffect` Hook
+## Lifting State Up Demo
 
-- Used to perform side effects in functional components
-- Side effects include data fetching, timers, manual DOM manipulation
-- Runs after every render by default
-- Can be used to run code only when certain values change
-
----
-
-## `useEffect` Syntax
-
-```javascript
-useEffect(() => {
-  // Code to run
-}, [dependencies]);
-```
-
-- The function passed to `useEffect` is the effect
-- The second argument is an array of dependencies
-- If the dependencies change, the effect will run again
-- If the dependencies are empty, the effect will only run once
-
----
-
-## Coding Demo
-
-- Use [Dog API](https://dog.ceo/dog-api/)
-- When the page loads, display a random image of a dog
-- Display the list of breeds in a dropdown
-- When a breed is selected, display a random image of that breed
+1. Create a Dog component, display name and age
+2. Create a DogList component, display a list of Dogs
+3. Create a DogForm component, allow user to add a new dog
+4. Create a Page component that displays the DogList and DogForm
+5. Consider adding a delete button to the Dog component

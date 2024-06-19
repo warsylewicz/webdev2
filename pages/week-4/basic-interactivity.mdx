@@ -1,19 +1,58 @@
-# Interactivity
+import MultipleChoice from "components/MultipleChoice";
 
-Interactivity is at the heart of modern web applications, and React provides a robust and intuitive framework to build interactive user interfaces. As we delve into React Interactivity, we'll explore how to handle user inputs and events, manage dynamic data with state, and conditionally render components based on user interaction or changes in state. This week is all about bringing your web applications to life and creating dynamic, interactive user experiences.
+# Basic Interactivity
 
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/q6csuHrhmrE?si=7uXY7vEYERIbZo2m"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
+"Basic Interactivity" introduces the core JavaScript and React elements that drive user interactions in web applications. We'll cover the essentials of Arrays, Arrow Functions, explore Anonymous and Higher Order Functions, and begin using the useState hook. This week is all about laying the groundwork for dynamic user interfaces, teaching you to transform static pages into responsive, interactive experiences.
 
 ## JS Skills Needed
 
 Mastering these JavaScript concepts will equip you with the essential tools to write clean, efficient, and more readable code in React. These skills will empower you to handle complex tasks such as managing user interactions and manipulating data effectively.
+
+### Arrays
+
+In JavaScript, arrays are high-level, list-like objects that are incredibly versatile and serve as one of the basic data structures in the language. Understanding arrays and their common operations is crucial for any JavaScript developer.
+
+#### Array Notation
+
+Arrays in JavaScript are created and accessed using square bracket notation. Here is how you declare an array:
+
+```js
+let myArray = ["apple", "banana", "cherry"];
+```
+
+In this example, myArray is an array containing three strings. The elements in the array are ordered and each one has an index, starting from 0. So, 'apple' is at index 0, 'banana' is at index 1, and 'cherry' is at index 2. You can access the elements of the array using their indexes like so:
+
+```js
+console.log(myArray[0]); // Output: 'apple'
+```
+
+An empty array is an array that does not contain any elements. You can declare an empty array like this:
+
+```js
+let emptyArray = [];
+```
+
+Even though the array is initially empty, you can still add elements to it later on which will increase by internally increasing the length of the array.
+
+#### Destructuring Arrays
+
+Destructuring is a JavaScript expression that makes it possible to unpack values from arrays or properties from objects into distinct variables. Here's an example of array destructuring:
+
+```js
+let myArray = ["apple", "banana", "cherry"];
+let [first, second, third] = myArray;
+```
+
+This example would be equivalent to:
+
+```js
+let myArray = ["apple", "banana", "cherry"];
+let first = myArray[0];
+let second = myArray[1];
+let third = myArray[2];
+```
+
+Destructuring can be a powerful tool for working with arrays and objects in JavaScript, making your code more concise and readable.
 
 ### Arrow Functions
 
@@ -64,6 +103,8 @@ const greet = (name) => `Hello, ${name}!`;
 console.log(greet("Bob")); // Output: Hello, Bob!
 ```
 
+Notice that we've removed the curly braces and the return keyword. The value after the arrow (`=>`) is implicitly returned.
+
 #### Example 3: Arrow Function with Multiple Parameters
 
 Arrow functions can of course take multiple parameters. Here's an example:
@@ -74,15 +115,6 @@ console.log(add(2, 3)); // Output: 5
 ```
 
 In this example, the add function takes two parameters, a and b, and returns their sum.
-
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/Kg5-gf1ymQk?si=DTKB-DHvbkh00Yhf"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
 
 ### Higher Order Functions
 
@@ -133,15 +165,6 @@ console.log(multiplyByTwo(4)); // Output: 8
 
 In this example, the `multiplyBy` function returns a new function that multiplies its given argument by the value of `num1`. We then assign the return value of `multiplyBy(2)` to the variable `multiplyByTwo`, which is a function that multiplies its given argument by 2. We can then call `multiplyByTwo` with an argument of 4, which returns 8.
 
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/Fkpq9AT57F0?si=fsZ0jD_V_gZDFw8Q"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
-
 import { Callout } from "nextra-theme-docs";
 
 <Callout type="info" emoji="️🆘">
@@ -156,37 +179,6 @@ import { Callout } from "nextra-theme-docs";
   will find yourself writing React code using these essential JavaScript
   features.
 </Callout>
-
-### Preventing a Form Submission
-
-In web development, it's a common requirement to prevent a form submission from doing its default action, which is to submit the form data and reload the page. Instead, you might want to handle the form data using JavaScript and perform some action like sending an AJAX request.
-
-To prevent a form submission from doing its default action, you can use the `preventDefault` method of the event object. Here's an example:
-
-```js
-const submitFunction = (event) => {
-  event.preventDefault();
-  // Handle form data
-};
-```
-
-```html
-<form onSubmit="submitFunction(event)">
-  <input type="text" name="name" placeholder="Enter your name" />
-  <button type="submit">Submit</button>
-</form>
-```
-
-In this example, we're using the `preventDefault` method to prevent the form submission from reloading the page. Instead, we can handle the form data using JavaScript.
-
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/yyL97ZryW1w?si=Bmgqz7ZS0pSmYB4Z"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
 
 ## Tailwind CSS Skills Needed
 
@@ -223,7 +215,7 @@ In this example, we're using the `preventDefault` method to prevent the form sub
 
 #### Layout Example
 
-```js
+```html
 <div class="flex flex-row gap-4 m-4 w-full">
   <div class="flex-1 bg-blue-100 p-6 rounded-lg">
     <h2 class="mb-4 text-xl font-bold text-gray-900">Card 1</h2>
@@ -321,18 +313,9 @@ Here, when the input field is focused, the outline is removed and a green ring a
 
 In this case, the button's background color changes from blue-500 to yellow-700 when it's being clicked.
 
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/rHyLM2gJoMU?si=W3hqDRnon4A3Mn3b"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
-
 ## React Skills Needed
 
-This week, we'll be focusing on four important aspects of React that are crucial for building interactive web applications. We'll learn about Event Handlers, which respond to user actions, and the useState Hook, a feature for managing state in your components. We'll also cover Conditional Rendering to modify what the user interface displays based on state, and Controlled Components to manage form inputs. These topics are key to creating a responsive and dynamic application. We will also revisit the concept of state management in React in two weeks, given its significance in building efficient applications.
+This week, we'll be focusing on four important aspects of React that are crucial for building interactive web applications. We'll learn about Event Handlers, which respond to user actions, and the useState Hook, a feature for managing state in your components.
 
 ### Event Handlers
 
@@ -376,15 +359,6 @@ export function ButtonExample() {
 - Button Text: The text inside the button is "Click me". This is what will be displayed on the button in the browser.
 
 So, all together, this ButtonExample component renders a button that, when clicked, shows an alert with the message "Button clicked!".
-
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/vPNPifvSVk8?si=UVZvy1O-_DI3mn10"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
 
 ### `useState` Hook
 
@@ -449,7 +423,7 @@ First, we're importing the useState hook from React. This is a built-in React ho
 const [count, setCount] = useState(0);
 ```
 
-Within our component, we're calling the useState function with an initial value of 0. useState returns an array with two elements: the current state value and a function to update that state value. Here, we're using destructuring assignment to assign these two elements to the count and setCount variables, respectively. (We'll learn more about destructuring in a couple weeks.)
+Within our component, we're calling the useState function with an initial value of 0. useState returns an array with two elements: the current state value and a function to update that state value. Here, we're using destructuring assignment to assign these two elements to the count and setCount variables, respectively.
 
 The `count` variable holds the current state (the number of times the button has been clicked), and `setCount` is the function we'll use to update this state.
 
@@ -472,110 +446,11 @@ return (
 
 In the render return of our component, we're displaying the current `count` inside a paragraph tag, and a button that, when clicked, calls the increment function, which increases the count by one. When the count is updated, the component re-renders with the new count value.
 
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/OWAc1Bg_3Vc?si=4wklTwjgsJVPuYZ-"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
-
 <Callout type="info" emoji="️🔁">
   State is a fundamental concept in React, and it's important to understand how
   it works. If you're still confused about state, don't worry — we'll be
   revisiting this topic in more detail in a couple weeks.
 </Callout>
-
-### Conditional Rendering
-
-Conditional Rendering in React is a technique where you can choose what to render based on certain conditions (usually the state or props of a component). It's a fundamental part of creating interactive user interfaces: displaying different UIs under different conditions.
-
-In JavaScript, you can use common constructs like `if`, `else`, ternary expressions (`condition ? exprIfTrue : exprIfFalse`), and logical operators (`&&`) to create elements representing the current state, and let React update and render just the right components when your data changes.
-
-#### Example 1: Conditional Rendering with Ternary Operator and Inline Expressions
-
-```js
-function UserProfile({ name, age }) {
-  return (
-    <div>
-      <h1>Welcome, {name}!</h1>
-      {age >= 18 ? <h2>You can vote.</h2> : <h2>You can't vote yet.</h2>}
-    </div>
-  );
-}
-```
-
-In this example, we're using a ternary operator to conditionally render one of two h2 elements based on the age prop. Note that the condition is written inline, right inside the returned JSX.
-
-#### Example 2: Conditional Rendering with Logical && operator
-
-```js
-function UserProfile({ user }) {
-  if (user) {
-    return (
-      <div>
-        <h1>Welcome, {user.name}!</h1>
-        {user.isAdmin && <p>You are an admin.</p>}
-      </div>
-    );
-  } else {
-    return <p>No user information found.</p>;
-  }
-}
-```
-
-In this example, we're checking if the user prop is present.
-
-- If it is, we render a div with a welcome message and the user's name. If the user is an admin (i.e., `user.isAdmin` is true), we additionally render a paragraph indicating this.
-- If the user prop is not present (i.e., it's null or undefined), we render a paragraph saying "No user information found."
-
-<Callout type="info" emoji="🧩">
-  In JavaScript, the && operator, known as the logical AND operator, evaluates
-  its operands from left to right and returns the value of the first falsy
-  operand it encounters, or the last truthy operand if none are falsy. This
-  property enables conditional rendering in React: for expr1 && expr2, if expr1
-  is truthy, expr2 is evaluated and returned (thus rendered). If expr1 is falsy,
-  the expression short-circuits, returning expr1, and expr2 is ignored (not
-  rendered).
-</Callout>
-
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/MX1hZDJMSNU?si=gdvhMM5NgWx92FvJ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
-
-### Controlled Components
-
-Controlled Components in React refer to form elements where the state of the form element is directly controlled by the state of a component. This is opposed to uncontrolled components, where form data is handled by the DOM itself.
-
-In React, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In a controlled component, the form data is handled by a React component, and the value of the input is set by the state of the component.
-
-#### Basic Controlled Component Example
-
-Here is an example of a Controlled Component, a simple form with a single text input field:
-
-import Sandbox from "components/Sandbox";
-import { example } from "./example.js";
-
-<Sandbox files={example} />
-
-In this example, we're using the `useState` hook to manage the state of the input field in our `NameForm` functional component. The state is initially an empty string (''). When you type into the input field, the `handleChange` function is called, which updates the state with the new value (converted to uppercase, using `event.target.value.toUpperCase()`).
-
-When you submit the form, the `handleSubmit` function is called. This function alerts the current state value, which will be the user's input in uppercase. By controlling the input field's value with state, we ensure that the displayed input is always in sync with the component state.
-
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/UFx6UrqZQqM?si=XuTg6PlTWOK45qqy"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
 
 ## Next.js Skills Needed
 
@@ -604,29 +479,16 @@ import { useState } from "react";
 export default function .....
 ```
 
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/DatH1jBWy3Q?si=ZniipOXOdIyy6vTM"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
-
 ## 🗒️ Summary
 
 - **🎯 Focus:** Interactivity is key in modern web applications and React provides a robust framework to create interactive user interfaces.
 - **🏹 JS Skills:** Master JavaScript concepts like arrow functions that offer a concise way to write functions, and higher order functions that take one or more functions as arguments or return a function.
 - **🎨 Tailwind CSS:** Learn about layouts, Tailwind states, and how to use utility classes to create custom designs.
-- **📐React Skills:** Learn about Event Handlers, the useState Hook, Conditional Rendering, and Controlled Components.
+- **📐React Skills:** Learn about Event Handlers, the useState Hook.
 - **🖱️ Event Handlers:** Functions executed in response to specific events triggered by the user or the browser.
 - **🔄 useState Hook:** Allows you to add state to your function components.
-- **🚦 Conditional Rendering:** Choose what to render based on certain conditions.
-- **🎛️ Controlled Components:** Form elements where the state of the form element is directly controlled by the state of a component.
 
 ## 📚 Knowledge Check
-
-import MultipleChoice from "components/MultipleChoice";
 
 <MultipleChoice
   question="1. What is the basic syntax for an arrow function in JavaScript?"
@@ -673,29 +535,7 @@ import MultipleChoice from "components/MultipleChoice";
 />
 
 <MultipleChoice
-  question="5. What is a controlled component in React?"
-  choices={[
-    "A component that controls other components",
-    "A form element where the state is directly controlled by the state of a component",
-    "A component that is controlled by a user",
-    "A component that controls the state of a form element",
-  ]}
-  answer="2"
-/>
-
-<MultipleChoice
-  question="6. What is the purpose of the 'preventDefault' method in JavaScript?"
-  choices={[
-    "It prevents a function from being called",
-    "It prevents an event from triggering its default action",
-    "It prevents a component from re-rendering",
-    "It prevents a form from being submitted",
-  ]}
-  answer="2"
-/>
-
-<MultipleChoice
-  question="7. What is the difference between state and regular variables in React?"
+  question="5. What is the difference between state and regular variables in React?"
   choices={[
     "State is a special property: when state changes, React automatically re-renders the component with the new state",
     "State can be updated, but regular variables cannot",
@@ -706,7 +546,7 @@ import MultipleChoice from "components/MultipleChoice";
 />
 
 <MultipleChoice
-  question="8. What are event handlers in React?"
+  question="6. What are event handlers in React?"
   choices={[
     "Props that are passed to components",
     "Functions that are executed in response to specific events triggered by the user or the browser",
@@ -717,7 +557,7 @@ import MultipleChoice from "components/MultipleChoice";
 />
 
 <MultipleChoice
-  question="9. How do you style different states in Tailwind CSS?"
+  question="7. How do you style different states in Tailwind CSS?"
   choices={[
     "Using JavaScript functions",
     "Using CSS classes",
@@ -728,23 +568,12 @@ import MultipleChoice from "components/MultipleChoice";
 />
 
 <MultipleChoice
-  question="10. What is the significance of a higher order function in JavaScript?"
+  question="8. What is the significance of a higher order function in JavaScript?"
   choices={[
     "It allows us to abstract over actions, not just values",
     "It allows us to create functions with a higher order of complexity",
     "It allows us to declare functions inside other functions",
     "It allows us to use functions as arguments to other functions",
-  ]}
-  answer="1"
-/>
-
-<MultipleChoice
-  question="11. In React, how do you prevent a form submission from doing its default action?"
-  choices={[
-    "Using the 'preventDefault' method of the event object",
-    "By returning false from the form's onSubmit event handler",
-    "By setting the form's 'action' attribute to '#'",
-    "By setting the form's 'submit' attribute to false",
   ]}
   answer="1"
 />
@@ -758,7 +587,7 @@ const increment = () => {
 ```
 
 <MultipleChoice
-  question="12. In the above code snippet, what does the 'increment' function do?"
+  question="9. In the above code snippet, what does the 'increment' function do?"
   choices={[
     "It decreases the 'count' state by 1",
     "It sets the 'count' state to 1",
@@ -769,7 +598,7 @@ const increment = () => {
 />
 
 <MultipleChoice
-  question="13. In the above code snippet, when the 'increment' function is invoked, what is the value of 'count' logged to the console in the function's body?"
+  question="10. In the above code snippet, when the 'increment' function is invoked, what is the value of 'count' logged to the console in the function's body?"
   choices={[
     "The updated value of 'count', incremented by 1",
     "The initial value of 'count' before being incremented",
@@ -785,6 +614,7 @@ In this hands-on activity, you will be enhancing a basic counter application by 
 
 The provided code includes a counter with an increment button. Currently, the increment button is always disabled. Your task is to implement a feature that enables/disables the increment button when a checkbox is checked/unchecked and add a class to make the button appear interactive when hovered over.
 
+import Sandbox from "components/Sandbox";
 import { activity, solution } from "./activity.js";
 
 <Sandbox files={activity} />
@@ -837,24 +667,16 @@ Your task is to add a Tailwind CSS class to the button to make the button turn a
 
 ## 🌐 Community Events App
 
-In the Community Events app for Week 4, an interactive form is used to create new events. Read the code to see how changes in the form inputs are handled using state, and how the form submission is prevented from doing its default action.
+In order to create a new event, users need to fill out a form with details about the event. This form will be a modal (pop-up) that appears when the user clicks the add button. In the Community Events app for Week 4, let's implement the modal. Next week we will add the form fields.
 
 - [Week 4 Code](https://github.com/warsylewicz/webdev2-community-events/tree/master/app/week-4)
 - [Live deployment](https://webdev2-community-events.vercel.app/week-4)
-
-<iframe
-  style={{ width: "100%", aspectRatio: "16/9" }}
-  src="https://www.youtube.com/embed/KCO7_qsnW4Q?si=HqgPY107lxQVt8dQ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowFullScreen="allowFullScreen"
-></iframe>
 
 ## 📖 Further Reading
 
 JavaScript:
 
+- [Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 - [Arrow function expressions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [Higher-Order Functions :: Eloquent JavaScript](https://eloquentjavascript.net/05_higher_order.html)
 

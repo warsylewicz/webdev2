@@ -1,69 +1,80 @@
-# CPRG-306 Week 12
+# CPRG-306 Week 11
 
-# API Database Integration
-
----
-
-## Topics
-
-- Tagged Template Literals
-- Serverless Relational Databases
-- Connections
-- API Integration
+# API Implementation
 
 ---
 
-## Tagged Template Literals
-
-- allow you to parse and manipulate template strings with a custom function
-- Commonly used for:
-  - Creating domain-specific languages (DSLs)
-  - Securely embedding expressions (e.g., SQL queries)
-  - Localization and formatting
+- API routes
+  - `/api/...`
 
 ---
 
-## Example
+## RESTful APIs
 
-```javascript
-// Define an asynchronous function to insert a new user
-async function insertUser(email, name, age, role) {
-  // Use the sql tagged template literal to construct the query
-  const result = await sql`
-    INSERT INTO users (email, name, age, role)
-    VALUES (${email}, ${name}, ${age}, ${role});
-  `;
-  return result;
-}
-```
+- Representational State Transfer (REST)
+- RESTful APIs
+  - Use HTTP methods to perform CRUD operations
+  - Use URLs to represent resources
+  - Use status codes to indicate success or failure
 
 ---
 
-## Serverless Relational Databases
+## HTTP Methods
 
-- hosted in the cloud and are managed by a cloud provider
-- scalable and can be accessed from anywhere
-- easy to set up and use
-- cost-effective, as you only pay for what you use
-- e.g. Neon, PlanetScale, FaunaDB, Supabase, Vercel Postgres
+- GET: Retrieve data
+- POST: Create new data
+- PUT: Update existing data
+- PATCH: Partially update existing data
+- DELETE: Delete data
 
 ---
 
-## Connections
+## Resources and URLs
 
-- Connection string
-  - a string that contains the information required to connect to a database
-- Connection pool
-  - a cache of database connections maintained so that the connections can be reused when required
-- Connection timeout
-  - the maximum time that a connection can be idle before it is closed
-- Cold start
-  - the time it takes for a serverless database to start up when it is not being used
+- Resources are represented by URLs
+- URLs are hierarchical
+- URLs can represent collections and individual items
+- e.g. `/api/users/123` represents user with id `123`
+- e.g. `/api/users` represents all users
+- e.g. `/api/users/123/orders/777` represents order id 777 for user with id 123
+
+---
+
+## Common Status Codes
+
+- 200: OK
+  - e.g. GET request was successful
+- 201 Created
+  - e.g. POST request was successful
+- 204 No Content
+  - e.g. DELETE request was successful
+- 400 Bad Request
+  - e.g. invalid input
+- 401 Unauthorized
+  - e.g. missing or invalid authentication
+- 404 Not Found
+  - e.g. resource not found
+
+---
+
+## Examples
+
+- GET `/api/users/123` will return user object with id `123`
+- POST `/api/users` with request body will create a new user
+- PUT `/api/users/123` with request body will update user
+- DELETE `/api/users/123` will delete user with id `123`
+
+---
+
+## API Implementation
+
+- In Next.js API routes are implemented using `route.js` files in any folder, usually in an `api` folder
+- API routes are server-side code only
 
 ---
 
 ## Coding Demo
 
-- Create an API to perform CRUD operations on a serverless database
+- Construct a simple API
 - Test the API
-- Consume the API in a client application
+- Consume the API from the front-end (`fetch`)

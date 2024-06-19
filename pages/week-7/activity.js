@@ -1,72 +1,98 @@
-const Page = `"use client";
+const Page = `
+import DatePicker from './date-picker';
 
-import { useState } from "react";
+export default function Page() {
+  return (
+    <main>
+      <h1 className="text-4xl">Hotel Booking</h1>
+      <DatePicker />
+    </main>
+  )
+}
+`;
 
-export default function EmailCheckComponent() {
-  const [email, setEmail] = useState("");
-  const [result, setResult] = useState("");
+const DatePicker = `"use client";
 
-  const validateEmail = async () => {
-    const response = await fetch(\`https://www.disify.com/api/email/\${email}\`);
-    const data = await response.json();
-    
-    setResult(JSON.stringify(data));
+import { useState } from 'react';
+import DateInput from './date-input';
+
+export default function DatePicker() {
+  const [dates, setDates] = useState({ startDate: "", endDate: "" });
+
+  const handleStartDateChange = (newStartDate) => {
+    setDates(prevDates => ({ ...prevDates, startDate: newStartDate }));
+    // TODO: Ensure that the end date is not before the start date
   };
 
+  const handleEndDateChange = (newEndDate) => {
+    // TODO: Update the state with the new end date
+    // TODO: Ensure that the start date is not after the end date
+  };
 
   return (
     <div>
-      <input
-        className="text-black border-2" 
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-      />
-      <button onClick={validateEmail} className="bg-blue-200">Check</button>
-      <p>{result}</p>
+      <DateInput label="Start Date:" value={dates.startDate} onChange={handleStartDateChange} />
+      <DateInput label="End Date:" value={dates.endDate} onChange={handleEndDateChange} />
     </div>
   );
 }
 `;
 
-const Solution = `"use client";
+const DateInput = `
+export default function DateInput({ label, value, onChange }) {
+  const handleDateChange = (event) => {
+    onChange(event.target.value);
+  };
 
-import { useState } from "react";
+  return (
+    <label>
+      {label}
+      <input
+        type="date"
+        value={value}
+        onChange={handleDateChange}
+      />
+    </label>
+  );
+}
+`;
 
-export default function EmailCheckComponent() {
-  const [email, setEmail] = useState("");
-  const [result, setResult] = useState("");
+const DatePickerSolution = `"use client";
 
-  const validateEmail = async () => {
-    try {
-      const response = await fetch(\`https://www.disify.com/api/email/\${email}\`);
-      const data = await response.json();
-      if (data.format) {
-        if (data.disposable) {
-          setResult("The email address is valid and disposable.");
-        } else {
-          setResult("The email address is valid and not disposable.");
-        }
+import { useState } from 'react';
+import DateInput from './date-input';
+
+export default function DatePicker() {
+  const [dates, setDates] = useState({ startDate: "", endDate: "" });
+
+  const handleStartDateChange = (newStartDate) => {
+    setDates(prevDates => {
+      // If the new start date is after the current end date, 
+      // update the end date to the new start date
+      if (newStartDate > prevDates.endDate) {
+        return { startDate: newStartDate, endDate: newStartDate };
       } else {
-        setResult("The email address is invalid.");
+        return { ...prevDates, startDate: newStartDate };
       }
-    } catch (error) {
-      console.error(error);
-    }
+    });
+  };
+
+  const handleEndDateChange = (newEndDate) => {
+    setDates(prevDates => {
+      // If the new end date is before the current start date, 
+      // update the start date to the new end date
+      if (newEndDate < prevDates.startDate) {
+        return { startDate: newEndDate, endDate: newEndDate };
+      } else {
+        return { ...prevDates, endDate: newEndDate };
+      }
+    });
   };
 
   return (
     <div>
-      <input
-        className="text-black border-2" 
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-      />
-      <button onClick={validateEmail} className="bg-blue-200">Check</button>
-      <p>{result}</p>
+      <DateInput label="Start Date:" value={dates.startDate} onChange={handleStartDateChange} />
+      <DateInput label="End Date:" value={dates.endDate} onChange={handleEndDateChange} />
     </div>
   );
 }
@@ -78,12 +104,28 @@ export const activity = {
     code: Page,
     active: true,
   },
+  "/date-picker.js": {
+    code: DatePicker,
+    active: false,
+  },
+  "/date-input.js": {
+    code: DateInput,
+    active: false,
+  },
 };
 
 export const solution = {
   "/page.js": {
-    code: Solution,
+    code: Page,
     active: true,
+  },
+  "/date-picker.js": {
+    code: DatePickerSolution,
+    active: false,
+  },
+  "/date-input.js": {
+    code: DateInput,
+    active: false,
   },
 };
 

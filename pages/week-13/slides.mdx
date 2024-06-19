@@ -1,80 +1,71 @@
-# CPRG-306 Week 13
+# CPRG-306 Week 12
 
-# ORM and Middleware
+# API Database Integration
 
 ---
 
 ## Topics
 
-- ORM
-- Middleware
-- Starter Templates
+- Tagged Template Literals
+- Serverless Relational Databases
+- Connections
+- API Integration
 
 ---
 
-## ORM
+## Tagged Template Literals
 
-- Object-Relational Mapping
-- A programming technique for converting data between incompatible type systems using object-oriented programming languages
-- Eliminates the need for most of the data-access code that developers usually need to write
-
----
-
-## Prisma
-
-- ORM for Node.js and TypeScript
-- **Prisma Client**: Auto-generated and type-safe query builder for Node.js & TypeScript.
-- **Prisma Migrate**: Declarative data modeling & migration system.
+- allow you to parse and manipulate template strings with a custom function
+- Commonly used for:
+  - Creating domain-specific languages (DSLs)
+  - Securely embedding expressions (e.g., SQL queries)
+  - Localization and formatting
 
 ---
 
-## Key Features of Prisma
+## Example
 
-- **Strongly Typed API**: TypeScript for safer and more reliable code.
-- **Auto-Completion**: Auto-completion for your database queries.
-- **Declarative Migrations**: Define your database schema and let Prisma Migrate handle the changes.
-- **Support for Many Databases**: Compatible with PostgreSQL, MySQL, SQL Server, SQLite, and more.
-
----
-
-## Middleware
-
-- a function that runs before the main route handler.
-- have access to the request and response objects.
-- can perform the following tasks:
-  - Execute any code.
-  - Make changes to the request and the response objects.
-  - End the request-response cycle.
+```javascript
+// Define an asynchronous function to insert a new user
+async function insertUser(email, name, age, role) {
+  // Use the sql tagged template literal to construct the query
+  // sql is a custom function that parses and executes the query
+  // pretty interesting that you use backticks instead of parentheses for the function call!
+  const result = await sql`
+    INSERT INTO users (email, name, age, role)
+    VALUES (${email}, ${name}, ${age}, ${role});
+  `;
+  return result;
+}
+```
 
 ---
 
-## Common Uses of Middleware
+## Serverless Relational Databases
 
-- Authentication and Authorization
-- Logging
-- Path Rewriting
-- Bot Detection
-- Server-Side Redirects, e.g. locale, role-based routing
-
----
-
-## Middleware in Next.js
-
-- implemented with `middleware.ts` (or `middleware.js`)
-- `redirect` function to redirect to a different URL (HTTP status code 307)
-- `rewrite` function to rewrite the URL
+- hosted in the cloud and are managed by a cloud provider
+- scalable and can be accessed from anywhere
+- easy to set up and use
+- cost-effective, as you only pay for what you use
+- e.g. Neon, PlanetScale, FaunaDB, Supabase, Vercel Postgres
 
 ---
 
-## Starter Templates
+## Connections
 
-- https://vercel.com/templates/next.js
-- https://t3.gg/
-- https://nextra.site/
+- Connection string
+  - a string that contains the information required to connect to a database
+- Connection pool
+  - a cache of database connections maintained so that the connections can be reused when required
+- Connection timeout
+  - the maximum time that a connection can be idle before it is closed
+- Cold start
+  - the time it takes for a serverless database to start up when it is not being used
 
 ---
 
 ## Coding Demo
 
-- Replace SQL with ORM
-- Implement middleware.ts to redirect and rewrite URLs
+- Create an API to perform CRUD operations on a serverless database
+- Test the API
+- Consume the API in a client application

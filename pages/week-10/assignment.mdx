@@ -1,0 +1,180 @@
+import { Callout, Steps } from "nextra-theme-docs";
+
+# Week 10 Assignment
+
+## Overview
+
+This week's assignment completes the Shopping List application by adding a database! We will continue from the Week 8 Assignment where we added authentication.
+
+## Prerequisites
+
+Before starting this assignment, you should have completed the Week 8 Assignment and have working authentication. If you have not completed the Week 8 assignment, use another student's Week 8 Assignment as a starting point for this week's assignment. Refer to the list of [student repositories](/student-work/github-accounts).
+
+## Part 1: Duplicate the Week 8 Assignment
+
+Create a `week-10` folder in your Next.js project and copy the contents of your `week-8` folder into it.
+
+## Part 2: Add Cloud Firestore in Firebase
+
+<Steps>
+
+### Firebase console
+
+Navigate to the Firebase console (https://console.firebase.google.com/) and to the project you created in Week 8.
+
+### Add Cloud Firestore service
+
+Under the Product Categories menu on the left, click "Build" and then click on the "Cloud Firestore".
+
+Click on the "Create database" button.
+
+In the pop-up window, use the default settings and click "Next".
+
+Select "Start in production mode" and click "Enable".
+
+### Configure Firestore rules
+
+Click on the "Rules" tab and replace the default rules with the following. These rules will only allow authenticated users (`request.auth != null`) to read and write to their own documents (`request.auth.uid == userId`). These rules are "good enough" for security purposes.
+
+```js
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+        match /items/{itemId} {
+          allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
+```
+
+Feel free to try the following more restrictive rules. However, you will need to ensure that your data structure matches the rules exactly.
+
+```js
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId && request.resource.data.size() == 0;
+
+      match /items/{itemId} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if request.auth != null && request.auth.uid == userId
+                          && request.resource.data.keys().hasOnly(['name', 'quantity', 'category'])
+                          && request.resource.data.name is string
+                          && request.resource.data.name.size() >= 1
+                          && request.resource.data.name.size() <= 50
+                          && request.resource.data.quantity is int
+                          && request.resource.data.quantity >= 1
+                          && request.resource.data.quantity <= 100
+                          && request.resource.data.category is string
+                          && request.resource.data.category in ['produce', 'dairy', 'bakery', 'meat', 'frozen foods', 'canned goods', 'dry goods', 'beverages', 'snacks', 'household', 'other'];
+      }
+    }
+  }
+}
+```
+
+Click on the "Publish" button to publish the new rules.
+
+</Steps>
+
+<Callout type="info" emoji="🏛️">
+The data in Cloud Firestore will have the following structure.
+
+- users collection
+  - userId document
+    - items subcollection
+      - itemId document
+
+</Callout>
+
+## Part 3: Add Cloud Firestore to the Shopping List application
+
+<Steps>
+
+### Update `_utils/firebase.js`
+
+In the `firebase.js` file, add the following import statement:
+
+```js
+import { getFirestore } from "firebase/firestore";
+```
+
+Add the following export statement to the end of the file:
+
+```js
+export const db = getFirestore(app);
+```
+
+### Add a service to access Cloud Firestore
+
+Create a new folder called `_services` in your `week-10` folder. Create a new file called `shopping-list-service.js` in the `_services` folder.
+
+In the `shopping-list-service.js` file, add the following import statements:
+
+```js
+import { db } from "../_utils/firebase";
+import { collection, getDocs, addDoc, query } from "firebase/firestore";
+```
+
+### Add the `getItems` function
+
+This async function retrieves all items for a specific user from Firestore. It takes a `userId` as a parameter, and uses it to query a subcollection named `items` under a document in the `users` collection with the same `userId`. It fetches the documents in the `items` subcollection, and for each document, it adds an object to the items array containing the document ID and data. It then returns this `items` array.
+
+### Add the `addItem` function
+
+This function adds a new item to a specific user's list of items in Firestore. It takes a `userId` and an `item` as parameters. It uses the `userId` to reference the items subcollection of a document in the `users` collection, and then adds the `item` to this subcollection. It returns the id of the newly created document.
+
+</Steps>
+
+## Part 4: Update the Shopping List application
+
+<Steps>
+
+### Delete JSON data
+
+Delete the `shopping-list/items.json` file since we will no longer be using hard-coded data.
+
+Remove the import statement for the `items.json` file from `shopping-list/page.js`.
+
+### Import the `shopping-list-service.js` file
+
+In `shopping-list/page.js`, import `getItems` and `addItem` functions from the `shopping-list-service.js` file.
+
+Also import `useEffect` from React.
+
+### Get the shopping list
+
+Create an async function `loadItems`. Inside this function, call the `getItems` function to get the shopping list items for the current user using `user.uid` as the `userId`. Use `setItems` to set the state of `items` to the result of `getItems`.
+
+### Add the `useEffect` hook
+
+Add the `useEffect` hook to the `ShoppingList` component. The `useEffect` hook will call the `loadItems` function when the component is mounted. Determine what the dependencies should be for the `useEffect` hook.
+
+### Handle adding an item
+
+Update the `handleAddItem` function to call the `addItem` function to add the item to the shopping list. Use `user.uid` as the `userId` parameter. Use the `id` returned from `addItem` to set the `id` of the new item. Use `setItems` to set the state of `items` to include the new item.
+
+</Steps>
+
+## Optional Challenge
+
+Add the functionality to delete an item from the shopping list!
+
+## Example Output
+
+https://cprg306-assignments.vercel.app/week-9
+
+## Assignment Submission
+
+The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
+
+import AssignmentChecker from "/components/AssignmentChecker";
+
+<AssignmentChecker week="9" />

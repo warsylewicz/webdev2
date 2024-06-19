@@ -2,174 +2,97 @@
 
 ## Overview
 
-This week's assignment adds sorting functionality to the shopping list application. The source of the items will be from a JSON file, demonstrating how to load and use static data.
+For this week's assignment, you'll finish creating the `NewItem` component you started last week. This component will demonstrate your understanding of React state and forms. The NewItem component allows users to enter details about a new item they wish to add to a list. The form requires the following information:
 
-import { Steps } from "nextra-theme-docs";
+- Item Name
+- Quantity
+- Category
 
-## Part 1: Initial Setup
+React's `useState` hook is used to manage the state of each input field. When the form is submitted, an alert is displayed with the current state of these fields, simulating the addition of a new item. The form fields are then reset to their initial state.
 
-<Steps>
+## Prerequisites
 
-### Link to the Week 5 Page
+If you did not complete Week 1 Assignment, complete the [Guide: Setting Up Your Development Environment](/guides-and-references/development-environment-setup) and send your GitHub username to the instructor.
+
+If you did not complete the Week 2 Assignment, complete the [Guide: How to Create a New Next.js Project](/guides-and-references/creating-new-nextjs-project).
+
+If you did not complete the Week 4 Assignment, you can use a textbox for the quantity field.
+
+## Part 1: Link to Week 5 Assignment
 
 Edit the project file `/app/page.js` and add a link to `week-5` in the list of links.
 
-### Create the Folder and Files
+## Part 2:
 
-Create the folder `/app/week-5` and the files `page.js`, `item-list.js`, and `item.js` inside it. If you completed the Week 3 Assignment, you can copy the files from that assignment into this folder.
-
-### `items.json`
-
-Create a file called `items.json` in the `/app/week-5` folder. This file contains the data for the shopping list. It is an array of objects, where each object represents an item in the list.
-
-Copy the following data into the file:
-
-```json copy
-[
-  {
-    "id": "1h2GJKH12gkHG31h1H",
-    "name": "milk, 4 L 🥛",
-    "quantity": 1,
-    "category": "dairy"
-  },
-  {
-    "id": "2KJH3k2j3H1k2J3K1H",
-    "name": "bread 🍞",
-    "quantity": 2,
-    "category": "bakery"
-  },
-  {
-    "id": "3h2KJH3k2j3H1k2J3",
-    "name": "eggs, dozen 🥚",
-    "quantity": 2,
-    "category": "dairy"
-  },
-  {
-    "id": "4k2J3K1H2GJKH12gk",
-    "name": "bananas 🍌",
-    "quantity": 6,
-    "category": "produce"
-  },
-  {
-    "id": "5H1h1H2KJH3k2j3H",
-    "name": "broccoli 🥦",
-    "quantity": 3,
-    "category": "produce"
-  },
-  {
-    "id": "6H1k2J3K1H2GJKH1",
-    "name": "chicken breasts, 1 kg 🍗",
-    "quantity": 1,
-    "category": "meat"
-  },
-  {
-    "id": "7gkHG31h1H2KJH3k",
-    "name": "pasta sauce 🍝",
-    "quantity": 3,
-    "category": "canned goods"
-  },
-  {
-    "id": "8j3H1k2J3K1H2GJK",
-    "name": "spaghetti, 454 g 🍝",
-    "quantity": 2,
-    "category": "dry goods"
-  },
-  {
-    "id": "9H12gkHG31h1H2KJ",
-    "name": "toilet paper, 12 pack 🧻",
-    "quantity": 1,
-    "category": "household"
-  },
-  {
-    "id": "10H3k2j3H1k2J3K1",
-    "name": "paper towels, 6 pack",
-    "quantity": 1,
-    "category": "household"
-  },
-  {
-    "id": "11k2J3K1H2GJKH12",
-    "name": "dish soap 🍽️",
-    "quantity": 1,
-    "category": "household"
-  },
-  {
-    "id": "12GJKH12gkHG31h1",
-    "name": "hand soap 🧼",
-    "quantity": 4,
-    "category": "household"
-  }
-]
-```
-
-### Build the `Item` Component
-
-No change from the Week 3 Assignment.
-
-> In `item.js`, create a functional component named `Item`. This component should accept `name`, `quantity`, and `category` as props and display them in a list item element.
-
-### Build the `Page` Component
-
-No change from the Week 3 Assignment.
-
-> In `page.js`, create a functional component named `Page` that returns a `main` element wrapped around an `h1` "Shopping List" header and the `ItemList` component.
-
-</Steps>
-
-## Part 2: Build the `ItemList` Component
+import { Steps } from "nextra-theme-docs";
 
 <Steps>
 
-### Setup ItemList Component
+### Create the Folder and Files
 
-Remove all item variables (`const item1` etc.) from the `ItemList` component.
+Create the folder `/app/week-5` and copy files `page.js` and `new-item.js` from the `/app/week-4` folder to the new folder.
 
-Import the useState hook from React, the Item component, and the items from the JSON file.
+### Initialize State Variables
 
-### Initialize State Variable
+**Name Field**
 
-- Use the `useState` hook to create a state variable `sortBy` and its setter function `setSortBy`. This will be used to determine the sorting preference of the user.
-- Set the initial value of sortBy to `"name"`, indicating that the list should initially be sorted by name.
+- Use the `useState` hook to create a state variable called `name` and a setter function called `setName`.
+- The initial value of `name` should be an empty string (`""`), indicating that the name field is initially blank.
 
-### Sort the Items
+**Quantity**
 
-- Use JavaScript's sort function to sort the items array based on the `sortBy` state variable.
-- If sortBy is `"name"`, sort the items by their name property.
-- If sortBy is `"category"`, sort the items by their category property.
+- Already completed in Week 4.
 
-### Create Sort Buttons
+**Category Field**
 
-- Create two buttons that allow the user to change the value of sortBy to `"name"` or `"category"`. These buttons should change the sorting of the items when clicked.
-- Use the `setSortBy` function in the `onClick` event handlers of these buttons to change the value of `sortBy`.
-- Use conditional rendering to change the background color of the buttons based on the current value of `sortBy`. This gives the user a visual indication of what the current sorting preference is.
+- Use the `useState` hook to create a state variable called `category` and a setter function called `setCategory`.
+- The initial value of `category` should be `"produce"`, indicating that the category field is initially set to "Produce".
 
-### Render the Items
+### Create a Form Submission Handler
 
-Use the `map` function to create a new `Item` component for each item in the items array. Don't forget to provide a unique key prop for each `Item` (you can use the item's id for this purpose).
+Create a handleSubmit function. This function should:
+
+- Prevent the form's default submission behavior.
+- Create an `item` object with the current values of `name`, `quantity`, and `category`.
+- Log the item object to the console.
+- Display an alert with the current state of name, quantity, and category.
+- Reset the state variables to their initial values.
+
+### Render the Component
+
+In the return statement of your function, create a form that includes:
+
+**Name Field**
+
+- Create an input field of type text.
+- The value of the input field should be tied to the name state variable, meaning that it displays the current value of name.
+- Use the setName function in an onChange event handler to update the state of name as the user types into the field.
+- Add required attribute to the input field to ensure that the user cannot submit the form without providing a name.
+
+**Quantity**
+
+- Already completed in Week 4.
+
+**Category Field**
+
+- Create a select element for the category.
+- The value of the select element should be tied to the category state variable.
+- Use the setCategory function in an onChange event handler to update the state of category as the user selects a different option.
+- Create various option elements within the select for each possible category ("Produce", "Dairy", "Bakery", "Meat", "Frozen Foods", "Canned Goods", "Dry Goods", "Beverages", "Snacks", "Household", "Other"). Each option should have a value that matches the category it represents.
+
+**Submit Button**
+
+- Create a submit button that triggers the handleSubmit function when clicked.
+
+### Style the Component
+
+Style the component using Tailwind CSS. You do not need to match the example output, but your component should be styled in a way that is visually appealing and easy to use.
+
+### Test Your Component
+
+Ensure that when the form is filled and submitted, an alert is displayed with the correct information and the form fields are reset.
 
 </Steps>
-
-### Optional Extra Challenge
-
-Add a third button to the page that groups the list by category. The categories and items for each category are sorted alphabetically. Hints: use the JS `reduce` method and Tailwind CSS `capitalize`.
-
-For example:
-
-<div className="border p-3">
-**Bakery**
-- bread 🍞
-
-**Canned Goods**
-
-- pasta sauce 🍝
-
-**Dairy**
-
-- eggs, dozen 🥚
-- milk, 4 L 🥛
-
-etc.
-
-</div>
 
 ### Example Output
 
@@ -178,6 +101,14 @@ https://cprg306-assignments.vercel.app/week-5
 ## Part 3: Assignment Submission
 
 The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
+
+Ensure the following:
+
+- The instructor has your current GitHub username.
+- The GitHub repository is **public** and named exactly `cprg306-assignments`.
+- The new page is named exactly `week-5` (lowercase).
+
+---
 
 import AssignmentChecker from "/components/AssignmentChecker";
 

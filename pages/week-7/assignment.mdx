@@ -1,32 +1,26 @@
 import { Steps } from "nextra-theme-docs";
 
-# Week 7 Assignment
+# Week 6 Assignment
 
 ## Overview
 
-This week's assignment builds upon the Shopping List application we developed in Week 6. In Week 6, we created a simple shopping list application. The application allowed users to add items to a list, specifying details such as the item's name, quantity, and category.
+On this week's assignment, you will be merging the functionalities developed during Week 4 and Week 5 into a single, interactive shopping list application. The application will consist of a form for adding new items (`NewItem` component from Week 4) and a sortable list for displaying these items (`ItemList` and `Item` components and `items.json` file from Week 5).
 
-In the Week 7 assignment, we extend this functionality by integrating third-party APIs to suggest meal ideas based on the items in the user's shopping list. This new feature will not only make our application more interactive and useful, but it will also give us a chance to practice working with external APIs.
+### Key Learning Objectives
+
+1. **Component Composition:** Learn how to create complex interfaces by combining simpler components.
+2. **Data Flow:** Understand how to manage and pass data between components in a multi-component application.
+3. **React State Management:** Consolidate your understanding of the useState hook to manage application state across multiple components.
 
 ## Prerequisites
 
-Before starting this assignment, you should have completed the Week 6 Assignment and have a working shopping list application. If you have not completed the Week 6 assignment, you have three options:
+Complete [Week 4 Assignment](/week-4/assignment) and [Week 5 Assignment](/week-5/assignment). If you did not complete the Week 4 and Week 5 assignments, you can use another student's [solution](/student-work/github-accounts) by copying the files from their GitHub repository into your own.
 
-1. Use another student's Week 6 Assignment as a starting point for this week's assignment. Refer to the list of [student repositories](/student-work/github-accounts).
+## Optional Challenge: Minimal Instructions
 
-2. Use your assignment solution from Week 3 as a starting point for this week's assignment. Refer to the [Week 3 Assignment](/week-3) for instructions.
+If you're up for a bit of a challenge, try tackling this assignment without the comfort of detailed steps. Instead, use your knowledge of React fundamentals to combine together functionalities from past assignments into a cohesive application. Your goal? A dynamic shopping list that allows users to add items and view them in a sortable list. To make this happen, give thought to how state management can handle data movement across your application. Best of luck!
 
-3. Start from scratch. Instead of selecting an item from the list, the user can type in the item name and click a button to display the various meal ideas.
-
-## Optional Challenge 1: Minimal Instructions
-
-If you're up for a bit of a challenge, try tackling this assignment without the comfort of detailed steps. Instead, use just the [example output](#example-output) below as a guide. This will give you a chance to practice your problem-solving skills.
-
-## Optional Challenge 2: Display Ingredients for Each Meal
-
-If you're up for an even bigger challenge, try displaying the ingredients for each meal. You will need to make a second API call to retrieve the ingredients for each meal.
-
-## Detailed Steps
+## Detailed Instructions
 
 <Steps>
 
@@ -34,88 +28,58 @@ If you're up for an even bigger challenge, try displaying the ingredients for ea
 
 Let's first create a new folder for this assignment and populating it with the files from previous assignments to use as a starting point.
 
-- Create a new folder called `week-7` inside your `app` folder.
-- Copy `new-item.js`, `item-list.js`, `item.js`, `items.json`, and `page.js` from /week-6 to /week-7.
-
-### Create `meal-ideas.js`
-
-The MealIdeas component is responsible for fetching and displaying meal ideas based on a selected shopping list item. Here are a few things to keep in mind when creating this component.
-
-1. Import Necessary Hooks and Begin Component Definition
-
-- Since this component uses `useState` and `useEffect`, start with the `"use client"` directive.
-- Import the `useEffect` and `useState` hooks from `react`.
-- This component should receive a single prop: ingredient.
-
-2. Define State Variables
-
-- Inside your component, define a state variable using the useState hook: `meals`. `meals` will hold the list of meal ideas fetched from the API. Initialize it to an empty array.
-
-3. Define API Fetching Function
-
-- Next, outside your component, define a function called `fetchMealIdeas`, which fetch data from the API. `fetchMealIdeas` should take an ingredient as a parameter, make a fetch request to the [TheMealDB API](https://www.themealdb.com/), and return the meals that include that ingredient.
-- The API endpoint for fetching meal ideas is: `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`. For example, if the ingredient is "chicken", the API endpoint would be: [https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken](https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken). The API returns a list of meals that include the specified ingredient. Each meal has three properties:
-  - `idMeal`: id of the meal
-  - `strMeal`: name of the meal
-  - `strMealThumb`: URL of an image of the meal
-
-4. Define Load Function
-
-- Next, inside your component, define a function called `loadMealIdeas`. This function should call `fetchMealIdeas` with the `ingredient` prop and store the result in the `meals` state variable.
-
-5. Use the `useEffect` Hook
-
-- Use the `useEffect` hook to call `loadMealIdeas` whenever the `ingredient` prop changes.
-
-6. Render the Component
-
-- Finally, define your component's render method. This should return a `div` that includes a header and a list of meals. Each meal should be a list item that displays the meal's name.
-
-### Modify `item.js`
-
-The changes in the `item.js` file from Week 6 to Week 7 are relatively straightforward with just one main change. The goal is to make each item in the list clickable so that when a user clicks on an item, it can trigger an action in the parent component.
-
-1. **Update Component Definition**: Update your Item functional component's definition to accept an additional prop called `onSelect`.
-
-2. **Add onClick Handler to List Item**: In the returned JSX, add the `onClick` prop. This makes the entire list item clickable and the provided `onSelect` function will be triggered when a user clicks on the item.
-
-### Modify `item-list.js`
-
-1. **Import Necessary Hooks**: Start by importing the necessary React hooks at the top of your file. You'll be using the `useState` hook.
-
-2. **Update Component Definition**: Begin defining your `ItemList` functional component. In addition to the `items` prop from Week 6, this component should now also receive an `onItemSelect` prop.
-
-3. **Update Render Method**: The rendering of sorting buttons remains the same. The change is in rendering the list items. Now, each Item component should be clickable and trigger the `onItemSelect` function with the respective item as an argument. This is achieved by passing the `onSelect` prop to each Item component.
+- Create a new folder called `week-6` inside your `app` folder.
+- Copy `item-list.js`, `item.js`, `items.json`, and `page.js` from /week-5 to /week-6.
+- Copy `new-item.js` from /week-4 to /week-6.
 
 ### Modify `page.js`
 
-In the page.js file, the modifications you'll need to make are as follows:
+Next, we're going to update `page.js` to serve as the orchestrator of our shopping list app. This involves integrating the imported components, setting up state management for the items, and establishing the event handler for adding new items to the list.
 
-1. **Import New Components**: You'll need to import the new MealIdeas component at the top of the file. This component is responsible for fetching and displaying meal ideas based on a selected ingredient.
+- Import the `NewItem` and `ItemList` components.
+- Import `items.json` as `itemsData`.
+- Initialize a state variable (e.g., `items`) with the data from `items.json`.
+- Create an event handler function (e.g., `handleAddItem`) that adds a new item to `items`.
+- In your render function, display both the NewItem and ItemList components.
+  - Pass the `handleAddItem` event handler to the `NewItem` component as a prop called `onAddItem`.
+  - Pass the `items` state to the `ItemList` component as a prop.
+- Add the "use client" directive at the top of the file.
 
-2. **Additional State Variable**: You'll add a new state variable `selectedItemName` using the useState hook. This state will hold the name of the selected item from the shopping list.
+### Modify `new-item.js`
 
-3. **New Event Handler**: You'll create a new event handler function `handleItemSelect`. This function extracts the name of the selected item, cleans it up, and updates the selectedItemName state. This event handler is passed down to the `ItemList` component and is called when an item in the list is clicked.
+Next, our attention shifts to `new-item.js`. We'll be enhancing this component by introducing a new prop and redefining its behavior upon form submission. Rather than triggering an alert, it will now invoke the onAddItem prop, passing along the item object.
 
-import { Callout } from "nextra-theme-docs";
+- Add a new prop `{ onAddItem }`.
+- Replace the alert functionality by calling the onAddItem prop with the item object when the form is submitted. The item object should have the following properties: `id`, `name`, `quantity`, and `category`. `id` should be a random string.
 
-<Callout type="info" emoji="🧹">
+### Modify `item-list.js`
 
-The item names in the shopping list are not always clean. For example, the item name "chicken breast" is stored as "chicken breast, 1 kg 🍗". For the MealDB API to work properly, we need to clean up the item name by removing the size and emoji. `split`, `trim`, and `replace` functions can be used to clean up the item name. For example, to remove the emojis you could use something like [this](https://stackoverflow.com/questions/10992921/how-to-remove-emoji-code-using-javascript/41543705#41543705): `text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');`
+Let's now turn our focus to the `item-list.js` file. We're going to modify it to receive data via props and revise all functions that were previously altering the list directly. Instead, they should operate on a copy of the prop to ensure we're adhering to the principle of immutability in React.
 
-</Callout>
+- Remove the import statement for `items.json` since the data is now being passed as a prop.
+- Add a new prop `{ items }`.
+- Replace all functions that mutate the items prop with versions that do not mutate the prop. Instead, these functions should create a copy of items, perform any necessary operations on the copy, and use this copy for rendering.
 
-4. **Layout Changes**: The layout of the page has been modified to accommodate the new features. The NewItem and ItemList components are grouped together on one side, and the MealIdeas component is placed on the other side. This is achieved by wrapping them in a div with a flex property.
+`item.js` does not need to be modified.
 
-5. **Passing Props**: The `ItemList` component now receives the `onItemSelect` prop, which it didn't previously. The MealIdeas component receives `selectedItemName` as a prop named `ingredient`.
+### Test Your Application
+
+Cross your fingers and run `npm run dev` to see if your application works as expected.
+
+- Ensure that adding a new item with the `NewItem` form adds the item to the `ItemList`.
+- Make sure the `ItemList` maintains its sorting functionality from Week 5.
+
+### Fix All Warnings
+
+Now, it's time for some housekeeping. We need to ensure our application is free of warnings which might indicate potential issues.
+
+- Fix all warnings that appear in the browser console and in the terminal. To view warnings in the browser, open the developer tools and click on the "Console" tab. To view warnings in the terminal, look for any warnings that appear in the terminal window where you ran the command `npm run dev`.
 
 </Steps>
 
 ## Example Output
 
-The following is an example of what your application might look like. Without the optional challenge, you only have to display the meal ideas list for a shopping list item. You do not have to display the ingredients for each meal.
-
-https://cprg306-assignments.vercel.app/week-7
+https://cprg306-assignments.vercel.app/week-6
 
 ## Assignment Submission
 
@@ -123,4 +87,4 @@ The instructor will be able to find your assignment in your GitHub repository. M
 
 import AssignmentChecker from "/components/AssignmentChecker";
 
-<AssignmentChecker week="7" />
+<AssignmentChecker week="6" />

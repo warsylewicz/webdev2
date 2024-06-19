@@ -1,4 +1,5 @@
 {
-  "project": "Project Phase 1",
+  "firestore": "Cloud Firestore",
+  "assignment": "Week 9 Assignment",
   "slides": { "display": "hidden" }
 }

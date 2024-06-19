@@ -1,90 +1,184 @@
-import { Steps } from "nextra-theme-docs";
-
-# Week 6 Assignment
+# Week 5 Assignment
 
 ## Overview
 
-On this week's assignment, you will be merging the functionalities developed during Week 4 and Week 5 into a single, interactive shopping list application. The application will consist of a form for adding new items (`NewItem` component from Week 4) and a sortable list for displaying these items (`ItemList` and `Item` components and `items.json` file from Week 5).
+This week's assignment adds sorting functionality to the shopping list application. The source of the items will be from a JSON file, demonstrating how to load and use static data.
 
-### Key Learning Objectives
+import { Steps } from "nextra-theme-docs";
 
-1. **Component Composition:** Learn how to create complex interfaces by combining simpler components.
-2. **Data Flow:** Understand how to manage and pass data between components in a multi-component application.
-3. **React State Management:** Consolidate your understanding of the useState hook to manage application state across multiple components.
-
-## Prerequisites
-
-Complete [Week 4 Assignment](/week-4/assignment) and [Week 5 Assignment](/week-5/assignment). If you did not complete the Week 4 and Week 5 assignments, you can use another student's [solution](/student-work/github-accounts) by copying the files from their GitHub repository into your own.
-
-## Optional Challenge: Minimal Instructions
-
-If you're up for a bit of a challenge, try tackling this assignment without the comfort of detailed steps. Instead, use your knowledge of React fundamentals to combine together functionalities from past assignments into a cohesive application. Your goal? A dynamic shopping list that allows users to add items and view them in a sortable list. To make this happen, give thought to how state management can handle data movement across your application. Best of luck!
-
-## Detailed Instructions
+## Part 1: Initial Setup
 
 <Steps>
 
-### Setup Files
+### Link to the Week 5 Page
 
-Let's first create a new folder for this assignment and populating it with the files from previous assignments to use as a starting point.
+Edit the project file `/app/page.js` and add a link to `week-5` in the list of links.
 
-- Create a new folder called `week-6` inside your `app` folder.
-- Copy `item-list.js`, `item.js`, `items.json`, and `page.js` from /week-5 to /week-6.
-- Copy `new-item.js` from /week-4 to /week-6.
+### Create the Folder and Files
 
-### Modify `page.js`
+Create the folder `/app/week-5` and the files `page.js`, `item-list.js`, and `item.js` inside it. If you completed the Week 3 Assignment, you can copy the files from that assignment into this folder.
 
-Next, we're going to update `page.js` to serve as the orchestrator of our shopping list app. This involves integrating the imported components, setting up state management for the items, and establishing the event handler for adding new items to the list.
+### `items.json`
 
-- Import the `NewItem` and `ItemList` components.
-- Import `items.json` as `itemsData`.
-- Initialize a state variable (e.g., `items`) with the data from `items.json`.
-- Create an event handler function (e.g., `handleAddItem`) that adds a new item to `items`.
-- In your render function, display both the NewItem and ItemList components.
-  - Pass the `handleAddItem` event handler to the `NewItem` component as a prop called `onAddItem`.
-  - Pass the `items` state to the `ItemList` component as a prop.
-- Add the "use client" directive at the top of the file.
+Create a file called `items.json` in the `/app/week-5` folder. This file contains the data for the shopping list. It is an array of objects, where each object represents an item in the list.
 
-### Modify `new-item.js`
+Copy the following data into the file:
 
-Next, our attention shifts to `new-item.js`. We'll be enhancing this component by introducing a new prop and redefining its behavior upon form submission. Rather than triggering an alert, it will now invoke the onAddItem prop, passing along the item object.
+```json copy
+[
+  {
+    "id": "1h2GJKH12gkHG31h1H",
+    "name": "milk, 4 L 🥛",
+    "quantity": 1,
+    "category": "dairy"
+  },
+  {
+    "id": "2KJH3k2j3H1k2J3K1H",
+    "name": "bread 🍞",
+    "quantity": 2,
+    "category": "bakery"
+  },
+  {
+    "id": "3h2KJH3k2j3H1k2J3",
+    "name": "eggs, dozen 🥚",
+    "quantity": 2,
+    "category": "dairy"
+  },
+  {
+    "id": "4k2J3K1H2GJKH12gk",
+    "name": "bananas 🍌",
+    "quantity": 6,
+    "category": "produce"
+  },
+  {
+    "id": "5H1h1H2KJH3k2j3H",
+    "name": "broccoli 🥦",
+    "quantity": 3,
+    "category": "produce"
+  },
+  {
+    "id": "6H1k2J3K1H2GJKH1",
+    "name": "chicken breasts, 1 kg 🍗",
+    "quantity": 1,
+    "category": "meat"
+  },
+  {
+    "id": "7gkHG31h1H2KJH3k",
+    "name": "pasta sauce 🍝",
+    "quantity": 3,
+    "category": "canned goods"
+  },
+  {
+    "id": "8j3H1k2J3K1H2GJK",
+    "name": "spaghetti, 454 g 🍝",
+    "quantity": 2,
+    "category": "dry goods"
+  },
+  {
+    "id": "9H12gkHG31h1H2KJ",
+    "name": "toilet paper, 12 pack 🧻",
+    "quantity": 1,
+    "category": "household"
+  },
+  {
+    "id": "10H3k2j3H1k2J3K1",
+    "name": "paper towels, 6 pack",
+    "quantity": 1,
+    "category": "household"
+  },
+  {
+    "id": "11k2J3K1H2GJKH12",
+    "name": "dish soap 🍽️",
+    "quantity": 1,
+    "category": "household"
+  },
+  {
+    "id": "12GJKH12gkHG31h1",
+    "name": "hand soap 🧼",
+    "quantity": 4,
+    "category": "household"
+  }
+]
+```
 
-- Add a new prop `{ onAddItem }`.
-- Replace the alert functionality by calling the onAddItem prop with the item object when the form is submitted. The item object should have the following properties: `id`, `name`, `quantity`, and `category`. `id` should be a random string.
+### Build the `Item` Component
 
-### Modify `item-list.js`
+No change from the Week 3 Assignment.
 
-Let's now turn our focus to the `item-list.js` file. We're going to modify it to receive data via props and revise all functions that were previously altering the list directly. Instead, they should operate on a copy of the prop to ensure we're adhering to the principle of immutability in React.
+> In `item.js`, create a functional component named `Item`. This component should accept `name`, `quantity`, and `category` as props and display them in a list item element.
 
-- Remove the import statement for `items.json` since the data is now being passed as a prop.
-- Add a new prop `{ items }`.
-- Replace all functions that mutate the items prop with versions that do not mutate the prop. Instead, these functions should create a copy of items, perform any necessary operations on the copy, and use this copy for rendering.
+### Build the `Page` Component
 
-`item.js` does not need to be modified.
+No change from the Week 3 Assignment.
 
-### Test Your Application
-
-Cross your fingers and run `npm run dev` to see if your application works as expected.
-
-- Ensure that adding a new item with the `NewItem` form adds the item to the `ItemList`.
-- Make sure the `ItemList` maintains its sorting functionality from Week 5.
-
-### Fix All Warnings
-
-Now, it's time for some housekeeping. We need to ensure our application is free of warnings which might indicate potential issues.
-
-- Fix all warnings that appear in the browser console and in the terminal. To view warnings in the browser, open the developer tools and click on the "Console" tab. To view warnings in the terminal, look for any warnings that appear in the terminal window where you ran the command `npm run dev`.
+> In `page.js`, create a functional component named `Page` that returns a `main` element wrapped around an `h1` "Shopping List" header and the `ItemList` component.
 
 </Steps>
 
-## Example Output
+## Part 2: Build the `ItemList` Component
 
-https://cprg306-assignments.vercel.app/week-6
+<Steps>
 
-## Assignment Submission
+### Setup ItemList Component
+
+Remove all item variables (`const item1` etc.) from the `ItemList` component.
+
+Import the useState hook from React, the Item component, and the items from the JSON file.
+
+### Initialize State Variable
+
+- Use the `useState` hook to create a state variable `sortBy` and its setter function `setSortBy`. This will be used to determine the sorting preference of the user.
+- Set the initial value of sortBy to `"name"`, indicating that the list should initially be sorted by name.
+
+### Sort the Items
+
+- Use JavaScript's sort function to sort the items array based on the `sortBy` state variable.
+- If sortBy is `"name"`, sort the items by their name property.
+- If sortBy is `"category"`, sort the items by their category property.
+
+### Create Sort Buttons
+
+- Create two buttons that allow the user to change the value of sortBy to `"name"` or `"category"`. These buttons should change the sorting of the items when clicked.
+- Use the `setSortBy` function in the `onClick` event handlers of these buttons to change the value of `sortBy`.
+- Use conditional rendering to change the background color of the buttons based on the current value of `sortBy`. This gives the user a visual indication of what the current sorting preference is.
+
+### Render the Items
+
+Use the `map` function to create a new `Item` component for each item in the items array. Don't forget to provide a unique key prop for each `Item` (you can use the item's id for this purpose).
+
+</Steps>
+
+### Optional Extra Challenge
+
+Add a third button to the page that groups the list by category. The categories and items for each category are sorted alphabetically. Hints: use the JS `reduce` method and Tailwind CSS `capitalize`.
+
+For example:
+
+<div className="border p-3">
+**Bakery**
+- bread 🍞
+
+**Canned Goods**
+
+- pasta sauce 🍝
+
+**Dairy**
+
+- eggs, dozen 🥚
+- milk, 4 L 🥛
+
+etc.
+
+</div>
+
+### Example Output
+
+https://cprg306-assignments.vercel.app/week-5
+
+## Part 3: Assignment Submission
 
 The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
 
 import AssignmentChecker from "/components/AssignmentChecker";
 
-<AssignmentChecker week="6" />
+<AssignmentChecker week="5" />

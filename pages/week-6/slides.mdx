@@ -1,54 +1,23 @@
-# CPRG-306 Week 6
+# CPRG-306 Week 5
 
-# Managing State
-
-- Immutability
-- Component Lifecycle
-- Sharing State Between Components
+# Handling Lists
 
 ---
 
-## Immutability
+## Arrays
 
-- State should be treated as immutable
-- Never mutate state directly
-- Always use `setState` to update state
-
----
-
-## Immutability Demo
-
-Create a broken counter that increments by 1 that doesn't use `setState`
+- Creating, accessing, modifying
+- Methods: `map`, `filter`, `sort`, `reduce`
 
 ---
 
-## Component Lifecycle
+## Coding Demo
 
-- Initial Render
-- State Change
-- Schedule Update
-- Reconciliation
-- Update State
-- Re-render
-
----
-
-## React State Batching Demo
-
-Demo: Create a broken counter that uses `setState` multiple times
-
----
-
-## Sharing State Between Components
-
-- Lifting State Up
-
----
-
-## Lifting State Up Demo
-
-1. Create a Dog component, display name and age
-2. Create a DogList component, display a list of Dogs
-3. Create a DogForm component, allow user to add a new dog
-4. Create a Page component that displays the DogList and DogForm
-5. Consider adding a delete button to the Dog component
+- Create a new page
+- Obtain dog photos from Pexels
+- Create an array of dogs with name, description, and image
+- Render the list of dogs
+- Sort the list of dogs alphabetically by name
+- Filter the list of dogs by id
+- Add a click handler to each dog to display the id
+- Add Tailwind responsive classes
