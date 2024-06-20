@@ -1,16 +1,16 @@
 import { Steps } from "nextra-theme-docs";
 
-# Week 8 Assignment
+# Week 9 Assignment
 
 ## Overview
 
-This week's assignment continues to build upon the Shopping List application we developed in Week 7. We will add authentication to our application using Firebase Authentication and GitHub OAuth.
+This week's assignment continues to build upon the Shopping List application we developed in Week 8. We will add authentication to our application using Firebase Authentication and GitHub OAuth.
 
 ## Prerequisites
 
-Before starting this assignment, you should have completed the Week 7 Assignment and have a working shopping list application. If you have not completed the Week 7 assignment, you have three options:
+Before starting this assignment, you should have completed the Week 8 Assignment and have a working shopping list application. If you have not completed the Week 8 assignment, you have three options:
 
-1. Use another student's Week 7 Assignment as a starting point for this week's assignment. Refer to the list of [student repositories](/student-work/github-accounts).
+1. Use another student's Week 8 Assignment as a starting point for this week's assignment. Refer to the list of [student repositories](/student-work/github-accounts).
 
 2. Use your assignment solution from Week 3 as a starting point for this week's assignment. Refer to the [Week 3 Assignment](/week-3/assignment) for instructions.
 
@@ -43,18 +43,18 @@ npm install encoding
 
 ### Setup Files
 
-Let's first create a new folder for this assignment and populating it with the files from previous assignments to use as a starting point. The main shopping list application is going to reside in `week-8/shopping-list`. `week-8` will be the landing page with login functionality. We are also going to add more structure to our application by creating a a `utils` folder to hold our Firebase code.
+Let's first create a new folder for this assignment and populating it with the files from previous assignments to use as a starting point. The main shopping list application is going to reside in `week-9/shopping-list`. `week-9` will be the landing page with login functionality. We are also going to add more structure to our application by creating a a `utils` folder to hold our Firebase code.
 
-- Create a new folder called `week-8` inside your `app` folder.
-- Create a new folder called `shopping-list` inside your `week-8` folder.
-- Copy `page.js`, all components, and the `json` file from `week-7` to `week-8/shopping-list`.
+- Create a new folder called `week-9` inside your `app` folder.
+- Create a new folder called `shopping-list` inside your `week-9` folder.
+- Copy `page.js`, all components, and the `json` file from `week-8` to `week-9/shopping-list`.
 
-We will add a `page.js` file to the `week-8` folder later.
+We will add a `page.js` file to the `week-9` folder later.
 
 ### Create Firebase Config
 
-- Create a new folder called `_utils` inside your `week-8` folder.
-- Create a file called `firebase.js` inside your `week-8/_utils` folder.
+- Create a new folder called `_utils` inside your `week-9` folder.
+- Create a file called `firebase.js` inside your `week-9/_utils` folder.
 
 Use the following code for the contents of `firebase.js`.
 
@@ -147,7 +147,7 @@ export const useUserAuth = () => {
 
 ## Part 4: Add AuthContextProvider to `layout.js`
 
-In the `week-8` folder, create a file called `layout.js` and add the following code.
+In the `week-9` folder, create a file called `layout.js` and add the following code.
 
 ```js copy
 import { AuthContextProvider } from "./_utils/auth-context";
@@ -161,7 +161,7 @@ export default Layout;
 
 ## Part 5: Add a Landing Page with Login Button
 
-In the `week-8` folder, create a `page.js` file. This will be the landing page for our application. Display a login button if the user is not logged in. If the user is logged in, display a welcome message, a logout button, and a link to the shopping list page.
+In the `week-9` folder, create a `page.js` file. This will be the landing page for our application. Display a login button if the user is not logged in. If the user is logged in, display a welcome message, a logout button, and a link to the shopping list page.
 
 The following code snippets may be helpful. _This is not a complete component!_
 
@@ -192,7 +192,7 @@ await firebaseSignOut();
 
 Even though a user can't see a link to the shopping list page without being logged in, we should still protect the page so that if a user tries to access the page directly, they won't be able to see the shopping list.
 
-In the `week-8/shopping-list/page.js` file, check if the user is logged in by using the `useUserAuth` hook and if the `user` object is null, do not render the shopping list page. Optional: You can redirect the user to the landing page if you want.
+In the `week-9/shopping-list/page.js` file, check if the user is logged in by using the `useUserAuth` hook and if the `user` object is null, do not render the shopping list page. Optional: You can redirect the user to the landing page if you want.
 
 ## Part 7: Deploy to Vercel (Optional)
 
@@ -229,9 +229,9 @@ A few things you can do to improve your application:
 
 ## Example Output
 
-https://cprg306-assignments.vercel.app/week-8
+https://cprg306-assignments.vercel.app/week-9
 
-Also, try to go to the shopping list page directly without signing in [https://cprg306-assignments.vercel.app/week-8/shopping-list](https://cprg306-assignments.vercel.app/week-8/shopping-list)
+Also, try to go to the shopping list page directly without signing in [https://cprg306-assignments.vercel.app/week-9/shopping-list](https://cprg306-assignments.vercel.app/week-9/shopping-list)
 
 ## Assignment Submission
 
@@ -239,4 +239,4 @@ The instructor will be able to find your assignment in your GitHub repository. M
 
 import AssignmentChecker from "/components/AssignmentChecker";
 
-<AssignmentChecker week="8" />
+<AssignmentChecker week="9" />

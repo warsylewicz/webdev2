@@ -303,7 +303,7 @@ React's `useEffect` hook allows you to perform side effects in function componen
 
 The `useEffect` hook runs after every render by default. However, you can control when it runs by passing in a second argument, an array of dependencies. If the values in this array remain the same between renders, React will skip executing the effect.
 
-- If you pass an empty array (`[]`), the `useEffect` hook will run the effect only once after the initial render, similar to the '[mounted](/week-6/state#component-lifecycle)' phase in the component lifecycle.
+- If you pass an empty array (`[]`), the `useEffect` hook will run the effect only once after the initial render, similar to the '[mounted](/week-7/state#component-lifecycle)' phase in the component lifecycle.
 - If you pass values (e.g., props or state) in the array, the effect will run whenever any of these values change.
 
 <iframe
