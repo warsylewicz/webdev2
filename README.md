@@ -26,7 +26,7 @@ Follow the instructions on [Guide: Deploying a Next.js App](http://localhost:300
 Update the following in your D2L Brightspace shell:
 
 - Instructor name and contact information. Navigate to: Instructor tools -> Manage files -> homepage -> edit `InstructorInfo.html`.
-- Student message. Navigate to: Content. Edit this message to include your own information and your deployment URL.
+- Student message. Post a message to include your own information and your deployment URL.
 - Assignment and project due dates.
 
 ### `/pages/index.mdx`
@@ -43,7 +43,7 @@ To obtain your own Teams chat link, follow these steps:
 
 ### `/pages/week-<x>.mdx`
 
-For each week of the course, there is a corresponding markdown file. These files contain an overview for each week. You can customize the content for each week by editing these files. Recommendation: remove all **Class Recording** and **Class Demo** sections at the start of the course and then decide what you want to do later.
+For each week of the course, there is a corresponding markdown file. These files contain an overview for each week. You can customize the content for each week by editing these files. Recommendation: remove all **Class Recordings** and **Class Demo** sections at the start of the course and then decide what you want to do later.
 
 ### `/pages/week-<x>/slides.mdx`
 
@@ -55,7 +55,7 @@ This course uses Microsoft Forms for survery and project submissions. You will n
 
 `/pages/week-4.mdx`: Create your own survey form or remove the link to the survey.
 
-`/pages/week-9/project.mdx`: Create your own Phase 1 Project submission form from this [template](https://forms.office.com/Pages/ShareFormPage.aspx?id=gyEv9Wef0kq2Vm91T-GWy1pAHe-U4v1PqxKhw8_XZ8NURThSVjFVREtNWEwzWUoyWUFZSzdaNlBEUy4u&sharetoken=suuHbu7AW0IRQc6sQrhl) and then update the link in this file.
+`/pages/week-10/project.mdx`: Create your own Phase 1 Project submission form from this [template](https://forms.office.com/Pages/ShareFormPage.aspx?id=gyEv9Wef0kq2Vm91T-GWy1pAHe-U4v1PqxKhw8_XZ8NURThSVjFVREtNWEwzWUoyWUFZSzdaNlBEUy4u&sharetoken=suuHbu7AW0IRQc6sQrhl) and then update the link in this file.
 
 `/pages/week-14.mdx`: Create your own Phase 3 Project submission form from this [template](https://forms.office.com/Pages/ShareFormPage.aspx?id=gyEv9Wef0kq2Vm91T-GWy1pAHe-U4v1PqxKhw8_XZ8NUME5WSVBIN1ZUVjBDR1QyVkg0WTRYQ1A0RC4u&sharetoken=kLNtvJGPvubTZuF7SdNk) and then update the _two_ links in this file.
 
