@@ -1,15 +1,25 @@
 # CPRG-306 Week 3
 
-# Components and Props
+## Components and Props
+
+---
+
+## Agenda
+
+- JavaScript: Objects, Destructuring, JSON
+- React Props
+- Tailwind CSS: typography, colours, spacing
+
+The goal is to learn how to pass data to components using props.
 
 ---
 
 ## Objects
 
-- Objects are a way to store data
-- Objects are made up of key-value pairs
-- Keys are strings
-- Values can be any data type (numbers, strings, booleans, arrays, objects, etc.)
+- Objects are a way to store data in key-value pairs
+- Keys are strings that identify the value
+- Values are the data associated with the key
+- Objects can contain other objects
 
 ---
 
@@ -35,8 +45,8 @@ let person = {
 - Access properties using dot notation
 
 ```js
-console.log(person.name); // Diane
-console.log(person.address.city); // Calgary
+let name = person.name; // Diane
+let city = person.address.city; // Calgary
 person.isStudent = false; // change value
 ```
 
@@ -51,19 +61,40 @@ person.isStudent = false; // change value
 let { name, age } = person;
 console.log(name); // Diane
 console.log(age); // 25
-let {
-  address: { city },
-} = person;
-console.log(city); // Calgary
+```
+
+---
+
+## JSON
+
+- JavaScript Object Notation
+- A way to store and exchange data
+- Similar to objects, but with a few differences
+- Keys must be quoted strings and values must be one of the following: string, number, object, array, boolean, null
+
+---
+
+## JSON Example
+
+```json
+{
+  "name": "Diane",
+  "age": 25,
+  "isStudent": true,
+  "address": {
+    "street": "123 Main St",
+    "city": "Calgary",
+    "province": "AB"
+  }
+}
 ```
 
 ---
 
 ## React Props
 
-- Props are a way to pass data to components
-- Props are passed as attributes to components
-- Props are accessed using `props` object
+- a way to pass data to components
+- accessed using `props` object containing all the properties passed to the component
 
 ---
 
@@ -79,11 +110,11 @@ function Page() {
   );
 }
 
-function Person({ name, age }) {
+function Person(props) {
   return (
     <div>
-      <h1>{name}</h1>
-      <p>Age: {age} years old</p>
+      <h1>{props.name}</h1>
+      <p>Age: {props.age} years old</p>
     </div>
   );
 }
@@ -91,9 +122,56 @@ function Person({ name, age }) {
 
 ---
 
+## Typography
+
+- `text-` classes for text styling
+- `font-` classes for font styling
+
+```jsx
+<div>
+  <h1 className="text-2xl font-bold font-serif">Big Title!</h1>
+  <p className="text-center">Centered text</p>
+</div>
+```
+
+---
+
+## Colours
+
+- `text-` classes for text colour
+- `bg-` classes for background colour
+
+```jsx
+<div className="bg-blue-900">
+  Dark blue background
+  <h1 className="text-red-300">Light red text</h1>
+</div>
+```
+
+---
+
+## Spacing
+
+- `p-` classes for padding
+- `m-` classes for margin
+
+```jsx
+<article>
+  <div className="p-4">Padding of 1rem or 16px</div>
+  <div className="m-4">Margin of 1rem or 16px</div>
+  <h1 className="pl-1 mt-3">Left padding of 4px and top margin of 12px</h1>
+  <h2 className="px-2 my-5">
+    Horizontal padding of 8px and vertical margin of 20px
+  </h2>
+</article>
+```
+
+---
+
 ## Demo
 
 - Use objects to store data
-- Implement props
-- Reduce repetition by adding more components
+- Display the data
 - Add some styling with Tailwind CSS
+- Implement a component that uses props
+- Use destructuring to access props

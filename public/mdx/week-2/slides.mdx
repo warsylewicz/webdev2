@@ -120,10 +120,28 @@ npx create-next-app my-app
 - a JavaScript library for building user interfaces
 - component-based: UI is broken down into components
 - declarative: UI is a function of state
-- Usually written in JSX (JavaScript XML)
+- virtual DOM: React updates the DOM efficiently
+
+---
+
+## JSX
+
+- a syntax extension for JavaScript
+- combines JavaScript and HTML
+- transpiled (converted) to JavaScript
 
 ```jsx
-function Title() {
+const bigTitle = <h1>Big Title</h1>;
+```
+
+---
+
+## React Component
+
+- a function that returns JSX
+
+```jsx
+export default function Title() {
   return <h1>Title</h1>;
 }
 ```
@@ -134,9 +152,9 @@ function Title() {
 
 - a React framework for building web applications
 - server-side rendering
-- static site generation
 - API routes
 - file-based routing
+- modern browser features, e.g. image optimization, lazy loading, pre-fetching
 
 ---
 
@@ -150,9 +168,10 @@ function Title() {
 
 ## Demo
 
-1. Create a New Project
-2. Cleanup Root Page
-3. Add a New Page
-4. Add a New Component
-5. Link to the New Page
-6. Deploy to Vercel
+1. Create a new project
+2. Cleanup root page
+3. Add a new page
+4. Demonstrate JS expression interpolation
+5. Add a new component
+6. Link to the new page
+7. Deploy to Vercel
