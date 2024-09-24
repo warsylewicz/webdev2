@@ -6,23 +6,344 @@
 
 ## Agenda
 
-- Learn enough JavaScript to make our web pages interactive.
-- Create a counter component.
-- Style our components with Tailwind CSS.
+- Demo: Counter component
+- JavaScript: Function expressions, Arrays, Higher order functions, Arrow functions
+- React: Event handlers, useState Hook
+- Tailwind CSS: States
+- Repeat demo: Counter component
 
 ---
 
-## JavaScript
+## Function Declarations
 
-- Arrays
-- Higher order functions
-- Arrow functions
-- Event handlers
+- You are already familiar with function declarations
+
+```js
+function greet(name) {
+  return "Hello, " + name;
+}
+
+console.log(greet("Alice")); // "Hello, Alice"
+```
 
 ---
 
-## Counter component
+## Function Expressions
 
-- Create a counter component
-- Use the useState hook to manage state
-- Add Tailwind states to the component
+- Function expressions are another way to define functions
+
+```js
+let greet = function (name) {
+  return "Hello, " + name;
+};
+
+console.log(greet("Alice")); // "Hello, Alice"
+```
+
+---
+
+## Function Expressions, cont'd
+
+- Function expressions can be assigned to variables
+- The function can be called using the variable name
+- Function expressions are not hoisted, i.e. they cannot be called before they are defined
+
+---
+
+## JavaScript: Arrays
+
+- Data structure that holds a list of items
+- Can hold any type of data, e.g. numbers, strings, objects, functions
+- Can be created using the `[]` syntax
+
+```js
+let empty = [];
+let numbers = [1, 2, 3, 4, 5];
+let names = ["Alice", "Bob", "Charlie"];
+```
+
+---
+
+## JavaScript: Access elements
+
+- Access elements using the index
+- Index starts at 0
+- Use the square brackets `[]` syntax
+
+```js
+let numbers = [1, 2, 3, 4, 5];
+console.log(numbers[0]); // 1
+```
+
+---
+
+## JavaScript: Access elements example
+
+```js
+let misc = [
+  1,
+  true,
+  "three",
+  { count: 4 },
+  function () {
+    return "5️⃣";
+  },
+];
+
+if (misc[1]) {
+  console.log(misc[2]); // "three"
+}
+
+let count = misc[3].count;
+console.log(count); // 4
+
+let fiveFunction = misc[4]; // function
+let emoji = fiveFunction(); // "5️⃣"
+console.log(emoji); // "5️⃣"
+```
+
+---
+
+## Array destructuring
+
+- Array destructuring allows you to assign array elements to variables
+
+```js
+let numbers = [1, 2, 3, 4, 5];
+let [first, second, third] = numbers;
+
+console.log(first); // 1
+```
+
+---
+
+## Higher order functions
+
+- Functions that take other functions as arguments or return functions
+
+---
+
+## Higher order functions: Example
+
+- `calculate` is a higher order function that takes two numbers and a function as arguments
+
+```js
+let add = function (a, b) {
+  return a + b;
+};
+
+let subtract = function (a, b) {
+  return a - b;
+};
+
+let calculate = function (a, b, operation) {
+  let result = operation(a, b);
+  return result;
+};
+
+console.log(calculate(5, 3, add)); // 8
+```
+
+---
+
+## Higher order functions: Example 2
+
+```js
+// getMultiplier is a higher order function that returns a function
+let getMultiplier = function (factor) {
+  return function (number) {
+    return number * factor;
+  };
+};
+
+let double = getMultiplier(2); // double is a function that multiplies by 2
+let triple = getMultiplier(3); // triple is a function that multiplies by 3
+
+let result = double(5); // 10
+console.log(result);
+
+result = triple(5); // 15
+console.log(result);
+```
+
+---
+
+## Arrow functions
+
+- Arrow functions are a shorthand syntax for defining functions
+
+```js
+let greet = (name) => {
+  return "Hello, " + name;
+};
+
+console.log(greet("Alice")); // "Hello, Alice"
+```
+
+---
+
+## Arrow functions, cont'd
+
+- If the function body is a single expression, you can omit the curly braces
+- The expression is returned implicitly
+
+```js
+let greet = (name) => "Hello, " + name;
+let foo = () => "bar";
+
+console.log(greet("Alice")); // "Hello, Alice"
+console.log(foo()); // "bar"
+```
+
+---
+
+## Function definition vs Function call
+
+- When a function is defined, it is not executed
+- The function is executed when it is called
+
+```js
+// greet is a function definition
+let greet = (name) => "Hello, " + name;
+console.log(greet); // [Function: greet]
+
+// greet is called with the argument "Alice"
+console.log(greet("Alice")); // "Hello, Alice"
+```
+
+---
+
+## React: Event handlers
+
+- Event handlers are functions that are called when an event occurs
+- Example: Button component with an `onClick` event handler
+
+```js
+function Button() {
+  const showMessage = () => {
+    alert("Hello, world!");
+  };
+
+  return <button onClick={showMessage}>Click me</button>;
+}
+```
+
+---
+
+## Other event handlers
+
+- `onClick` is just one of many event handlers
+- Other event handlers include `onMouseOver`, `onMouseOut`, `onFocus`, `onBlur`, `onChange`, `onSubmit`
+- Event handlers are camelCased
+
+---
+
+## React: useState Hook
+
+- `useState` is a hook that allows you to add state to functional components
+- (Hooks are a category of function that allows base code to call extension code.)
+- `useState` returns an array with two elements: the current state and a function to update the state
+- `useState` takes an initial value as an argument
+
+---
+
+## React: useState Hook, cont'd
+
+- Example: Counter component
+
+```js
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+```
+
+---
+
+## `useState` current state and update function
+
+- Do not mutate the state directly or React will not re-render the component
+- You must use the update function to update the state
+
+---
+
+## Next.js: "use client" Directive
+
+- Event handlers and `useState` are used to add interactivity
+- Interactivity is on the client side
+- By default, Next.js is a server-side rendered framework
+- To use client-side features, we need to tell Next.js to "use client"
+
+```js
+"use client"
+
+import { useState } from "react";
+
+export default function Page() {
+  ...
+}
+```
+
+---
+
+## Tailwind CSS: Flexbox Layout
+
+- Tailwind CSS provides utility classes for Flexbox layout
+- Flexbox is a layout model that allows you to align and distribute space among items in a container
+- Flexbox is used to create responsive layouts
+
+---
+
+## Tailwind CSS: Flexbox Layout, cont'd
+
+- Example: Flexbox layout with Tailwind CSS classes
+
+```html
+<div class="flex justify-center max-w-lg h-24 bg-gray-200">
+  <div class="flex-1">Item 1</div>
+  <div class="flex-1">Item 2</div>
+  <div class="flex-1">Item 3</div>
+</div>
+```
+
+---
+
+## Tailwind CSS: Flexbox Layout, cont'd
+
+- `flex` class creates a flex container
+- `justify-center` class aligns items along the main axis
+- `max-w-lg` class sets the maximum width of the container
+- `h-24` class sets the height of the container
+- `flex-1` class sets the flex property of the items to 1 so they take up equal space
+
+---
+
+## Tailwind CSS: States
+
+- Style elements based on their state, e.g. hover, focus, active
+- Creates interactive UIs
+- Example: Button with hover state
+
+```html
+<button
+  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+>
+  Button
+</button>
+```
+
+---
+
+## Counter component demo
