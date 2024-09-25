@@ -21,12 +21,24 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
     const week = await prompt(`Enter assignment week number: `);
 
     // Split usernames into array
-    const usernames = usernamesCSV.split(",");
-    for (const username of usernames) {
+    const pipedNames = usernamesCSV.split(",");
+    console.log("Number of students: " + pipedNames.length);
+
+    let count = 1;
+
+    for (const pipeName of pipedNames) {
+      let [name, username] = pipeName.split("|");
+      if (!username) {
+        username = "";
+      }
+      name = name.trim();
+      username = username.trim();
+
       const res = await checkSubmission(username, week);
       console.log(
-        `${username}: \t ${res.status ? "✅" : "❌"} (${res.message})`
+        `${count}: ${name} (${username}): \t ${res.status ? "✅" : "❌"} (${res.message})`
       );
+      count++;
     }
 
     rl.close();
@@ -39,24 +51,9 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
 rl.on("close", () => process.exit(0));
 
 async function checkSubmission(account, week) {
-  
-
-  if (week === "1") {
-    return {
-      status: accountExists,
-      message: accountExists ? "" : "no account",
-    };
+  if (account === "") {
+    return { status: false, message: "no account" };
   }
-
-
-  // This API is rated limited to 60 requests per hour unless you authenticate with a token
-  //const repoNotEmpty = await checkUrl(
-  //  `https://api.github.com/repos/${account}/${repoName}/contributors`
-  //);
-
-  //if (!repoNotEmpty) {
-  //  return { status: false, message: "no repo" };
-  //}
 
   const weekExistsInMaster = await checkUrl(
     `https://github.com/${account}/${repoName}/blob/master/app/week-${week}/page.js`
@@ -72,19 +69,38 @@ async function checkSubmission(account, week) {
     return { status: true, message: "main" };
   }
 
+  const weekExistsInMasterSrc = await checkUrl(
+    `https://github.com/${account}/${repoName}/blob/master/src/app/week-${week}/page.js`
+  );
+  if (weekExistsInMasterSrc) {
+    return { status: true, message: "master" };
+  } 
+
+  const weekExistsInMainSrc = await checkUrl(
+    `https://github.com/${account}/${repoName}/blob/main/src/app/week-${week}/page.js`
+  );
+  if (weekExistsInMainSrc) {
+    return { status: true, message: "main" };
+  }
+
+  const weekExistsInMainSrcTs = await checkUrl(
+    `https://github.com/${account}/${repoName}/blob/main/src/app/week-${week}/page.tsx`
+  );
+  if (weekExistsInMainSrcTs) {
+    return { status: true, message: "main" };
+  }
+
   const accountExists = await checkUrl(`https://github.com/${account}`);
   if (!accountExists) {
     return { status: false, message: "no account" };
   }
 
   return { status: false, message: "no week" };
-
-
 }
 
 const checkUrl = async (url) => {
   try {
-    console.log(`Checking ${url}`);
+    // console.log(`Checking ${url}`);
     const response = await fetch(url);
     return response.ok;
   } catch (error) {
