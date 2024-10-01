@@ -6,27 +6,245 @@
 
 ## Agenda
 
+- Survey Feedback
 - Review HTML form elements
-- Create a managed form component.
-- Style our components with Tailwind CSS.
+- JavaScript: event object, preventDefault
+- React: conditional rendering, controlled components
+- Demo: Create a controlled component.
 
 ---
 
-## HTML
+## Survey Feedback
+
+- Likes
+  - Engaging teaching style
+  - Flexible course structure
+  - GitHub for assignments
+  - Detailed examples
+  - Website
+  - Video recordings
+
+---
+
+## Survey Feedback, cont'd
+
+- Suggestions for improvement:
+  - Talk louder and a bit slower
+  - Repeat questions so that the microphone can pick them up
+  - More practice problems
+    - See further reading section
+
+---
+
+## HTML: Forms
 
 - Form elements
-
-## JavaScript
-
-- Event handlers
-- preventDefault
+  - `<form>` - container for form controls
+  - `<input>` - text, password, radio, checkbox, etc.
+  - `<textarea>` - multi-line text input
+  - `<select>` - drop-down list
+  - `<button>` - submit, reset, or generic button
 
 ---
 
-## Managed form component
+## HTML Forms Example
 
-- Create a form to add a dog
+```html
+<form action="/send" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" required></textarea>
+  <button type="submit">Submit</button>
+</form>
+```
+
+In this example, the form will be submitted to `/send` using the POST method.
+
+---
+
+## JavaScript: Event Object
+
+- Event object is passed to event handlers
+- Contains information about the event
+
+  - `type` - event type, e.g. `click`, `submit`
+  - `target` - element that triggered the event, e.g. button
+
+- `target` property is useful for form validation
+- e.g. `event.target.value` to get the value of an input field
+
+---
+
+## JavaScript: Event Object Example
+
+```jsx
+const getValues = (event) => {
+  // Get the value of the input field
+  console.log(event.target.value);
+};
+
+// In JSX, pass the event object to the event handler
+<input type="text" onChange={(e) => getValues(e)} />;
+```
+
+---
+
+## JavaScript: `preventDefault`
+
+- Prevents the default behavior of an event
+- e.g. preventing form submission is useful for React applications
+
+```jsx
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // Do something with the form data
+  // Form will not be submitted, i.e. /send will not be called
+};
+```
+
+---
+
+## JavaScript: `&&`
+
+- Logical AND operator, evaluates to true if both operands are true
+- If the first operand is false, the second operand is not evaluated. Why?
+
+---
+
+```js
+const a = () => {
+  console.log("a");
+  return true;
+};
+const b = () => {
+  console.log("b");
+  return true;
+};
+const c = () => {
+  console.log("c");
+  return false;
+};
+
+a() && b(); // a, b
+a() && c(); // a, c
+c() && a(); // c
+```
+
+---
+
+## React: Conditional Rendering
+
+- You cannot put an `if` statement inside JSX
+- Use conditional rendering with the logical AND operator or ternary operator
+
+```jsx
+export default function Toggle() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setShow(!show)}>Toggle</button>
+      {show && <p>Visible</p>}
+    </div>
+  );
+}
+```
+
+---
+
+## React: Conditional Rendering, cont'd
+
+- Conditional rendering can be done with the ternary operator
+- Useful for rendering different components based on a condition
+- `condition ? true : false` - if condition is true, render true, otherwise render false
+
+---
+
+```jsx
+export default function Alert({ type }) {
+  return (
+    <div className={type === "success" ? "bg-green-100" : "bg-red-100"}>
+      {type === "success" ? "Success" : "Error"}
+    </div>
+  );
+}
+```
+
+---
+
+## Template Literals
+
+- Use backticks to create a template literal
+- Use `${}` to insert a variable or expression
+- Better than concatenation because it's easier to read
+
+```js
+const name = "Alice";
+console.log(`Hello, ${name}!`);
+```
+
+---
+
+- Conditional rendering with template literals
+
+```jsx
+export default function Alert({ type }) {
+  return (
+    <div
+      className={`text-lg ${
+        type === "success" ? "bg-green-100" : "bg-red-100"
+      } p-2`}
+    >
+      {type === "success" ? "Success" : "Error"}
+    </div>
+  );
+}
+```
+
+---
+
+## React: Controlled Components
+
+- Controlled components are form elements whose value is controlled by React
+- Use the `useState` hook to manage the state of form elements
+- Use the `onChange` event handler to update the state
+- Use the `value` attribute to set the value of the form element
+- Use the `onSubmit` event handler to handle form submission
+
+---
+
+```jsx
+export default function ControlledComponent() {
+  const [favouriteWord, setFavouriteWord] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Do something with the form data
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={favouriteWord}
+        onChange={(e) => setFavouriteWord(e.target.value)}
+      />
+      <p>Your favourite word is: {favouriteWord}</p>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+---
+
+## Demo: Controlled Component
+
+- Create a form to add a dog with name, breed, and age
 - Use the useState hook to manage state of each form control
 - Use the onChange event handler to update state
 - Upon submission, create a dog object and display it in the console
-- Add conditional rendering to the component
+- Add validation using conditional rendering
