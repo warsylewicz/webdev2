@@ -25,6 +25,7 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
     console.log("Number of students: " + pipedNames.length);
 
     let count = 1;
+    let incorrect = 0;
 
     for (const pipeName of pipedNames) {
       let [name, username] = pipeName.split("|");
@@ -38,10 +39,16 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
       console.log(
         `${count}: ${name} (${username}): \t ${res.status ? "✅" : "❌"} (${res.message})`
       );
+      if (res.status === false) {
+        incorrect++;
+      }
+
       count++;
     }
 
+    console.log(`\n\nIncorrect submissions: ${incorrect}`);
     rl.close();
+
   } catch (e) {
     console.error("Unable to prompt", e);
   }
@@ -55,6 +62,7 @@ async function checkSubmission(account, week) {
     return { status: false, message: "no account" };
   }
 
+  // correct locations
   const weekExistsInMaster = await checkUrl(
     `https://github.com/${account}/${repoName}/blob/master/app/week-${week}/page.js`
   );
@@ -69,25 +77,36 @@ async function checkSubmission(account, week) {
     return { status: true, message: "main" };
   }
 
+
+  // src folders
   const weekExistsInMasterSrc = await checkUrl(
     `https://github.com/${account}/${repoName}/blob/master/src/app/week-${week}/page.js`
   );
   if (weekExistsInMasterSrc) {
-    return { status: true, message: "master" };
+    return { status: true, message: "master-src" };
   } 
 
   const weekExistsInMainSrc = await checkUrl(
     `https://github.com/${account}/${repoName}/blob/main/src/app/week-${week}/page.js`
   );
   if (weekExistsInMainSrc) {
-    return { status: true, message: "main" };
+    return { status: true, message: "main-src" };
   }
 
+  // src and typescript
   const weekExistsInMainSrcTs = await checkUrl(
     `https://github.com/${account}/${repoName}/blob/main/src/app/week-${week}/page.tsx`
   );
   if (weekExistsInMainSrcTs) {
-    return { status: true, message: "main" };
+    return { status: true, message: "main-src-ts" };
+  }
+
+  // extra folder
+  const weekExistsInMainExtraFolder = await checkUrl(
+    `https://github.com/${account}/${repoName}/blob/main/cprg306-assignments/app/week-${week}/page.js`
+  );
+  if (weekExistsInMainExtraFolder) {
+    return { status: true, message: "main-extra-folder" };
   }
 
   const accountExists = await checkUrl(`https://github.com/${account}`);
