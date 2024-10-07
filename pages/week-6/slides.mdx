@@ -4,10 +4,188 @@
 
 ---
 
-## Arrays
+## Agenda
 
-- Creating, accessing, modifying
-- Methods: `map`, `filter`, `sort`, `reduce`
+1. JS Arrays: mutating methods, non-mutating methods, spread operator, with objects
+2. React Lists: rendering, handling events
+3. Tailwind CSS: responsive classes
+4. Coding Demo
+
+---
+
+## JS Arrays
+
+You must know which methods mutate the array and which do not. Why?
+
+---
+
+## Mutating Methods
+
+- `push()` - adds one or more elements to the end of an array
+- `pop()` - removes the last element from an array and returns it
+- `splice()` - changes the contents of an array by removing elements
+- `sort()` - sorts the elements of an array in place
+- `reverse()` - reverses the elements of an array in place
+
+---
+
+## Mutating Methods Example
+
+```js
+const arr = [1, 2, 3, 4, 5];
+arr.push(6); // arr = [1, 2, 3, 4, 5, 6]
+let last = arr.pop(); // last = 6, arr = [1, 2, 3, 4, 5]
+let removed = arr.splice(1, 2); // remove 2 elements starting at index 1, removed = [2, 3], arr = [1, 4, 5]
+arr.reverse(); // arr = [5, 4, 1]
+```
+
+---
+
+## `sort(compareFn)`
+
+- Sorts the elements of an array in place and returns the array
+- `compareFn` is a function that defines the sort order. It has two parameters, `a` and `b`, that represent two elements from the array. The function should return:
+  - a negative value if `a` should come before `b`
+  - a positive value if `a` should come after `b`
+  - zero if `a` and `b` are equal
+
+---
+
+```js
+const arr = [1, 3, 2, 5, 4];
+
+const myCompare = (a, b) => {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+};
+
+arr.sort(myCompare); // [1, 2, 3, 4, 5]
+
+// or using an arrow function
+arr.sort((a, b) => a - b); // [1, 2, 3, 4, 5]
+```
+
+---
+
+## Non-Mutating Methods
+
+- `filter()` - creates a new array with all elements that pass the test
+- `map()` - creates a new array with the results of calling a function for every element
+- `reduce()` - applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value
+- `findIndex()` - returns the index of the first element in the array that satisfies the provided testing function
+
+---
+
+```js
+const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
+
+const shortNames = names.filter((name) => name.length < 5); // ['Bob', 'Eve']
+const nameLengths = names.map((name) => name + "(" + name.length + ")"); // ['Alice(5)', 'Bob(3)', 'Charlie(7)', 'David(5)', 'Eve(3)']
+const totalLength = names.reduce((acc, name) => acc + name.length, 0); // 23 (5 + 3 + 7 + 5 + 3)
+const index = names.findIndex((name) => name[2] === "v"); // find the index of the first name with a "v" at index 2, index = 3 (David)
+```
+
+---
+
+## Spread Operator
+
+- The spread operator `...` is used to expand an array into individual elements
+- It can be used to create a new array with the elements of an existing array
+- It can also be used to combine two arrays
+
+---
+
+```js
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const arr3 = [...arr1, 0, 0, ...arr2]; // [1, 2, 3, 0, 0, 4, 5, 6]
+```
+
+---
+
+## Arrays with Objects
+
+- Arrays can contain objects
+
+```js
+const people = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 },
+];
+
+// find the names of people under 30
+const under30 = people
+  .filter((person) => person.age < 30)
+  .map((person) => person.name); // ['Alice']
+```
+
+---
+
+## React Lists
+
+- Use the `map()` method to render a list of elements
+- Use the `key` attribute to help React identify which items have changed, are added, or are removed
+- Keys must be unique within the list
+
+---
+
+```jsx
+const people = [
+  { id: 1, name: "Aneesh", age: 25 },
+  { id: 2, name: "Baptiste", age: 30 },
+  { id: 3, name: "Chun", age: 35 },
+];
+
+return (
+  <ul>
+    {people.map((person) => (
+      <li key={person.id}>
+        {person.name} ({person.age})
+      </li>
+    ))}
+  </ul>
+);
+```
+
+---
+
+## Handling Events
+
+- You can add event handlers to elements in a list
+
+```jsx
+const people = [
+  { id: 1, name: "Aneesh", age: 25 },
+  { id: 2, name: "Baptiste", age: 30 },
+  { id: 3, name: "Chun", age: 35 },
+];
+
+return (
+  <ul>
+    {people.map((person) => (
+      <li key={person.id} onClick={() => alert(person.name)}>
+        {person.name} ({person.age})
+      </li>
+    ))}
+  </ul>
+);
+```
+
+---
+
+## Tailwind CSS Responsive Classes
+
+- Tailwind CSS provides responsive classes to create mobile-first designs
+- Use the `sm`, `md`, `lg`, and `xl` prefixes to apply styles at different breakpoints
+
+```jsx
+<div className="sm:p-2 lg:p-12">
+  <p className="text-sm lg:text-xl">Responsive text</p>
+</div>
+```
 
 ---
 
@@ -16,6 +194,7 @@
 - Create a new page
 - Obtain dog photos from Pexels
 - Create an array of dogs with name, description, and image
+- Store the array as JSON in a file
 - Render the list of dogs
 - Sort the list of dogs alphabetically by name
 - Filter the list of dogs by id
