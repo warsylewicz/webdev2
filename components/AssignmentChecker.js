@@ -35,32 +35,27 @@ function AssignmentChecker({ week }) {
         `https://api.github.com/repos/${account}/${repoName}/contributors`
       ));
 
-    let weekExists =
-      repoExists &&
-      (await checkUrl(
-        `https://github.com/${account}/${repoName}/tree/master/app/week-${week}/page.js`
-      ));
+        const extensions = ['.js', '.tsx'];
 
-    weekExists =
-      repoExists &&
-      (weekExists ||
-        (await checkUrl(
-          `https://github.com/${account}/${repoName}/tree/main/app/week-${week}/page.js`
-        )));
+      let weekExists = false;
+      for (const ext of extensions) {
+          weekExists =
+              repoExists &&
+              (await checkUrl(
+                  `https://github.com/${account}/${repoName}/tree/master/app/week-${week}/page${ext}`
+                  ) ||
+                  await checkUrl(
+                      `https://github.com/${account}/${repoName}/tree/main/app/week-${week}/page${ext}`
+                  ) ||
+                  await checkUrl(
+                      `https://github.com/${account}/${repoName}/tree/master/src/app/week-${week}/page${ext}`
+                  ) ||
+                  await checkUrl(
+                      `https://github.com/${account}/${repoName}/tree/main/src/app/week-${week}/page${ext}`
+                  ));
 
-    weekExists =
-      repoExists &&
-      (weekExists ||
-        (await checkUrl(
-          `https://github.com/${account}/${repoName}/tree/master/src/app/week-${week}/page.js`
-        )));
-
-    weekExists =
-      repoExists &&
-      (weekExists ||
-        (await checkUrl(
-          `https://github.com/${account}/${repoName}/tree/main/src/app/week-${week}/page.js`
-        )));
+          if (weekExists) break;
+      }
 
     setStatus({
       loading: false,
