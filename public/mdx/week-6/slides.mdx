@@ -23,9 +23,7 @@ You must know which methods mutate the array and which do not. Why?
 
 - `push()` - adds one or more elements to the end of an array
 - `pop()` - removes the last element from an array and returns it
-- `splice()` - changes the contents of an array by removing elements
 - `sort()` - sorts the elements of an array in place
-- `reverse()` - reverses the elements of an array in place
 
 ---
 
@@ -35,8 +33,6 @@ You must know which methods mutate the array and which do not. Why?
 const arr = [1, 2, 3, 4, 5];
 arr.push(6); // arr = [1, 2, 3, 4, 5, 6]
 let last = arr.pop(); // last = 6, arr = [1, 2, 3, 4, 5]
-let removed = arr.splice(1, 2); // remove 2 elements starting at index 1, removed = [2, 3], arr = [1, 4, 5]
-arr.reverse(); // arr = [5, 4, 1]
 ```
 
 ---
@@ -73,7 +69,6 @@ arr.sort((a, b) => a - b); // [1, 2, 3, 4, 5]
 - `filter()` - creates a new array with all elements that pass the test
 - `map()` - creates a new array with the results of calling a function for every element
 - `reduce()` - applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value
-- `findIndex()` - returns the index of the first element in the array that satisfies the provided testing function
 
 ---
 
@@ -83,7 +78,6 @@ const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
 const shortNames = names.filter((name) => name.length < 5); // ['Bob', 'Eve']
 const nameLengths = names.map((name) => name + "(" + name.length + ")"); // ['Alice(5)', 'Bob(3)', 'Charlie(7)', 'David(5)', 'Eve(3)']
 const totalLength = names.reduce((acc, name) => acc + name.length, 0); // 23 (5 + 3 + 7 + 5 + 3)
-const index = names.findIndex((name) => name[2] === "v"); // find the index of the first name with a "v" at index 2, index = 3 (David)
 ```
 
 ---
@@ -202,5 +196,4 @@ return (
 - Render the list of dogs
 - Sort the list of dogs alphabetically by name
 - Filter the list of dogs by id
-- Add a click handler to each dog to display the id
-- Add Tailwind responsive classes
+- Add a click handler to each dog to select it

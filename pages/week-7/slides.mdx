@@ -2,9 +2,51 @@
 
 # Managing State
 
+---
+
+## Agenda
+
+- Tailwind Component Libraries
 - Immutability
-- Component Lifecycle
+- State Batching
+- State Management
 - Sharing State Between Components
+
+---
+
+## Tailwind Component Libraries
+
+- A component library is a collection of pre-built components
+- Useful for building UIs quickly
+- Some typical components include buttons, pop-up modals, form elements, even entire layouts and dashboards
+
+---
+
+## Tailwind Component Libraries, cont'd
+
+- Tailwind has a number of component libraries available
+  - [Tailwind UI](https://tailwindui.com/)
+  - [Headless UI](https://headlessui.dev/)
+  - [shadcn/ui](https://ui.shadcn.com/)
+  - [Daisy UI](https://daisyui.com/)
+
+---
+
+## Other Component Libraries
+
+- [Material-UI](https://material-ui.com/)
+- [Ant Design](https://ant.design/)
+- [Chakra UI](https://chakra-ui.com/)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+
+> Note: If you want to use one of these libraries, you should create a project that does NOT use Tailwind CSS.
+
+---
+
+## Vercel's AI
+
+- [v0.dev](https://v0.dev/)
+- Great for generating user interfaces quickly
 
 ---
 
@@ -22,26 +64,59 @@ Create a broken counter that increments by 1 that doesn't use `setState`
 
 ---
 
-## Component Lifecycle
+## State Batching
 
-- Initial Render
-- State Change
-- Schedule Update
-- Reconciliation
-- Update State
-- Re-render
+- React batches state updates
+- Multiple `setState` calls are batched together
+- React will only re-render once
+- `set state` schedules a state update, it doesn't immediately update the state
 
 ---
 
-## React State Batching Demo
+## State Batching Demo
 
-Demo: Create a broken counter that uses `setState` multiple times
+Create a counter that increments by 1 using `setState` multiple times
 
 ---
 
-## Sharing State Between Components
+## Solution to the broken counter
 
-- Lifting State Up
+- Use a function to update state
+- Pass the previous state to the function
+
+```javascript
+setCount((prevCount) => prevCount + 1);
+```
+
+---
+
+## State Containing Objects
+
+- When updating state that contains objects, you must create a new object
+- You can use the spread operator to create a new object
+
+```javascript
+const [person, setPerson] = useState({ name: "Mario", age: 30 });
+
+setPerson({ ...person, age: 31 }); // copy the previous person object and update the age
+// or
+setPerson((prevPerson) => ({ ...prevPerson, age: 31 })); // use a function to update the state
+```
+
+---
+
+## State Containing Objects Demo
+
+Create a person object with a name and age, and update the age
+
+---
+
+## State Management
+
+- React state is local to the component
+- If you need to share state between components, you need to lift the state up to a common ancestor
+- And pass the state down as props
+- A common pattern is to use a state management library like Redux or Context API. (Beyond the scope of this course)
 
 ---
 
