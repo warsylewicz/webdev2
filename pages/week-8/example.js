@@ -3,17 +3,17 @@ const Page = `"use client";
 import { useState, useEffect } from 'react';
 
 export default function PublicAPIs() {
-  const [apis, setApis] = useState([]);
+  const [facts, setFacts] = useState([]);
   const [error, setError] = useState(null);
 
-  async function fetchAPIs() {
+  async function fetchFacts() {
     try {
-      const response = await fetch('https://api.publicapis.org/entries');
+      const response = await fetch('https://dogapi.dog/api/v2/facts');
       if (!response.ok) {
         throw new Error(\`HTTP error! status: \${response.status}\`);
       }
       const data = await response.json();
-      setApis(data.entries);
+      setFacts(data.data);
       setError(null);
     } catch (e) {
       setError(e.message);
@@ -21,27 +21,24 @@ export default function PublicAPIs() {
   }
 
   useEffect(() => {
-    fetchAPIs();
+    fetchFacts();
   }, []); // Run the effect only once after the initial render
 
   if (error) return (
     <div>
-      <h2>Public APIs:</h2>
+      <h2>Dog Fact</h2>
       <p>{error}</p>
     </div>
   );
   
   return (
     <div>
-      <h2>Public APIs:</h2>
-      {apis.length > 0 ? (
+      <h2>Dog Fact</h2>
+      {facts.length > 0 ? (
         <ul>
-          {apis.map((api, index) => (
-            <li key={index}>
-              <a href={api.Link}>
-                {api.API}
-              </a>
-              : {api.Description}
+          {facts.map((fact) => (
+            <li key={fact.id}>
+              {fact.attributes.body}
             </li>
           ))}
         </ul>

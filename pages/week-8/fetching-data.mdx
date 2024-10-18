@@ -325,9 +325,9 @@ import { example } from "./example.js";
 
 <Sandbox files={example} />
 
-In this component, the `useEffect` hook runs the `fetchAPI`s function once after the initial render. This function fetches a list of public APIs from the API and sets the `apis` state with the fetched data. The component then renders a list of API names, or a "Loading..." message if the data is not yet available. This example is "meta" because it uses an API to fetch a list of APIs!
+In this component, the `useEffect` hook runs the `fetchFacts` function once after the initial render. This function fetches a random dog fact from the API and sets the `facts` state with the fetched data. The component then renders the dog fact (an array of one fact), or a "Loading..." message if the data is not yet available.
 
-It is possible to view the data returned by the API by navigating directly to the API URL in your browser. For example, if you navigate to [https://api.publicapis.org/entries](https://api.publicapis.org/entries), you'll see the data returned by the API.
+It is possible to view the data returned by the API by navigating directly to the API URL in your browser. For example, if you navigate to [https://dogapi.dog/api/v2/facts](https://dogapi.dog/api/v2/facts), you'll see the data returned by the API.
 
 However, this is not always the case. Some APIs require authentication or have other restrictions that prevent you from viewing the data in your browser. In these cases, you can use a tool like [Postman](https://www.postman.com/) or [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) to view the data.
 
@@ -483,10 +483,10 @@ Make sure to add error handling to your code. The solution code uses a try/catch
 
 ## 🌐 Community Events App
 
-Week 7 of the Community Events App is all about fetching data from an API. The app fetches data from the Open Meteo API to display real-time weather data for Calgary.
+Week 8 of the Community Events App is all about fetching data from an API. The app fetches data from the Open Meteo API to display real-time weather data for Calgary.
 
-- [Week 7 Code](https://github.com/warsylewicz/webdev2-community-events/tree/master/app/week-7)
-- [Live deployment](https://webdev2-community-events.vercel.app/week-7)
+- [Week 8 Code](https://github.com/warsylewicz/webdev2-community-events/tree/master/app/week-8)
+- [Live deployment](https://webdev2-community-events.vercel.app/week-8)
 
 The `Weather` component fetches and displays real-time weather data for a specific location, in this case, Calgary. The key steps and parts of the code are as follows:
 
