@@ -4,21 +4,66 @@
 
 ---
 
-## Topics
+## Agenda
 
-- HTTP Methods, Status Codes
-- JS Promises, Async/Await, and Fetch API
-- React useEffect Hook
+1. HTTP: Methods, Status Codes
+2. JS: Promises, Async/Await, and Fetch API
+3. React: `useEffect` Hook
+4. Coding Demo
 
 ---
 
-## HTTP Methods
+## HTTP (Hypertext Transfer Protocol)
 
-- GET: Retrieve data
-- POST: Create new data
-- PUT: Update existing data
-- PATCH: Partial update
-- DELETE: Remove data
+- Application layer protocol for transmitting hypermedia documents
+- Used to request and send data over the internet
+- Stateless: Each request is independent of the others
+- Client-server model: Client sends requests, server sends responses
+
+---
+
+## HTTP, cont'd
+
+- REST (Representational State Transfer) is an architectural style for designing networked applications
+- RESTful APIs use HTTP methods to perform CRUD operations
+- JSON is a common data format used in RESTful APIs
+
+---
+
+## HTTP Request Methods
+
+- `GET`: Retrieve data
+- `POST`: Create new data
+- `PUT`: Update existing data
+- `PATCH`: Partial update
+- `DELETE`: Remove data
+
+---
+
+## HTTP Request Example
+
+Browser sends a `GET` request (`https://webdev2.warsylewicz.ca/week-8`) to fetch data from a server
+
+```http
+GET /week-8 HTTP/2
+Host: webdev2.warsylewicz.ca
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: https://webdev2.warsylewicz.ca/week-8
+...
+```
+
+---
+
+## HTTP Response
+
+- Server sends a response back to the client
+- Contains the requested data and metadata
+- Status code indicates the success or failure of the request
+- Headers provide additional information about the response
+- Body contains the data, e.g. HTML content, JSON data
 
 ---
 
@@ -30,13 +75,38 @@
 - 4xx: Client Error
 - 5xx: Server Error
 
-E.g. 200 OK, 201 Created, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error
+---
+
+## Common HTTP Status Codes
+
+- `200 OK`: Request was successful
+- `201 Created`: Resource was created
+- `204 No Content`: Request was successful, no content to return
+- `400 Bad Request`: Invalid request
+- `401 Unauthorized`: Authentication required
+- `404 Not Found`: Resource not found
+- `500 Internal Server Error`: Server error
+
+---
+
+## HTTP Response Example
+
+```http
+HTTP/2 200
+access-control-allow-origin: *
+age: 167807
+cache-control: public, max-age=0, must-revalidate
+content-disposition: inline; filename="fetching-data"
+content-encoding: br
+content-type: text/html; charset=utf-8
+...
+```
 
 ---
 
 ## JS Promises
 
-- A promise is an object that represents the eventual completion (or failure) of an asynchronous operation
+- A promise is an object that represents the eventual completion (or failure) of an asynchronous (non-blocking) operation
 - Three states: pending, fulfilled, rejected
 - Pending -> Fulfilled (`.then`) or Rejected (`.catch`)
 - Callback functions are passed to `.then` and `.catch`
@@ -93,6 +163,7 @@ const data = await response.json(); // or response.text(), etc.
 ### React `useEffect` Hook
 
 - Used to perform side effects in functional components
+- A side effect is any code that affects something outside the scope of the component
 - Side effects include data fetching, timers, manual DOM manipulation
 - Runs after every render by default
 - Can be used to run code only when certain values change
@@ -111,6 +182,7 @@ useEffect(() => {
 - The second argument is an array of dependencies
 - If the dependencies change, the effect will run again
 - If the dependencies are empty, the effect will only run once
+- If the dependencies are omitted, the effect will run after every render. **This is not recommended.**
 
 ---
 
