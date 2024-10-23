@@ -101,7 +101,7 @@ import { Callout } from "nextra-theme-docs";
 
 <Callout type="info" emoji="🧹">
 
-The item names in the shopping list are not always clean. For example, the item name "chicken breast" is stored as "chicken breast, 1 kg 🍗". For the MealDB API to work properly, we need to clean up the item name by removing the size and emoji. `split`, `trim`, and `replace` functions can be used to clean up the item name. For example, to remove the emojis you could use something like [this](https://stackoverflow.com/questions/10992921/how-to-remove-emoji-code-using-javascript/41543705#41543705): `text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');`
+The item names in the shopping list are not always clean. For example, the item name "chicken breast" is stored as "chicken breast, 1 kg 🍗". For the MealDB API to work properly, we need to clean up the item name by removing the size and emoji. `split`, `trim`, and `replace` functions can be used to clean up the item name. For example, to remove the emojis you could use something like this answer https://stackoverflow.com/questions/10992921/how-to-remove-emoji-code-using-javascript/41543705#41543705
 
 </Callout>
 
