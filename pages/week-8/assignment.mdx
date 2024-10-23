@@ -73,7 +73,7 @@ The MealIdeas component is responsible for fetching and displaying meal ideas ba
 
 ### Modify `item.js`
 
-The changes in the `item.js` file from Week 6 to Week 7 are relatively straightforward with just one main change. The goal is to make each item in the list clickable so that when a user clicks on an item, it can trigger an action in the parent component.
+The changes in the `item.js` file from Week 7 to Week 8 are relatively straightforward with just one main change. The goal is to make each item in the list clickable so that when a user clicks on an item, it can trigger an action in the parent component.
 
 1. **Update Component Definition**: Update your Item functional component's definition to accept an additional prop called `onSelect`.
 
@@ -83,7 +83,7 @@ The changes in the `item.js` file from Week 6 to Week 7 are relatively straightf
 
 1. **Import Necessary Hooks**: Start by importing the necessary React hooks at the top of your file. You'll be using the `useState` hook.
 
-2. **Update Component Definition**: Begin defining your `ItemList` functional component. In addition to the `items` prop from Week 6, this component should now also receive an `onItemSelect` prop.
+2. **Update Component Definition**: Begin defining your `ItemList` functional component. In addition to the `items` prop from Week 7, this component should now also receive an `onItemSelect` prop.
 
 3. **Update Render Method**: The rendering of sorting buttons remains the same. The change is in rendering the list items. Now, each Item component should be clickable and trigger the `onItemSelect` function with the respective item as an argument. This is achieved by passing the `onSelect` prop to each Item component.
 
