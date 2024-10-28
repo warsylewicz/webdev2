@@ -4,12 +4,13 @@
 
 ---
 
-## Topics
+## Agenda
 
-- Authentication vs Authorization
-- React Context
-- Custom Hooks
-- Environment Variables
+1. Authentication vs Authorization
+2. React Context
+3. Custom Hooks
+4. Environment Variables
+5. Coding Demo
 
 ---
 
@@ -26,18 +27,68 @@
 
 - A way to pass data through the component tree without having to pass props down manually at every level avoiding prop drilling
 - A global state that can be accessed from any component (e.g. user info, language, theme)
-- `createContext` is a function that creates a new context
-- `Context.Provider` and `Context.Consumer` are the two main components to use
-- `useContext` is a hook that allows you to use the context
+- A context is an object that stores a value and can be accessed by any child component
+- It's like a global variable that can be accessed from any sub-component
+- It's like `props` but without having to pass them down manually
+
+---
+
+## React Context API
+
+- `createContext`: a function that creates a new context
+- `Context.Provider`: a component that passes the context to its children
+- `useContext`: a hook that uses the context
+
+- Example: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week-9-context
 
 ---
 
 ## Custom Hooks
 
-- A JavaScript function whose name starts with "use" and that may call other hooks
 - A way to share logic between components
-- A way to abstract complex logic into a single function
-- e.g. `useUserAuth` to handle user authentication logic
+- A JavaScript function whose name starts with `use`
+- Can call other hooks if needed
+- Can be used to create reusable logic
+
+---
+
+## Custom Hooks Example
+
+```javascript
+import { useState } from "react";
+
+export function useCounter(initialValue) {
+  const [count, setCount] = useState(initialValue);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
+
+  return { count, increment, decrement };
+}
+```
+
+`useCounter` is a custom hook that returns an object with `count`, `increment`, and `decrement` properties.
+
+---
+
+## Custom Hooks Example, cont'd
+
+```javascript
+import { useCounter } from "./useCounter";
+
+export default function Page() {
+  const { count, increment, decrement } = useCounter(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+  );
+}
+```
+
+`useCounter` is used to manage the state of a counter.
 
 ---
 
@@ -46,9 +97,19 @@
 - A way to store sensitive configuration settings for an application
 - Not hard-coded in the source code
 - Not stored in the version control system (e.g. Git)
-- Stored in a `.env.local` file
-- Must be copied to deployment environment
+- Must be copied to deployment environment (Vercel)
 - e.g. API keys, database connection strings, passwords
+
+---
+
+## Environment Variables Example
+
+- `.env.local` file in the root of the project
+- `NEXT_PUBLIC_...` prefix is required for client-side code
+
+```javascript
+NEXT_PUBLIC_FIREBASE_API_KEY = "AIzaSyDd7f7...";
+```
 
 ---
 
