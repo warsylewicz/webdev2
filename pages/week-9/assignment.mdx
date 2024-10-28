@@ -152,11 +152,9 @@ In the `week-9` folder, create a file called `layout.js` and add the following c
 ```js copy
 import { AuthContextProvider } from "./_utils/auth-context";
 
-const Layout = ({ children }) => {
+export default function Layout({ children }) {
   return <AuthContextProvider>{children}</AuthContextProvider>;
-};
-
-export default Layout;
+}
 ```
 
 ## Part 5: Add a Landing Page with Login Button
