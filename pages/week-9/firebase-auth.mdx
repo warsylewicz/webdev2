@@ -84,6 +84,27 @@ Here is an example of the steps of an authorization request:
 ![OAuth 2.0 Authorization Request](https://assets-global.website-files.com/6334717ca56db62653270dc5/646ce626ecfd5a664568bb0b_6400a42bdd101731edd18d10_2.png)
 [Oh-Auth - Abusing OAuth to take over millions of accounts](https://salt.security/blog/oh-auth-abusing-oauth-to-take-over-millions-of-accounts)
 
+Here is a sequence diagram of the OAuth flow for logging in with GitHub:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant App
+    participant Firebase
+    participant GitHub
+
+    User ->> App: Initiates Login with GitHub
+    App ->> Firebase: Requests OAuth Token for GitHub
+    Firebase ->> GitHub: Redirects to GitHub Authorization
+    GitHub ->> User: Prompts User to Authorize Access
+    User ->> GitHub: Authorizes Access
+    GitHub ->> Firebase: Returns OAuth Access Token
+    Firebase ->> Firebase: Retrieves GitHub Profile Data (e.g., username, email)
+    Firebase ->> App: Issues Firebase Auth Token for User
+    App ->> User: Grants Access to User with Firebase Auth Token
+    Note over User, App: Firebase Auth Token is used for session management.
+```
+
 ## React Skills
 
 ### `{ children }` prop
