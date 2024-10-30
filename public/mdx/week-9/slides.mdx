@@ -8,7 +8,7 @@
 
 1. Authentication vs Authorization
 2. Firebase: Auth
-3. React: Context API, Custom Hooks
+3. React: `children` prop, Context API, Custom Hooks
 4. Next.js: Environment Variables
 5. Coding Demo
 
@@ -26,6 +26,27 @@
 ## OAuth Sequence Diagram
 
 ![OAuth Flow](/images/week-9/sequence-diagram.png)
+
+---
+
+## `children` Prop
+
+- A special prop that can be used to pass components as data to other components
+
+```
+function Parent({ children }) {
+  return <div>{children}</div>;
+}
+
+function App() {
+  return (
+    <Parent>
+      <h2>Hello, World!</h2>
+      <p>This is a paragraph.</p>
+    </Parent>
+  );
+}
+```
 
 ---
 
