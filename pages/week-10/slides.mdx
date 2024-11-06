@@ -4,13 +4,14 @@
 
 ---
 
-## Topics
+## Agenda
 
 - NoSQL Databases
 - Cloud Firestore
   - Rules
   - CRUD Operations
 - Next.js Dynamic Routing
+- Demo:
 
 ---
 
@@ -19,6 +20,7 @@
 - Non-relational databases
 - No fixed schema, flexible data model
 - Large scale
+- Real-time updates
 
 ---
 
@@ -27,7 +29,7 @@
 - Collection: Array of documents (table)
 - Document: JSON object (row)
 - Field, Value: Key-value pair (column, cell)
-- Subcollection: Collection within a document (subtable)
+- Subcollection: Collection within a document (nested table)
 - Query: Retrieve data from a collection
 - Rules: Security and validation
 
@@ -36,6 +38,7 @@
 ## Design Considerations
 
 - Data model
+  - Typically, one query/document per screen
 - Denormalization, no joins
 - Query performance, Reads vs Writes
 - Security
@@ -51,10 +54,37 @@
 
 ---
 
+## Comparison to JS Objects
+
+| Feature             | JavaScript Objects                     | Firestore Documents                  |
+| ------------------- | -------------------------------------- | ------------------------------------ |
+| **Basic Structure** | Key-value pairs                        | Key-value pairs                      |
+| **Data Types**      | Supports all JS data types + functions | Supports basic types, no functions   |
+| **Nested Data**     | Supports nested objects and arrays     | Documents can contain subcollections |
+
+---
+
+## Comparison to JS Objects (cont'd)
+
+| Feature              | JavaScript Objects             | Firestore Documents |
+| -------------------- | ------------------------------ | ------------------- |
+| **Data Size Limits** | Limited only by runtime memory | 1 MB per document   |
+
+---
+
 ## Rules
 
 - Security and validation rules
-- Example: Allow anyone to read. Write only if user is authenticated.
+- Firestore Security Rules are written in a custom language
+- Rules are evaluated in order
+- `allow` or `deny` access to documents
+- `request` object contains information about the request, e.g. `request.auth` for authentication
+
+---
+
+## Rules Example
+
+- Allow anyone to read. Write only if user is authenticated.
 
 ```javascript
 rules_version = '2';
@@ -142,23 +172,50 @@ await deleteDoc(docRef);
 
 ---
 
-## Next.js Dynamic Routing
+## Accessing Subcollections
 
-- Dynamic routes are used to create routes based on the data
-- Folder name is enclosed in square brackets
-- prop `params` is an object with the route parameters
-- Example: `app/week/[id]/page.js`
+- `collection()` and `doc()` can be used to access subcollections too
+- Example: Suppose we have a collection of users, each with a collection of items
 
 ```javascript
-export default function Page({ params }) {
-  return <h1>{params.id}</h1>;
-}
+// Get a reference to the items collection for a specific user
+const itemsCollection = collection(db, "users", userId, "items");
+
+// Or, get a reference to a specific item document
+const itemDoc = doc(db, "users", userId, "items", itemId);
 ```
 
-- request to `http://localhost:3000/week/123` will render `<h1>123</h1>`
+---
+
+## Next.js Routing
+
+- Next.js uses a file-system based router where folders are used to define routes
+- `page.js` is a special file is used to make route segments publicly accessible
+- e.g. `app/about/page.js` will be accessible at `http://localhost:3000/about`
+
+> But what if we want to create dynamic routes like `/blog/123`?
+
+---
+
+## Next.js Dynamic Routing
+
+- Folder name is enclosed in square brackets `app/[id]/page.js`
+- prop `params` is a promise resolving to an object with the route parameters
+
+---
+
+## Dynamic Route Example
+
+https://github.com/warsylewicz/webdev2-demos/tree/master/app/week-10-dynamic-routing
 
 ---
 
 ## Coding Demo
+
+- Add Cloud Firestore to the Week 9 Demo
+
+  - In the menu on the left, click "Build" and then "Firestore Database"
+  - Add to the existing Firebase project
+  - Choose "Start in test mode"
 
 - Demo a simple blog app with Next.js and Cloud Firestore
