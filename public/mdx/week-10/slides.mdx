@@ -206,22 +206,6 @@ const itemDoc = doc(db, "users", userId, "items", itemId);
 
 ## Dynamic Route Example
 
-- Example: `app/blog/[id]/page.js`
-
-```javascript
-export default async function Page({ params }) {
-  const { id } = await params;
-  return <h1>Blog Id: {id}</h1>;
-}
-```
-
-- request to `http://localhost:3000/week/123` will render `<h1>Blog Id: 123</h1>`
-- `params` will be `{ id: '123' }`
-
----
-
-## Dynamic Route Example 2
-
 https://github.com/warsylewicz/webdev2-demos/tree/master/app/week-10-dynamic-routing
 
 ---
