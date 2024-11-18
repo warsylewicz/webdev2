@@ -40,23 +40,6 @@
 
 ---
 
-## Common Status Codes
-
-- 200: OK
-  - e.g. GET request was successful
-- 201 Created
-  - e.g. POST request was successful
-- 204 No Content
-  - e.g. DELETE request was successful
-- 400 Bad Request
-  - e.g. invalid input
-- 401 Unauthorized
-  - e.g. missing or invalid authentication
-- 404 Not Found
-  - e.g. resource not found
-
----
-
 ## Examples
 
 - GET `/api/users/123` will return user object with id `123`
@@ -75,6 +58,17 @@
 
 ## Coding Demo
 
-- Construct a simple API
-- Test the API
-- Consume the API from the front-end (`fetch`)
+- Part 1
+  - Simple API (GET only)
+- Part 2
+  - API with GET, POST, PUT, PATCH, and DELETE methods for /api/dogs and /api/dogs/:id
+- Part 3
+  - Validation of request body
+
+---
+
+## Each Part
+
+- API implementation with route.js
+- Test the API using VS Code extension REST Client
+- Consume the API from the front-end using `fetch`
