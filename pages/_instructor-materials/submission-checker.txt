@@ -36,13 +36,13 @@ const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
       username = username.trim();
 
       const res = await checkSubmission(username, week);
-      // console.log(
-      //   `${count}: ${name} (${username}): \t ${res.status ? "✅" : "❌"} (${res.message})`
-      // );
+      // console.log(`${count}: ${name} (${username}): \t ${res.status ? "✅" : "❌"} (${res.message})`);
+      
       if (res.status === false) {
         console.log(`${count}: ${name} (${username}): \t "❌" (${res.message})`);
         incorrect++;
       }
+      
 
       count++;
     }
