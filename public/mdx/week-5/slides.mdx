@@ -17,11 +17,8 @@
 ## Survey Feedback
 
 - Likes
-  - Teaching style
-  - Course structure
-  - GitHub for assignments
-  - Detailed examples
-  - Website
+  - Teaching style / lectures (e.g. half-theory / half-code)
+  - Extra materials
   - Video recordings
 
 ---
@@ -29,10 +26,53 @@
 ## Survey Feedback, cont'd
 
 - Suggestions for improvement:
-  - Talk louder and a bit slower
-  - Repeat questions so that the microphone can pick them up
   - More practice problems
     - See further reading section
+    - Upcoming project
+  - Additional explanation of page rendering
+
+---
+
+## Page Rendering Flow
+
+1. Server-Side Rendering
+
+- User navigates to a URL → server receives the request.
+- Components rendered on the server
+- Output: Static HTML + placeholders for client components.
+
+2. Client-Side Hydration
+
+- Initial Load: Browser displays HTML immediately
+- JavaScript Bundles: Downloaded in the background.
+- Hydration: React "revives" static HTML with interactivity.
+
+---
+
+## Hydration
+
+- Process where React attaches to server-rendered HTML.
+
+1. Matches DOM nodes to React components
+2. Initializes state/event listeners
+3. Makes the page interactive
+
+Why It Matters
+
+- Combines speed of SSR with interactivity of CSR
+- No "flash of empty content" (avoids pure client-side rendering).
+
+---
+
+## Client-Side Interactivity
+
+Post-Hydration
+
+- Client components take over (e.g., useState, useEffect).
+
+1. User clicks a button → onClick fires.
+2. useState updates component state.
+3. React re-renders only the changed parts (reconciliation).
 
 ---
 
