@@ -58,7 +58,7 @@ const myCompare = (a, b) => {
 
 arr.sort(myCompare); // [1, 2, 3, 4, 5]
 
-// or using an arrow function
+// or more simply
 arr.sort((a, b) => a - b); // [1, 2, 3, 4, 5]
 ```
 
@@ -76,7 +76,7 @@ arr.sort((a, b) => a - b); // [1, 2, 3, 4, 5]
 const names = ["Alice", "Bob", "Charlie", "David", "Eve"];
 
 const shortNames = names.filter((name) => name.length < 5); // ['Bob', 'Eve']
-const nameLengths = names.map((name) => name + "(" + name.length + ")"); // ['Alice(5)', 'Bob(3)', 'Charlie(7)', 'David(5)', 'Eve(3)']
+const nameLengths = names.map((n) => n + "(" + n.length + ")"); // ['Alice(5)', 'Bob(3)', 'Charlie(7)', 'David(5)', 'Eve(3)']
 const totalLength = names.reduce((acc, name) => acc + name.length, 0); // 23 (5 + 3 + 7 + 5 + 3)
 ```
 
@@ -95,7 +95,7 @@ const arr1 = [1, 2, 3];
 const arr2 = [4, 5, 6];
 const arr3 = [...arr1, 0, 0, ...arr2]; // [1, 2, 3, 0, 0, 4, 5, 6]
 
-// create a new copy of an array
+// create a new (shallow) copy of an array
 const copy = [...arr1]; // [1, 2, 3]
 ```
 
@@ -179,8 +179,11 @@ return (
 - Tailwind CSS provides responsive classes to create mobile-first designs
 - Use the `sm`, `md`, `lg`, and `xl` prefixes to apply styles at different breakpoints
 
+- e.g. `sm:p-4` applies padding of 16px on screens with a width of 640px or more
+- e.g. `lg:p-12` applies padding of 48px on screens with a width of 1024px or more
+
 ```jsx
-<div className="sm:p-2 lg:p-12">
+<div className="p-2 sm:p-4 lg:p-12">
   <p className="text-sm lg:text-xl">Responsive text</p>
 </div>
 ```
