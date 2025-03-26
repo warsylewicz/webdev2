@@ -11,7 +11,7 @@
   - Rules
   - CRUD Operations
 - Next.js Dynamic Routing
-- Demo:
+- Demo: Blogging Platform
 
 ---
 
@@ -124,7 +124,7 @@ db.collection("blog-posts").add({
 ```javascript
 const docRef = doc(db, "blog-posts", id);
 const docSnap = await getDoc(docRef);
-if (docRef.exists()) {
+if (docSnap.exists()) {
   console.log("Document data:", docRef.data());
 } else {
   console.log("No such document!");
@@ -200,7 +200,7 @@ const itemDoc = doc(db, "users", userId, "items", itemId);
 
 ## Next.js Dynamic Routing
 
-- Folder name is enclosed in square brackets `app/[id]/page.js`
+- Folder name is enclosed in square brackets `app/blog/[id]/page.js`
 - prop `params` is a promise resolving to an object with the route parameters
 
 ---
